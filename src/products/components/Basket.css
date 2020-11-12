@@ -1,0 +1,77 @@
+.basketButton {
+    transition: all 0.5s;
+    background-color: rgb(20, 185, 158);
+    border-radius: 5%;
+    border: none;
+    font-weight: 450;
+    width: 135px;
+    height: 44px;
+    max-width: 135px;
+    position: absolute;
+    right: 44px; 
+    top: 180px;
+    outline: none;
+}
+
+.basketButton:hover {
+    text-decoration: none;
+    background-color: rgb(5, 121, 121);
+}
+
+.basketButton:focus {
+    outline: none;
+}
+
+.basketButton span {
+    position: relative;
+    top: -3px;
+    color: white;
+}
+
+.basket-icon {
+    position: relative;
+    max-width: 33px;
+    max-height: 33px;
+    right: 10px;
+    top: 0px;
+}
+
+.cartValue {
+    font-size: 1.6rem;
+}
+
+.cartValue2 {
+    font-size: 1rem;
+}
+
+.cartCont {
+    position: relative;
+    font-size: 1rem;
+    float: right;
+}
+
+@media only screen and (max-width: 840px) {
+    .cartCont {
+        top: 1px;
+        right: 20px;
+    }
+    .basketButton {
+        width: 100px;
+        height: 39px;
+        font-size: 0.7rem;
+    }
+    .basket-icon {
+        max-width: 25px;
+        max-height: 25px;
+    }
+    .cartValue {
+        font-size: 1.1rem;
+    }
+    .cartValue2 {
+        font-size: 0.7rem;
+    }
+    .cartCont {
+        font-size: 0.7rem;
+        right: 1px;
+    }
+}

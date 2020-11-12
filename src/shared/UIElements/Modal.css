@@ -1,0 +1,98 @@
+.modals {
+  z-index: 100;
+  position: fixed;
+  top: 22vh;
+  /* it means 22% from top */
+  left: 23%;
+  width: 55%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 8px;
+  text-align: center;
+}
+.map-modal{
+  width: 55% !important;
+  left: 21% !important;
+
+}
+@media only screen and (max-width: 859px) {
+  .modals {
+    width: 60%;
+  }
+  .map-modal{
+    width: 70% !important;
+    left: 14% !important;
+
+  }
+/*   .signin{
+    left: 30%
+  } */
+}
+
+@media only screen and (max-width: 600px) {
+  .modals {
+    left: 7%;
+    width: 85%;
+  }
+  .map-modal{
+    width: 90% !important;
+    left: 4% !important;
+
+  }
+}
+
+.modal__header {
+  width: 100%;
+  padding: 1rem 0.5rem;
+  background: #3b9221;
+  color: white;
+}
+
+.modal__header h2 {
+  margin: 0.5rem;
+}
+
+.modal__content {
+  padding: 1rem 0.5rem;
+}
+
+.modal__content p {
+  font-size: 1.5rem;
+}
+
+.modal__footer {
+  padding: 1rem 0.5rem;
+}
+.modal__footer-colored{
+  background-color: #3b9221;
+
+}
+
+@media (min-width: 768px) {
+  .modals {
+    left: calc(50% - 20rem);
+    width: 40rem;
+  }
+}
+
+.modal-enter {
+  transform: translateY(-10rem);
+  opacity: 0;
+}
+
+.modal-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 300ms;
+}
+
+.modal-exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.modal-exit-active {
+  transform: translateY(-10rem);
+  opacity: 0;
+  transition: all 200ms;
+}

@@ -1,0 +1,78 @@
+.NewsCard-container {
+    margin: 150px;
+    text-align: center;
+    display: grid;
+    grid-column-gap: 30px;
+    grid-template-columns: auto auto auto;
+}
+
+.card-frame {
+    max-width: 430px;
+    transition: all 0.7s;
+    background-color: rgb(187, 214, 190);
+    padding: 5px;
+    border: rgb(115, 180, 115) solid 1px;
+    border-radius: 5%;
+    box-shadow: 10px 10px 5px 3px grey;
+}
+
+.card-frame:hover {
+    transform: scale(1.1);
+    box-shadow: 10px 10px 10px 4px grey;
+}
+
+.card-item {
+    padding: 10px;
+    border-radius: 5%;
+    background-color: rgb(222, 233, 225);
+}
+
+.NewsCard-container p {
+    font-size: 1.1rem;
+}
+
+.see-more {
+    cursor: pointer;
+    padding: 15px;
+}
+
+.see-more a {
+    color: rgb(50, 145, 63);
+    text-decoration: none;
+}
+
+.horizontal-line {
+    margin: auto;
+    width: 60%;
+    border-top: 1px solid rgb(253, 253, 253);
+}
+
+.image-container img {
+    width: 100%;
+    border-radius: 5%;
+    border: solid rgb(87, 81, 81) 1px;
+}
+
+@media only screen and (max-width: 950px) {
+    .NewsCard-container {
+        display: flex;
+        flex-direction: column;
+
+    }
+    .image-container img {
+        width: 100%;
+    }
+    .card-frame {
+        margin: 30px 30px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .NewsCard-container {
+        margin: auto;
+        position: unset;
+    }
+    .card-frame {
+        margin: 30px 30px;
+    }
+}

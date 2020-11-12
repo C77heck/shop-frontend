@@ -1,0 +1,103 @@
+.brand-logo {
+    position: absolute;
+    max-width: 170px;
+    top: 55px;
+    margin-left: 1rem;
+}
+
+@media only screen and (max-width: 840px) {
+    .brand-logo {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+    }
+}
+
+.buying-upper_strip {
+    height: 60px;
+    background-color: white;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.buying-mid_strip {
+    height: 60px;
+    background-color: white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.buying-lower_strip {
+    height: 40px;
+    background-color: white;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.top-section__hr {
+    background: #22a03e;
+    border: solid rgb(22, 165, 29) 2px;
+}
+
+@media only screen and (max-width: 840px) {
+    .brand-logo {
+        display: none;
+    }
+    .top-section__div {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-gap: 10px;
+        min-height: 110px;
+    }
+    .buying-upper_strip {
+        position: relative;
+        top: 6.75rem;
+        grid-column-start: 3;
+        grid-column-end: 4;
+        right: 1.2rem;
+    }
+    .buying-upper_strip button {
+        background-color: rgb(45, 97, 175);
+        color: white;
+        border-color: rgb(45, 97, 175);
+    }
+    .buying-upper_strip button:hover {
+        background-color: rgb(15, 43, 121);
+        border-color: rgb(15, 43, 121);
+    }
+    .buying-lower_strip {
+        position: relative;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        left: 2rem;
+    }
+    .buying-lower_strip button{
+        position: relative;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        top: -32px;
+        left: 0.4rem;
+      /*   top: -32px; */
+    }
+    /* mobile view needs to be tested! */
+    .buying-mid_strip {
+        position: relative;
+        bottom: 3rem;
+        left: 4rem;
+        grid-column-start: 1;
+        grid-column-end: 4;
+    }
+    .buying-upper_strip button {
+        margin: 0;
+    }
+
+}
+
+@media only screen and (max-width: 490px) {
+    .buying-mid_strip {
+        left: 1rem;
+    }
+}

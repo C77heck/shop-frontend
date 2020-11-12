@@ -1,0 +1,31 @@
+.carousel-container__CCarousel {
+
+    position: relative;
+    bottom: 16px;
+}
+
+.carousel .thumbs {
+    display: none;
+}
+
+.carousel.carousel-slider {
+    height: 450px;
+}
+
+.carousel-images {
+    object-fit: contain;
+    position: relative;
+    bottom: 150px;
+    min-height: 450px;
+}
+
+.carousel p {
+    display: none;
+}
+
+@media only screen and (max-width: 900px) {
+    .carousel-images {
+        object-fit: cover;
+        position: static;
+    }
+}

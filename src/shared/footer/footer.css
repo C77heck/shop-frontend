@@ -1,0 +1,31 @@
+#footer {
+  text-align: center;
+  background-color: #2d8f43;
+  padding: 85px 0 35px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.grids {
+  margin: 0 auto 10px;
+}
+
+.footera {
+  transition: all 0.6s;
+  text-decoration: none;
+  color: rgb(66, 42, 42);
+}
+
+.footera:hover {
+  color: rgb(35, 22, 109);
+}
+
+.bottomp {
+  font-size: 90%;
+  margin-top: 25px;
+}
+
+.footer-admin {
+  position: fixed !important;
+}

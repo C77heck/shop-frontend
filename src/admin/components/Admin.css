@@ -1,0 +1,33 @@
+.form-element_outer {
+    display: inline-block;
+    border: grey 2px solid;
+}
+
+.form-element {
+    padding: 20px;
+    width: auto;
+    margin: 40px 80px;
+}
+
+.form-element h2 {
+    margin-bottom: 20px;
+    font-weight: lighter;
+}
+
+.form-element label {
+    display: block;
+    font-weight: lighter;
+    font-size: 1.2rem;
+}
+
+.form-element button {
+    color: white;
+    background-color: rgb(14, 57, 198);
+    padding: 5px;
+    border-radius: 15%;
+    margin-top: 15px;
+}
+
+.form-element button:hover {
+    background-color: tomato;
+}
