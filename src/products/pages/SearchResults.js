@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
@@ -9,15 +9,19 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 const SearchResult = () => {
 
     const { isLoading } = useHttpClient();
+    const [products, setProducts] = useState([]);
 
-    let products = [];
-    try {
-        products = JSON.parse(localStorage.getItem('searchedItems'))
-        products = products.searches;
-        console.log(products)
-    } catch (err) {
-        console.log(err)
-    }
+    useEffect(() => {
+        (() => {
+            try {
+                const responseData = JSON.parse(localStorage.getItem('searchedItems'))
+                setProducts(responseData.searches)
+            } catch (err) {
+                console.log(err)
+            }
+        })();
+    }, [])
+
 
     return (
         <React.Fragment>

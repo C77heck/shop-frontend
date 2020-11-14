@@ -56,7 +56,7 @@ const CreateProduct = () => {
 
 
             await sendRequest(
-                'http://localhost:2000/api/products',
+                process.env.REACT_APP_BACKEND,
                 'POST',
                 formData
             );

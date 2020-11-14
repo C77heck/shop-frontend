@@ -31,7 +31,7 @@ const CreateProduct = () => {
         event.preventDefault();
         try {
             await sendRequest(
-                'http://localhost:2000/api/products/' + input.code,
+                process.env.REACT_APP_BACKEND + input.code,
                 'DELETE'
             )
             setInput({ code: '' })

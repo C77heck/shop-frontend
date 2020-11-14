@@ -15,7 +15,7 @@ const ProductCard = props => {
                 <div className="picDiv">
                     <img
                         className='productImg'
-                        src={`http://localhost:2000/${props.image}`}
+                        src={process.env.REACT_APP_IMAGE_ROUTE + props.image}
                         alt={props.name}
                     />
                 </div>

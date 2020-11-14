@@ -14,13 +14,11 @@ const ProductSlider = () => {
     const { sendRequest, isLoading } = useHttpClient();
     const [firstSlideImages, setFirstSlideImages] = useState();
     const [secondSlideImages, setSecondSlideImages] = useState();
-    const [products, setProducts] = useState();
 
     useEffect(() => {
         (async () => {
             try {
-                const responseData = await sendRequest('http://localhost:2000/api/products');
-                setProducts(responseData.products);
+                const responseData = await sendRequest(process.env.REACT_APP_BACKEND);
                 setFirstSlideImages(responseData.products.slice(20, 28))
                 setSecondSlideImages(responseData.products.slice(16, 24))
             } catch (err) {
@@ -28,7 +26,6 @@ const ProductSlider = () => {
             }
         })()
     }, [])
-
 
 
 

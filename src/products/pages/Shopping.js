@@ -7,21 +7,17 @@ import LoadingSpinner from '../../shared/UIElements/LoadingSpinner'
 import TopSection from '../components/TopSection'
 
 import './Shopping.css'
-import { CSSTransition } from 'react-transition-group';
-
 
 const Shopping = () => {
     const [loadedProducts, setLoadingProducts] = useState();
     const { sendRequest, isLoading, error, clearError } = useHttpClient();
 
-
     useEffect(() => {
         (async () => {
             try {
-                const responseData = await sendRequest('http://localhost:2000/api/products')
+                const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
                 setLoadingProducts(responseData.products.map(i => ({ ...i, number: 0 })))
             } catch (err) {
-
             }
         })();
     }, [sendRequest])

@@ -17,7 +17,7 @@ const CarouselIMG = props => {
     const clickHandle = async () => {
         try {
             content = props.code
-            const responseData = await sendRequest(`http://localhost:2000/api/products/numbers/${content}`)//need to change the url we send the req to
+            const responseData = await sendRequest(process.env.REACT_APP_SEARCH_ROUTE + content)//need to change the url we send the req to
             search.products = responseData.products
             history.push('/searchresults')
 
@@ -34,7 +34,7 @@ const CarouselIMG = props => {
         >
             <a type='button' onClick={clickHandle}>
                 <img
-                    src={`http://localhost:2000/${props.image}`}
+                    src={process.env.REACT_APP_IMAGE_ROUTE + props.image}
                     alt={props.name}
                 />
             </a>

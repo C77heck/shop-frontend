@@ -25,7 +25,7 @@ const Search = props => {
         e.preventDefault();
         if (!isNaN(content)) {
             try {
-                const responseData = await sendRequest(`http://localhost:2000/api/products/numbers/${content}`)//need to change the url we send the req to
+                const responseData = await sendRequest(process.env.REACT_APP_SEARCH_ROUTE + content)//need to change the url we send the req to
                 search.products = responseData.products
                 if (search.products.length > 0) {
                     localStorage.setItem(
@@ -34,6 +34,7 @@ const Search = props => {
                             searches: search.products
                         })
                     );
+                    history.push('/')
                     history.push('/searchresults')
                 } else {
                     setSearchResults('Sorry, no items matching your search criteria.')
@@ -43,7 +44,7 @@ const Search = props => {
             }
         } else {
             try {
-                const responseData = await sendRequest(`http://localhost:2000/api/products/letters/${content}`)
+                const responseData = await sendRequest(process.env.REACT_APP_SEARCH_ROUTE2 + content)
                 search.products = responseData.products
                 if (search.products.length > 0) {
                     localStorage.setItem(
@@ -51,6 +52,7 @@ const Search = props => {
                         JSON.stringify({
                             searches: search.products
                         }))
+                    history.push('/')
                     history.push('/searchresults')
                 } else {
                     setSearchResults('Sorry, no items matching your search criteria.')

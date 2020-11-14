@@ -36,7 +36,7 @@ const UpdateProduct = () => {
         try {
 
             await sendRequest(
-                'http://localhost:2000/api/products/' + input.code,
+                process.env.REACT_APP_BACKEND + input.code,
                 'PATCH',
                 JSON.stringify({
                     name: input.name,
