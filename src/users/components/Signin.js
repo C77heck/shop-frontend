@@ -19,7 +19,12 @@ const Signin = props => {
             header={props.header}
             show={!!props.show}
             onSubmit={props.onSubmit}
-            footer={<Button className='register-button' onClick={props.register}>REGISTER</Button>}
+            footer={<Button
+                className='register-button'
+                type='button'
+                onClick={props.register}>
+                REGISTER
+             </Button>}
         >
             <InputComponent
                 onChange={props.onChange}

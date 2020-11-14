@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 
 import {
   BrowserRouter as Router,
@@ -25,12 +25,28 @@ import Checkout from './products/pages/Checkout';
 
 
 import './App.css';
+import { AuthContext } from './shared/context/auth-context';
 
 function App() {
 
+  const auth = useContext(AuthContext);
+
   const { basketItems, number, getNumber, code, add, subtract } = usePurchase()
   const { products, productCode, findProducts } = useSearch();
+  const [token, setToken] = useState(false);
+  const [userId, setUserId] = useState(false)
 
+
+
+  const signin = useCallback((uid, token) => {
+    setToken(token);
+    setUserId(uid)
+  }, []);
+
+  const signout = useCallback(() => {
+    setToken(null);
+    setUserId(null)
+  }, []);
 
   let routes;
 
@@ -105,26 +121,37 @@ function App() {
   )
 
   return (
-    <SearchContext.Provider
+    <AuthContext.Provider
       value={{
-        products: products,
-        productCode: productCode,
-        findProducts: findProducts
+        isloggedIn: !!token,
+        token: token,
+        userId: userId,
+        signin: signin,
+        signout: signout
       }}
     >
-      <PurchaseContext.Provider
+      <SearchContext.Provider
         value={{
-          basketItems: basketItems,
-          code: code,
-          number: number,
-          getNumber: getNumber,
-          add: add,
-          subtract: subtract
+          products: products,
+          productCode: productCode,
+          findProducts: findProducts
         }}
       >
-        <main><div className='center'>{routes}</div></main>
-      </PurchaseContext.Provider>
-    </SearchContext.Provider>
+        <PurchaseContext.Provider
+          value={{
+            basketItems: basketItems,
+            code: code,
+            number: number,
+            getNumber: getNumber,
+            add: add,
+            subtract: subtract
+          }}
+        >
+          <main><div className='center'>{routes}</div></main>
+        </PurchaseContext.Provider>
+      </SearchContext.Provider>
+    </AuthContext.Provider>
+
   );
 }
 

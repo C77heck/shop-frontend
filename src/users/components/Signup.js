@@ -9,6 +9,7 @@ import './Signin.css'
 
 const Signup = props => {
 
+
     return (
         <Modal
             className='signin'
@@ -37,7 +38,7 @@ const Signup = props => {
             <InputComponent
                 onChange={props.onChange}
                 value={props.value.lName}
-                property='surname'
+                property='lName'
                 type='text'
 
             />
