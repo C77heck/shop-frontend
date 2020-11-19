@@ -87,7 +87,12 @@ const CreateProduct = () => {
                         <InputComponent onChange={onChangeHandler} property='unit' value={input.unit} type='text' />
                         <InputComponent onChange={onChangeHandler} property='price' value={input.price} type='number' />
                         <div>
-                            <ImageUpload id='image' onInput={inputHandler} errorText='Please provide an image.' />
+                            <ImageUpload
+                                id='image'
+                                onInput={inputHandler}
+                                errorText='Please provide an image.' 
+
+                                />
                         </div>
 
                     </FormComponent>

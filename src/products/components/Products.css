@@ -12,9 +12,11 @@
     max-width: 250px;
     margin: 15px 0;
 }
-.product-name{
+
+.product-name {
     height: 40px;
 }
+
 .inner-product-container {
     background-color: white;
     padding: 10px;
@@ -44,6 +46,10 @@
 
 .bottomProduct {
     padding: 5px 0 20px;
+}
+
+.bottomProduct div {
+    display: inline-block;
 }
 
 .hrProduct {
@@ -81,15 +87,22 @@
     color: rgb(102, 100, 100);
 }
 
-.amountInp {
-    width: 36px;
+.amount-div {
+    border: solid 1px rgb(19, 190, 48);
+    position: relative;
+    bottom: 5px;
+}
+
+.amount-input {
+    height: 30px;
+    width: 35px;
     text-align: center;
     font-weight: 400;
     font-size: 1.2rem;
-    position: relative;
-    bottom: 6px;
-    padding: 0px 0 3px;
-    border-color: rgb(108, 201, 105);
+    padding: 0 0 0px 0;
+    border: none;
+    outline: none;
+    cursor: default;
 }
 
 .amountInp:focus {
@@ -132,11 +145,14 @@
     transition: all 0.5s;
     background-color: rgb(66, 199, 66);
     color: white;
-    padding: 9px 45px;
+    /* padding: 9px 45px; */
+    height: 34px;
+    width: 110px;
     border-radius: 5%;
     outline: none;
     border: none;
     cursor: default;
+    margin-bottom: 2px;
 }
 
 .add-button:focus {
@@ -153,6 +169,9 @@
     }
     .grid-item {
         margin: 10px 0;
+    }
+    .amount-div {
+        bottom: 4px;
     }
 }
 
@@ -188,7 +207,7 @@
     .picDiv {
         max-height: 60px;
     }
-    .product-name{
+    .product-name {
         height: 10px;
     }
     .productImg {
@@ -205,5 +224,8 @@
     }
     .inner-product-container p {
         font-size: 0.8rem;
+    }
+    .amount-input {
+        height: 29px;
     }
 }

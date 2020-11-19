@@ -9,6 +9,14 @@ import Signup from '../../users/components/Signup';
 import { useHttpClient } from '../hooks/http-hook';
 import ErrorModal from '../UIElements/ErrorModal';
 import LoadingSpinner from '../UIElements/LoadingSpinner';
+import SuccesfulSignup from '../../users/components/SuccesfulSignup';
+
+import Input from '../form-elements/Input';
+import {
+    VALIDATOR_REQUIRE,
+    VALIDATOR_EMAIL,
+    VALIDATOR_MIN
+} from '../utility/validators';
 
 import './NavLinks.css';
 
@@ -19,18 +27,69 @@ const NavLinks = () => {
     const [isLoginMode, setIsLoginMode] = useState(false)
     const { error, clearError, isLoading, sendRequest } = useHttpClient();
     const [registering, setRegistering] = useState(false);
-    const [clickedSignIn, setClickedSignIn] = useState(false)
-    const [clicked, setClicked] = useState(false)
+    const [clickedSignIn, setClickedSignIn] = useState(false);
+    const [clicked, setClicked] = useState(false);
+    const [signedup, setSignedup] = useState(false);
+    const [coordinates, setCoordinates] = useState();
+
+
+    const [test, setTest] = useState({
+        test: {
+            value: '',
+            valid: true
+        },
+        other: {
+            value: '',
+            valid: true
+        }
+    })
+    /* preset values as per above */
+    const [isValid, setIsValid] = useState(true)
+    const validity = (e) => {
+
+        if (test.length > 0) {
+            setIsValid(true)
+
+        } else {
+            setIsValid(false)
+        }
+    }
+    /* alternative validity check */
+    const testHandler = e => {
+        const attribute = e.target.attributes.getNamedItem('validators').value;
+        console.table(attribute)
+        /* with this above we can pass the validators to the hook though i need to figure a different way */
+       /* probably just make the values into arrays as strings and iterate it to filter out the 
+       corresponding values and then validate it in the hook */
+        /* notice the syntax below and the way we validate it. */
+        const { value, name } = e.target;
+        setTest(prev => {
+            return {
+                ...prev,
+                [name]: {
+                    value: value,
+                    valid: VALIDATOR_EMAIL(test.test.value)
+                }
+            }
+        })
+        //    validity();
+        /* need to figure a way to insert the validation logic dynamically */
+    }
     const [input, setInput] = useState({
         fName: '',
         lName: '',
         email: '',
-        password: ''
-    })
+        password: '',
+        password2: '',
+        phone: '',
+        street: '',
+        houseNumber: '',
+        city: '',
+        postCode: ''
+    });
 
     const inputHandler = e => {
         const { name, value } = e.target;
-        console.log(name + ' ' + value)
         setInput(prev => {
             return {
                 ...prev,
@@ -40,17 +99,18 @@ const NavLinks = () => {
     }
     const signinModalHandler = () => { setClickedSignIn(true) }
     const signout = () => {
-        setIsLoginMode(false)//figure how to actually signout
+        setIsLoginMode(false)
         auth.signout();
     }
+
     const signInClose = () => {
         setClickedSignIn(false)
         setRegistering(false)
     }
+
     const signin = async e => {
         e.preventDefault();
-        console.log(e.currentTarget)
-
+        console.log(test.test)
         try {
             const responseData = await sendRequest(
                 process.env.REACT_APP_SIGNIN,
@@ -71,25 +131,39 @@ const NavLinks = () => {
         setRegistering(true)
 
     }
+
     const signup = async e => {
         e.preventDefault();
         try {
-            console.table(JSON.stringify(input))
-            const responseData = await sendRequest(
-                process.env.REACT_APP_SIGNUP,
-                'POST',
-                JSON.stringify({
-                    fName: input.fName,
-                    lName: input.lName,
-                    email: input.email,
-                    password: input.password,
-                    address: '20 W 34th St, New York, NY 10001, United States'
-                }),
-                { 'Content-Type': 'application/json' }
-            )
-            auth.signin(responseData.userId, responseData.token);
-            setIsLoginMode(true)
-            signInClose();
+            if (input.password !== input.password2) {
+                alert('add here some validitation...')
+            } else {
+
+                const responseData = await sendRequest(
+                    process.env.REACT_APP_SIGNUP,
+                    'POST',
+                    JSON.stringify({
+                        fullName: input.fName + ' ' + input.lName,
+                        email: input.email,
+                        password: input.password,
+                        phone: input.phone,
+                        address: input.street
+                            + ' ' +
+                            input.houseNumber
+                            + ' ' +
+                            input.city
+                            + ', ' +
+                            input.postCode
+                    }),
+                    { 'Content-Type': 'application/json' }
+                )
+
+                setCoordinates(responseData.userLocation)
+                auth.signin(responseData.userId, responseData.token);
+                setIsLoginMode(true)
+                signInClose();
+                setSignedup(true)
+            }
         } catch (err) {
 
         }
@@ -100,6 +174,10 @@ const NavLinks = () => {
     }
     const cancel = () => {
         setClicked(false)
+    }
+
+    const signedupSuccessToClose = () => {
+        setSignedup(false)
     }
 
     return (
@@ -116,6 +194,7 @@ const NavLinks = () => {
                 <div className="map-container">
                     <Map />
                 </div>
+
             </MapModal>
             <Signin
                 header='login required'
@@ -125,8 +204,30 @@ const NavLinks = () => {
                 onChange={inputHandler}
                 value={input}
                 onSubmit={signin}
+            >
+                <Input
+                    name='test'
+                    onChange={testHandler}
+                    value={test.test.value}
+                    divClassName='input-control--invalid'
+                    errorText='test the error message'
+                    validators={VALIDATOR_MIN()}
+                    type='text'
+                    validity={test.test.valid}
 
-            />
+                />
+                <Input
+                    validators={'VALIDATOR_required()'}
+                    name='other'
+                    onChange={testHandler}
+                    value={test.other.value}
+                    divClassName='input-control--invalid'
+                    errorText='test the error message'
+                    type='text'
+                    validity={test.other.valid}
+
+                />
+            </Signin>
             <Signup
                 header='Registering is quick and easy'
                 show={registering}
@@ -134,6 +235,11 @@ const NavLinks = () => {
                 onChange={inputHandler}
                 value={input}
                 onSubmit={signup}
+            />
+            <SuccesfulSignup
+                show={signedup}
+                onClear={signedupSuccessToClose}
+                marker={coordinates}
             />
             <ul className="nav-links">
                 <div className='nav-links__div'>

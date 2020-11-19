@@ -8,7 +8,7 @@
     height: 44px;
     max-width: 135px;
     position: absolute;
-    right: 44px; 
+    right: 44px;
     top: 180px;
     outline: none;
 }
@@ -46,6 +46,7 @@
 
 .cartCont {
     position: relative;
+    padding: 5px;
     font-size: 1rem;
     float: right;
 }

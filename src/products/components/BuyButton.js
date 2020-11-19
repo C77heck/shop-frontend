@@ -74,14 +74,16 @@ const BuyButton = props => {
             <MessageModal message={message} onClear={no} no={no} yes={yes} />
             <div>
                 <button className='shopping-button' onClick={minus}><span className='minus-sign'>-</span></button>
-                <input type='text' className='amountInp' readOnly value={number} />
+                <div className='amount-div'><input type='text' className='amount-input' readOnly value={number} /></div>
                 <button className='shopping-button' onClick={plus}><span className='plus-sign'>+</span></button>
             </div>
         </React.Fragment>
     );
 
     const notClicked = (
-        <button className='add-button' onClick={buttonHandler}>ADD</button>
+        <div>
+            <button className='add-button' onClick={buttonHandler}>ADD</button>
+        </div>
     );
 
     return isClicked ? clicked : notClicked;

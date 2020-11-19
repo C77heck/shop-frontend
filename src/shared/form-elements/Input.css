@@ -1,0 +1,37 @@
+/* INPUT VALIDATION */
+
+.input-control {
+    margin: 1rem 0;
+}
+
+.input-control label, .input-control input, .input-control textarea {
+    display: block;
+}
+
+.input-control label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.input-control input, .input-control textarea {
+    width: 100%;
+    font: inherit;
+    border: 1px solid #ccc;
+    background: #f8f8f8;
+    padding: 0.15rem 0.25rem;
+}
+
+.input-control input:focus, .input-control textarea:focus {
+    outline: none;
+    background: #ebebeb;
+    border-color: #510077;
+}
+
+.input-control--invalid label, .input-control--invalid p {
+    color: red;
+}
+
+.input-control--invalid input, .input-control--invalid textarea {
+    border-color: red;
+    background: #ffd1d1;
+}

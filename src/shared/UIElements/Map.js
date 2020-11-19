@@ -5,7 +5,7 @@ import './Map.css'
 
 const Map = props => {
     const mapRef = useRef();
-    const center = { lat: 46.2530695, lng: 20.1433256 };
+    const center = props.marker || { lat: 46.2530695, lng: 20.1433256 };
     const zoom = 16;
 
     useEffect(() => {
