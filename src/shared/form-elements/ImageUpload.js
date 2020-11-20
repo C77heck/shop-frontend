@@ -34,10 +34,10 @@ const ImageUpload = props => {
       pickedFile = event.target.files[0];
       setFile(pickedFile);
       setIsValid(true);
-      fileIsValid = true;
+      fileIsValid = 'true';
     } else {
       setIsValid(false);
-      fileIsValid = false;
+      fileIsValid = 'false';
     }
     props.onInput(props.id, pickedFile, fileIsValid);
     /* we get a function on onInput and we pass in above arguments */
@@ -60,6 +60,7 @@ const ImageUpload = props => {
         type="file"
         accept=".jpg,.png,.jpeg"
         onChange={pickedHandler}
+        file={file}
       />
       <div className={`image-upload ${props.center && 'center'}`}>
 

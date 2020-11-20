@@ -1,40 +1,43 @@
 import React, { useState } from 'react';
 
+import { useHistory } from 'react-router-dom'
+
 import FormComponent from '../../shared/UIElements/FormComponent'
 import InputComponent from '../../shared/UIElements/InputComponent'
 import { useHttpClient } from '../../shared/hooks/http-hook'
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner'
 import ErrorModal from '../../shared/UIElements/ErrorModal'
 
+import Input from '../../shared/form-elements/Input';
+import { useInput } from '../../shared/hooks/form-hook';
+import { VALIDATOR_REQUIRE } from '../../shared/utility/validators';
+
 import './Admin.css'
 
 
-const CreateProduct = () => {
+const DeleteProduct = () => {
+    const history = useHistory();
 
-    const [input, setInput] = useState({ code: '' })
+    const [inputState, handler] = useInput({
+        code: {
+            value: '',
+            valid: true
+        }
+    })
     const { sendRequest, isLoading, error, clearError } = useHttpClient();
 
-    const onChangeHandler = event => {
 
-        const { name, value } = event.target;
-
-        setInput(prev => {
-            return {
-                ...prev,
-                [name]: value
-            }
-        })
-        console.log(input)
-    }
-
-    const deleteProductHandler = async (event) => {
-        event.preventDefault();
+    const deleteProductHandler = async (e) => {
+        e.preventDefault();
         try {
             await sendRequest(
-                process.env.REACT_APP_BACKEND + input.code,
+                process.env.REACT_APP_BACKEND
+                + '/' +
+                inputState.inputs.code.value,
                 'DELETE'
             )
-            setInput({ code: '' })
+            history.push('/')
+            history.push('/admin')
         } catch (err) {
 
         }
@@ -49,7 +52,15 @@ const CreateProduct = () => {
                 <div className='form-element'>
                     <h2>delete product</h2>
                     <FormComponent onSubmit={deleteProductHandler} buttonText='DELETE' >
-                        <InputComponent onChange={onChangeHandler} value={input.code} property='code' type='number' />
+                        <Input
+                            id='code'
+                            label='Product code'
+                            errorText='Please enter a product code'
+                            validators={[VALIDATOR_REQUIRE()]}
+                            type='text'
+                            onInput={handler}
+                            value={inputState.inputs.code.value}
+                        />
                     </FormComponent>
                 </div>
             </div>
@@ -60,5 +71,5 @@ const CreateProduct = () => {
 }
 
 
-export default CreateProduct;
+export default DeleteProduct;
 

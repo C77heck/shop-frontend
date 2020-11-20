@@ -2,25 +2,18 @@ import React, { useState } from 'react';
 
 import Modal from '../../shared/UIElements/Modal';
 import Button from '../../shared/UIElements/Button';
-import InputComponent from '../../shared/UIElements/InputComponent';
-import { VALIDATOR_EMAIL, VALIDATOR_REQUIRE } from '../../shared/utility/validators';
 import Input from '../../shared/form-elements/Input';
-import { useForm } from '../../shared/hooks/form--hook';
+
+import {
+    VALIDATOR_REQUIRE,
+    VALIDATOR_MINLENGTH,
+    VALIDATOR_EMAIL
+} from '../../shared/utility/validators';
 
 import './user.css'
 
 const Signin = props => {
 
-
-
-
-
-    /*     const test = () => {
-            ((value) => {
-                console.log(formState)
-            })()
-        }
-     */
     return (
         <Modal
             className='signin'
@@ -35,22 +28,21 @@ const Signin = props => {
                 REGISTER
              </Button>}
         >
-            {props.children}
-            <InputComponent
-                onChange={props.onChange}
-                value={props.value.email}
-                property='email'
-                name='email'
-                type='email'
+            <Input
+                id='email'
+                value={props.value.email.value}
+                errorText='Please enter a valid email address'
+                validators={[VALIDATOR_EMAIL()]}
+                type='text'
+                onInput={props.onInput}
             />
-            <InputComponent
-                onChange={props.onChange}
-                value={props.value.password}
-                property='password'
-                name='password'
+            <Input
+                id='password'
+                value={props.value.password.value}
+                validators={[]}
                 type='password'
-            />
-            <Button
+                onInput={props.onInput}
+            />            <Button
                 className='signin-button'
                 onClick={props.signin}>
                 SIGN IN

@@ -3,7 +3,15 @@ import { Link } from 'react-router-dom';
 
 import Modal from '../../shared/UIElements/Modal';
 import Button from '../../shared/UIElements/Button';
-import InputComponent from '../../shared/UIElements/InputComponent';
+
+import Input from '../../shared/form-elements/Input';
+
+import {
+    VALIDATOR_REQUIRE,
+    VALIDATOR_MINLENGTH,
+    VALIDATOR_EMAIL,
+
+} from '../../shared/utility/validators';
 
 import './user.css'
 
@@ -27,96 +35,102 @@ const Signup = props => {
                 <Link to='/shopping'>privacy policy</Link>.
                 By submitting this form you agree to the
                  <Link to='/shopping'>terms and conditions</Link>.</p>
-            </React.Fragment>}
-        >
+            </React.Fragment>}>
             <div className='signup_form-container' >
-                <div className='signup_form-left'>            <InputComponent
-                    onChange={props.onChange}
-                    value={props.value.fName.value}
-                    property='first name'
-                    name='fName'
-                    type='text'
-                />
-                    <InputComponent
-                        onChange={props.onChange}
-                        value={props.value.lName}
-                        property='surname'
-                        name='lName'
+                <div className='signup_form-left'>
+                    <Input
+                        id='fName'
+                        label='First name'
+                        onInput={props.onInput}
+                        value={props.value.fName.value}
+                        errorText='Please enter your first name'
+                        validators={[VALIDATOR_REQUIRE()]}
                         type='text'
-
                     />
-                    <InputComponent
-                        onChange={props.onChange}
-                        value={props.value.email}
-                        property='email'
-                        name='email'
-                        type='email'
+                    <Input
+                        id='surname'
+                        label='Surname'
+                        onInput={props.onInput}
+                        value={props.value.surname.value}
+                        errorText='Please enter your surname'
+                        validators={[VALIDATOR_REQUIRE()]}
+                        type='text'
                     />
-                    <InputComponent
-                        placeholder='minimum of 6 characters'
-                        onChange={props.onChange}
-                        value={props.value.password}
-                        property='password'
-                        name='password'
+                    <Input
+                        id='email'
+                        label='Email'
+                        onInput={props.onInput}
+                        value={props.value.email.value}
+                        errorText='Please enter a valid email address'
+                        validators={[VALIDATOR_EMAIL()]}
+                        type='text'
+                    />
+                    <Input
+                        id='password'
+                        label='Password'
+                        onInput={props.onInput}
+                        value={props.value.password.value}
+                        errorText='Your password must be at least 6 character long'
+                        validators={[VALIDATOR_MINLENGTH(6)]}
                         type='password'
+                    />
+                    <Input
+                        id='passwordAgain'
+                        label='Password again'
+                        onInput={props.onInput}
+                        value={props.value.passwordAgain.value}
+                        errorText='Passwords do not match!'
+                        type='password'
+                        validators={[]}
 
                     />
-                    <InputComponent
-                        placeholder='minimum of 6 characters'
-                        onChange={props.onChange}
-                        value={props.value.password2}
-                        property='password again'
-                        name='password2'
-                        type='password'
 
-                    /></div>
+                </div>
                 <div className='signup_form-right'>
-                    <InputComponent
-                        onChange={props.onChange}
-                        value={props.value.phone}
-                        property='phone number'
-                        name='phone'
-                        type='number'
-                    />
-
-                    <InputComponent
-                        onChange={props.onChange}
-                        value={props.value.city}
-                        property='city'
-                        name='city'
+                    <Input
+                        id='phone'
+                        label='Phone number'
+                        onInput={props.onInput}
+                        value={props.value.phone.value}
+                        validators={[VALIDATOR_REQUIRE()]}
                         type='text'
                     />
-                    <InputComponent
-                        onChange={props.onChange}
-                        value={props.value.street}
-                        property='street or square'
-                        name='street'
+                    <Input
+                        id='city'
+                        label='City'
+                        onInput={props.onInput}
+                        value={props.value.city.value}
+                        validators={[VALIDATOR_REQUIRE()]}
                         type='text'
-
+                    />
+                    <Input
+                        id='street'
+                        label='Street or Square'
+                        onInput={props.onInput}
+                        value={props.value.street.value}
+                        validators={[VALIDATOR_REQUIRE()]}
+                        type='text'
                     />
                     <div className='smaller-inputs' >
-                        <InputComponent
-                            className='post-code'
-                            onChange={props.onChange}
-                            value={props.value.postCode}
-                            property='post code'
-                            name='postCode'
+                        <Input
+                            id='postCode'
+                            label='Post code'
+                            onInput={props.onInput}
+                            value={props.value.postCode.value}
+                            validators={[VALIDATOR_REQUIRE()]}
                             type='text'
                         />
-                        <InputComponent
-                            className='house-number'
-                            onChange={props.onChange}
-                            value={props.value.houseNumber}
-                            property='house number'
-                            name='houseNumber'
+                        <Input
+                            id='houseNumber'
+                            label='House number'
+                            onInput={props.onInput}
+                            value={props.value.houseNumber.value}
+                            validators={[VALIDATOR_REQUIRE()]}
                             type='text'
                         />
                     </div>
-
-
                 </div>
             </div>
-
         </Modal>
     )
 }

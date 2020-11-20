@@ -1,70 +1,59 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import FormComponent from '../../shared/UIElements/FormComponent'
-import InputComponent from '../../shared/UIElements/InputComponent'
 import { useHttpClient } from '../../shared/hooks/http-hook'
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner'
 import ErrorModal from '../../shared/UIElements/ErrorModal'
 import ImageUpload from '../../shared/form-elements/ImageUpload'
-import { useForm } from '../../shared/hooks/form-hook'
+import { useInput } from '../../shared/hooks/form-hook'
+import Input from '../../shared/form-elements/Input';
 
 import './Admin.css'
+import { VALIDATOR_REQUIRE } from '../../shared/utility/validators';
 
 
 const CreateProduct = () => {
 
     const history = useHistory();
 
-    const [formState, inputHandler, setFormData] = useForm({
+    const [inputState, handler] = useInput({
         image: {
             value: null,
+            isValid: false
+        },
+        name: {
+            value: '',
+            isValid: false
+        },
+        unit: {
+            value: '',
+            isValid: false
+        },
+        price: {
+            value: '',
             isValid: false
         }
     });
     const { sendRequest, isLoading, error, clearError } = useHttpClient();
 
-    const [input, setInput] = useState({
-        name: '',
-        unit: '',
-        price: ''
-    })
-    const onChangeHandler = event => {
-
-        const { name, value } = event.target;
-
-        setInput(prev => {
-            return {
-                ...prev,
-                [name]: value
-            }
-        })
-    }
-
-
-
-    const addProductHandler = async event => {
-        event.preventDefault();
+    const addProductHandler = async e => {
+        e.preventDefault();
 
         try {
 
             const formData = new FormData();
-            formData.append('name', input.name);
-            formData.append('unit', input.unit);
-            formData.append('price', input.price);
-            formData.append('image', formState.inputs.image.value);
-
+            formData.append('name', inputState.inputs.name.value);
+            formData.append('unit', inputState.inputs.unit.value);
+            formData.append('price', inputState.inputs.price.value);
+            formData.append('image', inputState.inputs.image.value);
 
             await sendRequest(
                 process.env.REACT_APP_BACKEND,
                 'POST',
                 formData
             );
-            setInput({
-                name: '',
-                unit: '',
-                price: ''
-            })
+
             history.push('/');
             history.push('/admin');
 
@@ -83,16 +72,39 @@ const CreateProduct = () => {
                 <div className='form-element'>
                     <h2>Add new product</h2>
                     <FormComponent onSubmit={addProductHandler} buttonText='ADD' >
-                        <InputComponent onChange={onChangeHandler} value={input.name} property='name' type='text' />
-                        <InputComponent onChange={onChangeHandler} property='unit' value={input.unit} type='text' />
-                        <InputComponent onChange={onChangeHandler} property='price' value={input.price} type='number' />
+                        <Input
+                            id='name'
+                            label='Product name'
+                            onInput={handler}
+                            value={inputState.inputs.name.value}
+                            errorText='Please enter the product name'
+                            validators={[VALIDATOR_REQUIRE()]}
+                            type='text'
+                        />
+                        <Input
+                            id='unit'
+                            label='Unit'
+                            onInput={handler}
+                            value={inputState.inputs.unit.value}
+                            errorText='Please enter a value such as litre, kg, pack... etc'
+                            validators={[VALIDATOR_REQUIRE()]}
+                            type='text'
+                        />
+                        <Input
+                            id='price'
+                            label='Product price'
+                            onInput={handler}
+                            value={inputState.inputs.price.value}
+                            errorText="Please enter the product's price"
+                            validators={[VALIDATOR_REQUIRE()]}
+                            type='text'
+                        />
                         <div>
                             <ImageUpload
                                 id='image'
-                                onInput={inputHandler}
-                                errorText='Please provide an image.' 
-
-                                />
+                                onInput={handler}
+                                errorText='Please provide an image.'
+                            />
                         </div>
 
                     </FormComponent>

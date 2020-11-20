@@ -1,63 +1,51 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { validate } from '../utility/validators';
 
 import './Input.css';
 
-const inputReducer = (state, action) => {
-    switch (action.type) {
-        case 'CHANGE':
-            return {
-                ...state,
-                value: action.value,
-                isValid: validate(action.value, action.validators)
-            }
-        default:
-            return state;
+
+const Input = props => {
+    const [isValid, setIsValid] = useState('true');
+    const { value, validators, onInput, id } = props
+
+    useEffect(() => {
+
+        if (value === '') {
+            setIsValid('true')
+        } else {
+            setIsValid(() => {
+                if (validate(value, validators)) {
+                    return 'true'
+                } else {
+                    return 'false'
+                }
+            })
+        }
+    }, [value, validators])
+
+    const onChangeHandler = e => {
+
+        const validators = e.target.attributes.getNamedItem('valid').value
+        const { id, value } = e.target;
+        onInput(id, value, validators);
     }
-}
-
-
-
-
-const InputComponent = props => {
-
-    /*  const [inputState, dispatch] = useReducer(inputReducer, {
-          value: '',
-          isValid: false
-      });
-  
-      const changeHandler = e => {
-          dispatch({
-              type: 'CHANGE',
-              value: e.target.value,
-              validators: props.validators
-          })
-      }
-  
-      const { id, onInput } = props;
-      const { value, isValid } = inputState;
-  
-      useEffect(() => {
-          onInput(id, value, isValid);
-      }, [id, value, isValid, onInput]);
-    */
-
 
     return (
-        <div className={`input-control ${!props.validity && 'input-control--invalid'}`}>
-            <label htmlFor={props.property}>{props.property}</label>
+        <div className={`input-control ${!isValid && 'input-control--invalid'}`}>
+            <label htmlFor={props.id}>{props.label}</label>
             <input
                 id={props.id}
                 placeholder={props.placeholder}
-                onChange={props.onChange}
+                onChange={onChangeHandler}
                 type={props.type}
                 value={props.value}
-                name={props.name}
+                name={props.id}
                 className={props.className}
                 validators={props.validators}
+                valid={isValid}
             />
-            {!props.validity && <p>{props.errorText}</p>}
+            {!isValid && <p>{props.errorText}</p>}
 
         </div>
     )
@@ -65,5 +53,5 @@ const InputComponent = props => {
 }
 
 
-export default InputComponent;
+export default Input;
 

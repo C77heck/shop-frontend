@@ -11,12 +11,8 @@ import ErrorModal from '../UIElements/ErrorModal';
 import LoadingSpinner from '../UIElements/LoadingSpinner';
 import SuccesfulSignup from '../../users/components/SuccesfulSignup';
 
-import Input from '../form-elements/Input';
-import {
-    VALIDATOR_REQUIRE,
-    VALIDATOR_EMAIL,
-    VALIDATOR_MIN
-} from '../utility/validators';
+
+import { useInput } from '../hooks/form-hook';
 
 import './NavLinks.css';
 
@@ -32,71 +28,51 @@ const NavLinks = () => {
     const [signedup, setSignedup] = useState(false);
     const [coordinates, setCoordinates] = useState();
 
-
-    const [test, setTest] = useState({
-        test: {
+    const [inputState, handler] = useInput({
+        fName: {
             value: '',
             valid: true
         },
-        other: {
+        surname: {
             value: '',
             valid: true
-        }
+        },
+        email: {
+            value: '',
+            valid: true
+        },
+        password: {
+            value: '',
+            valid: true
+        },
+        passwordAgain: {
+            value: '',
+            valid: true
+        },
+        phone: {
+            value: '',
+            valid: true
+        },
+        city: {
+            value: '',
+            valid: true
+        },
+        street: {
+            value: '',
+            valid: true
+        },
+        postCode: {
+            value: '',
+            valid: true
+        },
+        houseNumber: {
+            value: '',
+            valid: true
+        },
     })
-    /* preset values as per above */
-    const [isValid, setIsValid] = useState(true)
-    const validity = (e) => {
 
-        if (test.length > 0) {
-            setIsValid(true)
+    console.table(inputState.inputs)
 
-        } else {
-            setIsValid(false)
-        }
-    }
-    /* alternative validity check */
-    const testHandler = e => {
-        const attribute = e.target.attributes.getNamedItem('validators').value;
-        console.table(attribute)
-        /* with this above we can pass the validators to the hook though i need to figure a different way */
-       /* probably just make the values into arrays as strings and iterate it to filter out the 
-       corresponding values and then validate it in the hook */
-        /* notice the syntax below and the way we validate it. */
-        const { value, name } = e.target;
-        setTest(prev => {
-            return {
-                ...prev,
-                [name]: {
-                    value: value,
-                    valid: VALIDATOR_EMAIL(test.test.value)
-                }
-            }
-        })
-        //    validity();
-        /* need to figure a way to insert the validation logic dynamically */
-    }
-    const [input, setInput] = useState({
-        fName: '',
-        lName: '',
-        email: '',
-        password: '',
-        password2: '',
-        phone: '',
-        street: '',
-        houseNumber: '',
-        city: '',
-        postCode: ''
-    });
-
-    const inputHandler = e => {
-        const { name, value } = e.target;
-        setInput(prev => {
-            return {
-                ...prev,
-                [name]: value
-            }
-        })
-    }
     const signinModalHandler = () => { setClickedSignIn(true) }
     const signout = () => {
         setIsLoginMode(false)
@@ -110,12 +86,14 @@ const NavLinks = () => {
 
     const signin = async e => {
         e.preventDefault();
-        console.log(test.test)
         try {
             const responseData = await sendRequest(
                 process.env.REACT_APP_SIGNIN,
                 'POST',
-                JSON.stringify(input),
+                JSON.stringify({
+                    email: inputState.inputs.email.value,
+                    password: inputState.inputs.password.value
+                }),
                 { 'Content-Type': 'application/json' }
             )
             auth.signin(responseData.userId, responseData.token)
@@ -135,35 +113,31 @@ const NavLinks = () => {
     const signup = async e => {
         e.preventDefault();
         try {
-            if (input.password !== input.password2) {
-                alert('add here some validitation...')
-            } else {
-
-                const responseData = await sendRequest(
-                    process.env.REACT_APP_SIGNUP,
-                    'POST',
-                    JSON.stringify({
-                        fullName: input.fName + ' ' + input.lName,
-                        email: input.email,
-                        password: input.password,
-                        phone: input.phone,
-                        address: input.street
-                            + ' ' +
-                            input.houseNumber
-                            + ' ' +
-                            input.city
-                            + ', ' +
-                            input.postCode
-                    }),
-                    { 'Content-Type': 'application/json' }
-                )
-
-                setCoordinates(responseData.userLocation)
-                auth.signin(responseData.userId, responseData.token);
-                setIsLoginMode(true)
-                signInClose();
-                setSignedup(true)
-            }
+            const responseData = await sendRequest(
+                process.env.REACT_APP_SIGNUP,
+                'POST',
+                JSON.stringify({
+                    fullName: inputState.inputs.fName.value
+                        + ' ' +
+                        inputState.inputs.surname.value,
+                    email: inputState.inputs.email.value,
+                    password: inputState.inputs.password.value,
+                    phone: inputState.inputs.phone.value,
+                    address: inputState.inputs.street.value
+                        + ' ' +
+                        inputState.inputs.houseNumber.value
+                        + ' ' +
+                        inputState.inputs.city.value
+                        + ', ' +
+                        inputState.inputs.postCode.value
+                }),
+                { 'Content-Type': 'application/json' }
+            )
+            setCoordinates(responseData.userLocation)
+            auth.signin(responseData.userId, responseData.token);
+            setIsLoginMode(true)
+            signInClose();
+            setSignedup(true)
         } catch (err) {
 
         }
@@ -194,47 +168,23 @@ const NavLinks = () => {
                 <div className="map-container">
                     <Map />
                 </div>
-
             </MapModal>
             <Signin
                 header='login required'
                 show={clickedSignIn}
                 onClear={signInClose}
                 register={register}
-                onChange={inputHandler}
-                value={input}
                 onSubmit={signin}
-            >
-                <Input
-                    name='test'
-                    onChange={testHandler}
-                    value={test.test.value}
-                    divClassName='input-control--invalid'
-                    errorText='test the error message'
-                    validators={VALIDATOR_MIN()}
-                    type='text'
-                    validity={test.test.valid}
-
-                />
-                <Input
-                    validators={'VALIDATOR_required()'}
-                    name='other'
-                    onChange={testHandler}
-                    value={test.other.value}
-                    divClassName='input-control--invalid'
-                    errorText='test the error message'
-                    type='text'
-                    validity={test.other.valid}
-
-                />
-            </Signin>
+                onInput={handler}
+                value={inputState.inputs}
+            />
             <Signup
                 header='Registering is quick and easy'
                 show={registering}
                 onClear={signInClose}
-                onChange={inputHandler}
-                value={input}
                 onSubmit={signup}
+                onInput={handler}
+                value={inputState.inputs}
             />
             <SuccesfulSignup
                 show={signedup}
@@ -271,7 +221,7 @@ const NavLinks = () => {
                         </button>}
                 </div>
             </ul>
-        </React.Fragment>
+        </React.Fragment >
     )
 }
 
