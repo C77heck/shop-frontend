@@ -1,4 +1,4 @@
-import React, { useState,useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import {
   BrowserRouter as Router,
@@ -21,7 +21,7 @@ import Admin from './admin/pages/Admin';
 import Shopping from './products/pages/Shopping';
 import SearchResults from './products/pages/SearchResults';
 import Checkout from './products/pages/Checkout';
-
+import Carousel from './shared/carousel/Carousel';
 
 
 import './App.css';
@@ -109,6 +109,17 @@ function App() {
           </div>
           <div>
             <Checkout />
+          </div>
+          <div>
+            <Footer />
+          </div>
+        </Route>
+        <Route path='/contact' exact>
+          <div>
+            <NavigationBar />
+          </div>
+          <div>
+            <Carousel />
           </div>
           <div>
             <Footer />

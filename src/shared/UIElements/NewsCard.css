@@ -1,13 +1,18 @@
+.centering-container {
+    padding: 0 5%;
+}
+
 .NewsCard-container {
-    margin: 150px;
+    margin: 150px 4vh 250px;
     text-align: center;
     display: grid;
     grid-column-gap: 30px;
-    grid-template-columns: auto auto auto;
+    width: 95%;
+    grid-template-columns: auto auto auto auto;
 }
 
 .card-frame {
-    max-width: 430px;
+    min-width: 20%;
     transition: all 0.7s;
     background-color: rgb(187, 214, 190);
     padding: 5px;
@@ -52,18 +57,32 @@
     border-radius: 5%;
     border: solid rgb(87, 81, 81) 1px;
 }
-
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 1450px) {
     .NewsCard-container {
-        display: flex;
-        flex-direction: column;
+        width: 100%;
+        margin: 150px 0 250px;
+        grid-template-columns: auto auto;
 
     }
     .image-container img {
         width: 100%;
     }
     .card-frame {
-        margin: 30px 30px;
+        max-width: 80%;
+        margin: 30px auto;
+    }
+}
+@media only screen and (max-width: 950px) {
+    .NewsCard-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .image-container img {
+        width: 100%;
+    }
+    .card-frame {
+        max-width: 70%;
+        margin: 30px auto;
     }
 }
 
@@ -74,5 +93,6 @@
     }
     .card-frame {
         margin: 30px 30px;
+        max-width: 100%;
     }
 }

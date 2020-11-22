@@ -7,53 +7,75 @@ import './NewsCard.css';
 
 const NewsCard = props => {
     return (
-        <div className='NewsCard-container'>
-            <div className='card-frame'>
-                <div className='card-item'>
-                    <div className='image-container'>
-                        <img src="/images/NewsCard/Market-report.jpg" alt='BBQ' />
-                    </div>
-                    <div>
-                        <h2>Card Title</h2>
-                        <p>This is a wider card with supporting text below as a natural lead-in to
-                    additional content. This content is a little bit longer.</p>
-                        <div className='horizontal-line'></div>
-                        <div className='see-more'>
-                            <Link to='/'>See more...</Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div className='centering-container'>
 
-            <div className='card-frame'>
-                <div className='card-item'>
-                    <div className='image-container'>
-                        <img src="/images/NewsCard/online-ordering.jpg" alt='BBQ' />
-                    </div>
-                    <div>
-                        <h2>Card Title</h2>
-                        <p>This is a wider card with supporting text below as a natural lead-in to
-                    additional content. This content is a little bit longer.</p>
-                        <div className='horizontal-line'></div>
-                        <div className='see-more'>
-                            <Link to='/'>See more...</Link>
+            <div className='NewsCard-container'>
+                <div className='card-frame'>
+                    <div className='card-item'>
+                        <div className='image-container'>
+                            <img src="/images/NewsCard/Market-report.jpg" alt='BBQ' />
+                        </div>
+                        <div>
+                            <h2>Market report</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                         Ut enim ad minim veniam.</p>
+                            <div className='horizontal-line'></div>
+                            <div className='see-more'>
+                                <Link to='/'>See more...</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className='card-frame'>
-                <div className='card-item'>
-                    <div className='image-container'>
-                        <img src="/images/NewsCard/spices.jpg" alt='BBQ' />
+                <div className='card-frame'>
+                    <div className='card-item'>
+                        <div className='image-container'>
+                            <img src="/images/NewsCard/Market-report.jpg" alt='BBQ' />
+                        </div>
+                        <div>
+                            <h2>Market report</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                         Ut enim ad minim veniam.</p>
+                            <div className='horizontal-line'></div>
+                            <div className='see-more'>
+                                <Link to='/'>See more...</Link>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <h2>Card Title</h2>
-                        <p>This is a wider card with supporting text below as a natural lead-in to
-                    additional content. This content is a little bit longer.</p>
-                        <div className='horizontal-line'></div>
-                        <div className='see-more'>
-                            <Link to='/'>See more...</Link>
-                        </div>                    </div>
+                </div>
+                <div className='card-frame'>
+                    <div className='card-item'>
+                        <div className='image-container'>
+                            <img src="/images/NewsCard/online-ordering.jpg" alt='BBQ' />
+                        </div>
+                        <div>
+                            <h2>New online ordering </h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                         Ut enim ad minim veniam.</p>
+                            <div className='horizontal-line'></div>
+                            <div className='see-more'>
+                                <Link to='/'>See more...</Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='card-frame'>
+                    <div className='card-item'>
+                        <div className='image-container'>
+                            <img src="/images/NewsCard/spices.jpg" alt='BBQ' />
+                        </div>
+                        <div>
+                            <h2>Fresh spices from India</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                         Ut enim ad minim veniam.</p>
+                            <div className='horizontal-line'></div>
+                            <div className='see-more'>
+                                <Link to='/'>See more...</Link>
+                            </div>                    </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -4,6 +4,7 @@ import React from 'react';
 import ProductList from '../components/ProductList';
 
 
+import './Checkout.css'
 
 
 const Checkout = () => {
@@ -18,7 +19,7 @@ const Checkout = () => {
 
 
     return (
-        <div>
+        <div className='product-list_checkout'>
             <ProductList items={products} />
         </div>
     )

@@ -1,0 +1,86 @@
+.auth-container {
+    padding: 3px 20px;
+    position: relative;
+    top: 7px;
+}
+
+.auth-container button {
+    background-color: rgb(214, 161, 14);
+    position: relative;
+    bottom: 8px;
+    border: none;
+    width: 110px;
+    height: 45px;
+    font-size: 1.3rem;
+    color: #faf6f6;
+    outline: none;
+    border-radius: 4%;
+    transition: all 0.3s;
+}
+
+.auth-container button:hover {
+    background-color: rgb(208, 211, 17);
+    color: rgb(255, 255, 255);
+}
+
+.auth-container img {
+    height: 26px;
+    position: relative;
+    top: 2px;
+    padding-right: 10px;
+}
+
+.auth-container span {
+    position: relative;
+    bottom: 3px;
+    font-family: 'Bebas Neue', cursive;
+}
+
+@media (min-width: 900px) {
+    .auth-button_mobile {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .auth-button_desktop {
+        display: none;
+    }
+    .auth-container {
+        position: absolute;
+        right: 3%;
+        top: 22%;
+    }
+}
+
+@media (max-width: 340px) {
+    .auth-container span {
+        display: none;
+    }
+    .auth-container button {
+        height: 47px;
+        width: 47px;
+        border-radius: 50%;
+    }
+    .auth-container img {
+        padding: 0;
+    }
+}
+
+/* .auth-container button {
+    background-image: linear-gradient(30deg, rgb(157, 231, 19), rgb(117, 148, 5));
+    position: relative;
+    bottom: 8px;
+    border: none;
+    width: 110px;
+    height: 45px;
+    font-size: 1.3rem;
+    color: #ffffff;
+    outline: none;
+    border-radius: 4%;
+}
+
+.auth-container button:hover {
+    background-image: linear-gradient(30deg, rgb(117, 148, 5), rgb(157, 231, 19));
+    color: rgb(255, 255, 255);
+} */

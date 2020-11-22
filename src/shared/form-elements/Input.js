@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { validate } from '../utility/validators';
 
@@ -9,8 +9,8 @@ const Input = props => {
     const [isValid, setIsValid] = useState('true');
     const [boolean, setBoolean] = useState(true);
     const [onFocus, setOnFocus] = useState(false); //managing element validation neccesity for the UI
-    
-    const { value, validators, onInput, id, valid } = props
+
+    const { value, validators, onInput, id, valid, password } = props
 
     useEffect(() => {
         if (id === 'passwordAgain') {
@@ -18,7 +18,7 @@ const Input = props => {
                 setIsValid('true')
             } else {
                 setIsValid(() => {
-                    if (props.password === value) {
+                    if (password === value) {
                         return 'true'
                     } else {
                         return 'false'
@@ -44,7 +44,7 @@ const Input = props => {
             })
         }
 
-    }, [value, validators, valid, boolean, id, isValid])
+    }, [value, validators, valid, boolean, id, isValid, onFocus, password])
 
     const onChangeHandler = e => {
         const { id, value } = e.target;

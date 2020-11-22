@@ -50,7 +50,7 @@ const ProductSlider = () => {
                 </Carousel >
 
             </div>
-            <div className='hr-product-slider'></div>
+            <div className='hr-product-slider hr-bottom_product_slider'></div>
 
         </div>
 

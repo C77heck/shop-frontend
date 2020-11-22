@@ -1,4 +1,5 @@
 #footer {
+  height: 330px;
   text-align: center;
   background-color: #2d8f43;
   padding: 85px 0 35px 0;
@@ -12,7 +13,7 @@
 }
 
 .footera {
-  transition: all 0.6s;
+  transition: all 0.4s;
   text-decoration: none;
   color: rgb(66, 42, 42);
 }
@@ -28,4 +29,8 @@
 
 .footer-admin {
   position: fixed !important;
+}
+
+.hr-bottom_product_slider {
+  margin-bottom: 230px !important;
 }

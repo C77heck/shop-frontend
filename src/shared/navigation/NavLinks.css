@@ -8,6 +8,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 1.2rem;
 }
 
 .nav-links li {
@@ -30,25 +31,6 @@
   text-decoration: none !important;
 }
 
-.nav-links button {
-  cursor: pointer;
-  border: 1px solid #424e44;
-  color: #292929;
-  background: transparent;
-  padding: 0.5rem;
-  border-radius: 5%;
-  font: inherit;
-}
-
-.nav-links button:focus {
-  outline: none;
-}
-
-.nav-links button:hover, .nav-links button:active {
-  background: #3b9221;
-  color: rgb(230, 221, 221);
-}
-
 .nav-links .nav-links__div {
   display: flex;
   flex-direction: row;
@@ -56,41 +38,6 @@
 
 .nav-links div a {
   margin: auto 19px;
-}
-
-.auth-container {
-  padding: 3px 20px;
-  position: relative;
-  top: 7px;
-  border-radius: 4%;
-}
-
-.auth-container button {
-  background-image: linear-gradient(30deg, rgb(157, 231, 19), rgb(117, 148, 5));
-  position: relative;
-  bottom: 8px;
-  border: none;
-  padding: 7px 15px 5px 15px;
-  font-size: 1.3rem;
-  color: #ffffff;
-  transition: all 1s;
-}
-
-.auth-container button:hover {
-  background-image: linear-gradient(30deg, rgb(117, 148, 5), rgb(157, 231, 19));
-  color: rgb(255, 255, 255);
-}
-
-.auth-container img {
-  height: 26px;
-  position: relative;
-  top: 2px;
-  padding-right: 10px;
-}
-
-.auth-container span {
-  position: relative;
-  bottom: 2px;
 }
 
 .map-container {
@@ -102,7 +49,34 @@
   display: none;
 }
 
-@media(max-width: 1040px) {
+@media(max-width: 1100px) {
+  .nav-links {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .nav-links {
+    flex-direction: row;
+  }
+  .nav-links li {
+    margin: 0 0.6rem;
+  }
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+
+
+@media(max-width: 1060px) {
+  .nav-links {
+    font-size: 0.9rem;
+  }
+}
+
+@media(max-width: 900px) {
   .nav-links .nav-links__div {
     display: flex;
     flex-direction: column;
@@ -111,20 +85,7 @@
     text-align: center;
     width: 70%;
   }
-  .auth-container {
-    top: -250px;
-  }
-}
-
-@media (min-width: 1040px) {
   .nav-links {
-    flex-direction: row;
-  }
-  .nav-links li {
-    margin: 0 0.5rem;
-  }
-  .nav-links a {
-    color: white;
-    text-decoration: none;
+    font-size: 1.3rem;
   }
 }
