@@ -26,7 +26,7 @@ const BuyButton = props => {
             })
         } catch (err) {
         }
-    }, [])
+    })
 
 
     const no = () => {

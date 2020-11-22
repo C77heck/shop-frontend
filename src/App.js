@@ -1,4 +1,4 @@
-import React, { useState, useContext, useCallback } from 'react';
+import React, { useState,useCallback } from 'react';
 
 import {
   BrowserRouter as Router,
@@ -29,7 +29,6 @@ import { AuthContext } from './shared/context/auth-context';
 
 function App() {
 
-  const auth = useContext(AuthContext);
 
   const { basketItems, number, getNumber, code, add, subtract } = usePurchase()
   const { products, productCode, findProducts } = useSearch();

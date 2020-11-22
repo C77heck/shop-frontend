@@ -16,7 +16,7 @@
 .input-control input, .input-control textarea {
     width: 100%;
     font: inherit;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(160, 157, 157);
     background: #f8f8f8;
     padding: 0.15rem 0.25rem;
 }
@@ -24,14 +24,39 @@
 .input-control input:focus, .input-control textarea:focus {
     outline: none;
     background: #ebebeb;
-    border-color: #510077;
+    border-color: #065228;
+}
+
+.input-control--invalid label:focus, .input-control--invalid p:focus {
+    color: rgb(22, 22, 22);
 }
 
 .input-control--invalid label, .input-control--invalid p {
-    color: red;
+    color: rgb(180, 42, 42);
 }
 
 .input-control--invalid input, .input-control--invalid textarea {
-    border-color: red;
+    border-color: rgb(173, 33, 33);
     background: #ffd1d1;
+}
+
+.error-text {
+    max-height: 1.2rem;
+    min-height: 1rem;
+    min-width: 60%;
+    max-width: 100%;
+}
+
+.error-text p {
+    font-size: 1rem !important;
+    margin: 0 !important;
+    position: absolute;
+    padding-top: 3px;
+}
+@media only screen and (max-width: 700px) {
+    .error-text p {
+        font-size: 0.8rem !important;
+        position: static;
+
+    }
 }

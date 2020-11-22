@@ -20,19 +20,19 @@ const CreateProduct = () => {
     const [inputState, handler] = useInput({
         image: {
             value: null,
-            isValid: false
+            valid: false
         },
         name: {
             value: '',
-            isValid: false
+            valid: false
         },
         unit: {
             value: '',
-            isValid: false
+            valid: false
         },
         price: {
             value: '',
-            isValid: false
+            valid: false
         }
     });
     const { sendRequest, isLoading, error, clearError } = useHttpClient();

@@ -6,7 +6,7 @@ const VALIDATOR_TYPE_MAX = 'MAX';
 const VALIDATOR_TYPE_EMAIL = 'EMAIL';
 const VALIDATOR_TYPE_FILE = 'FILE';
 const VALIDATOR_TYPE_PASSWORD_AGAIN = 'PASSWORD_AGAIN';
-
+const VALIDATOR_TYPE_PHONE = 'PHONE';
 export const VALIDATOR_PASSWORD_AGAIN = () => ({ type: VALIDATOR_TYPE_PASSWORD_AGAIN })
 export const VALIDATOR_REQUIRE = () => ({ type: VALIDATOR_TYPE_REQUIRE });
 export const VALIDATOR_FILE = () => ({ type: VALIDATOR_TYPE_FILE });
@@ -21,12 +21,17 @@ export const VALIDATOR_MAXLENGTH = val => ({
 export const VALIDATOR_MIN = val => ({ type: VALIDATOR_TYPE_MIN, val: val });
 export const VALIDATOR_MAX = val => ({ type: VALIDATOR_TYPE_MAX, val: val });
 export const VALIDATOR_EMAIL = () => ({ type: VALIDATOR_TYPE_EMAIL });
+export const VALIDATOR_PHONE = () => ({ type: VALIDATOR_TYPE_PHONE });
 
 export const validate = (value, validators, inputs) => {
   let isValid = true;
   for (const validator of validators) {
-    if (validator.type === VALIDATOR_TYPE_PASSWORD_AGAIN) {
-
+    if (validator.type === VALIDATOR_TYPE_PHONE) {
+      let val = value.trim();
+      let firstChar = val[0];
+      let restOfChar = val.slice(1)
+      isValid = /^\b0|\+/.test(firstChar) ? true : false;
+      isValid = /\D/.test(restOfChar) ? false : true;
     }
     if (validator.type === VALIDATOR_TYPE_REQUIRE) {
       isValid = isValid && value.trim().length > 0;

@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Modal from '../../shared/UIElements/Modal';
 import Button from '../../shared/UIElements/Button';
 import Input from '../../shared/form-elements/Input';
 
 import {
-    VALIDATOR_REQUIRE,
-    VALIDATOR_MINLENGTH,
     VALIDATOR_EMAIL
 } from '../../shared/utility/validators';
 
@@ -30,6 +28,7 @@ const Signin = props => {
         >
             <Input
                 id='email'
+                label='Email'
                 value={props.value.email.value}
                 errorText='Please enter a valid email address'
                 validators={[VALIDATOR_EMAIL()]}
@@ -38,6 +37,7 @@ const Signin = props => {
             />
             <Input
                 id='password'
+                label='Password'
                 value={props.value.password.value}
                 validators={[]}
                 type='password'

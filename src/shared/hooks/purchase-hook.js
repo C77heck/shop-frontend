@@ -2,7 +2,6 @@ import { useState, useCallback } from 'react';
 
 
 export const usePurchase = () => {
-    const [items, setItems] = useState([])
     const [basketItems, setBasketItems] = useState([]);
     const [code, setCode] = useState();
     const [number, setNumber] = useState();
@@ -31,7 +30,6 @@ export const usePurchase = () => {
 
     const add = useCallback(
         (items, code) => {
-            setItems(items);
             setCode(code);
             let newItem = items.filter(i => i.code === code);
 
@@ -40,7 +38,7 @@ export const usePurchase = () => {
                 return [...popDuplicate, ...newItem];
             })
         },
-        [items, code],
+        [],
     )
 
 
@@ -53,7 +51,7 @@ export const usePurchase = () => {
             }
 
         },
-        [code],
+        [number],
     )
     return { basketItems, number, getNumber, code, add, subtract }
 }

@@ -32,12 +32,12 @@ const CarouselIMG = props => {
             className={props.className}
             onClick={clickHandle}
         >
-            <a type='button' onClick={clickHandle}>
+            <div onClick={clickHandle}>
                 <img
                     src={process.env.REACT_APP_IMAGE_ROUTE + props.image}
                     alt={props.name}
                 />
-            </a>
+            </div>
         </div>
 
     )

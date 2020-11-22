@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+import { Link } from 'react-router-dom';
 
 import './footer.css'
 
@@ -23,17 +23,17 @@ const Footer = props => {
 
                 <div className="row ">
                     <div className="grids col-md-12">
-                        <a className="footera" href="#"><span>Privacy policy</span></a>
+                        <Link className="footera" to='/'><span>Privacy policy</span></Link>
 
                     </div>
                     <div className="grids col-md-12 ">
-                        <a className="footera" href="#"><span >Careers</span></a>
+                        <Link className="footera" to='/'><span >Careers</span></Link>
                     </div>
                     <div className="grids col-md-12 ">
-                        <a className="footera" href="#"><span >Terms & conditions</span></a>
+                        <Link className="footera" to='/'><span >Terms & conditions</span></Link>
                     </div>
                     <div className="grids col-md-12 ">
-                        <a className="footera" href="#">Press</a>
+                        <Link className="footera" to='/'>Press</Link>
                     </div>
                 </div>
                 <p className="bottomp">EMAIL@EMAIL.COM / +44(0)2012345678 / 13 SWALLOW STREET, W12 4DG</p>

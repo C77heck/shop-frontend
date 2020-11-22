@@ -10,7 +10,7 @@ import {
     VALIDATOR_REQUIRE,
     VALIDATOR_MINLENGTH,
     VALIDATOR_EMAIL,
-
+    VALIDATOR_PHONE
 } from '../../shared/utility/validators';
 
 import './user.css'
@@ -27,6 +27,7 @@ const Signup = props => {
             onSubmit={props.onSubmit}
             footer={<React.Fragment>
                 <Button
+                    disabled={props.disabled}
                     className='register-button'
                     onClick={props.signup}>
                     SIGN UP
@@ -82,7 +83,7 @@ const Signup = props => {
                         errorText='Passwords do not match!'
                         type='password'
                         validators={[]}
-
+                        password={props.password}
                     />
 
                 </div>
@@ -92,7 +93,9 @@ const Signup = props => {
                         label='Phone number'
                         onInput={props.onInput}
                         value={props.value.phone.value}
-                        validators={[VALIDATOR_REQUIRE()]}
+                        validators={[VALIDATOR_PHONE()]}
+                        placeholder='(e.g. 020 5555 555)'
+                        errorText='Please enter a valid phone number'
                         type='text'
                     />
                     <Input

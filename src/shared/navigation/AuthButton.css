@@ -1,0 +1,11 @@
+@media (min-width: 1040px) {
+    .auth-button_mobile {
+        display: none;
+    }
+}
+
+@media (max-width: 1040px) {
+    .auth-button_desktop {
+        display: none;
+    }
+}

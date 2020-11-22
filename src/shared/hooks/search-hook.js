@@ -17,6 +17,6 @@ export const useSearch = () => {
                 return products.filter(product => product.id === productCode)
             })
         },
-        [productCode, products])
+        [])
     return { products, productCode, findProducts }
 }

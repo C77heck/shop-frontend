@@ -1,7 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+
 
 import { AuthContext } from '../context/auth-context';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import MapModal from '../UIElements/MapModal';
 import Map from '../UIElements/Map';
 import Signin from '../../users/components/Signin';
@@ -10,7 +11,7 @@ import { useHttpClient } from '../hooks/http-hook';
 import ErrorModal from '../UIElements/ErrorModal';
 import LoadingSpinner from '../UIElements/LoadingSpinner';
 import SuccesfulSignup from '../../users/components/SuccesfulSignup';
-
+import AuthButton from './AuthButton';
 
 import { useInput } from '../hooks/form-hook';
 
@@ -20,6 +21,8 @@ const NavLinks = () => {
 
     const auth = useContext(AuthContext);
 
+    const history = useHistory();
+
     const [isLoginMode, setIsLoginMode] = useState(false)
     const { error, clearError, isLoading, sendRequest } = useHttpClient();
     const [registering, setRegistering] = useState(false);
@@ -27,6 +30,7 @@ const NavLinks = () => {
     const [clicked, setClicked] = useState(false);
     const [signedup, setSignedup] = useState(false);
     const [coordinates, setCoordinates] = useState();
+    const [disabled, setDisabled] = useState(true)
 
     const [inputState, handler] = useInput({
         fName: {
@@ -71,9 +75,25 @@ const NavLinks = () => {
         },
     })
 
-    console.table(inputState.inputs)
 
-    const signinModalHandler = () => { setClickedSignIn(true) }
+
+    useEffect(() => {
+        for (let i in inputState.inputs) {
+            if (i.valid === true) {
+                console.log('we are in useEffect')
+
+                setDisabled(true)
+            } else {
+                setDisabled(false)
+            }
+        }
+    }, [inputState])
+
+
+    const signinModalHandler = () => {
+
+        setClickedSignIn(true)
+    }
     const signout = () => {
         setIsLoginMode(false)
         auth.signout();
@@ -86,6 +106,7 @@ const NavLinks = () => {
 
     const signin = async e => {
         e.preventDefault();
+
         try {
             const responseData = await sendRequest(
                 process.env.REACT_APP_SIGNIN,
@@ -143,7 +164,8 @@ const NavLinks = () => {
         }
     }
 
-    const openMapHandler = () => {
+    const openMapHandler = e => {
+        e.preventDefault();
         setClicked(true)
     }
     const cancel = () => {
@@ -185,6 +207,8 @@ const NavLinks = () => {
                 onSubmit={signup}
                 onInput={handler}
                 value={inputState.inputs}
+                password={inputState.inputs.password.value}
+                disabled={disabled}
             />
             <SuccesfulSignup
                 show={signedup}
@@ -203,22 +227,19 @@ const NavLinks = () => {
                         <NavLink to='/about' exact>ABOUT US</NavLink>
                     </li>
                     <li>
-                        <a onClick={openMapHandler}>STORE FINDER</a>
+                        <a href='/' onClick={openMapHandler}>STORE FINDER</a>
                     </li>
                     <li>
                         <NavLink to='/contact' exact>CONTACT US</NavLink>
                     </li>
                 </div>
                 <div className='auth-container'>
-                    {isLoginMode ? <button onClick={signout}>
-                        <img src="/images/icons/user-other.svg" alt="user icon" />
-                        <span>SIGN OUT</span>
-                    </button>
-                        :
-                        <button onClick={signinModalHandler}>
-                            <img src="/images/icons/user-other.svg" alt="user icon" />
-                            <span>SIGN IN</span>
-                        </button>}
+                    <AuthButton
+                        switch={isLoginMode}
+                        signout={signout}
+                        signin={signinModalHandler}
+                        className='auth-button_desktop'
+                    />
                 </div>
             </ul>
         </React.Fragment >

@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { useHistory } from 'react-router-dom'
 
 import FormComponent from '../../shared/UIElements/FormComponent'
-import InputComponent from '../../shared/UIElements/InputComponent'
 import { useHttpClient } from '../../shared/hooks/http-hook'
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner'
 import ErrorModal from '../../shared/UIElements/ErrorModal'

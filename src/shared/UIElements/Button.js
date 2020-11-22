@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 
 import './Button.css';
 
-/* this is a very smart and intelligent representation what we could create as a dynamic component. basically like writing our own bootstrap. */
-
 
 const Button = props => {
+
+
+
+
   if (props.href) {
     return (
       <a
@@ -36,7 +38,7 @@ const Button = props => {
   return (
     <button
       className={`button button--${props.size || 'default'} ${props.inverse &&
-        'button--inverse'} ${props.danger && 'button--danger'} ${props.className}`}
+        'button--inverse'} ${props.danger && 'button--danger'} ${props.className} `}
       type={props.type}
       onClick={props.onClick}
       disabled={props.disabled}

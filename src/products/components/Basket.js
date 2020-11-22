@@ -1,23 +1,13 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 
-import { PurchaseContext } from '../../shared/context/purchase-context';
 import { useStorage } from '../../shared/hooks/storage-hook';
 
 import './Basket.css'
 
 
-
 const Basket = () => {
 
-    const purchase = useContext(PurchaseContext)
     const { amount, price } = useStorage();
-
-
-    // amount of items indicator:
-
-
-
-
     //Price display logic:
 
     let beforeDot;
@@ -35,7 +25,6 @@ const Basket = () => {
                 afterDot = afterDot + '0';
             }
         }
-
     } else {
         beforeDot = '00'
         afterDot = '.00'

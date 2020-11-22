@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import { validate } from '../utility/validators';
 
@@ -7,32 +7,75 @@ import './Input.css';
 
 const Input = props => {
     const [isValid, setIsValid] = useState('true');
-    const { value, validators, onInput, id } = props
+    const [boolean, setBoolean] = useState(true);
+    const [onFocus, setOnFocus] = useState(false); //managing element validation neccesity for the UI
+    
+    const { value, validators, onInput, id, valid } = props
 
     useEffect(() => {
-
-        if (value === '') {
-            setIsValid('true')
+        if (id === 'passwordAgain') {
+            if (value === '') {
+                setIsValid('true')
+            } else {
+                setIsValid(() => {
+                    if (props.password === value) {
+                        return 'true'
+                    } else {
+                        return 'false'
+                    }
+                })
+            }
         } else {
-            setIsValid(() => {
-                if (validate(value, validators)) {
-                    return 'true'
-                } else {
-                    return 'false'
-                }
+            if (value === '') {
+                setIsValid('true')
+            } else {
+                setIsValid(() => {
+                    if (validate(value, validators)) {
+                        return 'true'
+                    } else {
+                        return 'false'
+                    }
+                })
+            }
+        }
+        if (onFocus) {
+            setBoolean(() => {
+                return isValid === 'true' ? true : false;
             })
         }
-    }, [value, validators])
+
+    }, [value, validators, valid, boolean, id, isValid])
 
     const onChangeHandler = e => {
-
-        const validators = e.target.attributes.getNamedItem('valid').value
         const { id, value } = e.target;
-        onInput(id, value, validators);
+        let validator;
+
+        if (id === 'passwordAgain') {
+            validator = (() => {
+                return e.target.attributes.getNamedItem('password').value === value ?
+                    'true'
+                    :
+                    'false'
+            })()
+        } else {
+            validator = e.target.attributes.getNamedItem('valid').value
+        }
+        onInput(id, value, validator);
     }
 
+
+
+    const onBlurHandler = () => {
+        setOnFocus(prev => !prev)
+        setBoolean(() => {
+            return isValid === 'true' ? true : false;
+        })
+    }
+
+
+
     return (
-        <div className={`input-control ${!isValid && 'input-control--invalid'}`}>
+        <div className={`input-control ${!boolean ? 'input-control--invalid' : 'other'}`}>
             <label htmlFor={props.id}>{props.label}</label>
             <input
                 id={props.id}
@@ -44,8 +87,13 @@ const Input = props => {
                 className={props.className}
                 validators={props.validators}
                 valid={isValid}
+                password={props.password}
+                onBlur={onBlurHandler}
             />
-            {!isValid && <p>{props.errorText}</p>}
+            <div className='error-text' >
+                <p > {!boolean && props.errorText} </p>
+
+            </div>
 
         </div>
     )

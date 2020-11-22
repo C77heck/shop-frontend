@@ -3,32 +3,6 @@
     left: 41%;
 }
 
-@media only screen and (max-width: 1300px) {
-    .signin {
-        left: 31%;
-    }
-}
-
-@media only screen and (max-width: 900px) {
-    .signin {
-        left: 21%;
-    }
-}
-
-@media only screen and (max-width: 700px) {
-    .signin {
-        width: 35vh;
-        left: 13%;
-    }
-}
-
-@media only screen and (max-width: 500px) {
-    .signin {
-        width: 100%;
-        left: 0;
-    }
-}
-
 .signin div {
     display: flex;
     flex-direction: column;
@@ -73,7 +47,9 @@
 }
 
 .signup {
+    width: 75vh;
     top: 7%;
+    left: 32%;
 }
 
 .signup div {
@@ -99,19 +75,20 @@
 }
 
 .signup_form-left {
+    max-width: 35vh;
     display: flex;
     flex-direction: column;
-    margin: 0 1vh;
 }
 
 .signup_form-right {
     display: flex;
     flex-direction: column;
-    margin: 0 1vh;
+    max-width: 35vh;
+
 }
 
 .signup_form-right input, .signup_form-left input {
-    width: 100%;
+    width: 90%;
 }
 
 .signup_form-right .house-number {
@@ -134,7 +111,47 @@
     margin: 1vh;
     font-size: 1rem;
 }
-.succesful-signup .profile-link p{
+
+.succesful-signup .profile-link p {
     margin: 1vh;
     font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 1300px) {
+    .signin {
+        left: 31%;
+    }
+    .signup {
+        width: 65vh;
+        left: 23%;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .signin {
+        left: 21%;
+    }
+    .signup {
+        width: 58vh;
+        left: 13%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .signin {
+        width: 35vh;
+        left: 13%;
+    }
+    .signup {
+        width: 100%;
+        left: 0%;
+        font-size: 0.7rem !important;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .signin {
+        width: 100%;
+        left: 0;
+    }
 }

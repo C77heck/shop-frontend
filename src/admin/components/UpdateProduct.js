@@ -17,23 +17,23 @@ const UpdateProduct = () => {
     const history = useHistory();
 
     const [inputState, handler] = useInput({
-        name: {
+        nameUpdate: {
             value: '',
             valid: false
         },
-        unit: {
+        unitUpdate: {
             value: '',
             valid: false
         },
-        price: {
+        priceUpdate: {
             value: '',
             valid: false
         },
-        code: {
+        codeUpdate: {
             value: '',
             valid: false
         },
-        image: {
+        imageUpdate: {
             value: null,
             valid: false
         }
@@ -45,11 +45,11 @@ const UpdateProduct = () => {
         e.preventDefault();
         try {
             const formData = new FormData();
-            formData.append('name', inputState.inputs.name.value);
-            formData.append('unit', inputState.inputs.unit.value);
-            formData.append('price', inputState.inputs.price.value);
-            formData.append('code', inputState.inputs.code.value);
-            formData.append('image', inputState.inputs.image.value);
+            formData.append('name', inputState.inputs.nameUpdate.value);
+            formData.append('unit', inputState.inputs.unitUpdate.value);
+            formData.append('price', inputState.inputs.priceUpdate.value);
+            formData.append('code', inputState.inputs.codeUpdate.value);
+            formData.append('image', inputState.inputs.imageUpdate.value);
             await sendRequest(
                 process.env.REACT_APP_BACKEND
                 + '/' +
@@ -82,7 +82,7 @@ const UpdateProduct = () => {
                     <h2>Update existing product</h2>
                     <FormComponent onSubmit={updateProductHandler} buttonText='UPDATE' >
                         <Input
-                            id='name'
+                            id='nameUpdate'
                             label='Product name'
                             onInput={handler}
                             value={inputState.inputs.name.value}
@@ -91,7 +91,7 @@ const UpdateProduct = () => {
                             type='text'
                         />
                         <Input
-                            id='unit'
+                            id='unitUpdate'
                             label='Unit'
                             onInput={handler}
                             value={inputState.inputs.unit.value}
@@ -100,7 +100,7 @@ const UpdateProduct = () => {
                             type='text'
                         />
                         <Input
-                            id='price'
+                            id='priceUpdate'
                             label='Product price'
                             onInput={handler}
                             value={inputState.inputs.price.value}
@@ -109,7 +109,7 @@ const UpdateProduct = () => {
                             type='text'
                         />
                         <Input
-                            id='code'
+                            id='codeUpdate'
                             label='Product code'
                             onInput={handler}
                             value={inputState.inputs.code.value}
@@ -119,7 +119,7 @@ const UpdateProduct = () => {
                         />
                         <div>
                             <ImageUpload
-                                id='image'
+                                id='imageUpdate'
                                 onInput={handler}
                                 errorText='Please provide an image.'
                             />

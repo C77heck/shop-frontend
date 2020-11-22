@@ -25,7 +25,7 @@ const ProductSlider = () => {
                 console.log(err)
             }
         })()
-    }, [])
+    }, [sendRequest])
 
 
 
@@ -60,23 +60,3 @@ const ProductSlider = () => {
 
 
 export default ProductSlider;
-
-
-{/* 
-    <Carousel loop>
-        <div>
-            <Carousel.Item>
-                <div className='product-slider__container'>{!isLoading && firstSlideImages && firstSlideImages.map(i => {
-                    return <CarouselIMG key={i.id} image={i.image} name={i.name} className={"carousel-link"} />
-                }
-                )}</div>
-            </Carousel.Item>
-        </div>
-        <Carousel.Item>
-            <div className='product-slider__container'>{!isLoading && secondSlideImages && secondSlideImages.map(i => {
-                return <CarouselIMG key={i.id} image={i.image} name={i.name} className={"carousel-link"} />
-            }
-            )}</div>
-        </Carousel.Item>
-    </Carousel>
- */}
