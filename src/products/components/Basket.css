@@ -1,5 +1,5 @@
 .basketButton {
-    transition: all 0.3s;
+    transition: background-color 0.3s;
     background-color: rgb(20, 185, 158);
     border-radius: 5%;
     border: none;

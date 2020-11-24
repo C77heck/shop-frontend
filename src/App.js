@@ -121,9 +121,7 @@ function App() {
           <div>
             <Carousel />
           </div>
-          <div>
-            <Footer />
-          </div>
+
         </Route>
         <Redirect to='/' />
       </Switch>

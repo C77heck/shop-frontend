@@ -1,3 +1,7 @@
+.top-section__div {
+    margin-top: 10vh;
+}
+
 .brand-logo {
     position: absolute;
     max-width: 170px;
@@ -51,6 +55,7 @@
         grid-template-columns: auto auto auto auto;
         grid-gap: 10px;
         min-height: 110px;
+        margin-top: 8vh;
     }
     .buying-upper_strip {
         position: relative;
@@ -74,13 +79,13 @@
         grid-column-end: 2;
         left: 2rem;
     }
-    .buying-lower_strip button{
+    .buying-lower_strip button {
         position: relative;
         grid-column-start: 1;
         grid-column-end: 2;
         top: -32px;
         left: 0.4rem;
-      /*   top: -32px; */
+        /*   top: -32px; */
     }
     /* mobile view needs to be tested! */
     .buying-mid_strip {
@@ -93,7 +98,6 @@
     .buying-upper_strip button {
         margin: 0;
     }
-
 }
 
 @media only screen and (max-width: 490px) {

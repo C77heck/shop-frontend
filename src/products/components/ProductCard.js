@@ -7,6 +7,7 @@ import './Products.css'
 
 
 const ProductCard = props => {
+
     return (
 
 
@@ -27,10 +28,8 @@ const ProductCard = props => {
 
                 <div className="bottomProduct">
                     <p className="unit">{props.unit}</p>
-                    <p>£{props.price}</p>
-
+                    <p >£{props.price}</p>
                     <BuyButton items={props.items} code={props.code} price={props.price} />
-
 
                 </div>
 

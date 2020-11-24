@@ -12,7 +12,7 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
-
+/* SideBar element */
 .slide-in-left-enter {
   transform: translateX(-100%);
 }
@@ -20,7 +20,7 @@ code {
 .slide-in-left-enter-active {
   transform: translateX(0);
   opacity: 1;
-  transition: all 200ms;
+  transition: transform 400ms;
 }
 
 .slide-in-left-exit {
@@ -31,12 +31,10 @@ code {
 .slide-in-left-exit-active {
   transform: translateX(-100%);
   opacity: 0;
-  transition: all 200ms;
+  transition: transform 400ms;
 }
 
-/* simple - enter transition 300ms, exit 150ms */
-
-.fade-appear, .fade-enter {
+/* .fade-appear, .fade-enter {
   opacity: 0;
   z-index: 1;
 }
@@ -54,3 +52,4 @@ code {
   opacity: 0;
   transition: opacity 150ms linear;
 }
+ */

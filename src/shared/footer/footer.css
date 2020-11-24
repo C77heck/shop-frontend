@@ -13,7 +13,7 @@
 }
 
 .footera {
-  transition: all 0.4s;
+  transition: color 0.4s;
   text-decoration: none;
   color: rgb(66, 42, 42);
 }
