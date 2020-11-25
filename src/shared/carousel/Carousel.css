@@ -5,7 +5,7 @@
 }
 
 .carousel-wrapper {
-    position: absolute;
+    display: flex;
     width: 100%;
     min-height: 400px;
     max-height: 400px;
@@ -13,36 +13,11 @@
     overflow: hidden;
 }
 
-.car-images {
-    position: absolute;
-    width: 100%;
-    height: auto;
-}
-
-@media (max-width: 950px) {
-    .car-images {
-        bottom: 0;
-        width: 120%;
-    }
-}
-
-@media (max-width: 550px) {
-    .car-images {
-        width: 150%;
-    }
-}
-
-@media (max-width: 400px) {
-    .car-images {
-        width: 210%;
-    }
-}
-
 .left-side_controller {
     top: 0;
     position: absolute;
     min-height: 400px;
-    width: 10%;
+    width: 8%;
     background: transparent;
     opacity: 0;
     transition: opacity 0.5s;
@@ -54,7 +29,7 @@
     top: 0;
     min-height: 400px;
     right: 0;
-    width: 10%;
+    width: 8%;
     opacity: 0;
     transition: opacity 0.5s;
     outline: none;
@@ -69,395 +44,27 @@
     width: 40%;
 }
 
-/* carousel animations right button*/
+.carousel-images {
+    width: 100%;
+    object-fit: cover;
 
-.position-start1 {
-    transform: translateX(0);
 }
 
-.position-start2 {
-    transform: translateX(100%);
-}
-
-.position-start3 {
-    transform: translateX(200%);
-}
-
-.position-start4 {
-    transform: translateX(300%);
-}
-
-.position-end_first_move1-right {
-    transform: translateX(-100%);
-}
-
-.position-end_first_move2-right {
-    transform: translateX(0);
-}
-
-.position-end_first_move3-right {
-    transform: translateX(-100%);
-}
-
-.position-end_first_move4-right {
-    transform: translateX(-200%);
-}
-
-.position-end_second_move1-right {
-    transform: translateX(-200%);
-}
-
-.position-end_second_move2-right {
-    transform: translateX(-100%);
-}
-
-.position-end_second_move3-right {
-    transform: translateX(0);
-}
-
-.position-end_second_move4-right {
-    transform: translateX(100%);
-}
-
-.position-end_third_move1-right {
-    transform: translateX(-300%);
-}
-
-.position-end_third_move2-right {
-    transform: translateX(-200%);
-}
-
-.position-end_third_move3-right {
-    transform: translateX(-100%);
-}
-
-.position-end_third_move4-right {
-    transform: translateX(0);
-}
-
-.exit-right {
-    animation: exitRight 2000ms 1;
-}
-
-@keyframes exitRight {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(100%);
+@media (max-width: 950px) {
+    .carousel-images {
+        bottom: 0;
+        width: 100%;
     }
 }
 
-.enter-right {
-    animation: enterRight 2000ms 1;
-}
-
-@keyframes enterRight {
-    from {
-        transform: translateX(-100%);
-    }
-    to {
-        transform: translateX(0);
+@media (max-width: 550px) {
+    .carousel-images {
+        width: 150%;
     }
 }
 
-.move-third_in-position-right {
-    animation: moveThirdInposition 2000ms 1;
-}
-
-@keyframes moveThirdInposition {
-    from {
-        transform: translateX(-200%);
+@media (max-width: 400px) {
+    .carousel-images {
+        width: 210%;
     }
-    to {
-        transform: translateX(-100%);
-    }
-}
-
-.move-fourth_in-position-right {
-    animation: moveFourthCloser 2000ms 1;
-}
-
-@keyframes moveFourthCloser {
-    from {
-        transform: translateX(-300%);
-    }
-    to {
-        transform: translateX(-200%);
-    }
-}
-
-.move_out-of-view-right {
-    animation: moveFirstFurtherOut 2000ms 1;
-}
-
-@keyframes moveFirstFurtherOut {
-    from {
-        transform: translateX(-100%);
-    }
-    to {
-        transform: translateX(-200%);
-    }
-}
-
-.move_out-of-view-right-further {
-    animation: moveFirstEvenFurtherOut 2000ms 1;
-}
-
-@keyframes moveFirstEvenFurtherOut {
-    from {
-        transform: translateX(-200%);
-    }
-    to {
-        transform: translateX(-300%);
-    }
-}
-
-.move-first_back_to-Base-right {
-    animation: moveFirstBackInView 2000ms 1;
-}
-
-@keyframes moveFirstBackInView {
-    from {
-        transform: translateX(-100%);
-    }
-    to {
-        transform: translateX(0);
-    }
-}
-
-.move-second_back_to-Base-right {
-    animation: moveSecondBackToBase 2000ms 1;
-}
-
-@keyframes moveSecondBackToBase {
-    from {
-        transform: translateX(100%);
-    }
-    to {
-        transform: translateX(100%);
-    }
-}
-
-.move-third_back_to-Base-right {
-    animation: moveThirdBackToBase 2000ms 1;
-}
-
-@keyframes moveThirdBackToBase {
-    from {
-        transform: translateX(-100%);
-    }
-    to {
-        transform: translateX(-200%);
-    }
-}
-
-.move-fourth_back_to-Base-right {
-    animation: moveFourthBackToBase 2000ms 1;
-}
-
-@keyframes moveFourthBackToBase {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(100%);
-    }
-}
-
-/* carousel animations left button*/
-
-.position-end_first_move1-left {
-    transform: translateX(-100%);
-}
-
-.position-end_first_move2-left {
-    transform: translateX(200%);
-}
-
-.position-end_first_move3-left {
-    transform: translateX(100%);
-}
-
-.position-end_first_move4-left {
-    transform: translateX(0);
-}
-
-.position-end_second_move1-left {
-    transform: translateX(-200%);
-}
-
-.position-end_second_move2-left {
-    transform: translateX(100%);
-}
-
-.position-end_second_move3-left {
-    transform: translateX(0);
-}
-
-.position-end_second_move4-left {
-    transform: translateX(-100%);
-}
-
-.position-end_third_move1-left {
-    transform: translateX(-300%);
-}
-
-.position-end_third_move2-left {
-    transform: translateX(0);
-}
-
-.position-end_third_move3-left {
-    transform: translateX(-100%);
-}
-
-.position-end_third_move4-left {
-    transform: translateX(-200%)
-}
-
-.exit-left {
-    animation: exitLeft 2000ms 1;
-}
-
-@keyframes exitLeft {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-100%);
-    }
-}
-
-.enter-left {
-    animation: enterLeft 2000ms 1;
-}
-
-@keyframes enterLeft {
-    from {
-        transform: translateX(100%);
-    }
-    to {
-        transform: translateX(0);
-    }
-}
-
-.move-third_in-position-left {
-    animation: moveInPostion 2000ms 1;
-}
-
-@keyframes moveInPostion {
-    from {
-        transform: translateX(200%);
-    }
-    to {
-        transform: translateX(100%);
-    }
-}
-
-.move-fourth_in-position-left {
-    animation: moveFourthInPostion 2000ms 1;
-}
-
-@keyframes moveFourthInPostion {
-    from {
-        transform: translateX(300%);
-    }
-    to {
-        transform: translateX(200%);
-    }
-}
-
-.move-further-left {
-    animation: moveFurtherLeft 2000ms 1;
-}
-
-@keyframes moveFurtherLeft {
-    from {
-        transform: translateX(-100%);
-    }
-    to {
-        transform: translateX(-200%);
-    }
-}
-
-.move-even_further-left {
-    animation: moveEvenFurtherLeft 2000ms 1;
-}
-
-@keyframes moveEvenFurtherLeft {
-    from {
-        transform: translateX(-200%);
-    }
-    to {
-        transform: translateX(-300%);
-    }
-}
-
-.move-first_back_to-Base-left {
-    animation: moveFirstBackInViewLeft 2000ms 1;
-}
-
-@keyframes moveFirstBackInViewLeft {
-    from {
-        transform: translateX(100%);
-    }
-    to {
-        transform: translateX(0);
-    }
-}
-
-.move-second_back_to-Base-left {
-    animation: moveSecondBackToBaseLeft 2000ms 1;
-}
-
-@keyframes moveSecondBackToBaseLeft {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-100%);
-    }
-}
-
-.move-third_back_to-Base-left {
-    animation: moveThirdBackToBaseLeft 2000ms 1;
-}
-
-@keyframes moveThirdBackToBaseLeft {
-    from {
-        transform: translateX(-100%);
-    }
-    to {
-        transform: translateX(-200%);
-    }
-}
-
-.move-fourth_back_to-Base-left {
-    animation: moveFourthBackToBaseLeft 2000ms 1;
-}
-
-@keyframes moveFourthBackToBaseLeft {
-    from {
-        transform: translateX(-200%);
-    }
-    to {
-        transform: translateX(-300%);
-    }
-}
-
-
-.position-end_third_move1-left {
-    transform: translateX(-300%);
-}
-
-.position-end_third_move2-left {
-    transform: translateX(0);
-}
-
-.position-end_third_move3-left {
-    transform: translateX(-100%);
-}
-
-.position-end_third_move4-left {
-    transform: translateX(-200%)
 }

@@ -14,7 +14,6 @@ import { usePurchase } from './shared/hooks/purchase-hook';
 import { useSearch } from './shared/hooks/search-hook';
 import NavigationBar from './shared/navigation/NavigationBar';
 import Footer from './shared/footer/Footer'
-import CCarousel from './shared/carousel/CCarousel';
 import Newscard from './shared/UIElements/NewsCard';
 import ProductSlider from './shared/carousel/ProductSlider';
 import Admin from './admin/pages/Admin';
@@ -22,6 +21,7 @@ import Shopping from './products/pages/Shopping';
 import SearchResults from './products/pages/SearchResults';
 import Checkout from './products/pages/Checkout';
 import Carousel from './shared/carousel/Carousel';
+import MiniSlider from './shared/carousel/MiniSlider';
 
 
 import './App.css';
@@ -57,7 +57,7 @@ function App() {
             <NavigationBar />
           </div>
           <div>
-            <CCarousel />
+            <Carousel element='img' />
           </div>
           <div>
             <Newscard />
@@ -118,10 +118,10 @@ function App() {
           <div>
             <NavigationBar />
           </div>
-          <div>
-            <Carousel />
-          </div>
 
+          <div>
+            <MiniSlider element='div' />
+          </div>
         </Route>
         <Redirect to='/' />
       </Switch>
