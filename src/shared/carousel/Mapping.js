@@ -43,12 +43,14 @@ const Image = props => {
 
 
     return (
-        <img
-            onClick={clickHandle}
-            key={id}
-            src={process.env.REACT_APP_IMAGE_ROUTE + image}
-            alt={name}
-        />
+        <div onClick={clickHandle}>
+            <img
+
+                key={id}
+                src={process.env.REACT_APP_IMAGE_ROUTE + image}
+                alt={name}
+            />
+        </div>
     )
 }
 

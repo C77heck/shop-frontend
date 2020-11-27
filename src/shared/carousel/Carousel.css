@@ -13,34 +13,45 @@
     overflow: hidden;
 }
 
-.carousel-wrapper div {
+.carousel-wrapper .slider-divs {
     display: flex;
     min-width: 100%;
     justify-content: center;
     align-items: center;
+    padding: 0 10%;
 }
 
-.carousel-wrapper div img {
-    max-height: 30%;
-    margin: 1vw;
+.carousel-wrapper .slider-divs div {
+    object-fit: contain;
+    margin: 2rem;
     transition: transform 0.5s;
+    height: 7vw;
 }
 
-.carousel-wrapper div img:hover {
+.carousel-wrapper .slider-divs div img {
+    transition: transform 0.5s;
+    height: 100%;
+}
+
+.carousel-wrapper .slider-divs div:hover {
     transform: scale(1.1);
     cursor: pointer;
 }
 
-@media (max-width: 1400px) {
-    .carousel-wrapper div img {
-        width: 10%;
-        max-height: none;
+
+
+@media (max-width: 1150px) {
+    .carousel-wrapper .slider-divs div {
+        margin: 0.5rem;
+        height: 9vw;
     }
-    .carousel-wrapper div {
-        padding: 10%;
+} 
+@media (max-width: 600px) {
+    .carousel-wrapper .slider-divs div {
+        margin: 0rem;
+        height: 11vw;
     }
 }
-
 .left-side_controller {
     top: 0;
     position: absolute;

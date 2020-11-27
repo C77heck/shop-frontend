@@ -7,39 +7,15 @@ import Mapping from './Mapping';
 
 import './Carousel.css';
 
-const images = [
-    {
-        alt: "First slide",
-        src: "/images/carousel/vegies.jpg",
-        id: 0
-    },
-    {
-        alt: "Second slide",
-        src: "/images/carousel/hams.jpg",
-        id: 1
-    },
-    {
-        alt: "Third slide",
-        src: "/images/carousel/berries.jpg",
-        id: 2
-    },
-    {
-        alt: "Fourth slide",
-        src: "/images/carousel/BBQ.jpg",
-        id: 3
-    }
-]
-
 const Test = props => {
     const { sendRequest } = useHttpClient()
     const [slideStyle, setSlideStyle] = useState();
     const [carousel, setCarousel] = useState({
         activeSlide: 0,
         translate: 0,
-        transition: 8,
-        slides: images
-
+        transition: 8
     })
+    
     const [pics, setPics] = useState({
         pics1: [],
         pics2: [],
@@ -60,10 +36,10 @@ const Test = props => {
             try {
                 const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
                 setPics({
-                    pics1: responseData.products.slice(1, 9),
-                    pics2: responseData.products.slice(8, 17),
-                    pics3: responseData.products.slice(16, 25),
-                    pics4: responseData.products.slice(23, 32)
+                    pics1: responseData.products.slice(1, 7),
+                    pics2: responseData.products.slice(8, 15),
+                    pics3: responseData.products.slice(16, 24),
+                    pics4: responseData.products.slice(23, 31)
                 })
             } catch (err) {
                 console.log('failed to fetch')
@@ -116,22 +92,22 @@ const Test = props => {
     return (
         <div className='carouse-outer_div'>
             <div className='carousel-wrapper'>
-                <div style={slideStyle}>
+                <div className='slider-divs' style={slideStyle}>
                     <Mapping
                         images={pics.pics1}
                     />
                 </div>
-                <div style={slideStyle}>
+                <div className='slider-divs' style={slideStyle}>
                     <Mapping
                         images={pics.pics2}
                     />
                 </div>
-                <div style={slideStyle}>
+                <div className='slider-divs' style={slideStyle}>
                     <Mapping
                         images={pics.pics3}
                     />
                 </div>
-                <div style={slideStyle}>
+                <div className='slider-divs' style={slideStyle}>
                     <Mapping
                         images={pics.pics4}
                     />
