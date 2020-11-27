@@ -7,7 +7,7 @@ import {
   Switch
 } from 'react-router-dom';
 
-
+import { AuthContext } from './shared/context/auth-context';
 import { PurchaseContext } from './shared/context/purchase-context';
 import { SearchContext } from './shared/context/search-context'
 import { usePurchase } from './shared/hooks/purchase-hook';
@@ -21,11 +21,11 @@ import Shopping from './products/pages/Shopping';
 import SearchResults from './products/pages/SearchResults';
 import Checkout from './products/pages/Checkout';
 import Carousel from './shared/carousel/Carousel';
-import MiniSlider from './shared/carousel/MiniSlider';
 
+/* test */
+import Test from './shared/carousel/Test';
 
 import './App.css';
-import { AuthContext } from './shared/context/auth-context';
 
 function App() {
 
@@ -120,7 +120,7 @@ function App() {
           </div>
 
           <div>
-            <MiniSlider element='div' />
+            <Test />
           </div>
         </Route>
         <Redirect to='/' />

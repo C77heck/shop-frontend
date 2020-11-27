@@ -13,6 +13,34 @@
     overflow: hidden;
 }
 
+.carousel-wrapper div {
+    display: flex;
+    min-width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-wrapper div img {
+    max-height: 30%;
+    margin: 1vw;
+    transition: transform 0.5s;
+}
+
+.carousel-wrapper div img:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+@media (max-width: 1400px) {
+    .carousel-wrapper div img {
+        width: 10%;
+        max-height: none;
+    }
+    .carousel-wrapper div {
+        padding: 10%;
+    }
+}
+
 .left-side_controller {
     top: 0;
     position: absolute;
@@ -47,7 +75,6 @@
 .carousel-images {
     width: 100%;
     object-fit: cover;
-
 }
 
 @media (max-width: 950px) {

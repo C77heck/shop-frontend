@@ -1,4 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
+
+import { useHttpClient } from '../hooks/http-hook'
+
+import Mapping from './Mapping';
 
 import './Carousel.css';
 
@@ -25,10 +30,8 @@ const images = [
     }
 ]
 
-const Carousel = () => {
-
-
-
+const Test = props => {
+    const { sendRequest } = useHttpClient()
     const [slideStyle, setSlideStyle] = useState();
     const [carousel, setCarousel] = useState({
         activeSlide: 0,
@@ -36,6 +39,12 @@ const Carousel = () => {
         transition: 8,
         slides: images
 
+    })
+    const [pics, setPics] = useState({
+        pics1: [],
+        pics2: [],
+        pics3: [],
+        pics4: []
     })
     const { translate, activeSlide, slides, transition } = carousel;
 
@@ -46,6 +55,21 @@ const Carousel = () => {
         })
     }, [translate, activeSlide])
 
+    useEffect(() => {
+        (async () => {
+            try {
+                const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
+                setPics({
+                    pics1: responseData.products.slice(1, 9),
+                    pics2: responseData.products.slice(8, 17),
+                    pics3: responseData.products.slice(16, 25),
+                    pics4: responseData.products.slice(23, 32)
+                })
+            } catch (err) {
+                console.log('failed to fetch')
+            }
+        })()
+    }, [sendRequest])
 
     const arrowLeftHandler = () => {
         if (activeSlide !== 0) {
@@ -92,17 +116,27 @@ const Carousel = () => {
     return (
         <div className='carouse-outer_div'>
             <div className='carousel-wrapper'>
-                {
-                    carousel.slides.map((i) => {
-                        return (<img
-                            key={i.id}
-                            className={`carousel-images`}
-                            style={slideStyle}
-                            src={i.src}
-                            alt={i.name}
-                        />)
-                    })
-                }
+                <div style={slideStyle}>
+                    <Mapping
+                        images={pics.pics1}
+                    />
+                </div>
+                <div style={slideStyle}>
+                    <Mapping
+                        images={pics.pics2}
+                    />
+                </div>
+                <div style={slideStyle}>
+                    <Mapping
+                        images={pics.pics3}
+                    />
+                </div>
+                <div style={slideStyle}>
+                    <Mapping
+                        images={pics.pics4}
+                    />
+                </div>
+
             </div>
             <button
                 className='left-side_controller'
@@ -121,5 +155,4 @@ const Carousel = () => {
 }
 
 
-export default Carousel;
-
+export default Test;
