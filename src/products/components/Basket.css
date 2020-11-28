@@ -76,3 +76,8 @@
         right: 1px;
     }
 }
+@media only screen and (max-width: 500px) {
+    .basketButton {
+        right: -14px;
+    }
+}

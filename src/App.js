@@ -15,7 +15,6 @@ import { useSearch } from './shared/hooks/search-hook';
 import NavigationBar from './shared/navigation/NavigationBar';
 import Footer from './shared/footer/Footer'
 import Newscard from './shared/UIElements/NewsCard';
-import ProductSlider from './shared/carousel/ProductSlider';
 import Admin from './admin/pages/Admin';
 import Shopping from './products/pages/Shopping';
 import SearchResults from './products/pages/SearchResults';
@@ -57,14 +56,20 @@ function App() {
             <NavigationBar />
           </div>
           <div>
-            <Carousel element='img' />
+            <Carousel
+              className=''
+              element='img'
+            />
           </div>
           <div>
             <Newscard />
           </div>
 
           <div>
-            <ProductSlider />
+            <Carousel
+              className={'_product-slider'}
+              animation='special'
+            />
           </div>
           <div>
             <Footer />
@@ -119,9 +124,7 @@ function App() {
             <NavigationBar />
           </div>
 
-          <div>
-            <Test />
-          </div>
+
         </Route>
         <Redirect to='/' />
       </Switch>

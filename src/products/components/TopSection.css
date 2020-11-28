@@ -42,6 +42,7 @@
 }
 
 .top-section__hr {
+    width: 100%;
     background: #22a03e;
     border: solid rgb(22, 165, 29) 2px;
 }
@@ -104,4 +105,12 @@
     .buying-mid_strip {
         left: 1rem;
     }
+    .buying-lower_strip button {
+        left: -1.3rem;
+    }
+    .buying-upper_strip {
+        right: -0.2rem;
+ 
+    }
+
 }

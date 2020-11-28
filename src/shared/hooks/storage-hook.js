@@ -5,7 +5,7 @@ export const useStorage = () => {
 
     let products;
 
-    const priceCalculation = (array) => {
+    const priceCalculation = array => {
 
         const repricedArray = array.map(i => {
             return i.price = i.number * Number(i.price);

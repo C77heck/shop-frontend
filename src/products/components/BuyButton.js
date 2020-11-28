@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 import { PurchaseContext } from '../../shared/context/purchase-context'
 import MessageModal from '../../shared/UIElements/MessageModal'
@@ -9,8 +10,7 @@ import './Products.css'
 const BuyButton = props => {
 
     const purchase = useContext(PurchaseContext)
-    const items = props.items;
-    const code = props.code;
+    const {code, items} = props;
     const [isClicked, setIsClicked] = useState(false);
     const [number, setNumber] = useState(0)
     const [message, setMessage] = useState()
@@ -69,27 +69,40 @@ const BuyButton = props => {
     };
 
 
-    const clicked = (
-        <React.Fragment>
-            <MessageModal message={message} onClear={no} no={no} yes={yes} />
-            <div>
-                <button className='shopping-button' onClick={minus}><span className='minus-sign'>-</span></button>
-                <div className='amount-div'><input type='text' className='amount-input' readOnly value={number} /></div>
-                <button className='shopping-button' onClick={plus}><span className='plus-sign'>+</span></button>
-            </div>
-        </React.Fragment>
-    );
 
-    const notClicked = (
-        <div>
-            <button className='add-button' onClick={buttonHandler}>ADD</button>
-        </div>
-    );
+    return (<React.Fragment>
+        <MessageModal message={message} onClear={no} no={no} yes={yes} />
 
-    return isClicked ? clicked : notClicked;
+        <SwitchTransition>
+            <CSSTransition
+                key={isClicked + '1'}
+                classNames='fade'
+                timeout={80}
 
+            >
+                {isClicked ? <div className={`amount-div ${props.className}`}>
+                    <button className='shopping-button' onClick={minus}>
+                        <span className='minus-sign'>-</span>
+                    </button>
+                    <input type='text' className='amount-input' readOnly value={number} />
+                    <button className='shopping-button' onClick={plus}>
+                        <span className='plus-sign'>+</span>
+                    </button>
+                </div>
+                    :
+                    <div className={`${props.className}`}>
+                        <button className='add-button' onClick={buttonHandler}>ADD</button>
+                    </div>}
+
+            </CSSTransition>
+        </SwitchTransition>
+    </React.Fragment>)
 
 
 }
+
+
+
+
 
 export default BuyButton;

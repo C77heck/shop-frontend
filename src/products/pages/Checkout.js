@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-import ProductList from '../components/ProductList';
+import CheckoutList from '../components/CheckoutList';
 
 
 import './Checkout.css'
@@ -20,7 +20,7 @@ const Checkout = () => {
 
     return (
         <div className='product-list_checkout'>
-            <ProductList items={products} />
+            <CheckoutList items={products} />
         </div>
     )
 }
