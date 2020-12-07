@@ -33,6 +33,7 @@ const ProductCard = props => {
                         items={props.items}
                         code={props.code}
                         price={props.price}
+                        number={props.number}
                     />
 
                 </div>
@@ -62,6 +63,7 @@ const ProductList = props => {
                         image={product.image}
                         code={product.code}
                         items={props.items}
+                        number={product.number}
 
                     />
                 )

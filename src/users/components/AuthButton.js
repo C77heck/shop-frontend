@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 
 
-import { AuthContext } from '../../shared/context/auth-context';
+import { useAuth } from '../../shared/hooks/auth-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import Signin from './Signin';
 import Signup from './Signup';
@@ -17,7 +17,11 @@ import './AuthButton.css'
 
 const AuthButton = props => {
 
-    const auth = useContext(AuthContext);
+    const {
+        isloggedIn,
+        signin,
+        signout
+    } = useAuth();
     const { error, clearError, isLoading, sendRequest } = useHttpClient();
     const [isLoginMode, setIsLoginMode] = useState(false)//do we need?
     const [registering, setRegistering] = useState(false);
@@ -75,8 +79,6 @@ const AuthButton = props => {
     useEffect(() => {
         for (let i in inputState.inputs) {
             if (i.valid === true) {
-                console.log('we are in useEffect')
-
                 setDisabled(true)
             } else {
                 setDisabled(false)
@@ -86,12 +88,12 @@ const AuthButton = props => {
 
 
     const signinModalHandler = () => {
-
         setClickedSignIn(true)
     }
-    const signout = () => {
+
+    const signoutHandler = () => {
         setIsLoginMode(false)
-        auth.signout();
+        signout();
     }
 
     const signInClose = () => {
@@ -99,7 +101,7 @@ const AuthButton = props => {
         setRegistering(false)
     }
 
-    const signin = async e => {
+    const signinHandler = async e => {
         e.preventDefault();
 
         try {
@@ -112,7 +114,8 @@ const AuthButton = props => {
                 }),
                 { 'Content-Type': 'application/json' }
             )
-            auth.signin(responseData.userId, responseData.token)
+            console.log(responseData.token)
+            signin(responseData.userId, responseData.token)
             setIsLoginMode(true)
             signInClose();
         } catch (err) {
@@ -128,7 +131,7 @@ const AuthButton = props => {
     const signedupSuccessToClose = () => {
         setSignedup(false)
     }
-    const signup = async e => {
+    const signupHandler = async e => {
         e.preventDefault();
         try {
             const responseData = await sendRequest(
@@ -152,7 +155,7 @@ const AuthButton = props => {
                 { 'Content-Type': 'application/json' }
             )
             setCoordinates(responseData.userLocation)
-            auth.signin(responseData.userId, responseData.token);
+            signin(responseData.userId, responseData.token);
             setIsLoginMode(true)
             signInClose();
             setSignedup(true)
@@ -171,7 +174,7 @@ const AuthButton = props => {
                 show={clickedSignIn}
                 onClear={signInClose}
                 register={register}
-                onSubmit={signin}
+                onSubmit={signinHandler}
                 onInput={handler}
                 value={inputState.inputs}
             />
@@ -179,7 +182,7 @@ const AuthButton = props => {
                 header='Registering is quick and easy'
                 show={registering}
                 onClear={signInClose}
-                onSubmit={signup}
+                onSubmit={signupHandler}
                 onInput={handler}
                 value={inputState.inputs}
                 password={inputState.inputs.password.value}
@@ -194,10 +197,10 @@ const AuthButton = props => {
 
                 <button
                     className={props.className}
-                    onClick={isLoginMode ? signout : signinModalHandler}
+                    onClick={isloggedIn ? signoutHandler : signinModalHandler}
                 >
                     <img src="/images/icons/user-other.svg" alt="user icon" />
-                    <span>{isLoginMode ? 'SIGN OUT' : 'SIGN IN'}</span>
+                    <span>{isloggedIn ? 'SIGN OUT' : 'SIGN IN'}</span>
                 </button>
             </div>
         </React.Fragment>

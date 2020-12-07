@@ -3,30 +3,32 @@ import React, { useState, useContext, useEffect } from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 import { PurchaseContext } from '../../shared/context/purchase-context'
+import { useAuth } from '../../shared/hooks/auth-hook';
 import MessageModal from '../../shared/UIElements/MessageModal'
 
 import './Products.css'
 
 const BuyButton = props => {
 
+    const { isLoggedIn } = useAuth();
+
     const purchase = useContext(PurchaseContext)
-    const {code, items} = props;
+
+    const { code, items } = props;
     const [isClicked, setIsClicked] = useState(false);
-    const [number, setNumber] = useState(0)
+    const [number, setNumber] = useState()
     const [message, setMessage] = useState()
 
 
     useEffect(() => {
-        try {
-            purchase.basketItems.forEach(i => {
-                if (i.code === code) {
-                    setNumber(i.number)
-                    setIsClicked(true)
-                }
-            })
-        } catch (err) {
+        if (props.number > 0) {
+            setNumber(props.number)
+            setIsClicked(true)
         }
-    })
+        purchase.updateBasket(items)
+    }, [])
+
+
 
 
     const no = () => {
@@ -34,23 +36,24 @@ const BuyButton = props => {
     }
 
     const yes = () => {
-        purchase.subtract(code)
+        purchase.subtract(items, code)
         setIsClicked(false)
         setMessage(null)
     }
 
-    const buttonHandler = () => {
-        setNumber(1)
-        setIsClicked(true)
-        purchase.getNumber(1);
-        purchase.add(items, code)
+    const addButtonHandler = () => {
+        if (isLoggedIn) {
+            setNumber(1)
+            purchase.add(items, code)
+            setIsClicked(true)
+        } else {
+            console.log(isLoggedIn)
+        }
 
     }
     const plus = () => {
         setNumber(prev => prev + 1)
-        purchase.getNumber(number + 1);
         purchase.add(items, code)
-
     }
     const minus = () => {
         setNumber(() => {
@@ -62,13 +65,9 @@ const BuyButton = props => {
         if (number === 1) {
             setMessage('Are you sure you want to delete this item from your basket?')
         } else {
-            purchase.getNumber(number - 1);
-
-
+            purchase.subtract(items, code)
         }
     };
-
-
 
     return (<React.Fragment>
         <MessageModal message={message} onClear={no} no={no} yes={yes} />
@@ -78,7 +77,6 @@ const BuyButton = props => {
                 key={isClicked + '1'}
                 classNames='fade'
                 timeout={80}
-
             >
                 {isClicked ? <div className={`amount-div ${props.className}`}>
                     <button className='shopping-button' onClick={minus}>
@@ -91,9 +89,8 @@ const BuyButton = props => {
                 </div>
                     :
                     <div className={`${props.className}`}>
-                        <button className='add-button' onClick={buttonHandler}>ADD</button>
+                        <button className='add-button' onClick={addButtonHandler}>ADD</button>
                     </div>}
-
             </CSSTransition>
         </SwitchTransition>
     </React.Fragment>)

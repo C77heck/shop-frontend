@@ -21,7 +21,7 @@ const TopSection = props => {
                     <Search className='desktop-view' search={props.search} />
                 </div>
                 <div className='buying-lower_strip'>
-                    <Basket />
+                    <Basket  />
                 </div>
             </div>
             <div className='top-section__hr'></div>

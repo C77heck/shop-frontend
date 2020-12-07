@@ -2,10 +2,10 @@ import { createContext } from 'react';
 
 
 export const PurchaseContext = createContext({
-    basketItems: [],
     code: '',
-    number: 0,
-    getNumber: () => { },
+    saveToLocalStorage: () => { },
     add: () => { },
-    subtract: () => { }
+    subtract: () => { },
+    updateBasket: () => { },
+    basket: {}
 });

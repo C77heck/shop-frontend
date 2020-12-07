@@ -9,19 +9,28 @@ import TopSection from '../components/TopSection'
 import './Shopping.css'
 
 const Shopping = () => {
-    const [loadedProducts, setLoadingProducts] = useState();
+    const [loadedProducts, setLoadedProducts] = useState();
     const { sendRequest, isLoading, error, clearError } = useHttpClient();
 
     useEffect(() => {
+
         (async () => {
             try {
-                const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
-                setLoadingProducts(responseData.products.map(i => ({ ...i, number: 0 })))
+                if (localStorage.getItem('basketContent') === null) {
+                    const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
+                    setLoadedProducts(responseData.products.map(i => ({
+                        ...i,
+                        number: 0,
+                        totalPrice: 0
+                    })))
+                } else {
+                    const storageData = JSON.parse(localStorage.getItem('basketContent'))
+                    setLoadedProducts(storageData.products)
+                }
             } catch (err) {
             }
         })();
     }, [sendRequest])
-
 
     return (
         <React.Fragment>
@@ -32,7 +41,9 @@ const Shopping = () => {
             </div>
 
 
-            {!isLoading && loadedProducts && <div className='shopping'><ProductList items={loadedProducts} /></div>}
+            {!isLoading && loadedProducts && <div className='shopping'>
+                <ProductList items={loadedProducts} />
+            </div>}
 
 
 

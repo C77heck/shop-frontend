@@ -56,7 +56,7 @@ const NavLinks = () => {
                     />
             
             </ul>
-        </React.Fragment >
+        </React.Fragment>
     )
 }
 

@@ -7,6 +7,9 @@ import {
   Switch
 } from 'react-router-dom';
 
+import { useHttpClient } from './shared/hooks/http-hook';
+
+import { useAuth } from './shared/hooks/auth-hook';
 import { AuthContext } from './shared/context/auth-context';
 import { PurchaseContext } from './shared/context/purchase-context';
 import { SearchContext } from './shared/context/search-context'
@@ -21,30 +24,31 @@ import SearchResults from './products/pages/SearchResults';
 import Checkout from './products/pages/Checkout';
 import Carousel from './shared/carousel/Carousel';
 
-/* test */
-import Test from './shared/carousel/Test';
+
 
 import './App.css';
 
 function App() {
+  const {
+    isloggedIn,
+    isAdmin,
+    token,
+    userId,
+    signin,
+    signout
+  } = useAuth();
 
-
-  const { basketItems, number, getNumber, code, add, subtract } = usePurchase()
+  const {
+    code,
+    saveToLocalStorage,
+    add,
+    subtract,
+    basket,
+    updateBasket,
+    basketContent
+  } = usePurchase()
   const { products, productCode, findProducts } = useSearch();
-  const [token, setToken] = useState(false);
-  const [userId, setUserId] = useState(false)
 
-
-
-  const signin = useCallback((uid, token) => {
-    setToken(token);
-    setUserId(uid)
-  }, []);
-
-  const signout = useCallback(() => {
-    setToken(null);
-    setUserId(null)
-  }, []);
 
   let routes;
 
@@ -134,7 +138,8 @@ function App() {
   return (
     <AuthContext.Provider
       value={{
-        isloggedIn: !!token,
+        isloggedIn: isloggedIn,
+        isAdmin: isAdmin,
         token: token,
         userId: userId,
         signin: signin,
@@ -150,12 +155,13 @@ function App() {
       >
         <PurchaseContext.Provider
           value={{
-            basketItems: basketItems,
             code: code,
-            number: number,
-            getNumber: getNumber,
+            saveToLocalStorage: saveToLocalStorage,
             add: add,
-            subtract: subtract
+            subtract: subtract,
+            updateBasket: updateBasket,
+            basket: basket,
+            basketContent: basketContent
           }}
         >
           <main><div className='center'>{routes}</div></main>

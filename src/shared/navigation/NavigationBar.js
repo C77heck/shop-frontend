@@ -7,6 +7,7 @@ import SideDrawer from './SideDrawer'
 import Backdrop from '../UIElements/Backdrop'
 import AuthButton from '../../users/components/AuthButton';
 
+
 import './NavigationBar.css'
 
 const NavigationBar = () => {
@@ -50,7 +51,9 @@ const NavigationBar = () => {
                 <nav className="main-navigation__header-nav">
                     <NavLinks />
                 </nav>
+
             </MainHeader>
+
         </React.Fragment>
     )
 

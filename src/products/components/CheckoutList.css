@@ -72,3 +72,7 @@
     top: 23%;
     font-size: 1.2rem !important;
 }
+
+.invisible {
+    display: none;
+}

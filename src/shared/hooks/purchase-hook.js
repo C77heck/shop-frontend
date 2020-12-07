@@ -1,42 +1,49 @@
 import { useState, useCallback } from 'react';
 
 
+
 export const usePurchase = () => {
-    const [basketItems, setBasketItems] = useState([]);
     const [code, setCode] = useState();
-    const [number, setNumber] = useState();
-
-    const deleting = (array, code) => {
-        const nonMatching = [];
-        const matching = [];
-        array.forEach(i => {
-            if (i.code === code) {
-                matching.push(i)
-            } else {
-                nonMatching.push(i)
-            }
-        })
-        matching.pop()
-
-        return [...nonMatching, ...matching]
+    const [basket, setBasket] = useState({
+        price: '',
+        amount: ''
+    })
+    const [basketContent, setBasketContent] = useState()
+    const saveToLocalStorage = (array) => {
+        localStorage.setItem(
+            'basketContent',
+            JSON.stringify({
+                products: array.map(i => ({
+                    ...i,
+                    totalPrice: i.number * i.price
+                }))
+            })
+        );
+        setBasketContent(JSON.parse(localStorage.getItem('basketContent')))
     }
 
 
-
-    const getNumber = (number) => {
-        setNumber(number)
-
+    const updateBasket = (items) => {
+        setBasket({
+            price: items.reduce((a, i) => {
+                return a + i.price * i.number
+            }, 0),
+            amount: items.reduce((a, i) => {
+                return a + i.number
+            }, 0)
+        })
     }
 
     const add = useCallback(
         (items, code) => {
             setCode(code);
-            let newItem = items.filter(i => i.code === code);
-
-            setBasketItems(prev => {
-                const popDuplicate = prev.filter(i => i.code !== code)
-                return [...popDuplicate, ...newItem];
+            items.map(i => {
+                if (i.code === code) {
+                    i.number += 1
+                }
             })
+            saveToLocalStorage(items)
+            updateBasket(items)
         },
         [],
     )
@@ -44,16 +51,28 @@ export const usePurchase = () => {
 
 
     const subtract = useCallback(
-        (code) => {
+        (items, code) => {
             setCode(code);
-            if (number === 1) {
-                setBasketItems(prev => deleting(prev, code))
-            }
+            items.map(i => {
+                if (i.code === code) {
+                    i.number -= 1
+                }
+            })
+            saveToLocalStorage(items)
+            updateBasket(items)
+        }, [])
 
-        },
-        [number],
-    )
-    return { basketItems, number, getNumber, code, add, subtract }
+
+
+    return {
+        code,
+        saveToLocalStorage,
+        add,
+        subtract,
+        basket,
+        updateBasket,
+        basketContent
+    }
 }
 
 
