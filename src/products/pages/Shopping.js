@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import ProductList from '../components/ProductList';
 import { useHttpClient } from '../../shared/hooks/http-hook'
@@ -7,16 +7,24 @@ import LoadingSpinner from '../../shared/UIElements/LoadingSpinner'
 import TopSection from '../components/TopSection'
 
 import './Shopping.css'
+import { PurchaseContext } from '../../shared/context/purchase-context';
+import { AuthContext } from '../../shared/context/auth-context';
 
 const Shopping = () => {
+
+    const { isLoggedIn } = useContext(AuthContext);
+    const { basketContent } = useContext(PurchaseContext)
+    // const { basketContent } = usePurchase()
     const [loadedProducts, setLoadedProducts] = useState();
     const { sendRequest, isLoading, error, clearError } = useHttpClient();
+    console.table(basketContent , isLoggedIn)
+
 
     useEffect(() => {
-
         (async () => {
+            console.log('hitting the useEffect')
             try {
-                if (localStorage.getItem('basketContent') === null) {
+                if (!isLoggedIn) {
                     const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
                     setLoadedProducts(responseData.products.map(i => ({
                         ...i,
@@ -24,13 +32,14 @@ const Shopping = () => {
                         totalPrice: 0
                     })))
                 } else {
-                    const storageData = JSON.parse(localStorage.getItem('basketContent'))
-                    setLoadedProducts(storageData.products)
+                    setLoadedProducts(basketContent)
+
                 }
+
             } catch (err) {
             }
         })();
-    }, [sendRequest])
+    }, [sendRequest, isLoggedIn, basketContent])
 
     return (
         <React.Fragment>

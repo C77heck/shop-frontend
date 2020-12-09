@@ -2,15 +2,18 @@ import React, { useState, useContext, useEffect } from 'react';
 
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
-import { PurchaseContext } from '../../shared/context/purchase-context'
-import { useAuth } from '../../shared/hooks/auth-hook';
-import MessageModal from '../../shared/UIElements/MessageModal'
+import { AuthContext } from '../../shared/context/auth-context';
+import { PurchaseContext } from '../../shared/context/purchase-context';
+import MessageModal from '../../shared/UIElements/MessageModal';
+import Auth from '../../users/components/Auth';
+
+
 
 import './Products.css'
 
 const BuyButton = props => {
 
-    const { isLoggedIn } = useAuth();
+    const { isLoggedIn } = useContext(AuthContext);
 
     const purchase = useContext(PurchaseContext)
 
@@ -19,16 +22,15 @@ const BuyButton = props => {
     const [number, setNumber] = useState()
     const [message, setMessage] = useState()
 
-
     useEffect(() => {
-        if (props.number > 0) {
-            setNumber(props.number)
-            setIsClicked(true)
+        if (isLoggedIn) {
+            if (props.number > 0) {
+                setNumber(props.number)
+                setIsClicked(true)
+            }
+            purchase.updateBasket(items)
         }
-        purchase.updateBasket(items)
-    }, [])
-
-
+    }, [isLoggedIn])
 
 
     const no = () => {
@@ -42,12 +44,11 @@ const BuyButton = props => {
     }
 
     const addButtonHandler = () => {
-        if (isLoggedIn) {
+        if (!isLoggedIn) {
+        } else {
             setNumber(1)
             purchase.add(items, code)
             setIsClicked(true)
-        } else {
-            console.log(isLoggedIn)
         }
 
     }
@@ -89,7 +90,9 @@ const BuyButton = props => {
                 </div>
                     :
                     <div className={`${props.className}`}>
-                        <button className='add-button' onClick={addButtonHandler}>ADD</button>
+                        <Auth>
+                            <button className='add-button' onClick={addButtonHandler}>ADD</button>
+                        </Auth>
                     </div>}
             </CSSTransition>
         </SwitchTransition>

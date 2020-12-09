@@ -19,7 +19,7 @@ export const usePurchase = () => {
                 }))
             })
         );
-        setBasketContent(JSON.parse(localStorage.getItem('basketContent')))
+        setBasketContent(array)
     }
 
 

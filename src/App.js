@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useContext } from 'react';
 
 import {
   BrowserRouter as Router,
@@ -8,8 +8,6 @@ import {
 } from 'react-router-dom';
 
 import { useHttpClient } from './shared/hooks/http-hook';
-
-import { useAuth } from './shared/hooks/auth-hook';
 import { AuthContext } from './shared/context/auth-context';
 import { PurchaseContext } from './shared/context/purchase-context';
 import { SearchContext } from './shared/context/search-context'
@@ -29,15 +27,8 @@ import Carousel from './shared/carousel/Carousel';
 import './App.css';
 
 function App() {
-  const {
-    isloggedIn,
-    isAdmin,
-    token,
-    userId,
-    signin,
-    signout
-  } = useAuth();
 
+  const { sendRequest } = useHttpClient();
   const {
     code,
     saveToLocalStorage,
@@ -47,8 +38,52 @@ function App() {
     updateBasket,
     basketContent
   } = usePurchase()
+  const [token, setToken] = useState(false);
+  const [userId, setUserId] = useState(false)
+  //  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const signin = useCallback((uid, token) => {
+    (async () => {
+      try {
+        const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
+        saveToLocalStorage(responseData.products.map(i => {
+          return {
+            ...i,
+            number: 0,
+            totalPrice: 0
+          }
+        }))
+      } catch (err) {
+      }
+    })()
+    setToken(token);
+    setUserId(uid);
+    //    setIsLoggedIn(true)
+    localStorage.setItem('userData',
+      JSON.stringify({ userId: uid, token: token })
+    )
+
+  }, []);
+
+  const signout = useCallback(() => {
+    setToken(null);
+    setUserId(null)
+    localStorage.removeItem('userData')
+    localStorage.removeItem('basketContent')
+
+  }, []);
+
+
+
   const { products, productCode, findProducts } = useSearch();
 
+
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem('userData'))
+    if (storedData) {
+      signin(storedData.userId, storedData.token)
+    }
+  }, [signin])
 
   let routes;
 
@@ -138,9 +173,8 @@ function App() {
   return (
     <AuthContext.Provider
       value={{
-        isloggedIn: isloggedIn,
-        isAdmin: isAdmin,
         token: token,
+        isLoggedIn: !!token,
         userId: userId,
         signin: signin,
         signout: signout
