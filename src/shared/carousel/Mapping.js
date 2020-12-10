@@ -7,7 +7,7 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 
 
 const Image = props => {
-    const { id, image, name, code } = props.file;
+    const { id, image, name } = props.file;
     const search = useContext(SearchContext);
     const { sendRequest } = useHttpClient();
 
@@ -16,7 +16,6 @@ const Image = props => {
     const clickHandle = async (e) => {
 
         const { alt } = e.target;
-        console.log(e.target.alt)
         try {
 
             const responseData = await sendRequest(

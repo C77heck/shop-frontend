@@ -1,23 +1,20 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import BuyButton from './BuyButton';
 
-import { PurchaseContext } from '../../shared/context/purchase-context';
 
 import './CheckoutList.css';
-
-
 
 
 const ProductItem = props => {
 
 
-    const checkoutPrice = props.totalPrice;
 
     const [price, setPrice] = useState({
         beforeDot: '',
         afterDot: ''
     });
+    const checkoutPrice = props.totalPrice;
 
     useEffect(() => {
 
@@ -45,7 +42,7 @@ const ProductItem = props => {
             })
         }
 
-    }, [checkoutPrice])
+    }, [checkoutPrice, setPrice])
 
 
     return (
@@ -90,21 +87,18 @@ const ProductItem = props => {
 }
 
 const CheckoutList = () => {
-    const { basketContent } = useContext(PurchaseContext);
     const [products, setProducts] = useState([]);
-
+    const storageData = JSON.parse(localStorage.getItem('basketContent')).products
     useEffect(() => {
         try {
             if (products.length < 1) {
-                setProducts(JSON.parse(localStorage.getItem('basketContent')).products)
-            } else {
-                setProducts(basketContent.products);
+                setProducts(storageData)
             }
         } catch (err) {
             console.log(err)
         }
 
-    }, [basketContent])
+    }, [storageData, products.length])
 
     return (
         <div className='checkout-list'>
@@ -123,7 +117,7 @@ const CheckoutList = () => {
                             name={product.name}
                             unit={product.unit}
                             price={product.price}
-                            totalPrice={product.totalPrice}
+                            totalPrice={product.price * product.number}
                             image={product.image}
                             code={product.code}
                             items={products}
@@ -138,7 +132,7 @@ const CheckoutList = () => {
                             name={product.name}
                             unit={product.unit}
                             price={product.price}
-                            totalPrice={product.totalPrice}
+                            totalPrice={product.price * product.number}
                             image={product.image}
                             code={product.code}
                             items={products}

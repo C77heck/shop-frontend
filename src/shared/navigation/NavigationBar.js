@@ -19,9 +19,7 @@ const NavigationBar = () => {
 
     const closeDrawerHandler = e => {
         const { id } = e.target
-        console.log(id)
         if (id === 'auth-button') {
-            console.log('target hit')
         } else {
             setIsDrawerOpen(false)
         }

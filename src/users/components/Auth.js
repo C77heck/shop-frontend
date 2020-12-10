@@ -88,10 +88,6 @@ const Auth = props => {
         setClickedSignIn(true)
     }
 
-    const signoutHandler = () => {
-        signout();
-    }
-
     const signInClose = () => {
         setClickedSignIn(false)
         setRegistering(false)

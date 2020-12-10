@@ -49,7 +49,7 @@ const Carousel = props => {
         pics3: [],
         pics4: []
     })
-    const { translate, activeSlide, slides, transition } = carousel;
+    const { translate, activeSlide } = carousel;
     const animationType = (props.animation === 'special'
         ? 'cubic-bezier(0.36, 0, 0.66, -0.56)'
         :
@@ -59,7 +59,7 @@ const Carousel = props => {
             transform: `translateX(-${translate}%)`,
             transition: `transform 1s ${animationType}`
         })
-    }, [translate, activeSlide])
+    }, [translate, activeSlide, animationType])
 
     useEffect(() => {
         (async () => {

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
@@ -21,6 +21,7 @@ const BuyButton = props => {
     const [isClicked, setIsClicked] = useState(false);
     const [number, setNumber] = useState()
     const [message, setMessage] = useState()
+    const nodeRef = useRef(null)
 
     useEffect(() => {
         if (isLoggedIn) {
@@ -76,6 +77,7 @@ const BuyButton = props => {
         <SwitchTransition>
             <CSSTransition
                 key={isClicked + '1'}
+                nodeRef={nodeRef}
                 classNames='fade'
                 timeout={80}
             >

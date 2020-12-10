@@ -8,18 +8,13 @@ export const usePurchase = () => {
         price: '',
         amount: ''
     })
-    const [basketContent, setBasketContent] = useState()
     const saveToLocalStorage = (array) => {
         localStorage.setItem(
             'basketContent',
             JSON.stringify({
-                products: array.map(i => ({
-                    ...i,
-                    totalPrice: i.number * i.price
-                }))
+                products: array
             })
         );
-        setBasketContent(array)
     }
 
 
@@ -70,8 +65,7 @@ export const usePurchase = () => {
         add,
         subtract,
         basket,
-        updateBasket,
-        basketContent
+        updateBasket
     }
 }
 

@@ -40,7 +40,6 @@ const UpdateProduct = () => {
     })
     const { sendRequest, error, clearError } = useHttpClient();
 
-    console.log(inputState.inputs.image.value)
     const updateProductHandler = async e => {
         e.preventDefault();
         try {
@@ -65,7 +64,6 @@ const UpdateProduct = () => {
             history.push('/')
             history.push('/admin')
         } catch (err) {
-            console.log('something went wrong')
         }
 
     }

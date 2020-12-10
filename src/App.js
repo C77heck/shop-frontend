@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useContext } from 'react';
+import React from 'react';
 
 import {
   BrowserRouter as Router,
@@ -7,7 +7,7 @@ import {
   Switch
 } from 'react-router-dom';
 
-import { useHttpClient } from './shared/hooks/http-hook';
+import { useAuth } from './shared/hooks/auth-hook';
 import { AuthContext } from './shared/context/auth-context';
 import { PurchaseContext } from './shared/context/purchase-context';
 import { SearchContext } from './shared/context/search-context'
@@ -22,68 +22,27 @@ import SearchResults from './products/pages/SearchResults';
 import Checkout from './products/pages/Checkout';
 import Carousel from './shared/carousel/Carousel';
 
-
-
 import './App.css';
+
 
 function App() {
 
-  const { sendRequest } = useHttpClient();
   const {
     code,
     saveToLocalStorage,
     add,
     subtract,
     basket,
-    updateBasket,
-    basketContent
+    updateBasket
   } = usePurchase()
-  const [token, setToken] = useState(false);
-  const [userId, setUserId] = useState(false)
-  //  const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-  const signin = useCallback((uid, token) => {
-    (async () => {
-      try {
-        const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
-        saveToLocalStorage(responseData.products.map(i => {
-          return {
-            ...i,
-            number: 0,
-            totalPrice: 0
-          }
-        }))
-      } catch (err) {
-      }
-    })()
-    setToken(token);
-    setUserId(uid);
-    //    setIsLoggedIn(true)
-    localStorage.setItem('userData',
-      JSON.stringify({ userId: uid, token: token })
-    )
-
-  }, []);
-
-  const signout = useCallback(() => {
-    setToken(null);
-    setUserId(null)
-    localStorage.removeItem('userData')
-    localStorage.removeItem('basketContent')
-
-  }, []);
-
-
 
   const { products, productCode, findProducts } = useSearch();
 
+  const { signin, signout, token, userId } = useAuth();
 
-  useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem('userData'))
-    if (storedData) {
-      signin(storedData.userId, storedData.token)
-    }
-  }, [signin])
+
+
+
 
   let routes;
 
@@ -194,8 +153,7 @@ function App() {
             add: add,
             subtract: subtract,
             updateBasket: updateBasket,
-            basket: basket,
-            basketContent: basketContent
+            basket: basket
           }}
         >
           <main><div className='center'>{routes}</div></main>
