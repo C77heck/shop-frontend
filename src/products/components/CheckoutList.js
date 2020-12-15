@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import BuyButton from './BuyButton';
+import { priceDisplay } from '../../shared/utility/priceOutput';
 
 
 import './CheckoutList.css';
@@ -17,38 +18,20 @@ const ProductItem = props => {
     const checkoutPrice = props.totalPrice;
 
     useEffect(() => {
-
-        if (checkoutPrice > 0) {
-            if (checkoutPrice % 1 === 0) {
-                setPrice({
-                    beforeDot: String(checkoutPrice),
-                    afterDot: '.00'
-                })
-            } else {
-                setPrice(() => {
-                    let index = String(checkoutPrice).indexOf(".");
-                    let bDot = String(checkoutPrice).slice(0, index);
-                    let aDot = String(checkoutPrice).slice(index, index + 3);
-                    return {
-                        beforeDot: bDot,
-                        afterDot: aDot
-                    }
-                })
-            }
-        } else {
-            setPrice({
-                beforeDot: '00',
-                afterDot: '00'
-            })
-        }
-
+        const { beforeDot, afterDot } = priceDisplay(checkoutPrice)
+        setPrice({
+            beforeDot: beforeDot,
+            afterDot: afterDot
+        })
     }, [checkoutPrice, setPrice])
 
 
     return (
 
         <div className={`${!props.show && 'invisible'} checkout-product__card`}>
-            <div style={{ flexBasis: "20%" }}>
+            <div style={{ flexBasis: "20%" }}
+                className='checkout_image-container'
+            >
                 <div className='checkout-product__image-div'>
                     <img
                         src={process.env.REACT_APP_IMAGE_ROUTE + props.image}

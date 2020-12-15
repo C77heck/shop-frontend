@@ -1,18 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import CheckoutList from '../components/CheckoutList';
-
+import BookDelivery from '../components/BookDelivery';
 
 import './Checkout.css'
-
+import 'react-calendar/dist/Calendar.css'
 
 const Checkout = () => {
 
 
+
     return (
-        <div className='product-list_checkout'>
-            <CheckoutList />
-        </div>
+        <React.Fragment>
+
+            <div className='checkout-layout'>
+                <div
+                    style={{ flexBasis: "40%", width: "40%" }}
+                    className='product-list_checkout flex-containers'
+                >
+                    <CheckoutList />
+                </div>
+                <div style={{ flexBasis: "40%", width: "40%" }}
+                    className='flex-containers'
+                >
+                    <BookDelivery />
+                </div>
+                <div style={{ flexBasis: "20%", width: "20%" }}
+                    className='flex-containers'
+                >
+
+                </div>
+            </div>
+
+        </React.Fragment>
     )
 }
 

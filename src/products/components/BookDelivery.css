@@ -1,0 +1,39 @@
+
+
+.book-delivery_block {
+    display: flex;
+    flex-direction: row;
+    padding-left: 0.7rem;
+    border: solid 1px grey;
+    background-color: rgb(255, 246, 246);
+
+}
+.book-delivery_header{
+    text-align: center;
+    background-color: rgb(189, 216, 189);
+    color:  rgb(66, 199, 66);;
+    border: solid 1px grey;
+}
+.book-delivery_header p {
+    margin: 0.2rem;
+}
+
+.book-delivery_buttons{
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    padding: 0;
+    text-align: left;
+    font: inherit;
+    outline: none;
+    transition: all 200ms;
+}
+.book-delivery_buttons:hover{
+    color: rgb(17, 209, 17);
+    text-decoration: underline;
+}

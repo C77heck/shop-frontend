@@ -1,10 +1,9 @@
 .checkout-list {
     display: flex;
     flex-direction: column;
-    width: 600px;
-    padding: 2%;
-    margin-top: 10rem;
     cursor: default;
+    background-color: rgb(255, 246, 246);
+
 }
 
 .checkout-list button {
@@ -14,8 +13,8 @@
 .products-header {
     display: flex;
     align-items: stretch;
-    background-color: rgb(66, 199, 66);
-    color: white;
+    background-color: rgb(189, 216, 189);
+    color:  rgb(66, 199, 66);
 }
 
 .products-header div {

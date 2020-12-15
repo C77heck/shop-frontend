@@ -11,6 +11,7 @@ import { PurchaseContext } from '../../shared/context/purchase-context';
 import Auth from '../../users/components/Auth';
 import Modal from '../../shared/UIElements/Modal';
 import CheckoutList from './CheckoutList';
+import { priceDisplay } from '../../shared/utility/priceOutput';
 
 import './Basket.css'
 
@@ -26,7 +27,6 @@ const BasketModal = props => {
         </Modal>
     )
 }
-
 
 
 const Basket = () => {
@@ -49,28 +49,14 @@ const Basket = () => {
     const [showModal, setShowModal] = useState(false)
 
     useEffect(() => {
-        if (price > 0) {
-            if (price % 1 === 0) {
-                setDisplay({
-                    beforeDot: String(price),
-                    afterDot: '.00',
-                    amount: amount
-                })
-            } else {
-                let index = String(price).indexOf(".")
-                setDisplay({
-                    beforeDot: String(price).slice(0, index),
-                    afterDot: String(price).slice(index, index + 3),
-                    amount: amount
-                })
-            }
-        } else {
-            setDisplay({
-                beforeDot: '00',
-                afterDot: '.00',
-                amount: amount
-            })
-        }
+
+        const { beforeDot, afterDot } = priceDisplay(price)
+        setDisplay({
+            beforeDot: beforeDot,
+            afterDot: afterDot,
+            amount: amount
+        })
+
         if (price > 99) {
             setStyle({
                 beforeDotStyle: { fontSize: '1.3rem' },

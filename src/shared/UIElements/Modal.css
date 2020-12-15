@@ -7,24 +7,23 @@
   width: 55%;
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  border-radius: 8px;
   text-align: center;
 }
-.map-modal{
+
+.map-modal {
   width: 55% !important;
   left: 21% !important;
-
 }
+
 @media only screen and (max-width: 859px) {
   .modals {
     width: 60%;
   }
-  .map-modal{
+  .map-modal {
     width: 70% !important;
     left: 14% !important;
-
   }
-/*   .signin{
+  /*   .signin{
     left: 30%
   } */
 }
@@ -34,10 +33,9 @@
     left: 7%;
     width: 85%;
   }
-  .map-modal{
+  .map-modal {
     width: 90% !important;
     left: 4% !important;
-
   }
 }
 
@@ -46,6 +44,7 @@
   padding: 1rem 0.5rem;
   background: #3b9221;
   color: white;
+  letter-spacing: 0.2rem;
 }
 
 .modal__header h2 {
@@ -63,9 +62,9 @@
 .modal__footer {
   padding: 1rem 0.5rem;
 }
-.modal__footer-colored{
-  background-color: #3b9221;
 
+.modal__footer-colored {
+  background-color: #3b9221;
 }
 
 @media (min-width: 768px) {
@@ -95,4 +94,52 @@
   transform: translateY(-10rem);
   opacity: 0;
   transition: transform 200ms;
+}
+
+.date-picker__modal {
+  width: unset;
+  display: inline;
+  left: 40%;
+}
+
+.date-picker__modal .modal__content {
+  padding: 0;
+  background-color: rgb(171, 202, 171);
+}
+
+.date-picker__modal .modal__header, .date-picker__modal .modal__footer {
+  background-color: rgb(49, 130, 133);
+}
+
+.date-picker__modal .modal__header h2 {
+  margin: 0;
+}
+
+.date-picker__modal .modal__footer {
+  padding: 0.7rem;
+}
+
+@media only screen and (max-width: 1120px) {
+  .date-picker__modal {
+    left: 35%;
+  }
+}
+
+@media only screen and (max-width: 775px) {
+  .date-picker__modal {
+    left: 25%;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .date-picker__modal {
+    left: 18%;
+  }
+}
+
+@media only screen and (max-width: 475px) {
+  .date-picker__modal {
+    left: 0;
+    width: 100%;
+  }
 }
