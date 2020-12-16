@@ -22,7 +22,6 @@
 }
 
 .input-control input:focus, .input-control textarea:focus {
-    outline: none;
     background: #ebebeb;
     border-color: #065228;
 }

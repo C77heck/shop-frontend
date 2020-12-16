@@ -3,7 +3,7 @@
     justify-content: center;
     flex-direction: row;
     column-gap: 1vw;
-    padding: 10rem 23% ;
+    padding: 10rem 21% ;
     width: 100%;
     background-color:  rgb(240, 233, 233);
     
@@ -59,6 +59,7 @@
     flex-basis: 15% !important;
 }
 }
-.product-list_checkout {
-    min-height: calc(100vh - 420px);
+.flex-containers {
+    max-height: 60vh;
+    overflow: auto;
 }

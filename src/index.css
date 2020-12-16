@@ -6,9 +6,12 @@ body {
 }
 
 * {
-  box-sizing: border-box
+  box-sizing: border-box;
+  letter-spacing: 0.5px;
 }
-
+* button{
+  outline: none;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

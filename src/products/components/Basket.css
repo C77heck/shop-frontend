@@ -10,16 +10,11 @@
     position: absolute;
     right: 44px;
     top: 180px;
-    outline: none;
 }
 
 .basketButton:hover {
     text-decoration: none;
     background-color: rgb(5, 121, 121);
-}
-
-.basketButton:focus {
-    outline: none;
 }
 
 .basketButton span {

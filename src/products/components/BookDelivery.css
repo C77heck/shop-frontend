@@ -30,7 +30,6 @@
     padding: 0;
     text-align: left;
     font: inherit;
-    outline: none;
     transition: all 200ms;
 }
 .book-delivery_buttons:hover{

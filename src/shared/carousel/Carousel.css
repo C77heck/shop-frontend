@@ -21,7 +21,6 @@
     width: 8%;
     opacity: 0;
     transition: opacity 0.5s;
-    outline: none;
 }
 
 .left-side_controller {
@@ -32,7 +31,6 @@
     background: transparent;
     opacity: 0;
     transition: opacity 0.5s;
-    outline: none;
 }
 
 .left-side_controller:hover, .right-side_controller:hover {

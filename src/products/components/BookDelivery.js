@@ -9,7 +9,7 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 import { PurchaseContext } from '../../shared/context/purchase-context';
 import DeliverPicker from './DeliveryPicker';
 import { priceDisplay } from '../../shared/utility/priceOutput';
-
+import InstructionsModal from './InstructionsModal';
 
 import './BookDelivery.css';
 
@@ -37,6 +37,7 @@ const BookDelivery = () => {
         }
 
     })
+    const [instructionsModal, setInstuctionsModal] = useState(false)
     const [show, setShow] = useState(false)
     const [userData, setUserData] = useState({
         address: '58A, Carnarvon Road, London, E15 4QW ',
@@ -58,6 +59,7 @@ const BookDelivery = () => {
 
     const cancelHandler = () => {
         setShow(false)
+        setInstuctionsModal(false)
     }
 
     /*     useEffect(() => {
@@ -82,14 +84,21 @@ const BookDelivery = () => {
         })
         setShow(false)
     }
+    const instructionsHandler = () => {
+        setInstuctionsModal(true)
+    }
 
     return (
         <React.Fragment>
+
             <DeliverPicker
                 onClear={cancelHandler}
                 show={show}
                 onChange={calendarHandler}
                 value={value.datePicked}
+            />
+            <InstructionsModal
+                showModal={instructionsModal}
             />
             <div className='book-delivery_header'>
                 <p>Delivery details</p>
@@ -109,7 +118,10 @@ const BookDelivery = () => {
                     </button>
                     <p>{userData.address}</p>
                     <p>{userData.instructions}</p>
-                    <button className='book-delivery_buttons'>Edit delivery instructions</button>
+                    <button
+                        className='book-delivery_buttons'
+                        onClick={instructionsHandler}
+                    >Edit delivery instructions</button>
                 </div>
             </div>
             <div className='order-summary'>

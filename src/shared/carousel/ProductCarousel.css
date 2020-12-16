@@ -44,7 +44,6 @@
     height: 3vw;
     width: 3vw;
     transition: all 0.5s;
-    outline: none;
     border-radius: 50%;
     border-color: rgb(173, 168, 168);
     right: 3%;
@@ -59,7 +58,6 @@
     width: 3vw;
     background: transparent;
     transition: all 0.5s;
-    outline: none;
     border-radius: 50%;
     border-color: rgb(155, 150, 150);
     opacity: 0.5;

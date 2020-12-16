@@ -101,7 +101,6 @@
     font-size: 1.2rem;
     padding: 0 0 0px 0;
     border: none;
-    outline: none;
     cursor: default;
 }
 
@@ -130,9 +129,7 @@
     bottom: 2px;
 }
 
-.shopping-button:focus {
-    outline: none;
-}
+
 
 .shopping-button:hover {
     background-color: rgb(66, 143, 82);
@@ -145,14 +142,9 @@
     height: 32px;
     width: 100px;
     border-radius: 5%;
-    outline: none;
     border: none;
     cursor: default;
     margin-bottom: 2px;
-}
-
-.add-button:focus {
-    outline: none;
 }
 
 .add-button:hover {
