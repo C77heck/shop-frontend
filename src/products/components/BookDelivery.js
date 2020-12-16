@@ -37,7 +37,6 @@ const BookDelivery = () => {
         }
 
     })
-    const [instructionsModal, setInstuctionsModal] = useState(false)
     const [show, setShow] = useState(false)
     const [userData, setUserData] = useState({
         address: '58A, Carnarvon Road, London, E15 4QW ',
@@ -59,7 +58,6 @@ const BookDelivery = () => {
 
     const cancelHandler = () => {
         setShow(false)
-        setInstuctionsModal(false)
     }
 
     /*     useEffect(() => {
@@ -84,9 +82,7 @@ const BookDelivery = () => {
         })
         setShow(false)
     }
-    const instructionsHandler = () => {
-        setInstuctionsModal(true)
-    }
+
 
     return (
         <React.Fragment>
@@ -97,9 +93,7 @@ const BookDelivery = () => {
                 onChange={calendarHandler}
                 value={value.datePicked}
             />
-            <InstructionsModal
-                showModal={instructionsModal}
-            />
+
             <div className='book-delivery_header'>
                 <p>Delivery details</p>
             </div>
@@ -117,11 +111,7 @@ const BookDelivery = () => {
                     >{value !== undefined ? value.display + ' change delivery date' : 'book a delivery date'}
                     </button>
                     <p>{userData.address}</p>
-                    <p>{userData.instructions}</p>
-                    <button
-                        className='book-delivery_buttons'
-                        onClick={instructionsHandler}
-                    >Edit delivery instructions</button>
+                    <InstructionsModal />
                 </div>
             </div>
             <div className='order-summary'>

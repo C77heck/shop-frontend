@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 
 import { AuthContext } from '../../shared/context/auth-context';
 import Modal from '../../shared/UIElements/Modal';
@@ -8,11 +8,10 @@ import Button from '../../shared/UIElements/Button';
 import Input from '../../shared/form-elements/Input';
 
 
-const InstructionsModal = props => {
-    const auth = useContext(AuthContext)
+const InstructionsModal = () => {
 
-    const { sendRequest, isLoading, error, clearError } = useHttpClient();
-    /* make the loading conditioning the closing of the modal */
+    const auth = useContext(AuthContext)
+    const { sendRequest } = useHttpClient();
     const [show, setShow] = useState(false)
     const [inputState, handler] = useInput({
         instructions: {
@@ -20,53 +19,56 @@ const InstructionsModal = props => {
             valid: true
         }
     })
+    const [display, setDisplay] = useState();
+    const instructionsHandler = () => {
+        setShow(prev => !prev)
+    }
     const formHandler = async e => {
         e.preventDefault();
         console.log(inputState.inputs.instructions.value)
         try {
             const responseData = await sendRequest(
-                process.env.REACT_APP_BACKEND,
-                'POST',
-                JSON.stringify(inputState.instructions.value),
+                process.env.REACT_APP_UPDATE,
+                'PATCH',
+                JSON.stringify({
+                    instructions: inputState.inputs.instructions.value,
+                    email: userId
+                }),
                 {
+                    'Content-Type': 'application/json',
                     Authorization: 'Bearer ' + auth.token
                 })
-
+            setDisplay(responseData.instructions)
+            instructionsHandler();
         } catch (err) {
 
         }
     }
 
-
-    const clearHandler = () => {
-        setShow(false)
-    
-    }
-    useEffect(() => {
-        setShow(props.showModal)
-    }, [props.showModal])
-    console.log(props.showModal)
-/* figure how to pass the control to this component. 
-propbably should fragment it and take the button to this side as well and then 
-just pass the whole thing over to the bookdelivery thingy.
-it will work as the auth button does. */
     return (
-        <Modal
-            className='instructions-modal'
-            onCancel={clearHandler}
-            show={show}
-            header={'delivery instructions'}
-            footer={<Button onClick={formHandler}>Yes</Button>}
-        >
-            <Input
-                element='textarea'
-                id='instructions'
-                label='delivery instructions'
-                onInput={handler}
-                value={inputState.inputs.instructions.value}
-                validators={[]}
-            />
-        </Modal>
+        <React.Fragment>
+            <Modal
+                className='instructions-modal'
+                onCancel={instructionsHandler}
+                show={show}
+                footer={<Button onClick={formHandler}>Done</Button>}
+            >
+                <Input
+                    label='delivery instructions'
+                    lableStyle={{ fontSize: "1.2rem", letterSpacing: "1.5px" }}
+                    style={{ resize: "none" }}
+                    element='textarea'
+                    id='instructions'
+                    onInput={handler}
+                    value={inputState.inputs.instructions.value}
+                    validators={[]}
+                />
+            </Modal>
+            <button
+                className='book-delivery_buttons'
+                onClick={instructionsHandler}
+            >{display} Edit delivery instructions</button>
+        </React.Fragment>
     )
 }
 

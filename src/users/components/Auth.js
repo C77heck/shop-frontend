@@ -16,7 +16,7 @@ import './Auth.css'
 
 const Auth = props => {
 
-    const { isLoggedIn, signin, signout } = useContext(AuthContext);
+    const { isLoggedIn, signin } = useContext(AuthContext);
 
     const { error, clearError, isLoading, sendRequest } = useHttpClient();
 

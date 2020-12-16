@@ -15,6 +15,14 @@
   left: 21% !important;
 }
 
+.instructions-modal .modal__content {
+  padding: 0 0.5rem;
+}
+
+.instructions-modal .modal__footer {
+  padding: 0 0.5rem 1rem;
+}
+
 @media only screen and (max-width: 859px) {
   .modals {
     width: 60%;
@@ -23,9 +31,6 @@
     width: 70% !important;
     left: 14% !important;
   }
-  /*   .signin{
-    left: 30%
-  } */
 }
 
 @media only screen and (max-width: 600px) {

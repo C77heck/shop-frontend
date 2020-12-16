@@ -73,8 +73,9 @@ const Input = props => {
     }
 
     const element = props.element === 'textarea' ? (<textarea
+        style={props.style}
         id={props.id}
-        rows={props.rows || 3}
+        rows={props.rows || 5}
         onChange={onChangeHandler}
         onBlur={onBlurHandler}
         value={props.value}
@@ -82,6 +83,7 @@ const Input = props => {
         className={props.className}
     />) : (
             <input
+                style={props.style}
                 id={props.id}
                 placeholder={props.placeholder}
                 onChange={onChangeHandler}
@@ -97,7 +99,7 @@ const Input = props => {
 
     return (
         <div className={`input-control ${!boolean ? 'input-control--invalid' : 'other'}`}>
-            <label htmlFor={props.id}>{props.label}</label>
+            <label style={props.lableStyle} htmlFor={props.id}>{props.label}</label>
             {element}
             <div className='error-text' >
                 <p > {!boolean && props.errorText} </p>

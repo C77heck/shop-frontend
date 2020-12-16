@@ -9,13 +9,17 @@ body {
   box-sizing: border-box;
   letter-spacing: 0.5px;
 }
-* button{
+
+* {
   outline: none;
 }
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
 /* SideBar element */
+
 .slide-in-left-enter {
   transform: translateX(-100%);
 }
