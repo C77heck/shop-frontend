@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import CheckoutList from '../components/CheckoutList';
 import BookDelivery from '../components/BookDelivery';
-import PayButton from '../components/PayButton';
 
 import './Checkout.css'
 import 'react-calendar/dist/Calendar.css'
@@ -25,7 +24,6 @@ const Checkout = () => {
                     className='flex-containers'
                 >
                     <BookDelivery />
-                    <PayButton />
                 </div>
                 <div style={{ flexBasis: "20%", width: "20%" }}
                     className='flex-containers'

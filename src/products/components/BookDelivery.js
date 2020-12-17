@@ -4,12 +4,12 @@ import React, {
     useContext
 } from 'react';
 
-import { useHttpClient } from '../../shared/hooks/http-hook';
 
 import { PurchaseContext } from '../../shared/context/purchase-context';
 import DeliverPicker from './DeliveryPicker';
 import { priceDisplay } from '../../shared/utility/priceOutput';
 import InstructionsModal from './InstructionsModal';
+import PayButton from './PayButton';
 
 import './BookDelivery.css';
 
@@ -19,7 +19,6 @@ import './BookDelivery.css';
 
 const BookDelivery = () => {
 
-    const { sendRequest } = useHttpClient();
     const [value, setValue] = useState({
         value: '',
         display: ''
@@ -39,9 +38,7 @@ const BookDelivery = () => {
     })
     const [show, setShow] = useState(false)
     const [userData, setUserData] = useState({
-        address: '58A, Carnarvon Road, London, E15 4QW ',
-        instructions: 'my address is carnarvon road but ' +
-            'my flat entrance is on dormer close. first door on the right.'
+        address: '58A, Carnarvon Road, London, E15 4QW '
     })
 
     const { basket } = useContext(PurchaseContext);
@@ -60,15 +57,14 @@ const BookDelivery = () => {
         setShow(false)
     }
 
-    /*     useEffect(() => {
-            (async () => {
-                const responseData = await sendRequest(REACT_APP_USERS)
-                setUserData({
-                    address: responseData.address,
-                    instructions: responseData.instructions
-                })
-            })()
-        }, []) */
+/*     useEffect(() => {
+        (async () => {
+            const responseData = await sendRequest(REACT_APP_USERS)
+            setUserData({
+                address: responseData.address
+            })
+        })()
+    }, []) */
 
     const datePickerHandler = () => {
         setShow(true)
@@ -134,6 +130,8 @@ const BookDelivery = () => {
                     </div>
                 </div>
             </div>
+            <PayButton datePicked={value.value} />
+
         </React.Fragment>
     )
 

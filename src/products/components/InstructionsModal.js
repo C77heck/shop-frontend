@@ -32,16 +32,16 @@ const InstructionsModal = () => {
                 'PATCH',
                 JSON.stringify({
                     instructions: inputState.inputs.instructions.value,
-                    email: userId
+                    userId: auth.userId
                 }),
                 {
                     'Content-Type': 'application/json',
                     Authorization: 'Bearer ' + auth.token
                 })
             setDisplay(responseData.instructions)
-            instructionsHandler();
+            setShow(false)
         } catch (err) {
-
+            console.log(err)
         }
     }
 
