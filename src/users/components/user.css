@@ -52,9 +52,9 @@
     top: 7%;
     left: 32%;
 }
-.signup .modal__content{
-    padding: 0;
 
+.signup .modal__content {
+    padding: 0;
 }
 
 .signup div {
@@ -109,7 +109,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    padding-right: 1rem;
+    padding-right: 20vw;
 }
 
 .succesful-signup .profile-link {

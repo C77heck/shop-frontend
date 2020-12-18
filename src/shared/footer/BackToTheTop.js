@@ -2,18 +2,18 @@ import React from 'react';
 
 import './footer.css'
 
-const ScrollToTop = props => {
+const BackToTheTop = props => {
 
     const clickHandler = () => {
         window.scrollTo(0, 0, "smooth");
     }
     return (
         <React.Fragment>
-            <ScrollToTop />
             <button
                 className={`scroll-to__the-top ${props.show}`}
                 onClick={clickHandler}
-            >Back to the top</button>
+            ><img src="/images/icons/up-icon.svg" alt="up arrow" />
+            </button>
         </React.Fragment>
 
     )
@@ -21,4 +21,4 @@ const ScrollToTop = props => {
 
 
 
-export default ScrollToTop;
+export default BackToTheTop;
