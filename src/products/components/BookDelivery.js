@@ -6,12 +6,14 @@ import React, {
 
 
 import { PurchaseContext } from '../../shared/context/purchase-context';
+import { AuthContext } from '../../shared/context/auth-context';
 import DeliverPicker from './DeliveryPicker';
 import { priceDisplay } from '../../shared/utility/priceOutput';
 import InstructionsModal from './InstructionsModal';
 import PayButton from './PayButton';
 
 import './BookDelivery.css';
+import { useHttpClient } from '../../shared/hooks/http-hook';
 
 
 
@@ -19,6 +21,8 @@ import './BookDelivery.css';
 
 const BookDelivery = () => {
 
+    const auth = useContext(AuthContext)
+    const { sendRequest } = useHttpClient();
     const [value, setValue] = useState({
         value: '',
         display: ''
@@ -38,7 +42,7 @@ const BookDelivery = () => {
     })
     const [show, setShow] = useState(false)
     const [userData, setUserData] = useState({
-        address: '58A, Carnarvon Road, London, E15 4QW '
+        address: ''
     })
 
     const { basket } = useContext(PurchaseContext);
@@ -57,14 +61,16 @@ const BookDelivery = () => {
         setShow(false)
     }
 
-/*     useEffect(() => {
+    useEffect(() => {
         (async () => {
-            const responseData = await sendRequest(REACT_APP_USERS)
+            const responseData = await sendRequest(
+                process.env.REACT_APP_USERS + auth.userId
+            )
             setUserData({
-                address: responseData.address
+                address: responseData.userData.address
             })
         })()
-    }, []) */
+    }, [])
 
     const datePickerHandler = () => {
         setShow(true)

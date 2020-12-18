@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
+import ScrollToTop from './ScrollToTheTop';
+
 import './footer.css'
 
 
@@ -9,6 +11,7 @@ const Footer = props => {
 
     return (
         <React.Fragment>
+            <ScrollToTop show={props.show} />
             <div style={props.styles} id='footer'>
                 {/*                 <div className="icon-cont container-fluid">
                     <a className="footericons" target="_blank" href="https://www.facebook.com/">

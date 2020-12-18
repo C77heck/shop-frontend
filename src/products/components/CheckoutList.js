@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import BuyButton from './BuyButton';
 import { priceDisplay } from '../../shared/utility/priceOutput';
 
 
 import './CheckoutList.css';
+import { PurchaseContext } from '../../shared/context/purchase-context';
 
 
 const ProductItem = props => {
@@ -70,6 +71,7 @@ const ProductItem = props => {
 }
 
 const CheckoutList = () => {
+    const { basket } = useContext(PurchaseContext);
     const [products, setProducts] = useState([]);
     const storageData = JSON.parse(localStorage.getItem('basketContent')).products
     useEffect(() => {
@@ -90,41 +92,42 @@ const CheckoutList = () => {
                 <div style={{ flexBasis: "25%" }}><p>Quantity</p></div>
                 <div style={{ flexBasis: "15%" }}><p>Price</p></div>
             </div>
-            {products.map(product => {
-                if (product.number > 0) {
-                    return (
-                        <ProductItem
-                            key={product.id}
-                            id={product.id}
-                            number={product.number}
-                            name={product.name}
-                            unit={product.unit}
-                            price={product.price}
-                            totalPrice={product.price * product.number}
-                            image={product.image}
-                            code={product.code}
-                            items={products}
-                            show={true}
-                        />)
-                } else {
-                    return (
-                        <ProductItem
-                            key={product.id}
-                            id={product.id}
-                            number={product.number}
-                            name={product.name}
-                            unit={product.unit}
-                            price={product.price}
-                            totalPrice={product.price * product.number}
-                            image={product.image}
-                            code={product.code}
-                            items={products}
-                            show={false}
-                        />)
-                }
+            {basket.amount === 0 ? <p style={{ textAlign: "center" }}>Your basket is empty</p> :
+                products.map(product => {
+                    if (product.number > 0) {
+                        return (
+                            <ProductItem
+                                key={product.id}
+                                id={product.id}
+                                number={product.number}
+                                name={product.name}
+                                unit={product.unit}
+                                price={product.price}
+                                totalPrice={product.price * product.number}
+                                image={product.image}
+                                code={product.code}
+                                items={products}
+                                show={true}
+                            />)
+                    } else {
+                        return (
+                            <ProductItem
+                                key={product.id}
+                                id={product.id}
+                                number={product.number}
+                                name={product.name}
+                                unit={product.unit}
+                                price={product.price}
+                                totalPrice={product.price * product.number}
+                                image={product.image}
+                                code={product.code}
+                                items={products}
+                                show={false}
+                            />)
+                    }
 
 
-            })}
+                })}
         </div>
     )
 }

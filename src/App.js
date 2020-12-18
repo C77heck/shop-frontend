@@ -33,7 +33,8 @@ function App() {
     add,
     subtract,
     basket,
-    updateBasket
+    updateBasket,
+    clearBasket
   } = usePurchase()
 
   const { products, productCode, findProducts } = useSearch();
@@ -92,7 +93,7 @@ function App() {
             <Shopping />
           </div>
           <div>
-            <Footer />
+            <Footer show={'scroll-button'} />
           </div>
         </Route>
         <Route path='/searchresults' exact>
@@ -153,7 +154,8 @@ function App() {
             add: add,
             subtract: subtract,
             updateBasket: updateBasket,
-            basket: basket
+            basket: basket,
+            clearBasket: clearBasket
           }}
         >
           <main><div className='center'>{routes}</div></main>

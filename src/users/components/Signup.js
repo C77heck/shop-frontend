@@ -25,6 +25,7 @@ const Signup = props => {
             header={props.header}
             show={!!props.show}
             onSubmit={props.onSubmit}
+            footerStyle={{ padding: "0 0.5rem 1rem" }}
             footer={<React.Fragment>
                 <Button
                     disabled={props.disabled}
@@ -32,6 +33,7 @@ const Signup = props => {
                     onClick={props.signup}>
                     SIGN UP
                 </Button>
+                <p>Already have an account? <span className='signin-here' onClick={props.cancelSignup}>sign in here</span></p>
                 <p>For further information on how we use your data please read our
                 <Link to='/shopping'>privacy policy</Link>.
                 By submitting this form you agree to the

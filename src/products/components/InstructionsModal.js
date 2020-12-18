@@ -21,44 +21,54 @@ const InstructionsModal = () => {
     })
     const [display, setDisplay] = useState();
     const instructionsHandler = () => {
-        setShow(prev => !prev)
+        setShow(true)
+    }
+    const cancelHandler = () => {
+        setShow(false)
+
     }
     const formHandler = async e => {
         e.preventDefault();
-        console.log(inputState.inputs.instructions.value)
         try {
+            setShow(false)
+
             const responseData = await sendRequest(
-                process.env.REACT_APP_UPDATE,
+                'http://localhost:2000/api/users/update',
                 'PATCH',
                 JSON.stringify({
                     instructions: inputState.inputs.instructions.value,
                     userId: auth.userId
                 }),
                 {
-                    'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + auth.token
-                })
+                    Authorization: 'Bearer ' + auth.token,
+                    'Content-Type': 'application/json'
+                }
+            )
             setDisplay(responseData.instructions)
-            setShow(false)
+
+
         } catch (err) {
             console.log(err)
+
         }
+
     }
 
     return (
         <React.Fragment>
             <Modal
                 className='instructions-modal'
-                onCancel={instructionsHandler}
+                onCancel={cancelHandler}
                 show={show}
-                footer={<Button onClick={formHandler}>Done</Button>}
+                onSubmit={formHandler}
+                footer={<Button>Done</Button>}
             >
                 <Input
-                    label='delivery instructions'
-                    lableStyle={{ fontSize: "1.2rem", letterSpacing: "1.5px" }}
-                    style={{ resize: "none" }}
                     element='textarea'
                     id='instructions'
+                    label='delivery instructions'
+                    labelStyle={{ fontSize: "1.2rem", letterSpacing: "1.5px" }}
+                    style={{ resize: "none" }}
                     onInput={handler}
                     value={inputState.inputs.instructions.value}
                     validators={[]}

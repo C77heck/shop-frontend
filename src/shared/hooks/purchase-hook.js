@@ -57,7 +57,14 @@ export const usePurchase = () => {
             updateBasket(items)
         }, [])
 
-
+    const clearBasket = useCallback(
+        (items) => {
+            items.map(i => {
+                i.number = 0;
+            })
+            saveToLocalStorage(items)
+            updateBasket(items)
+        }, [])
 
     return {
         code,
@@ -65,7 +72,8 @@ export const usePurchase = () => {
         add,
         subtract,
         basket,
-        updateBasket
+        updateBasket,
+        clearBasket
     }
 }
 

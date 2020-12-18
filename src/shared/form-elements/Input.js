@@ -99,7 +99,7 @@ const Input = props => {
 
     return (
         <div className={`input-control ${!boolean ? 'input-control--invalid' : 'other'}`}>
-            <label style={props.lableStyle} htmlFor={props.id}>{props.label}</label>
+            <label style={props.labelStyle} htmlFor={props.id}>{props.label}</label>
             {element}
             <div className='error-text' >
                 <p > {!boolean && props.errorText} </p>
