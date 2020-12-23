@@ -21,6 +21,8 @@ import Shopping from './products/pages/Shopping';
 import SearchResults from './products/pages/SearchResults';
 import Checkout from './products/pages/Checkout';
 import Carousel from './shared/carousel/Carousel';
+import ThankYou from './products/pages/ThankYou'
+import UserInfo from './users/pages/UserInfo';
 
 import './App.css';
 
@@ -40,10 +42,6 @@ function App() {
   const { products, productCode, findProducts } = useSearch();
 
   const { signin, signout, token, userId } = useAuth();
-
-
-
-
 
   let routes;
 
@@ -122,8 +120,47 @@ function App() {
           <div>
             <NavigationBar />
           </div>
+        </Route>
+        <Route path='/thankyou' exact>
+          <div>
+            <NavigationBar />
+          </div>
+          <div>
+            <ThankYou />
+          </div>
+          <div>
+            <Newscard />
+          </div>
 
+          <div>
+            <Carousel
+              className={'_product-slider'}
+              animation='special'
+            />
+          </div>
+          <div>
+            <Footer />
+          </div>
+        </Route>
+        <Route path='/myaccount' exact>
+          <div>
+            <NavigationBar />
+          </div>
+          <div>
+            <UserInfo />
+          </div>
+          <div>
+          </div>
 
+          <div>
+            <Carousel
+              className={'_product-slider'}
+              animation='special'
+            />
+          </div>
+          <div>
+            <Footer />
+          </div>
         </Route>
         <Redirect to='/' />
       </Switch>

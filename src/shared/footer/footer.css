@@ -71,3 +71,20 @@
     }
 }
 
+.appear-enter {
+    opacity: 0;
+}
+
+.appear-enter-active {
+    transition: opacity 500ms;
+    opacity: 1;
+}
+
+.appear-exit {
+    opacity: 1;
+}
+
+.appear-exit-active {
+    transition: opacity 500ms;
+    opacity: 0;
+}

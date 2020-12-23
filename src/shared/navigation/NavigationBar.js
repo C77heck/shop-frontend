@@ -12,10 +12,7 @@ import './NavigationBar.css'
 
 const NavigationBar = () => {
 
-    // const auth = useContext(AuthContext);
-
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-    //const [isLoginMode, setIsLoginMode] = useState(false)
 
     const closeDrawerHandler = e => {
         const { id } = e.target

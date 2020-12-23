@@ -3,8 +3,12 @@ import { useReducer, useCallback } from "react"
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case 'CHANGE':
+        case 'SET_DATA':
+            return {
+                inputs: action.inputs,
+            };
 
+        case 'CHANGE':
             return {
                 ...state,
                 inputs: {
@@ -15,7 +19,6 @@ const reducer = (state, action) => {
                     }
                 }
             };
-
         default:
             return state;
     }
@@ -36,6 +39,13 @@ export const useInput = (inputs) => {
         })
     }, [])
 
-    return [inputState, handler]
+    const setFormData = useCallback((inputs) => {
+        dispatch({
+            type: 'SET_DATA',
+            inputs: inputs
+        });
+    }, []);
+
+    return [inputState, handler, setFormData]
 }
 

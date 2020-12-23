@@ -1,14 +1,16 @@
 import React, { useContext, useState, useEffect } from 'react';
 
+
 import { AuthContext } from '../../shared/context/auth-context';
 import { useHttpClient } from '../../shared/hooks/http-hook';
+import { useInput } from '../../shared/hooks/form-hook';
+
 import Signin from './Signin';
 import Signup from './Signup';
 import SuccesfulSignup from './SuccesfulSignup';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
-import { useInput } from '../../shared/hooks/form-hook';
-
+import { encrypt } from '../../shared/utility/encrypt';
 
 
 
@@ -71,8 +73,6 @@ const Auth = props => {
         },
     })
 
-
-
     useEffect(() => {
         for (let i in inputState.inputs) {
             if (i.valid === true) {
@@ -83,9 +83,11 @@ const Auth = props => {
         }
     }, [inputState])
 
-
+    
     const signinModalHandler = () => {
         setClickedSignIn(true)
+        setRegistering(false)
+
     }
 
     const signInClose = () => {
@@ -96,14 +98,13 @@ const Auth = props => {
 
     const signinHandler = async e => {
         e.preventDefault();
-
         try {
             const responseData = await sendRequest(
                 process.env.REACT_APP_SIGNIN,
                 'POST',
                 JSON.stringify({
                     email: inputState.inputs.email.value,
-                    password: inputState.inputs.password.value
+                    password: encrypt(inputState.inputs.password.value)
                 }),
                 { 'Content-Type': 'application/json' }
             )
@@ -119,6 +120,7 @@ const Auth = props => {
         setRegistering(true)
 
     }
+
     const signedupSuccessToClose = () => {
         setSignedup(false)
     }
@@ -129,25 +131,24 @@ const Auth = props => {
                 process.env.REACT_APP_SIGNUP,
                 'POST',
                 JSON.stringify({
-                    fullName: inputState.inputs.fName.value
-                        + ' ' +
-                        inputState.inputs.surname.value,
+                    fullName: {
+                        firstName: inputState.inputs.fName.value,
+                        lastName: inputState.inputs.surname.value
+                    },
                     email: inputState.inputs.email.value,
-                    password: inputState.inputs.password.value,
+                    password: encrypt(inputState.inputs.password.value),
                     phone: inputState.inputs.phone.value,
-                    address: inputState.inputs.street.value
-                        + ' ' +
-                        inputState.inputs.houseNumber.value
-                        + ' ' +
-                        inputState.inputs.city.value
-                        + ', ' +
-                        inputState.inputs.postCode.value
+                    address: {
+                        city: inputState.inputs.city.value,
+                        street: inputState.inputs.street.value,
+                        postCode: inputState.inputs.postCode.value,
+                        houseNumber: inputState.inputs.houseNumber.value
+                    }
                 }),
                 { 'Content-Type': 'application/json' }
             )
             setCoordinates(responseData.userLocation)
             signin(responseData.userId, responseData.token);
-            //   setIsLoginMode(true)
             signInClose();
             setSignedup(true)
         } catch (err) {
@@ -179,15 +180,19 @@ const Auth = props => {
                 value={inputState.inputs}
                 password={inputState.inputs.password.value}
                 disabled={disabled}
+                cancelSignup={signinModalHandler}
             />
             <SuccesfulSignup
                 show={signedup}
                 onClear={signedupSuccessToClose}
                 marker={coordinates}
             />
-            <div onClick={!isLoggedIn ? signinModalHandler : undefined} >
+
+            {props.register ? <div onClick={!isLoggedIn ? register : undefined} >
                 {props.children}
-            </div>
+            </div> : <div onClick={!isLoggedIn ? signinModalHandler : undefined} >
+                    {props.children}
+                </div>}
         </React.Fragment>
     )
 

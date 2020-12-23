@@ -67,7 +67,10 @@ const BookDelivery = () => {
                 process.env.REACT_APP_USERS + auth.userId
             )
             setUserData({
-                address: responseData.userData.address
+                address: `${responseData.userData.address.city} 
+                ${responseData.userData.address.postCode}
+                 ${responseData.userData.address.houseNumber} 
+                 ${responseData.userData.address.street}`
             })
         })()
     }, [])

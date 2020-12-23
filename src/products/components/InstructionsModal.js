@@ -33,7 +33,7 @@ const InstructionsModal = () => {
             setShow(false)
 
             const responseData = await sendRequest(
-                'http://localhost:2000/api/users/update',
+                process.env.REACT_APP_INSTRUCTIONS,
                 'PATCH',
                 JSON.stringify({
                     instructions: inputState.inputs.instructions.value,

@@ -53,7 +53,7 @@ const PayButton = props => {
                     'Content-Type': 'application/json'
                 }
             )
-            history.push('/')
+            history.push('/thankyou')
             clearBasket(products);
         } catch (err) {
         }
