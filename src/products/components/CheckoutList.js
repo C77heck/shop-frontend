@@ -6,30 +6,42 @@ import { priceDisplay } from '../../shared/utility/priceOutput';
 
 import './CheckoutList.css';
 import { PurchaseContext } from '../../shared/context/purchase-context';
-
+import { usePurchase } from '../../shared/hooks/purchase-hook';
 
 const ProductItem = props => {
-
-
-
+    const purchase = useContext(PurchaseContext)
+    const [invisible, setInvisible] = useState(false);
     const [price, setPrice] = useState({
         beforeDot: '',
         afterDot: ''
     });
-    const checkoutPrice = props.totalPrice;
+    const { items, code, number, totalPrice } = props;
+    useEffect(() => {
+        if (number > 0) {
+            setInvisible(true)
+        } else {
+            setInvisible(false)
+        }
+    }, [])
+    const deleteHandler = e => {
+        e.preventDefault();
+        purchase.deleteItem(items, code)
+        setInvisible(false)
+    }
+
 
     useEffect(() => {
-        const { beforeDot, afterDot } = priceDisplay(checkoutPrice)
+        const { beforeDot, afterDot } = priceDisplay(totalPrice)
         setPrice({
             beforeDot: beforeDot,
             afterDot: afterDot
         })
-    }, [checkoutPrice, setPrice])
+    }, [totalPrice, setPrice])
 
 
     return (
 
-        <div className={`${!props.show && 'invisible'} checkout-product__card`}>
+        <div className={`${!invisible && 'invisible'} checkout-product__card`}>
             <div style={{ flexBasis: "20%" }}
                 className='checkout_image-container'
             >
@@ -56,7 +68,10 @@ const ProductItem = props => {
                     number={props.number}
                 />
             </div>
-            <div style={{ flexBasis: "15%", margin: "0.2rem", textAlign: "center" }}>
+            <div style={{ position: "relative", flexBasis: "15%", textAlign: "center" }}>
+                <button onClick={deleteHandler} className='cancel-item__button'>
+                    <img name='cancel-button' src="/images/icons/cancel.svg" alt="cancel icon" />
+                </button>
                 <p className='checkout-price'>
                     <span className="cartValue">
                         £{price.beforeDot.length < 2 ? '0' + price.beforeDot : price.beforeDot}
@@ -70,31 +85,36 @@ const ProductItem = props => {
     )
 }
 
-const CheckoutList = () => {
+const CheckoutList = props => {
+
+    const { getProducts } = usePurchase()
     const { basket } = useContext(PurchaseContext);
-    const [products, setProducts] = useState([]);
-    const storageData = JSON.parse(localStorage.getItem('basketContent')).products
+
+    const [items, setItems] = useState([])
+
     useEffect(() => {
-        try {
-            if (products.length < 1) {
-                setProducts(storageData)
-            }
-        } catch (err) {
-            console.log(err)
+        if (basket) {
+            console.log('it got fired')
+            setItems(props.items);
         }
 
-    }, [storageData, products.length])
+    }, [basket, props.items])
+
+
+
 
     return (
-        <div className='checkout-list'>
+        <React.Fragment>
             <div className='products-header'>
                 <div style={{ flexBasis: "60%" }}><p>Product</p></div>
                 <div style={{ flexBasis: "25%" }}><p>Quantity</p></div>
                 <div style={{ flexBasis: "15%" }}><p>Price</p></div>
             </div>
-            {basket.amount === 0 ? <p style={{ textAlign: "center" }}>Your basket is empty</p> :
-                products.map(product => {
-                    if (product.number > 0) {
+
+            <div className='checkout-list'>
+
+                {basket.amount === 0 ? <p style={{ textAlign: "center" }}>Your basket is empty</p> :
+                    items.map(product => {
                         return (
                             <ProductItem
                                 key={product.id}
@@ -106,31 +126,14 @@ const CheckoutList = () => {
                                 totalPrice={product.price * product.number}
                                 image={product.image}
                                 code={product.code}
-                                items={products}
-                                show={true}
+                                items={items}
                             />)
-                    } else {
-                        return (
-                            <ProductItem
-                                key={product.id}
-                                id={product.id}
-                                number={product.number}
-                                name={product.name}
-                                unit={product.unit}
-                                price={product.price}
-                                totalPrice={product.price * product.number}
-                                image={product.image}
-                                code={product.code}
-                                items={products}
-                                show={false}
-                            />)
-                    }
-
-
-                })}
-        </div>
+                    })}
+            </div>
+        </React.Fragment>
     )
 }
 
 
 export default CheckoutList;
+

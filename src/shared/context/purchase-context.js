@@ -7,5 +7,7 @@ export const PurchaseContext = createContext({
     add: () => { },
     subtract: () => { },
     updateBasket: () => { },
-    basket: {}
+    deleteItem: () => { },
+    basket: {},
+    basketContent: []
 });

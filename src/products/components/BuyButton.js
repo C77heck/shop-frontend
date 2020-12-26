@@ -19,19 +19,22 @@ const BuyButton = props => {
 
     const { code, items } = props;
     const [isClicked, setIsClicked] = useState(false);
-    const [number, setNumber] = useState()
     const [message, setMessage] = useState()
     const nodeRef = useRef(null)
 
+
+
+    let number = props.number;
+
     useEffect(() => {
         if (isLoggedIn) {
-            if (props.number > 0) {
-                setNumber(props.number)
+            if (number > 0) {
                 setIsClicked(true)
+            } else {
+                setIsClicked(false)
             }
-            purchase.updateBasket(items)
         }
-    }, [isLoggedIn])
+    }, [number, isLoggedIn])
 
 
     const no = () => {
@@ -47,23 +50,16 @@ const BuyButton = props => {
     const addButtonHandler = () => {
         if (!isLoggedIn) {
         } else {
-            setNumber(1)
             purchase.add(items, code)
             setIsClicked(true)
         }
 
     }
     const plus = () => {
-        setNumber(prev => prev + 1)
         purchase.add(items, code)
     }
     const minus = () => {
-        setNumber(() => {
-            if (number > 1) {
-                return number - 1;
-            }
-            return number;
-        })
+
         if (number === 1) {
             setMessage('Are you sure you want to delete this item from your basket?')
         } else {

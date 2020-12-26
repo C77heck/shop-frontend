@@ -55,7 +55,7 @@ const BookDelivery = () => {
             coupons: '00.00',
             total: priceDisplay(price)
         })
-    }, [])
+    }, [price])
 
     const cancelHandler = () => {
         setShow(false)
@@ -138,8 +138,9 @@ const BookDelivery = () => {
                         <h3>£{pay.total.beforeDot + pay.total.afterDot}</h3>
                     </div>
                 </div>
+                <PayButton datePicked={value.value} />
+
             </div>
-            <PayButton datePicked={value.value} />
 
         </React.Fragment>
     )

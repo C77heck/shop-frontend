@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 
 
@@ -8,6 +8,7 @@ export const usePurchase = () => {
         price: '',
         amount: ''
     })
+    const [basketContent, setBasketContent] = useState()
     const saveToLocalStorage = (array) => {
         localStorage.setItem(
             'basketContent',
@@ -19,6 +20,7 @@ export const usePurchase = () => {
 
 
     const updateBasket = (items) => {
+        saveToLocalStorage(items)
         setBasket({
             price: items.reduce((a, i) => {
                 return a + i.price * i.number
@@ -29,6 +31,9 @@ export const usePurchase = () => {
         })
     }
 
+
+
+
     const add = useCallback(
         (items, code) => {
             setCode(code);
@@ -37,12 +42,22 @@ export const usePurchase = () => {
                     i.number += 1
                 }
             })
-            saveToLocalStorage(items)
             updateBasket(items)
         },
         [],
     )
 
+    const deleteItem = useCallback(
+        (items, code) => {
+            setCode(code)
+            items.map(i => {
+                if (i.code === code) {
+                    i.number -= i.number;
+                }
+            })
+            updateBasket(items)
+            getProducts()
+        }, [])
 
 
     const subtract = useCallback(
@@ -53,7 +68,6 @@ export const usePurchase = () => {
                     i.number -= 1
                 }
             })
-            saveToLocalStorage(items)
             updateBasket(items)
         }, [])
 
@@ -62,9 +76,16 @@ export const usePurchase = () => {
             items.map(i => {
                 i.number = 0;
             })
-            saveToLocalStorage(items)
             updateBasket(items)
         }, [])
+
+    const getProducts = () => {
+
+        const products = (JSON.parse(localStorage.getItem('basketContent')).products)
+        setBasketContent(products)
+        return products;
+
+    }
 
     return {
         code,
@@ -73,11 +94,11 @@ export const usePurchase = () => {
         subtract,
         basket,
         updateBasket,
-        clearBasket
+        clearBasket,
+        deleteItem,
+        getProducts,
+        basketContent
     }
 }
-
-
-
 
 

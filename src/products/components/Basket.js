@@ -19,6 +19,7 @@ import './Basket.css'
 const BasketModal = props => {
     return (
         <Modal
+            className='basket-modal'
             header={'Products'}
             onCancel={props.onClear}
             show={!!props.show}
@@ -29,8 +30,7 @@ const BasketModal = props => {
 }
 
 
-const Basket = () => {
-
+const Basket = props => {
     const { isLoggedIn } = useContext(AuthContext);
 
     const { basket } = useContext(PurchaseContext);
@@ -72,11 +72,11 @@ const Basket = () => {
         }
     }, [price, amount])
 
-    const basketHandler = () => {
+    const basketHandler = (e) => {
+        e.preventDefault();
         if (!isLoggedIn) {
         } else {
             setShowModal(true)
-            /* add a modal with the products list */
         }
     }
 
@@ -87,7 +87,7 @@ const Basket = () => {
     return (
         <React.Fragment>
             <BasketModal show={showModal} onClear={closeModal} >
-                <CheckoutList />
+                <CheckoutList items={props.items} />
             </BasketModal>
 
 

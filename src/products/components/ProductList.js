@@ -30,6 +30,7 @@ const ProductCard = props => {
                     <p className="unit">{props.unit}</p>
                     <p >£{props.price}</p>
                     <BuyButton
+                        id={props.id}
                         items={props.items}
                         code={props.code}
                         price={props.price}

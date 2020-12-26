@@ -10,6 +10,15 @@
   text-align: center;
 }
 
+.basket-modal {
+  top: 10vh;
+}
+
+.basket-modal .modal__content {
+  max-height: 70vh;
+
+}
+
 .map-modal {
   width: 55% !important;
   left: 21% !important;

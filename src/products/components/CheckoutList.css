@@ -3,7 +3,8 @@
     flex-direction: column;
     cursor: default;
     background-color: rgb(255, 246, 246);
-
+    max-height: 65vh;
+    overflow: scroll;
 }
 
 .checkout-list button {
@@ -14,7 +15,7 @@
     display: flex;
     align-items: stretch;
     background-color: rgb(189, 216, 189);
-    color:  rgb(66, 199, 66);
+    color: rgb(66, 199, 66);
 }
 
 .products-header div {
@@ -23,6 +24,7 @@
 
 .products-header div p {
     margin: 0.2rem;
+    font-size: 1.1rem;
 }
 
 .products-header div:nth-child(n+2) {
@@ -74,4 +76,33 @@
 
 .invisible {
     display: none;
+}
+
+.cancel-item__button {
+    background: linear-gradient(rgb(218, 153, 12), rgb(226, 230, 42), rgb(218, 153, 12));
+    border: none;
+    border-radius: 10%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 18px;
+    width: 18px;
+    transition: transform 250ms;
+}
+
+.cancel-item__button:hover {
+    background: linear-gradient( rgb(226, 230, 42), rgb(218, 153, 12), rgb(226, 230, 42))
+}
+
+.cancel-item__button:active {
+    transform: scale(1.05);
+    background: linear-gradient(rgb(218, 153, 12), rgb(226, 230, 42), rgb(218, 153, 12));
+
+}
+
+.cancel-item__button img {
+    position: relative;
+    top: 1px;
+    right: 1px;
+    height: 9px;
 }

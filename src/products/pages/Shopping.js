@@ -8,18 +8,24 @@ import TopSection from '../components/TopSection'
 
 import './Shopping.css'
 import { AuthContext } from '../../shared/context/auth-context';
+import { PurchaseContext } from '../../shared/context/purchase-context';
+
+import { usePurchase } from '../../shared/hooks/purchase-hook';
 
 const Shopping = () => {
 
     const { isLoggedIn } = useContext(AuthContext);
+    const { code, basket, basketContent } = useContext(PurchaseContext);
+
+    const { getProducts } = usePurchase()
 
     const [loadedProducts, setLoadedProducts] = useState();
     const { sendRequest, isLoading, error, clearError } = useHttpClient();
 
-
     useEffect(() => {
         (async () => {
             try {
+
                 if (!isLoggedIn) {
                     const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
                     setLoadedProducts(responseData.products.map(i => ({
@@ -28,24 +34,24 @@ const Shopping = () => {
                         totalPrice: 0
                     })))
                 } else {
-                    const storedData = (JSON.parse(localStorage.getItem('basketContent')))
-                    setLoadedProducts(storedData.products)
-                }
+                    if (code) {
+                        console.log('we got lucky bitch')
 
+                        setLoadedProducts(getProducts())
+                    }
+                }
             } catch (err) {
             }
         })();
-    }, [sendRequest, isLoggedIn])
+    }, [sendRequest, isLoggedIn, basket])
 
     return (
         <React.Fragment>
             <ErrorModal error={error} onClear={clearError} />
             {isLoading && <LoadingSpinner asOverlay />}
             <div className='top-section'>
-                <TopSection />
+                <TopSection items={loadedProducts} />
             </div>
-
-
             {!isLoading && loadedProducts && <div className='shopping'>
                 <ProductList items={loadedProducts} />
             </div>}

@@ -35,8 +35,9 @@ function App() {
     add,
     subtract,
     basket,
+    basketContent,
     updateBasket,
-    clearBasket
+    deleteItem
   } = usePurchase()
 
   const { products, productCode, findProducts } = useSearch();
@@ -190,9 +191,10 @@ function App() {
             saveToLocalStorage: saveToLocalStorage,
             add: add,
             subtract: subtract,
-            updateBasket: updateBasket,
+            deleteItem: deleteItem,
             basket: basket,
-            clearBasket: clearBasket
+            basketContent: basketContent,
+            updateBasket: updateBasket
           }}
         >
           <main><div className='center'>{routes}</div></main>

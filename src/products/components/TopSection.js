@@ -15,13 +15,13 @@ const TopSection = props => {
             <div className='top-section__div'>
 
                 <div className='buying-upper_strip'>
-                    <CheckoutButton />
+                    <CheckoutButton  />
                 </div>
                 <div className='buying-mid_strip'>
                     <Search className='desktop-view' search={props.search} />
                 </div>
                 <div className='buying-lower_strip'>
-                    <Basket  />
+                    <Basket items={props.items} />
                 </div>
             </div>
             <div className='top-section__hr'></div>
