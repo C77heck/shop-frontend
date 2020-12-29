@@ -42,7 +42,9 @@ const Signin = props => {
                 validators={[]}
                 type='password'
                 onInput={props.onInput}
-            />            <Button
+            />
+            {props.children}
+            <Button
                 className='signin-button'
                 onClick={props.signin}>
                 SIGN IN

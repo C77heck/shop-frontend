@@ -22,7 +22,8 @@ const ProductItem = props => {
         } else {
             setInvisible(false)
         }
-    }, [])
+    }, [number])
+
     const deleteHandler = e => {
         e.preventDefault();
         purchase.deleteItem(items, code)
@@ -94,7 +95,6 @@ const CheckoutList = props => {
 
     useEffect(() => {
         if (basket) {
-            console.log('it got fired')
             setItems(props.items);
         }
 

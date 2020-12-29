@@ -11,6 +11,7 @@ import SuccesfulSignup from './SuccesfulSignup';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 import { encrypt } from '../../shared/utility/encrypt';
+import PasswordResetter from '../../users/components/PasswordResetter';
 
 
 
@@ -24,6 +25,8 @@ const Auth = props => {
 
     const [registering, setRegistering] = useState(false);
     const [clickedSignIn, setClickedSignIn] = useState(false);
+    const [forgottenPass, setForgottenPass] = useState(false)
+    const [message, setMessage] = useState(true)
     const [signedup, setSignedup] = useState(false);
     const [coordinates, setCoordinates] = useState();
     const [disabled, setDisabled] = useState(true)
@@ -83,7 +86,17 @@ const Auth = props => {
         }
     }, [inputState])
 
-    
+
+    const forgottenHandler = () => {
+        setClickedSignIn(false)
+        setForgottenPass(true)
+    }
+
+    const forgottenClose = () => {
+        setForgottenPass(false)
+        setMessage(true)
+    }
+
     const signinModalHandler = () => {
         setClickedSignIn(true)
         setRegistering(false)
@@ -93,7 +106,16 @@ const Auth = props => {
     const signInClose = () => {
         setClickedSignIn(false)
         setRegistering(false)
+        setForgottenPass(false)
+    }
+    const register = () => {
+        setClickedSignIn(false)
+        setRegistering(true)
+        setForgottenPass(false)
+    }
 
+    const signedupSuccessToClose = () => {
+        setSignedup(false)
     }
 
     const signinHandler = async e => {
@@ -115,15 +137,7 @@ const Auth = props => {
         }
     }
 
-    const register = () => {
-        setClickedSignIn(false)
-        setRegistering(true)
 
-    }
-
-    const signedupSuccessToClose = () => {
-        setSignedup(false)
-    }
     const signupHandler = async e => {
         e.preventDefault();
         try {
@@ -156,6 +170,28 @@ const Auth = props => {
         }
     }
 
+
+    const passwordLinkHandler = async e => {
+        e.preventDefault();
+        console.log(inputState.inputs.email.value)
+        try {
+            await sendRequest(
+                process.env.REACT_APP_RECOVERY,
+                'POST',
+                JSON.stringify({
+                    email: inputState.inputs.email.value
+                }),
+                { 'Content-Type': 'application/json' }
+            )
+            setMessage(false)
+
+        } catch (err) {
+
+        }
+
+
+    }
+
     return (
         <React.Fragment>
 
@@ -170,6 +206,20 @@ const Auth = props => {
                 onSubmit={signinHandler}
                 onInput={handler}
                 value={inputState.inputs}
+            >
+                <button
+                    type='button'
+                    onClick={forgottenHandler}
+                    className='forgot-password'
+                >forgot password?</button>
+            </Signin>
+            <PasswordResetter
+                onClear={forgottenClose}
+                show={forgottenPass}
+                value={inputState.inputs.email.value}
+                onInput={handler}
+                onSubmit={passwordLinkHandler}
+                message={message}
             />
             <Signup
                 header='Registering is quick and easy'
@@ -182,6 +232,7 @@ const Auth = props => {
                 disabled={disabled}
                 cancelSignup={signinModalHandler}
             />
+
             <SuccesfulSignup
                 show={signedup}
                 onClear={signedupSuccessToClose}

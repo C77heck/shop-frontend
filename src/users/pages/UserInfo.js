@@ -6,7 +6,7 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 import { useInput } from '../../shared/hooks/form-hook';
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
-
+import PasswordResetter from '../components/PasswordResetter';
 
 import UserForms from '../components/UserForms';
 
@@ -111,7 +111,6 @@ const UserInfo = () => {
     }, [])
     const submitHandler = async e => {
         e.preventDefault();
-        console.log('submit handler fired')
         try {
             const responseData = await sendRequest(
                 process.env.REACT_APP_UPDATE + auth.userId,

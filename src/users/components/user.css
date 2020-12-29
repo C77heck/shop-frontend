@@ -10,7 +10,7 @@
     font-size: 1.3rem;
 }
 
-.signin button {
+.signin button:nth-child(2) {
     width: 120px;
     height: 40px;
     font-size: 1.35rem;
@@ -27,7 +27,7 @@
 
 .signin-button {
     transition: all 0.6s;
-    margin: 30px auto !important;
+    margin: 10px auto 20px !important;
 }
 
 .register-button {
@@ -176,4 +176,12 @@
 .signin-here:hover {
     color: rgb(110, 110, 224);
     text-decoration: underline;
+}
+
+.forgot-password {
+    background-color: white;
+    color: blue;
+    border: none;
+    cursor: pointer;
+    font-style: italic;
 }

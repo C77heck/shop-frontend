@@ -19,7 +19,7 @@ const Shopping = () => {
 
     const { getProducts } = usePurchase()
 
-    const [loadedProducts, setLoadedProducts] = useState();
+    const [loadedProducts, setLoadedProducts] = useState([]);
     const { sendRequest, isLoading, error, clearError } = useHttpClient();
 
     useEffect(() => {
@@ -35,15 +35,15 @@ const Shopping = () => {
                     })))
                 } else {
                     if (code) {
-                        console.log('we got lucky bitch')
-
                         setLoadedProducts(getProducts())
                     }
                 }
+
+
             } catch (err) {
             }
         })();
-    }, [sendRequest, isLoggedIn, basket])
+    }, [])
 
     return (
         <React.Fragment>

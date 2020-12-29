@@ -35,7 +35,6 @@ const PayButton = props => {
 
     const payHandler = async () => {
         try {
-            console.log(typeof props.datePicked)
             if (props.datePicked === '') {
                 setErrorMessage('Please pick a delivery date for your order.')
             }

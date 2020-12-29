@@ -80,7 +80,6 @@ const BookDelivery = () => {
     }
     const calendarHandler = (datePicked) => {
         const display = String(datePicked).slice(0, 15)
-        console.log(display)
         setValue({
             value: datePicked,
             display: display

@@ -72,7 +72,6 @@ const Carousel = props => {
                     pics4: responseData.products.slice(23, 31)
                 })
             } catch (err) {
-                console.log('failed to fetch')
             }
         })()
     }, [sendRequest])

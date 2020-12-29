@@ -3,7 +3,7 @@
     background-image: url('/images/background-img/shopping-background_pic.png');
 }
 
-@media only screen and (min-width: 1500px) {
+@media only screen and (min-width: 1600px) {
     .shopping {
         padding: 0 10rem 5rem;
     }
