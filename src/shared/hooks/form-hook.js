@@ -9,6 +9,7 @@ const reducer = (state, action) => {
             };
 
         case 'CHANGE':
+
             return {
                 ...state,
                 inputs: {
@@ -16,7 +17,7 @@ const reducer = (state, action) => {
                     [action.inputId]: {
                         value: action.value,
                         valid: action.valid
-                    }
+                    },
                 }
             };
         default:

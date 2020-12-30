@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 
 import Modal from '../../shared/UIElements/Modal';
 import Button from '../../shared/UIElements/Button';
-
 import Input from '../../shared/form-elements/Input';
+import SecQuestions from './SecQuestions';
+
 
 import {
     VALIDATOR_REQUIRE,
@@ -25,7 +26,7 @@ const Signup = props => {
             header={props.header}
             show={!!props.show}
             onSubmit={props.onSubmit}
-            footerStyle={{ padding: "0 0.5rem 1rem" }}
+            footerStyle={{ padding: "4vh 0.5rem 1rem" }}
             footer={<React.Fragment>
                 <Button
                     disabled={props.disabled}
@@ -116,6 +117,7 @@ const Signup = props => {
                         validators={[VALIDATOR_REQUIRE()]}
                         type='text'
                     />
+
                     <div className='smaller-inputs' >
                         <Input
                             id='postCode'
@@ -136,6 +138,20 @@ const Signup = props => {
                     </div>
                 </div>
             </div>
+            <SecQuestions
+                onChange={props.onChange}
+            />
+            <Input
+                id='answer'
+                label='Your answer'
+                onInput={props.onInput}
+                value={props.value.answer.value}
+                validators={[VALIDATOR_MINLENGTH(4)]}
+                type='text'
+                className='answer__input'
+                contClass='answer__div'
+                errorText='Your answer must be at least 4 character'
+            />
         </Modal>
     )
 }

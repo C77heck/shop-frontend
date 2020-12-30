@@ -36,55 +36,72 @@ const Auth = props => {
     const [inputState, handler] = useInput({
         fName: {
             value: '',
-            valid: true
+            valid: false
         },
         surname: {
             value: '',
-            valid: true
+            valid: false
         },
         email: {
             value: '',
-            valid: true
+            valid: false
         },
         password: {
             value: '',
-            valid: true
+            valid: false
         },
         passwordAgain: {
             value: '',
-            valid: true
+            valid: false
         },
         phone: {
             value: '',
-            valid: true
+            valid: false
         },
         city: {
             value: '',
-            valid: true
+            valid: false
         },
         street: {
             value: '',
-            valid: true
+            valid: false
         },
         postCode: {
             value: '',
-            valid: true
+            valid: false
         },
         houseNumber: {
             value: '',
-            valid: true
+            valid: false
         },
+        answer: {
+            value: '',
+            valid: false
+        }
     })
+    const [question, setQuestion] = useState('')
+    
+    const onChangeHandler = e => {
+        const value = e.target.value;
+        if (value !== '0') {
+            setQuestion(value)
+        }
+    }
 
     useEffect(() => {
         for (let i in inputState.inputs) {
-            if (i.valid === true) {
+            if (inputState.inputs[i].valid === false) {
                 setDisabled(true)
             } else {
                 setDisabled(false)
             }
         }
-    }, [inputState])
+        if (question === '') {
+            setDisabled(true)
+        } else {
+            setDisabled(false)
+        }
+    }, [inputState, question])
 
 
     const forgottenHandler = () => {
@@ -137,7 +154,6 @@ const Auth = props => {
         }
     }
 
-
     const signupHandler = async e => {
         e.preventDefault();
         try {
@@ -157,7 +173,9 @@ const Auth = props => {
                         street: inputState.inputs.street.value,
                         postCode: inputState.inputs.postCode.value,
                         houseNumber: inputState.inputs.houseNumber.value
-                    }
+                    },
+                    hint: question,
+                    answer: inputState.inputs.answer.value
                 }),
                 { 'Content-Type': 'application/json' }
             )
@@ -170,10 +188,8 @@ const Auth = props => {
         }
     }
 
-
     const passwordLinkHandler = async e => {
         e.preventDefault();
-        console.log(inputState.inputs.email.value)
         try {
             await sendRequest(
                 process.env.REACT_APP_RECOVERY,
@@ -184,12 +200,9 @@ const Auth = props => {
                 { 'Content-Type': 'application/json' }
             )
             setMessage(false)
-
         } catch (err) {
 
         }
-
-
     }
 
     return (
@@ -226,6 +239,7 @@ const Auth = props => {
                 show={registering}
                 onClear={signInClose}
                 onSubmit={signupHandler}
+                onChange={onChangeHandler}
                 onInput={handler}
                 value={inputState.inputs}
                 password={inputState.inputs.password.value}

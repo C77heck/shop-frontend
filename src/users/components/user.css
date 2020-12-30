@@ -53,18 +53,22 @@
     left: 32%;
 }
 
+.signup .input-control {
+    margin: 0;
+}
+
 .signup .modal__content {
     padding: 0;
 }
 
 .signup div {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .signup input {
     width: 70%;
     height: 30px;
-    margin: 10px auto;
+    margin: auto;
 }
 
 .signup header {
@@ -105,17 +109,18 @@
     margin-left: 1vh;
 }
 
+.answer__input {
+    width: 40% !important;
+}
+
+.answer__div .error-text p {
+    margin: 0 auto 4vh !important;
+    position: inherit !important;
+}
+
 .smaller-inputs {
     display: flex;
     flex-direction: column;
-}
-
-.smaller-inputs div {
-    margin: 1rem auto 0;
-}
-
-.smaller-inputs div:nth-child(2) {
-    margin-top: 1.65rem;
 }
 
 .succesful-signup .profile-link {

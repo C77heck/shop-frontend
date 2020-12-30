@@ -34,16 +34,12 @@ const Shopping = () => {
                         totalPrice: 0
                     })))
                 } else {
-                    if (code) {
                         setLoadedProducts(getProducts())
-                    }
                 }
-
-
             } catch (err) {
             }
         })();
-    }, [])
+    }, [isLoggedIn])
 
     return (
         <React.Fragment>

@@ -12,8 +12,9 @@ const AuthButton = props => {
     const { isLoggedIn, signout } = useContext(AuthContext);
 
     const signoutHandler = () => {
+        const { pathname } = history.location;
         signout()
-        if (history.location.pathname === '/checkout') {
+        if (pathname === '/checkout' || pathname === '/myaccount') {
             history.push('/')
         }
 

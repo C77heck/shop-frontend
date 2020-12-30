@@ -8,7 +8,7 @@ import './Input.css';
 const Input = props => {
     const [isValid, setIsValid] = useState('true');
     const [boolean, setBoolean] = useState(true);
-    const [onFocus, setOnFocus] = useState(false); //managing element validation neccesity for the UI
+    const [onFocus, setOnFocus] = useState(false); 
 
     const { value, validators, onInput, id, valid, password } = props
 
@@ -98,7 +98,10 @@ const Input = props => {
             />)
 
     return (
-        <div className={`input-control ${!boolean ? 'input-control--invalid' : 'other'}`}>
+        <div 
+        className={` ${props.contClass} input-control ${!boolean ? 'input-control--invalid' : 'other'}`}
+        style={props.containerStyle}
+        >
             <label style={props.labelStyle} htmlFor={props.id}>{props.label}</label>
             {element}
             <div className='error-text' >

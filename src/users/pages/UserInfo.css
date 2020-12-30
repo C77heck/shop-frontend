@@ -1,5 +1,24 @@
 .my__account-container {
-    width: 80%;
+    width: 60%;
     height: 90%;
     margin: 10vh auto;
+}
+
+.my__account_flex {
+    display: flex;
+    flex-direction: row;
+    column-gap: 2vw;
+}
+
+.my__account_left {
+    width: 50%;
+}
+
+.my__account_right {
+    width: 50%;
+}
+
+.my__account-buttons {
+    display: flex;
+    justify-content: space-between;
 }

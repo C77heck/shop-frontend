@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Modal from '../../shared/UIElements/Modal';
 import Button from '../../shared/UIElements/Button';
@@ -8,7 +8,25 @@ import {
     VALIDATOR_EMAIL
 } from '../../shared/utility/validators';
 
+const baseMessage = 'Please provide your email address and we'
+    +
+    ' will send you a password recovery link';
+const sentMessage = 'Your password recovery link has been sent!';
+
 const PasswordModal = props => {
+    const [display, setDisplay] = useState('unset')
+
+    useEffect(() => {
+        if (props.message) {
+            setDisplay('unset')
+        } else {
+            setDisplay('none')
+        }
+    }, [props.message])
+
+    const style = {
+        display: display
+    }
 
     return (
         <Modal
@@ -17,21 +35,11 @@ const PasswordModal = props => {
             onCancel={props.onClear}
             show={!!props.show}
             onSubmit={props.onSubmit}
-            footer={<Button
-                onClick={props.sendRequest}>
+            footer={props.message ? <Button>
                 Send link
-             </Button>}>
-            {
-                !props.message ?
-                    <p>
-                        Please provide your email address and we will
-                        send you a password recovery link
-                        </p>
-                    :
-                    <p>
-                        Your password recovery link has been sent!
-                        </p>
-            }
+             </Button> : null}
+        >
+            <p>{props.message ? baseMessage : sentMessage}</p>
             <Input
                 id='email'
                 label='Your Email'
@@ -40,13 +48,13 @@ const PasswordModal = props => {
                 validators={[VALIDATOR_EMAIL()]}
                 type='text'
                 onInput={props.onInput}
+                containerStyle={style}
             />
         </Modal>
     )
 }
 
 const PasswordResetter = props => {
-
 
     return (
         <PasswordModal
@@ -55,6 +63,7 @@ const PasswordResetter = props => {
             onSubmit={props.onSubmit}
             onInput={props.onInput}
             value={props.value}
+            message={props.message}
         />
     )
 

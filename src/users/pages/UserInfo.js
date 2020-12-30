@@ -6,7 +6,7 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 import { useInput } from '../../shared/hooks/form-hook';
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
-import PasswordResetter from '../components/PasswordResetter';
+import Modal from '../../shared/UIElements/Modal';
 
 import UserForms from '../components/UserForms';
 
@@ -53,12 +53,30 @@ const UserInfo = () => {
             value: '',
             valid: true
         },
+        hint: {
+            value: '',
+            valid: true
+        },
+        answer: {
+            value: '',
+            valid: true
+        },
         instructions: {
             value: '',
             valid: true
         }
     })
 
+    const [show, setShow] = useState(false)
+    const [question, setQuestion] = useState()
+
+    const onChangeHandler = e => {
+        setQuestion(e.target.value)
+    }
+
+    const onClearHandler = () => {
+        setShow(false)
+    }
 
     useEffect(() => {
         (async () => {
@@ -102,8 +120,17 @@ const UserInfo = () => {
                     instructions: {
                         value: responseData.userData.instructions,
                         valid: true
+                    },
+                    hint: {
+                        value: responseData.userData.hint,
+                        valid: true
+                    },
+                    answer: {
+                        value: responseData.userData.answer,
+                        valid: true
                     }
                 })
+                console.log(responseData)
             } catch (err) {
 
             }
@@ -128,25 +155,37 @@ const UserInfo = () => {
                         postCode: inputState.inputs.postCode.value,
                         houseNumber: inputState.inputs.houseNumber.value
                     },
-                    instructions: inputState.inputs.instructions.value
+                    instructions: inputState.inputs.instructions.value,
+                    question: inputState.inputs.question.value,
+                    answer: inputState.inputs.answer.value
                 }),
                 {
                     Authorization: 'Bearer ' + auth.token,
                     'Content-Type': 'application/json'
                 }
             )
+            setShow(true)
         } catch (err) {
 
         }
 
     }
+
     return (
         <div className='my__account-container'>
             <ErrorModal asOverlay error={error} onClear={clearError} />
+            <Modal
+                className=''
+                onCancel={onClearHandler}
+                show={show}
+            >
+                <h2>User info has been updated!</h2>
+            </Modal>
             <UserForms
                 onInput={handler}
                 value={inputState.inputs}
-                onSubmit={submitHandler}
+                onClick={submitHandler}
+                onChange={onChangeHandler}
             />
         </div>
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Modal from '../../shared/UIElements/Modal';
 import Button from '../../shared/UIElements/Button';
@@ -11,6 +11,18 @@ import {
 import './user.css'
 
 const Signin = props => {
+
+    const [disabled, setDisabled] = useState(false)
+
+    const { password, email } = props.value;
+    useEffect(() => {
+        if (email.valid && password.valid) {
+            setDisabled(false)
+        } else {
+            setDisabled(true)
+        }
+    }, [email, password])
+
 
     return (
         <Modal
@@ -45,6 +57,7 @@ const Signin = props => {
             />
             {props.children}
             <Button
+                disabled={disabled}
                 className='signin-button'
                 onClick={props.signin}>
                 SIGN IN
