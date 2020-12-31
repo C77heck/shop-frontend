@@ -79,7 +79,7 @@ const BookDelivery = () => {
         setShow(true)
     }
     const calendarHandler = (datePicked) => {
-        const display = String(datePicked).slice(0, 15)
+        const display = String(datePicked).slice(0, 15).replace('-', '.')
         setValue({
             value: datePicked,
             display: display

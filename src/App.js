@@ -23,6 +23,7 @@ import Checkout from './products/pages/Checkout';
 import Carousel from './shared/carousel/Carousel';
 import ThankYou from './products/pages/ThankYou'
 import UserInfo from './users/pages/UserInfo';
+import PassRecovery from './users/pages/PassRecovery';
 
 import './App.css';
 
@@ -161,6 +162,11 @@ function App() {
           </div>
           <div>
             <Footer />
+          </div>
+        </Route>#
+        <Route path='/passwordrecovery/:userId' exact>
+          <div>
+            <PassRecovery />
           </div>
         </Route>
         <Redirect to='/' />

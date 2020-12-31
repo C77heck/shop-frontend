@@ -1,0 +1,63 @@
+.password-recovery__outer-cont {
+    width: 100%;
+    height: 100%;
+}
+
+.password-recovery__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 25rem;
+    margin: 10vh auto;
+    border: solid 2px rgb(89, 204, 89);
+    background-color: rgb(156, 212, 159);
+}
+
+.password-recovery__container input {
+    height: 3rem;
+    font-size: 1.1rem;
+    width: 90%;
+    margin: auto;
+}
+
+.password-recovery__container label {
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: rgb(109, 102, 102);
+    letter-spacing: 1.5px;
+}
+
+.password-recovery__container button {
+    margin: 1.5rem auto;
+    width: 30%;
+    height: 3rem;
+    font-size: 1.2rem;
+}
+
+.password-recovery__container h1 {
+    text-align: center;
+    background-color: rgb(84, 184, 84);
+    color: rgb(238, 232, 232);
+    letter-spacing: 3px;
+    font-size: 3rem;
+}
+
+.password-recovery__container p {
+    margin: 5vh auto 0;
+    font-size: 1.2rem;
+    color: rgb(58, 57, 57);
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 450px) {
+    .password-recovery__container {
+        width: 100%;
+    }
+    .password-recovery__container h1 {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+}

@@ -130,7 +130,6 @@ const UserInfo = () => {
                         valid: true
                     }
                 })
-                console.log(responseData)
             } catch (err) {
 
             }
