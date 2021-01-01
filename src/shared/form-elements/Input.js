@@ -6,45 +6,11 @@ import './Input.css';
 
 
 const Input = props => {
-    const [isValid, setIsValid] = useState('true');
-    const [boolean, setBoolean] = useState(true);
-    const [onFocus, setOnFocus] = useState(false); 
+    
+    const [isValid, setIsValid] = useState(false);
+    const [errorTextShow, setErrorTextShow] = useState(true);
 
-    const { value, validators, onInput, id, valid, password } = props
-
-    useEffect(() => {
-        if (id === 'passwordAgain') {
-            if (value === '') {
-                setIsValid('true')
-            } else {
-                setIsValid(() => {
-                    if (password === value) {
-                        return 'true'
-                    } else {
-                        return 'false'
-                    }
-                })
-            }
-        } else {
-            if (value === '') {
-                setIsValid('true')
-            } else {
-                setIsValid(() => {
-                    if (validate(value, validators)) {
-                        return 'true'
-                    } else {
-                        return 'false'
-                    }
-                })
-            }
-        }
-        if (onFocus) {
-            setBoolean(() => {
-                return isValid === 'true' ? true : false;
-            })
-        }
-
-    }, [value, validators, valid, boolean, id, isValid, onFocus, password])
+    const { validators, onInput } = props
 
     const onChangeHandler = e => {
         const { id, value } = e.target;
@@ -53,23 +19,29 @@ const Input = props => {
         if (id === 'passwordAgain') {
             validator = (() => {
                 return e.target.attributes.getNamedItem('password').value === value ?
-                    'true'
+                    true
                     :
-                    'false'
+                    false
             })()
         } else {
-            validator = e.target.attributes.getNamedItem('valid').value
+            if (id === 'instructions') {
+                validator = true;
+            } else {
+                validator = validate(value, validators)
+            }
         }
+        setIsValid(validator)
+      //  console.log(validator, id, value)
         onInput(id, value, validator);
     }
 
 
 
     const onBlurHandler = () => {
-        setOnFocus(prev => !prev)
-        setBoolean(() => {
-            return isValid === 'true' ? true : false;
-        })
+        setErrorTextShow(isValid)
+    }
+    const onFocusHandler = () => {
+        setErrorTextShow(true)
     }
 
     const element = props.element === 'textarea' ? (<textarea
@@ -78,6 +50,7 @@ const Input = props => {
         rows={props.rows || 5}
         onChange={onChangeHandler}
         onBlur={onBlurHandler}
+        onFocus={onFocusHandler}
         value={props.value}
         valid={isValid}
         className={props.className}
@@ -87,6 +60,8 @@ const Input = props => {
                 id={props.id}
                 placeholder={props.placeholder}
                 onChange={onChangeHandler}
+                onFocus={onFocusHandler}
+                onBlur={onBlurHandler}
                 type={props.type}
                 value={props.value}
                 name={props.id}
@@ -94,18 +69,18 @@ const Input = props => {
                 validators={props.validators}
                 valid={isValid}
                 password={props.password}
-                onBlur={onBlurHandler}
+
             />)
 
     return (
-        <div 
-        className={` ${props.contClass} input-control ${!boolean ? 'input-control--invalid' : 'other'}`}
-        style={props.containerStyle}
+        <div
+            className={` ${props.contClass} input-control ${!errorTextShow ? 'input-control--invalid' : 'other'}`}
+            style={props.containerStyle}
         >
             <label style={props.labelStyle} htmlFor={props.id}>{props.label}</label>
             {element}
             <div className='error-text' >
-                <p > {!boolean && props.errorText} </p>
+                <p > {!errorTextShow && props.errorText} </p>
 
             </div>
 

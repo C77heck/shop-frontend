@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
     VALIDATOR_REQUIRE,
@@ -7,7 +7,6 @@ import {
     VALIDATOR_PHONE
 } from '../../shared/utility/validators';
 
-import { useInput } from '../../shared/hooks/form-hook';
 
 import Button from '../../shared/UIElements/Button';
 import Input from '../../shared/form-elements/Input';
@@ -19,20 +18,10 @@ import SecQuestions from './SecQuestions';
 const UserForms = props => {
 
     const { sendRequest } = useHttpClient();
-    const [inputState, handler] = useInput({
-        email: {
-            value: '',
-            valid: true
-        }
-    })
 
     const [show, setShow] = useState(false)
     const [message, setMessage] = useState(true)
 
-
-    const onClickHandler = () => {
-        setShow(true)
-    }
 
     const onClearHandler = () => {
         setShow(false)
@@ -41,17 +30,18 @@ const UserForms = props => {
 
     const submitHandler = async e => {
         e.preventDefault();
+
         try {
+            setMessage(false)
+            setShow(true)
             await sendRequest(
                 process.env.REACT_APP_RECOVERY,
                 'POST',
                 JSON.stringify({
-                    email: inputState.inputs.email.value
+                    email: props.email
                 }),
                 { 'Content-Type': 'application/json' }
             )
-            setMessage(false)
-
         } catch (err) {
 
         }
@@ -62,10 +52,8 @@ const UserForms = props => {
             <PasswordResetter
                 onClear={onClearHandler}
                 show={show}
-                onSubmit={submitHandler}
                 message={message}
-                onInput={handler}
-                value={inputState.inputs.email.value}
+                value={props.value.email.value}
             />
             <div
                 className='my__account_flex'
@@ -113,6 +101,7 @@ const UserForms = props => {
                         label='City'
                         onInput={props.onInput}
                         value={props.value.city.value}
+                        errorText='Please enter your city'
                         validators={[VALIDATOR_REQUIRE()]}
                         type='text'
                     />
@@ -122,6 +111,7 @@ const UserForms = props => {
                         label='Street or Square'
                         onInput={props.onInput}
                         value={props.value.street.value}
+                        errorText='Please enter your street'
                         validators={[VALIDATOR_REQUIRE()]}
                         type='text'
                     />
@@ -133,6 +123,8 @@ const UserForms = props => {
                         label='Post code'
                         onInput={props.onInput}
                         value={props.value.postCode.value}
+                        errorText='Please enter your post code'
+
                         validators={[VALIDATOR_REQUIRE()]}
                         type='text'
                     />
@@ -141,19 +133,22 @@ const UserForms = props => {
                         label='House number'
                         onInput={props.onInput}
                         value={props.value.houseNumber.value}
+                        errorText='Please enter your house number'
+
                         validators={[VALIDATOR_REQUIRE()]}
                         type='text'
                     />
                     <SecQuestions
                         onChange={props.onChange}
-                        value={props.value.hint.value}
+                        value={props.hint}
                     />
                     <Input
                         id='answer'
                         label='Your answer'
                         onInput={props.onInput}
                         value={props.value.answer.value}
-                        validators={[VALIDATOR_REQUIRE()]}
+                        errorText='Your answer must be at least 4 character'
+                        validators={[VALIDATOR_MINLENGTH(4)]}
                         type='text'
                     />
                     <Input
@@ -162,8 +157,7 @@ const UserForms = props => {
                         label='instructions'
                         onInput={props.onInput}
                         value={props.value.instructions.value}
-                        errorText='Please enter your first name'
-                        validators={[VALIDATOR_REQUIRE()]}
+                        validators={[]}
                         type='text'
                     />
 
@@ -173,8 +167,7 @@ const UserForms = props => {
             <div className='my__account-buttons'>
                 <Button
                     type='button'
-                    onClick={onClickHandler}
-                    disabled={props.disabled}
+                    onClick={submitHandler}
                     className=''
                 >Change password</Button>
                 <Button

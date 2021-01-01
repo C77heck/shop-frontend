@@ -33,7 +33,7 @@ const PasswordModal = props => {
             className=''
             header='Password assistance'
             onCancel={props.onClear}
-            show={!!props.show}
+            show={props.show}
             onSubmit={props.onSubmit}
             footer={props.message ? <Button>
                 Send link

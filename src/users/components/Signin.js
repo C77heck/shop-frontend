@@ -5,16 +5,16 @@ import Button from '../../shared/UIElements/Button';
 import Input from '../../shared/form-elements/Input';
 
 import {
-    VALIDATOR_EMAIL
+    VALIDATOR_EMAIL,
+    VALIDATOR_REQUIRE
 } from '../../shared/utility/validators';
 
 import './user.css'
 
 const Signin = props => {
 
-    const [disabled, setDisabled] = useState(false)
-
-    const { password, email } = props.value;
+    const [disabled, setDisabled] = useState(true);
+    const { email, password } = props.value;
     useEffect(() => {
         if (email.valid && password.valid) {
             setDisabled(false)
@@ -51,7 +51,8 @@ const Signin = props => {
                 id='password'
                 label='Password'
                 value={props.value.password.value}
-                validators={[]}
+                validators={[VALIDATOR_REQUIRE()]}
+                errorText='Please enter your password'
                 type='password'
                 onInput={props.onInput}
             />

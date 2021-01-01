@@ -29,11 +29,10 @@ const Auth = props => {
     const [message, setMessage] = useState(true)
     const [signedup, setSignedup] = useState(false);
     const [coordinates, setCoordinates] = useState();
-    const [disabled, setDisabled] = useState(true)
 
 
 
-    const [inputState, handler] = useInput({
+    const [inputState, handler, isFormValid] = useInput({
         fName: {
             value: '',
             valid: false
@@ -80,7 +79,7 @@ const Auth = props => {
         }
     })
     const [question, setQuestion] = useState('')
-    
+
     const onChangeHandler = e => {
         const value = e.target.value;
         if (value !== '0') {
@@ -88,20 +87,7 @@ const Auth = props => {
         }
     }
 
-    useEffect(() => {
-        for (let i in inputState.inputs) {
-            if (inputState.inputs[i].valid === false) {
-                setDisabled(true)
-            } else {
-                setDisabled(false)
-            }
-        }
-        if (question === '') {
-            setDisabled(true)
-        } else {
-            setDisabled(false)
-        }
-    }, [inputState, question])
+   
 
 
     const forgottenHandler = () => {
@@ -219,6 +205,7 @@ const Auth = props => {
                 onSubmit={signinHandler}
                 onInput={handler}
                 value={inputState.inputs}
+                disabled={isFormValid}
             >
                 <button
                     type='button'
@@ -243,7 +230,7 @@ const Auth = props => {
                 onInput={handler}
                 value={inputState.inputs}
                 password={inputState.inputs.password.value}
-                disabled={disabled}
+                disabled={isFormValid}
                 cancelSignup={signinModalHandler}
             />
 

@@ -1,4 +1,4 @@
-import { useReducer, useCallback } from "react"
+import { useReducer, useCallback, useState, useEffect } from "react"
 
 
 const reducer = (state, action) => {
@@ -31,12 +31,34 @@ export const useInput = (inputs) => {
         inputs: inputs,
     })
 
+    const [isFormValid, setIsFormValid] = useState(false)
+
+
+
+    useEffect(() => {
+        let falsy = 0;
+        for (let i in inputState.inputs) {
+            if (inputState.inputs[i].valid === false) {
+                falsy += 1;
+            }
+        }
+        if (falsy !== 0) {
+            setIsFormValid(true)
+        } else {
+            setIsFormValid(false)
+        }
+
+    }, [inputState.inputs])
+
+
+
+
     const handler = useCallback((id, value, valid) => {
         dispatch({
             type: 'CHANGE',
             value: value,
             inputId: id,
-            valid: valid === 'true' ? true : false
+            valid: valid
         })
     }, [])
 
@@ -47,6 +69,6 @@ export const useInput = (inputs) => {
         });
     }, []);
 
-    return [inputState, handler, setFormData]
+    return [inputState, handler, isFormValid, setFormData]
 }
 

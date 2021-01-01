@@ -20,58 +20,66 @@ const UserInfo = () => {
 
     const { sendRequest, isLoading, error, clearError } = useHttpClient();
 
-    const [inputState, handler, setFormData] = useInput({
+    const [inputState, handler, setFormData, isFormValid] = useInput({
         firstName: {
             value: '',
-            valid: true
+            valid: false
         },
         lastName: {
             value: '',
-            valid: true
+            valid: false
         },
         email: {
             value: '',
-            valid: true
+            valid: false
+
         },
         phone: {
             value: '',
-            valid: true
+            valid: false
+
         },
         city: {
             value: '',
-            valid: true
+            valid: false
+
         },
         street: {
             value: '',
-            valid: true
+            valid: false
+
         },
         postCode: {
             value: '',
-            valid: true
+            valid: false
+
         },
         houseNumber: {
             value: '',
-            valid: true
-        },
-        hint: {
-            value: '',
-            valid: true
+            valid: false
+
         },
         answer: {
             value: '',
-            valid: true
+            valid: false
         },
         instructions: {
             value: '',
-            valid: true
+            valid: false
+
         }
     })
-
+    console.log(isFormValid)
+    const [email, setEmail] = useState() // email for the password recovery request
+    const [hint, setHint] = useState()
     const [show, setShow] = useState(false)
-    const [question, setQuestion] = useState()
+
+
+
+
 
     const onChangeHandler = e => {
-        setQuestion(e.target.value)
+        setHint(e.target.value)
     }
 
     const onClearHandler = () => {
@@ -121,15 +129,13 @@ const UserInfo = () => {
                         value: responseData.userData.instructions,
                         valid: true
                     },
-                    hint: {
-                        value: responseData.userData.hint,
-                        valid: true
-                    },
                     answer: {
                         value: responseData.userData.answer,
                         valid: true
                     }
                 })
+                setEmail(responseData.userData.email)
+                setHint(responseData.userData.hint)
             } catch (err) {
 
             }
@@ -155,7 +161,7 @@ const UserInfo = () => {
                         houseNumber: inputState.inputs.houseNumber.value
                     },
                     instructions: inputState.inputs.instructions.value,
-                    question: inputState.inputs.question.value,
+                    hint: hint,
                     answer: inputState.inputs.answer.value
                 }),
                 {
@@ -183,8 +189,11 @@ const UserInfo = () => {
             <UserForms
                 onInput={handler}
                 value={inputState.inputs}
+                email={email}
+                hint={hint}
                 onClick={submitHandler}
                 onChange={onChangeHandler}
+                disabled={isFormValid}
             />
         </div>
 

@@ -17,7 +17,7 @@ import './Admin.css'
 const DeleteProduct = () => {
     const history = useHistory();
 
-    const [inputState, handler] = useInput({
+    const [inputState, handler, isFormValid] = useInput({
         code: {
             value: '',
             valid: true

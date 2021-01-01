@@ -17,7 +17,7 @@ const CreateProduct = () => {
 
     const history = useHistory();
 
-    const [inputState, handler] = useInput({
+    const [inputState, handler, isFormValid] = useInput({
         image: {
             value: null,
             valid: false
