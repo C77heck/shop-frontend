@@ -13,7 +13,7 @@ import Input from '../../shared/form-elements/Input';
 import PasswordResetter from './PasswordResetter';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import SecQuestions from './SecQuestions';
-
+import PlacedOrders from './PlacedOrders'
 
 const UserForms = props => {
 
@@ -168,15 +168,15 @@ const UserForms = props => {
                 <Button
                     type='button'
                     onClick={submitHandler}
-                    className=''
+                    className='change-password__button'
                 >Change password</Button>
                 <Button
                     onClick={props.onClick}
                     disabled={props.disabled}
-                    className='register-button'
+                    className='submit-changes__button'
                 >Submit changes</Button>
-
             </div>
+            <PlacedOrders />
         </React.Fragment>
     )
 }

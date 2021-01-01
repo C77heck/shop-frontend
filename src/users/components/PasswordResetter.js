@@ -11,7 +11,7 @@ import {
 const baseMessage = 'Please provide your email address and we'
     +
     ' will send you a password recovery link';
-const sentMessage = 'Your password recovery link has been sent!';
+const sentMessage = 'Please check your email inbox.';
 
 const PasswordModal = props => {
     const [display, setDisplay] = useState('unset')

@@ -10,9 +10,8 @@ import Modal from '../../shared/UIElements/Modal';
 
 import UserForms from '../components/UserForms';
 
-
-
 import './UserInfo.css'
+
 
 const UserInfo = () => {
 

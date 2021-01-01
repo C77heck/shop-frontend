@@ -22,3 +22,41 @@
     display: flex;
     justify-content: space-between;
 }
+
+.change-password__button {
+    background-color: rgb(24, 86, 148);
+    transition: background-color 300ms;
+}
+.change-password__button:hover {
+    background-color: rgb(8, 43, 78);
+}
+.submit-changes__button{
+    background-color: #22a03e;
+    transition: background-color 300ms;
+}
+.submit-changes__button:hover{
+    background-color: #35d357;
+    transition: background-color 300ms;
+}
+@media screen and (max-width:746px) {
+    .my__account_flex {
+        flex-direction: column;
+    }
+    .my__account_right, .my__account_left {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .my__account-container {
+        width: 90%;
+    }
+    .my__account-buttons {
+        flex-direction: column;
+    }
+    .my__account-buttons button {
+        margin: 2vh auto;
+        width: 10rem;
+        font-size: 0.8rem;
+    }
+}
