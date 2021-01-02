@@ -11,11 +11,14 @@ import { usePurchase } from '../../shared/hooks/purchase-hook';
 const ProductItem = props => {
     const purchase = useContext(PurchaseContext)
     const [invisible, setInvisible] = useState(false);
+    const [show, setShow] = useState('unset')
     const [price, setPrice] = useState({
         beforeDot: '',
         afterDot: ''
     });
     const { items, code, number, totalPrice } = props;
+
+
     useEffect(() => {
         if (number > 0) {
             setInvisible(true)
@@ -70,7 +73,11 @@ const ProductItem = props => {
                 />
             </div>
             <div style={{ position: "relative", flexBasis: "15%", textAlign: "center" }}>
-                <button onClick={deleteHandler} className='cancel-item__button'>
+                <button
+                    onClick={deleteHandler}
+                    className='cancel-item__button'
+                    style={{display: `${props.noShow ? 'none' : 'unset'}`}}
+                >
                     <img name='cancel-button' src="/images/icons/cancel.svg" alt="cancel icon" />
                 </button>
                 <p className='checkout-price'>
@@ -88,7 +95,6 @@ const ProductItem = props => {
 
 const CheckoutList = props => {
 
-    const { getProducts } = usePurchase()
     const { basket } = useContext(PurchaseContext);
 
     const [items, setItems] = useState([])
@@ -127,6 +133,7 @@ const CheckoutList = props => {
                                 image={product.image}
                                 code={product.code}
                                 items={items}
+                                noShow={props.noShow}
                             />)
                     })}
             </div>

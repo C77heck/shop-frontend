@@ -16,7 +16,7 @@ import { priceDisplay } from '../../shared/utility/priceOutput';
 import './Basket.css'
 
 
-const BasketModal = props => {
+export const BasketModal = props => {
     return (
         <Modal
             className='basket-modal'

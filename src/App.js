@@ -24,6 +24,7 @@ import Carousel from './shared/carousel/Carousel';
 import ThankYou from './products/pages/ThankYou'
 import UserInfo from './users/pages/UserInfo';
 import PassRecovery from './users/pages/PassRecovery';
+import ViewOrders from './users/pages/ViewOrders';
 
 import './App.css';
 
@@ -122,6 +123,8 @@ function App() {
           <div>
             <NavigationBar />
           </div>
+          <div>
+          </div>
         </Route>
         <Route path='/thankyou' exact>
           <div>
@@ -144,7 +147,7 @@ function App() {
             <Footer />
           </div>
         </Route>
-        <Route path='/myaccount' exact>
+        <Route path='/userdata' exact>
           <div>
             <NavigationBar />
           </div>
@@ -163,7 +166,18 @@ function App() {
           <div>
             <Footer />
           </div>
-        </Route>#
+        </Route>
+        <Route path='/orderhistory' exact>
+          <div>
+            <NavigationBar />
+          </div>
+          <div>
+            <ViewOrders />
+          </div>
+          <div>
+            <Footer />
+          </div>
+        </Route>
         <Route path='/passwordrecovery/:userId' exact>
           <div>
             <PassRecovery />

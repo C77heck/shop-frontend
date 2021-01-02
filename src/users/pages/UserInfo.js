@@ -19,7 +19,7 @@ const UserInfo = () => {
 
     const { sendRequest, isLoading, error, clearError } = useHttpClient();
 
-    const [inputState, handler, setFormData, isFormValid] = useInput({
+    const [inputState, handler, isFormValid, setFormData] = useInput({
         firstName: {
             value: '',
             valid: false
@@ -68,7 +68,6 @@ const UserInfo = () => {
 
         }
     })
-    console.log(isFormValid)
     const [email, setEmail] = useState() // email for the password recovery request
     const [hint, setHint] = useState()
     const [show, setShow] = useState(false)
@@ -176,26 +175,28 @@ const UserInfo = () => {
     }
 
     return (
-        <div className='my__account-container'>
-            <ErrorModal asOverlay error={error} onClear={clearError} />
-            <Modal
-                className=''
-                onCancel={onClearHandler}
-                show={show}
-            >
-                <h2>User info has been updated!</h2>
-            </Modal>
-            <UserForms
-                onInput={handler}
-                value={inputState.inputs}
-                email={email}
-                hint={hint}
-                onClick={submitHandler}
-                onChange={onChangeHandler}
-                disabled={isFormValid}
-            />
-        </div>
+        <React.Fragment>
+            <div className='my__account-container'>
+                <ErrorModal error={error} onClear={clearError} />
+                <Modal
+                    className=''
+                    onCancel={onClearHandler}
+                    show={show}
+                >
+                    <h2>User info has been updated!</h2>
+                </Modal>
+                <UserForms
+                    onInput={handler}
+                    value={inputState.inputs}
+                    email={email}
+                    hint={hint}
+                    onClick={submitHandler}
+                    onChange={onChangeHandler}
+                    disabled={isFormValid}
+                />
+            </div>
 
+        </React.Fragment>
 
     )
 

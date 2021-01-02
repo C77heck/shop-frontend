@@ -45,7 +45,9 @@
   }
 }
 
-.main-navigation__title a:hover {
-  text-decoration: none !important;
-  color: white;
+@media screen and (max-width: 1040px) {
+  .main-navigation__title {
+    margin-left: 3vw;
+  }
 }
+

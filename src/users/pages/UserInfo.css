@@ -37,6 +37,7 @@
 .submit-changes__button:hover{
     background-color: #35d357;
     transition: background-color 300ms;
+    border: rgb(165, 80, 80) solid 1px;
 }
 @media screen and (max-width:746px) {
     .my__account_flex {

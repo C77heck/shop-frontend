@@ -7,6 +7,7 @@ import MapModal from '../UIElements/MapModal';
 import Map from '../UIElements/Map';
 import AuthButton from '../../users/components/AuthButton';
 import Auth from '../../users/components/Auth';
+import DropDown from './DropDown';
 
 import './NavLinks.css';
 
@@ -39,7 +40,6 @@ const NavLinks = () => {
             </MapModal>
 
             <ul className="nav-links">
-                <div className='nav-links__div'>
                     <li>
                         <NavLink to='/' exact>HOME</NavLink>
                     </li>
@@ -54,14 +54,13 @@ const NavLinks = () => {
                     </li>
                     <li >
                         {isLoggedIn ?
-                            <NavLink to='/myaccount' exact>My Account</NavLink>
+                            <DropDown name='My account' />
                             :
                             <Auth register={true} >
                                 <NavLink to='/' exact>Register</NavLink>
                             </Auth>
                         }
                     </li>
-                </div>
                 <AuthButton
                     className='auth-button_desktop'
                 />

@@ -6,7 +6,7 @@ import './Input.css';
 
 
 const Input = props => {
-    
+
     const [isValid, setIsValid] = useState(false);
     const [errorTextShow, setErrorTextShow] = useState(true);
 
@@ -31,7 +31,7 @@ const Input = props => {
             }
         }
         setIsValid(validator)
-      //  console.log(validator, id, value)
+        //  console.log(validator, id, value)
         onInput(id, value, validator);
     }
 
@@ -52,7 +52,7 @@ const Input = props => {
         onBlur={onBlurHandler}
         onFocus={onFocusHandler}
         value={props.value}
-        valid={isValid}
+        valid={isValid.toString()}
         className={props.className}
     />) : (
             <input
@@ -67,7 +67,7 @@ const Input = props => {
                 name={props.id}
                 className={props.className}
                 validators={props.validators}
-                valid={isValid}
+                valid={isValid.toString()}
                 password={props.password}
 
             />)

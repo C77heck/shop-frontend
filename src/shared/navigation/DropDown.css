@@ -1,0 +1,23 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    text-align: center;
+    display: none;
+    position: absolute;
+    padding: 0.1vh 0 1vh;
+    top: 2.8rem;
+    background-color: #22a03e;
+    min-width: 8rem;
+    z-index: -1;
+}
+
+.dropdown-content a {
+    margin: 0.5rem 0 !important;
+    text-decoration: none;
+    display: block;
+    font-size: 0.8rem;
+}
+

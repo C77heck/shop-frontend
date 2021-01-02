@@ -19,6 +19,8 @@ export const usePurchase = () => {
     }
 
 
+
+
     const updateBasket = (items) => {
         saveToLocalStorage(items)
         setBasket({
@@ -83,8 +85,8 @@ export const usePurchase = () => {
 
         const products = (JSON.parse(localStorage.getItem('basketContent')).products)
         setBasketContent(products)
+        updateBasket(products)
         return products;
-
     }
 
     return {

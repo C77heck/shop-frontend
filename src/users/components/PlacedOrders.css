@@ -1,0 +1,67 @@
+.placed-orders__container {
+    /* perhaps use grid layout.. */
+    display: flex;
+    flex-direction: row;
+    column-gap: 3vw;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 15vh auto 10vh;
+}
+
+.order-cards__container {
+    border: rgb(139, 145, 139) 1px solid;
+    background-color: rgb(171, 173, 153);
+    border-radius: 2%;
+    padding: 2px;
+    box-shadow: 1px 2px 5px 1px rgb(143, 143, 143);
+    margin: 3vh 0;
+    min-width: 16rem;
+}
+
+.order-cards__buttons, .order-cards__id, .order-cards__details {
+    padding: 1vh;
+}
+
+.order-cards__details {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 2vw;
+    background-color: rgb(235, 236, 228);
+}
+
+.order-cards__buttons {
+    background-color: rgb(209, 211, 206);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 1vw;
+}
+
+.order-cards__buttons button {
+    min-width: 110px;
+    max-height: 2.2rem;
+    font-size: 0.9rem;
+    background-color: #22a03e;
+    transition: background-color 300ms;
+}
+
+.order-cards__buttons button:hover {
+    background-color: #3bc559;
+    border: rgb(255, 255, 255) solid 1px;
+}
+
+.order-cards__id {
+    background-color: rgb(151, 151, 147);
+}
+
+.order-cards__id p {
+    margin: 0.7vh;
+    color: rgb(252, 252, 252);
+}
+
+@media screen and (max-width: 300px) {
+    .order-cards__container {
+        min-width: 0;
+    }
+}

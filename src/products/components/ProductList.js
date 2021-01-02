@@ -11,11 +11,11 @@ const ProductCard = props => {
     return (
 
 
-        <div className='productsCont grid-item'>
+        <div className='grid-item'>
             <div className='inner-product-container'>
-                <div className="picDiv">
+                <div className="image-container__products">
                     <img
-                        className='productImg'
+                        className='product-image'
                         src={process.env.REACT_APP_IMAGE_ROUTE + props.image}
                         alt={props.name}
                     />
@@ -23,10 +23,10 @@ const ProductCard = props => {
                 <div className='product-name'>
                     <p >{props.name}</p>
                 </div>
-                <p className='productCode'>{props.code}</p>
-                <hr className="hrProduct" />
+                <p className='product-code'>{props.code}</p>
+                <hr className="horizontal-line" />
 
-                <div className="bottomProduct">
+                <div className="bottom-product__container">
                     <p className="unit">{props.unit}</p>
                     <p >£{props.price}</p>
                     <BuyButton
@@ -50,7 +50,7 @@ const ProductList = props => {
 
 
     return (
-        <div className=' grid-container'>
+        <div className='grid-container'>
             {props.items.map((product) => {
 
                 return (

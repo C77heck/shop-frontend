@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { AuthContext } from '../../shared/context/auth-context';
+import { PurchaseContext } from '../../shared/context/purchase-context';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { usePurchase } from '../../shared/hooks/purchase-hook';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
@@ -12,7 +13,7 @@ import './PayButton.css'
 const PayButton = props => {
 
     const auth = useContext(AuthContext)
-
+    const { basket } = useContext(PurchaseContext)
     const { sendRequest, error, clearError } = useHttpClient();
     const { clearBasket } = usePurchase();
     const [products, setProducts] = useState([]);
@@ -38,13 +39,16 @@ const PayButton = props => {
             if (props.datePicked === '') {
                 setErrorMessage('Please pick a delivery date for your order.')
             }
+            const todaysDate = String(new Date()).slice(0, 15);
             const responseData = await sendRequest(
                 process.env.REACT_APP_ORDERS,
                 'POST',
                 JSON.stringify({
                     products: JSON.stringify(products),
-                    dateOrdered: new Date().toISOString(),
+                    dateOrdered: todaysDate,
                     dateToBeDelivered: props.datePicked,
+                    totalPrice: basket.price,
+                    numberOfItems: basket.amount,
                     creator: auth.userId
                 }),
                 {
@@ -52,6 +56,7 @@ const PayButton = props => {
                     'Content-Type': 'application/json'
                 }
             )
+            console.log(responseData.order)
             history.push('/thankyou')
             clearBasket(products);
         } catch (err) {
@@ -64,7 +69,6 @@ const PayButton = props => {
             <ErrorModal
                 errorMessage={errorMessage}
                 error={error}
-                asOverlay
                 onClear={clearError}
                 footerStyle={{ padding: "0 0.5rem 1rem" }}
             />

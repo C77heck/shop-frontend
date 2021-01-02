@@ -6,7 +6,6 @@ import BookDelivery from '../components/BookDelivery';
 import './Checkout.css'
 import 'react-calendar/dist/Calendar.css'
 import { usePurchase } from '../../shared/hooks/purchase-hook';
-import { PurchaseContext } from '../../shared/context/purchase-context';
 
 
 const Checkout = () => {

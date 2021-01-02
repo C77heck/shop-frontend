@@ -13,7 +13,6 @@ import Input from '../../shared/form-elements/Input';
 import PasswordResetter from './PasswordResetter';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import SecQuestions from './SecQuestions';
-import PlacedOrders from './PlacedOrders'
 
 const UserForms = props => {
 
@@ -134,7 +133,6 @@ const UserForms = props => {
                         onInput={props.onInput}
                         value={props.value.houseNumber.value}
                         errorText='Please enter your house number'
-
                         validators={[VALIDATOR_REQUIRE()]}
                         type='text'
                     />
@@ -176,7 +174,6 @@ const UserForms = props => {
                     className='submit-changes__button'
                 >Submit changes</Button>
             </div>
-            <PlacedOrders />
         </React.Fragment>
     )
 }

@@ -24,7 +24,6 @@ const BookDelivery = () => {
     const auth = useContext(AuthContext)
     const { sendRequest } = useHttpClient();
     const [value, setValue] = useState({
-        value: '',
         display: ''
     })
     const [pay, setPay] = useState({
@@ -79,9 +78,8 @@ const BookDelivery = () => {
         setShow(true)
     }
     const calendarHandler = (datePicked) => {
-        const display = String(datePicked).slice(0, 15).replace('-', '.')
+        const display = String(datePicked).slice(0, 15);
         setValue({
-            value: datePicked,
             display: display
         })
         setShow(false)
@@ -137,7 +135,7 @@ const BookDelivery = () => {
                         <h3>£{pay.total.beforeDot + pay.total.afterDot}</h3>
                     </div>
                 </div>
-                <PayButton datePicked={value.value} />
+                <PayButton datePicked={value.display} />
 
             </div>
 
