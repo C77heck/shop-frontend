@@ -88,8 +88,6 @@ const Auth = props => {
     }
 
 
-
-
     const forgottenHandler = () => {
         setClickedSignIn(false)
         setForgottenPass(true)

@@ -31,7 +31,7 @@ const Signup = props => {
                 <Button
                     disabled={props.disabled}
                     className='register-button'
-                    onClick={props.signup}>
+                    onSubmit={props.signup}>
                     SIGN UP
                 </Button>
                 <p>Already have an account? <span className='signin-here' onClick={props.cancelSignup}>sign in here</span></p>

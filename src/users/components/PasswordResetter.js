@@ -27,6 +27,10 @@ const PasswordModal = props => {
     const style = {
         display: display
     }
+    const submit = e => {
+        e.preventDefault()
+        console.log('okay...')
+    }
 
     return (
         <Modal
@@ -35,11 +39,6 @@ const PasswordModal = props => {
             onCancel={props.onClear}
             show={props.show}
             onSubmit={props.onSubmit}
-            footer={props.message ? <Button
-                disabled={!props.disabled ? true : false}
-            >
-                Send link
-             </Button> : null}
         >
             <p>{props.message ? baseMessage : sentMessage}</p>
             <Input
@@ -52,6 +51,12 @@ const PasswordModal = props => {
                 onInput={props.onInput}
                 containerStyle={style}
             />
+            <Button
+                disabled={!props.disabled ? true : false}
+                style={style}
+            >
+                Send link
+             </Button>
         </Modal>
     )
 }

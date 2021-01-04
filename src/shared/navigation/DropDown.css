@@ -1,6 +1,7 @@
 .dropdown {
     position: relative;
     display: inline-block;
+    cursor: pointer;
 }
 
 .dropdown-content {
@@ -11,7 +12,6 @@
     top: 2.8rem;
     background-color: #22a03e;
     min-width: 8rem;
-    z-index: -1;
 }
 
 .dropdown-content a {

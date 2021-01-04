@@ -20,7 +20,6 @@ import ErrorModal from '../../shared/UIElements/ErrorModal';
 
 import './PassRecovery.css';
 
-
 const PasswordResetModal = props => {
     return (
         <Modal
@@ -37,7 +36,7 @@ const PassRecovery = () => {
 
     const { userId } = useParams()
     const { sendRequest, error, clearError, isLoading } = useHttpClient()
-    const [inputState, handler] = useInput({
+    const [inputState, handler, isFormValid] = useInput({
         password: {
             value: '',
             valid: false
@@ -53,19 +52,8 @@ const PassRecovery = () => {
     })
 
     const [show, setShow] = useState(false)
-    const [disabled, setDisabled] = useState(true)
     const [hint, setHint] = useState('')
-
-
-    useEffect(() => {
-        for (let i in inputState.inputs) {
-            if (inputState.inputs[i].valid === false) {
-                setDisabled(true)
-            } else {
-                setDisabled(false)
-            }
-        }
-    }, [inputState])
+    const [expiration, setExpiration] = useState()
 
 
     useEffect(() => {
@@ -83,16 +71,18 @@ const PassRecovery = () => {
         }
 
     }, [hint])
-const errorHandler = ()=>{
-    clearError()
-    history.push('/')
-}
+
+    const errorHandler = () => {
+        clearError()
+    //    history.push('/')
+    }
     const onClearHandler = () => {
         setShow(false)
-        history.push('/')
+   //     history.push('/')
     }
 
-    const onClickHandler = async () => {
+    const onSubmitHandler = async e => {
+        e.preventDefault();
         try {
             const responseData = await sendRequest(
                 process.env.REACT_APP_UPDATE_PASSWORD + userId,
@@ -114,44 +104,49 @@ const errorHandler = ()=>{
             <ErrorModal error={error} onClear={errorHandler} />
             {isLoading && <LoadingSpinner asOverlay />}
             <PasswordResetModal onClear={onClearHandler} show={show} />
-            <div className='password-recovery__outer-cont' >
+            <form onSubmit={onSubmitHandler}>
 
-                <div className='password-recovery__container' >
-                    <h1>Password recovery</h1>
-                    <p>{hint}</p>
-                    <Input
-                        id='answer'
-                        label='Answer'
-                        value={inputState.inputs.answer.value}
-                        errorText='Please enter your answer'
-                        validators={[VALIDATOR_REQUIRE()]}
-                        type='text'
-                        onInput={handler} />
-                    <Input
-                        id='password'
-                        label='Password'
-                        value={inputState.inputs.password.value}
-                        errorText='Your password must be at least 6 character long'
-                        validators={[VALIDATOR_MINLENGTH(6)]}
-                        type='password'
-                        onInput={handler}
-                    />
-                    <Input
-                        id='passwordAgain'
-                        label='Password again'
-                        onInput={handler}
-                        value={inputState.inputs.passwordAgain.value}
-                        errorText='Passwords do not match!'
-                        type='password'
-                        validators={[]}
-                        password={inputState.inputs.password.value}
-                    />
-                    <Button
-                        disabled={disabled}
-                        onClick={onClickHandler}
-                    >Submit</Button>
+                <div className='password-recovery__outer-cont' >
+
+                    <div className='password-recovery__container' >
+                        <h1>Password recovery</h1>
+                        <p>{hint}</p>
+                        <Input
+                            id='answer'
+                            label='Answer'
+                            value={inputState.inputs.answer.value}
+                            errorText='Please enter your answer'
+                            validators={[VALIDATOR_REQUIRE()]}
+                            type='text'
+                            onInput={handler} />
+                        <Input
+                            id='password'
+                            label='Password'
+                            value={inputState.inputs.password.value}
+                            errorText='Your password must be at least 6 character long'
+                            validators={[VALIDATOR_MINLENGTH(6)]}
+                            type='password'
+                            onInput={handler}
+                        />
+                        <Input
+                            id='passwordAgain'
+                            label='Password again'
+                            onInput={handler}
+                            value={inputState.inputs.passwordAgain.value}
+                            errorText='Passwords do not match!'
+                            type='password'
+                            validators={[]}
+                            password={inputState.inputs.password.value}
+                        />
+                        <Button
+                            disabled={isFormValid}
+                            type='submit'
+                        >Submit</Button>
+
+
+                    </div>
                 </div>
-            </div>
+            </form>
         </React.Fragment>
     )
 

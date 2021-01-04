@@ -29,7 +29,7 @@ const UserForms = props => {
 
     const submitHandler = async e => {
         e.preventDefault();
-
+console.log('what>??')
         try {
             setMessage(false)
             setShow(true)
@@ -53,6 +53,7 @@ const UserForms = props => {
                 show={show}
                 message={message}
                 value={props.value.email.value}
+                onSubmit={submitHandler}
             />
             <div
                 className='my__account_flex'

@@ -60,7 +60,7 @@ const Signin = props => {
             <Button
                 disabled={disabled}
                 className='signin-button'
-                onClick={props.signin}>
+                onSubmit={props.signin}>
                 SIGN IN
              </Button>
             <h4>New customer?</h4>

@@ -7,7 +7,7 @@ import './Input.css';
 
 const Input = props => {
 
-    const [isValid, setIsValid] = useState(false);
+    const [isValid, setIsValid] = useState(true);
     const [errorTextShow, setErrorTextShow] = useState(true);
 
     const { validators, onInput } = props
@@ -31,7 +31,6 @@ const Input = props => {
             }
         }
         setIsValid(validator)
-        //  console.log(validator, id, value)
         onInput(id, value, validator);
     }
 
