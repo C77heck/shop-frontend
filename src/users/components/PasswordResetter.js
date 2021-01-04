@@ -35,7 +35,9 @@ const PasswordModal = props => {
             onCancel={props.onClear}
             show={props.show}
             onSubmit={props.onSubmit}
-            footer={props.message ? <Button>
+            footer={props.message ? <Button
+                disabled={!props.disabled ? true : false}
+            >
                 Send link
              </Button> : null}
         >
@@ -55,7 +57,6 @@ const PasswordModal = props => {
 }
 
 const PasswordResetter = props => {
-
     return (
         <PasswordModal
             onClear={props.onClear}
@@ -64,6 +65,7 @@ const PasswordResetter = props => {
             onInput={props.onInput}
             value={props.value}
             message={props.message}
+            disabled={props.disabled}
         />
     )
 

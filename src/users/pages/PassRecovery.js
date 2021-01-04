@@ -14,6 +14,9 @@ import Button from '../../shared/UIElements/Button';
 import Modal from '../../shared/UIElements/Modal';
 import { useParams } from 'react-router-dom';
 import { encrypt } from '../../shared/utility/encrypt';
+import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
+import ErrorModal from '../../shared/UIElements/ErrorModal';
+
 
 import './PassRecovery.css';
 
@@ -33,7 +36,7 @@ const PassRecovery = () => {
     const history = useHistory()
 
     const { userId } = useParams()
-    const { sendRequest } = useHttpClient()
+    const { sendRequest, error, clearError, isLoading } = useHttpClient()
     const [inputState, handler] = useInput({
         password: {
             value: '',
@@ -53,6 +56,7 @@ const PassRecovery = () => {
     const [disabled, setDisabled] = useState(true)
     const [hint, setHint] = useState('')
 
+
     useEffect(() => {
         for (let i in inputState.inputs) {
             if (inputState.inputs[i].valid === false) {
@@ -63,14 +67,15 @@ const PassRecovery = () => {
         }
     }, [inputState])
 
+
     useEffect(() => {
         if (hint === '') {
             (async () => {
                 try {
                     const responseData = await sendRequest(
-                        process.env.REACT_APP_USERS + userId
+                        process.env.REACT_APP_RECOVERY_REQUEST + userId
                     )
-                    setHint(responseData.userData.hint)
+                    setHint(responseData.request)
                 } catch (err) {
 
                 }
@@ -78,15 +83,18 @@ const PassRecovery = () => {
         }
 
     }, [hint])
-
+const errorHandler = ()=>{
+    clearError()
+    history.push('/')
+}
     const onClearHandler = () => {
         setShow(false)
         history.push('/')
     }
+
     const onClickHandler = async () => {
         try {
-            setShow(true)
-            await sendRequest(
+            const responseData = await sendRequest(
                 process.env.REACT_APP_UPDATE_PASSWORD + userId,
                 'PATCH',
                 JSON.stringify({
@@ -94,6 +102,8 @@ const PassRecovery = () => {
                     answer: inputState.inputs.answer.value
                 }),
                 { 'Content-Type': 'application/json' })
+            setShow(true)
+
         } catch (err) {
 
         }
@@ -101,6 +111,8 @@ const PassRecovery = () => {
 
     return (
         <React.Fragment>
+            <ErrorModal error={error} onClear={errorHandler} />
+            {isLoading && <LoadingSpinner asOverlay />}
             <PasswordResetModal onClear={onClearHandler} show={show} />
             <div className='password-recovery__outer-cont' >
 

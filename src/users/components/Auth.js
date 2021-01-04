@@ -87,7 +87,7 @@ const Auth = props => {
         }
     }
 
-   
+
 
 
     const forgottenHandler = () => {
@@ -177,6 +177,7 @@ const Auth = props => {
     const passwordLinkHandler = async e => {
         e.preventDefault();
         try {
+            setMessage(false)
             await sendRequest(
                 process.env.REACT_APP_RECOVERY,
                 'POST',
@@ -184,8 +185,8 @@ const Auth = props => {
                     email: inputState.inputs.email.value
                 }),
                 { 'Content-Type': 'application/json' }
-            )
-            setMessage(false)
+            );
+
         } catch (err) {
 
         }
@@ -220,6 +221,7 @@ const Auth = props => {
                 onInput={handler}
                 onSubmit={passwordLinkHandler}
                 message={message}
+                disabled={inputState.inputs.email.valid}
             />
             <Signup
                 header='Registering is quick and easy'

@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useContext } from 'react';
 
 import { useHttpClient } from './http-hook';
 import { usePurchase } from './purchase-hook';
@@ -42,13 +42,18 @@ export const useAuth = () => {
         )
     }, []);
 
-    const signout = useCallback(() => {
+    const signout = useCallback(async () => {
         setToken(null);
         setUserId(null)
         setExpiration(null)
-        localStorage.removeItem('userData')
-        localStorage.removeItem('basketContent')
-
+        try {
+            const userID = JSON.parse(localStorage.getItem('userData')).userId;
+            localStorage.removeItem('userData')
+            localStorage.removeItem('basketContent')
+            await sendRequest(process.env.REACT_APP_SIGNOUT + userID)
+        } catch (err) {
+            console.log(err)
+        }
     }, []);
 
     useEffect(() => {
@@ -62,14 +67,17 @@ export const useAuth = () => {
         }
     }, [signin])
 
+
+
     useEffect(() => {
         if (token && expiration) {
+
             const remainingTime = expiration.getTime() - new Date().getTime();
             timer = setTimeout(signout, remainingTime)
         } else {
             clearTimeout(timer);
         }
-    }, [token, signout, expiration])
+    }, [token, signout, expiration, userId])
 
     return { signin, signout, token, userId }
 }

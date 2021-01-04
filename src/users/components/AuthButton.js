@@ -7,11 +7,10 @@ import { AuthContext } from '../../shared/context/auth-context';
 
 
 const AuthButton = props => {
-
     const history = useHistory();
     const { isLoggedIn, signout } = useContext(AuthContext);
 
-    const signoutHandler = () => {
+    const signoutHandler = async () => {
         const { pathname } = history.location;
         signout()
         if (pathname === '/checkout' || pathname === '/myaccount') {
