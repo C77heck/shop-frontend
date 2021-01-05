@@ -1,59 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import {
     VALIDATOR_REQUIRE,
-    VALIDATOR_MINLENGTH,
     VALIDATOR_EMAIL,
     VALIDATOR_PHONE
 } from '../../shared/utility/validators';
 
-
 import Button from '../../shared/UIElements/Button';
 import Input from '../../shared/form-elements/Input';
-import PasswordResetter from './PasswordResetter';
-import { useHttpClient } from '../../shared/hooks/http-hook';
-import SecQuestions from './SecQuestions';
+import UserPasswordReset from './UserPasswordReset';
+
+
 
 const UserForms = props => {
 
-    const { sendRequest } = useHttpClient();
+    const [show, setShow] = useState(false);
 
-    const [show, setShow] = useState(false)
-    const [message, setMessage] = useState(true)
-
-
-    const onClearHandler = () => {
+    const onClickHandler = () => {
+        setShow(true)
+    }
+    const onCancelHandler = () => {
         setShow(false)
-        setMessage(true)
+
     }
 
-    const submitHandler = async e => {
-        e.preventDefault();
-console.log('what>??')
-        try {
-            setMessage(false)
-            setShow(true)
-            await sendRequest(
-                process.env.REACT_APP_RECOVERY,
-                'POST',
-                JSON.stringify({
-                    email: props.email
-                }),
-                { 'Content-Type': 'application/json' }
-            )
-        } catch (err) {
 
-        }
-    }
 
     return (
         <React.Fragment>
-            <PasswordResetter
-                onClear={onClearHandler}
+            <UserPasswordReset
+                header={'Reset password'}
                 show={show}
-                message={message}
-                value={props.value.email.value}
-                onSubmit={submitHandler}
+                onClear={onCancelHandler}
+                hint={props.hint}
             />
             <div
                 className='my__account_flex'
@@ -105,6 +84,9 @@ console.log('what>??')
                         validators={[VALIDATOR_REQUIRE()]}
                         type='text'
                     />
+                </div>
+                <div className='my__account_right'>
+
 
                     <Input
                         id='street'
@@ -115,9 +97,6 @@ console.log('what>??')
                         validators={[VALIDATOR_REQUIRE()]}
                         type='text'
                     />
-                </div>
-                <div className='my__account_right'>
-
                     <Input
                         id='postCode'
                         label='Post code'
@@ -137,23 +116,11 @@ console.log('what>??')
                         validators={[VALIDATOR_REQUIRE()]}
                         type='text'
                     />
-                    <SecQuestions
-                        onChange={props.onChange}
-                        value={props.hint}
-                    />
-                    <Input
-                        id='answer'
-                        label='Your answer'
-                        onInput={props.onInput}
-                        value={props.value.answer.value}
-                        errorText='Your answer must be at least 4 character'
-                        validators={[VALIDATOR_MINLENGTH(4)]}
-                        type='text'
-                    />
+
                     <Input
                         element='textarea'
                         id='instructions'
-                        label='instructions'
+                        label='Delivery instructions'
                         onInput={props.onInput}
                         value={props.value.instructions.value}
                         validators={[]}
@@ -166,7 +133,7 @@ console.log('what>??')
             <div className='my__account-buttons'>
                 <Button
                     type='button'
-                    onClick={submitHandler}
+                    onClick={onClickHandler}
                     className='change-password__button'
                 >Change password</Button>
                 <Button

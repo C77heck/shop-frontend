@@ -12,6 +12,7 @@ import './PlacedOrders.css'
 import { useHistory } from 'react-router-dom';
 import { PurchaseContext } from '../../shared/context/purchase-context';
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
+import Footer from '../../shared/footer/Footer';
 
 const ViewItems = props => {
 
@@ -106,9 +107,15 @@ const OrderCards = props => {
 }
 
 const PlacedOrders = () => {
-    const auth = useContext(AuthContext)
-    const { sendRequest, isLoading } = useHttpClient()
-    const [orders, setOrders] = useState([])
+
+    const auth = useContext(AuthContext);
+
+    const { sendRequest, isLoading } = useHttpClient();
+
+    const [orders, setOrders] = useState([]);
+    const [sticky, setSticky] = useState('');
+
+
     useEffect(() => {
         (async () => {
             try {
@@ -116,6 +123,9 @@ const PlacedOrders = () => {
                     process.env.REACT_APP_ORDERS + auth.userId
                 )
                 setOrders(responseData.orders)
+                if(responseData.orders.length<1){
+                    setSticky('stick-to_the_bottom');
+                }
             } catch (err) {
 
             }
@@ -138,6 +148,8 @@ const PlacedOrders = () => {
                 }
 
             </div>
+            <Footer className={sticky} />
+
         </React.Fragment>
     )
 }

@@ -76,6 +76,9 @@ const Carousel = props => {
         })()
     }, [sendRequest])
 
+
+
+
     const arrowLeftHandler = () => {
         if (activeSlide !== 0) {
             setCarousel({

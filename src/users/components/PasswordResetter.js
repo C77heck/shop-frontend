@@ -17,7 +17,7 @@ const PasswordModal = props => {
     const [display, setDisplay] = useState('unset')
 
     useEffect(() => {
-        if (props.message) {
+        if (props.message === '') {
             setDisplay('unset')
         } else {
             setDisplay('none')
@@ -26,10 +26,6 @@ const PasswordModal = props => {
 
     const style = {
         display: display
-    }
-    const submit = e => {
-        e.preventDefault()
-        console.log('okay...')
     }
 
     return (
@@ -40,7 +36,7 @@ const PasswordModal = props => {
             show={props.show}
             onSubmit={props.onSubmit}
         >
-            <p>{props.message ? baseMessage : sentMessage}</p>
+            <p>{props.message === '' ? baseMessage : props.message}</p>
             <Input
                 id='email'
                 label='Your Email'

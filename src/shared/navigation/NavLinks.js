@@ -40,27 +40,27 @@ const NavLinks = () => {
             </MapModal>
 
             <ul className="nav-links">
-                    <li>
-                        <NavLink to='/' exact>HOME</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/shopping' exact>GROCERIES</NavLink>
-                    </li>
-                    <li>
-                        <a href='/' onClick={openMapHandler}>STORE FINDER</a>
-                    </li>
-                    <li>
-                        <NavLink to='/contact' exact>CONTACT US</NavLink>
-                    </li>
-                    <li >
-                        {isLoggedIn ?
-                            <DropDown name='My account' />
-                            :
-                            <Auth register={true} >
-                                <NavLink to='/' exact>Register</NavLink>
-                            </Auth>
-                        }
-                    </li>
+                <li>
+                    <NavLink to='/' exact>HOME</NavLink>
+                </li>
+                <li>
+                    <NavLink to='/shopping' exact>GROCERIES</NavLink>
+                </li>
+                <li>
+                    <a href='/' onClick={openMapHandler}>STORE FINDER</a>
+                </li>
+                <li>
+                    <NavLink to='/contact' exact>CONTACT US</NavLink>
+                </li>
+                <li >
+                    {isLoggedIn ?
+                        <DropDown name='My account' />
+                        :
+                        <Auth register={true} >
+                            <NavLink to='/' exact>Register</NavLink>
+                        </Auth>
+                    }
+                </li>
                 <AuthButton
                     className='auth-button_desktop'
                 />

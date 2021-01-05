@@ -12,7 +12,7 @@ const Footer = props => {
     return (
         <React.Fragment>
             <BackToTop show={props.show} />
-            <div style={props.styles} id='footer'>
+            <div style={props.styles} className={`footer ${props.className}`}>
                 {/*                 <div className="icon-cont container-fluid">
                     <a className="footericons" target="_blank" href="https://www.facebook.com/">
                         <i className="social-icon fab fa-facebook-f"></i></a>

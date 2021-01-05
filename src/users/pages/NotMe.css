@@ -1,0 +1,19 @@
+
+
+.not-me__container{
+    text-align: center;
+    width: 60%;
+    margin: auto;
+}
+
+.not-me__container h1{
+font-size: 2.8rem;
+color: rgb(107, 104, 104);
+}
+
+.not-me__container p{
+    font-size: 1.8rem;
+    margin: 4rem;
+    color: rgb(65, 62, 62);
+
+}

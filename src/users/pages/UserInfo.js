@@ -15,7 +15,7 @@ import './UserInfo.css'
 
 const UserInfo = () => {
 
-    const auth = useContext(AuthContext)
+    const { userId, token } = useContext(AuthContext)
 
     const { sendRequest, isLoading, error, clearError } = useHttpClient();
 
@@ -58,27 +58,19 @@ const UserInfo = () => {
             valid: false
 
         },
-        answer: {
-            value: '',
-            valid: false
-        },
         instructions: {
             value: '',
-            valid: false
+            valid: true
 
         }
     })
     const [email, setEmail] = useState() // email for the password recovery request
-    const [hint, setHint] = useState()
     const [show, setShow] = useState(false)
+    const [hint, setHint] = useState('')
 
 
 
 
-
-    const onChangeHandler = e => {
-        setHint(e.target.value)
-    }
 
     const onClearHandler = () => {
         setShow(false)
@@ -88,7 +80,7 @@ const UserInfo = () => {
         (async () => {
             try {
                 const responseData = await sendRequest(
-                    process.env.REACT_APP_USERS + auth.userId
+                    process.env.REACT_APP_USERS + userId
                 )
                 setFormData({
                     firstName: {
@@ -127,23 +119,33 @@ const UserInfo = () => {
                         value: responseData.userData.instructions,
                         valid: true
                     },
-                    answer: {
-                        value: responseData.userData.answer,
-                        valid: true
-                    }
+
                 })
                 setEmail(responseData.userData.email)
-                setHint(responseData.userData.hint)
             } catch (err) {
 
             }
         })()
     }, [])
+
+    useEffect(() => {
+        (async () => {
+            try {
+
+                const responseData = await sendRequest(
+                    process.env.REACT_APP_USER_HINT + userId
+                )
+                setHint(responseData.hint)
+            } catch (err) {
+            }
+        })()
+    }, [])
+
     const submitHandler = async e => {
         e.preventDefault();
         try {
             const responseData = await sendRequest(
-                process.env.REACT_APP_UPDATE + auth.userId,
+                process.env.REACT_APP_UPDATE + userId,
                 'PATCH',
                 JSON.stringify({
                     fullName: {
@@ -158,12 +160,10 @@ const UserInfo = () => {
                         postCode: inputState.inputs.postCode.value,
                         houseNumber: inputState.inputs.houseNumber.value
                     },
-                    instructions: inputState.inputs.instructions.value,
-                    hint: hint,
-                    answer: inputState.inputs.answer.value
+                    instructions: inputState.inputs.instructions.value
                 }),
                 {
-                    Authorization: 'Bearer ' + auth.token,
+                    Authorization: 'Bearer ' + token,
                     'Content-Type': 'application/json'
                 }
             )
@@ -189,10 +189,9 @@ const UserInfo = () => {
                     onInput={handler}
                     value={inputState.inputs}
                     email={email}
-                    hint={hint}
                     onClick={submitHandler}
-                    onChange={onChangeHandler}
                     disabled={isFormValid}
+                    hint={hint}
                 />
             </div>
 

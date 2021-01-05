@@ -1,4 +1,4 @@
-#footer {
+.footer {
     height: 330px;
     text-align: center;
     background-color: #2d8f43;
@@ -6,8 +6,13 @@
     position: relative;
     bottom: 0;
     width: 100%;
-}
 
+}
+.stick-to_the_bottom{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
 .grids {
     margin: 0 auto 10px;
 }

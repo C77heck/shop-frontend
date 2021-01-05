@@ -1,4 +1,6 @@
-import { useEffect, useState, useCallback, useContext } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+
+import { useHistory } from 'react-router-dom';
 
 import { useHttpClient } from './http-hook';
 import { usePurchase } from './purchase-hook';
@@ -6,6 +8,8 @@ import { usePurchase } from './purchase-hook';
 let timer;
 
 export const useAuth = () => {
+
+
     const { saveToLocalStorage } = usePurchase();
     const { sendRequest } = useHttpClient();
     const [token, setToken] = useState(false);
@@ -47,6 +51,7 @@ export const useAuth = () => {
         setUserId(null)
         setExpiration(null)
         try {
+
             const userID = JSON.parse(localStorage.getItem('userData')).userId;
             localStorage.removeItem('userData')
             localStorage.removeItem('basketContent')
@@ -54,6 +59,7 @@ export const useAuth = () => {
         } catch (err) {
             console.log(err)
         }
+        return true;
     }, []);
 
     useEffect(() => {
@@ -66,7 +72,6 @@ export const useAuth = () => {
             signin(storedData.userId, storedData.token, new Date(storedData.expiration))
         }
     }, [signin])
-
 
 
     useEffect(() => {

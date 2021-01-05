@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import Backdrop from '../../shared/UIElements/Backdrop';
+import { AuthContext } from '../context/auth-context';
 
 
 
@@ -9,6 +10,9 @@ import './DropDown.css';
 
 
 const DropDown = props => {
+
+    const { userId } = useContext(AuthContext)
+
     const [display, setDisplay] = useState('none')
     const [show, setShow] = useState(false)
 
@@ -44,8 +48,8 @@ const DropDown = props => {
                     style={{ display: `${display}` }}
                     className="dropdown-content"
                 >
-                    <Link to='/userdata' >Update details</Link>
-                    <Link to='/orderhistory' >order history</Link>
+                    <Link to={`/userdata/${userId}`} >Update details</Link>
+                    <Link to={`/orderhistory/${userId}`} >order history</Link>
                 </div>
             </div>
         </React.Fragment>

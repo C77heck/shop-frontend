@@ -25,6 +25,8 @@ import ThankYou from './products/pages/ThankYou'
 import UserInfo from './users/pages/UserInfo';
 import PassRecovery from './users/pages/PassRecovery';
 import ViewOrders from './users/pages/ViewOrders';
+import NotMe from './users/pages/NotMe';
+
 
 import './App.css';
 
@@ -147,7 +149,7 @@ function App() {
             <Footer />
           </div>
         </Route>
-        <Route path='/userdata' exact>
+        <Route path='/userdata/:userId' exact>
           <div>
             <NavigationBar />
           </div>
@@ -167,20 +169,22 @@ function App() {
             <Footer />
           </div>
         </Route>
-        <Route path='/orderhistory' exact>
+        <Route path='/orderhistory/:userId' exact>
           <div>
             <NavigationBar />
           </div>
           <div>
             <ViewOrders />
           </div>
-          <div>
-            <Footer />
-          </div>
         </Route>
-        <Route path='/passwordrecovery/:userId' exact>
+        <Route path='/passwordrecovery/:requestId' exact>
           <div>
             <PassRecovery />
+          </div>
+        </Route>
+        <Route path='/notme/:requestId' exact>
+          <div>
+            <NotMe />
           </div>
         </Route>
         <Redirect to='/' />

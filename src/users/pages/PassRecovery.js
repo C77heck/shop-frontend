@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 import {
     VALIDATOR_REQUIRE,
@@ -12,7 +12,6 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 import { useInput } from '../../shared/hooks/form-hook';
 import Button from '../../shared/UIElements/Button';
 import Modal from '../../shared/UIElements/Modal';
-import { useParams } from 'react-router-dom';
 import { encrypt } from '../../shared/utility/encrypt';
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
@@ -34,7 +33,7 @@ const PassRecovery = () => {
 
     const history = useHistory()
 
-    const { userId } = useParams()
+    const { requestId } = useParams()
     const { sendRequest, error, clearError, isLoading } = useHttpClient()
     const [inputState, handler, isFormValid] = useInput({
         password: {
@@ -53,7 +52,6 @@ const PassRecovery = () => {
 
     const [show, setShow] = useState(false)
     const [hint, setHint] = useState('')
-    const [expiration, setExpiration] = useState()
 
 
     useEffect(() => {
@@ -61,7 +59,7 @@ const PassRecovery = () => {
             (async () => {
                 try {
                     const responseData = await sendRequest(
-                        process.env.REACT_APP_RECOVERY_REQUEST + userId
+                        process.env.REACT_APP_RECOVERY_REQUEST + requestId
                     )
                     setHint(responseData.request)
                 } catch (err) {
@@ -74,18 +72,17 @@ const PassRecovery = () => {
 
     const errorHandler = () => {
         clearError()
-    //    history.push('/')
     }
     const onClearHandler = () => {
         setShow(false)
-   //     history.push('/')
+        history.push('/')
     }
 
     const onSubmitHandler = async e => {
         e.preventDefault();
         try {
             const responseData = await sendRequest(
-                process.env.REACT_APP_UPDATE_PASSWORD + userId,
+                process.env.REACT_APP_UPDATE_PASSWORD + requestId,
                 'PATCH',
                 JSON.stringify({
                     password: encrypt(inputState.inputs.password.value),
@@ -121,7 +118,7 @@ const PassRecovery = () => {
                             onInput={handler} />
                         <Input
                             id='password'
-                            label='Password'
+                            label='New password'
                             value={inputState.inputs.password.value}
                             errorText='Your password must be at least 6 character long'
                             validators={[VALIDATOR_MINLENGTH(6)]}

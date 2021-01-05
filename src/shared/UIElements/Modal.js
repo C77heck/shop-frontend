@@ -8,7 +8,13 @@ import './Modal.css'
 
 const ModalOverlay = props => {
     const content = (
-        <CSSTransition in={props.show} mountOnEnter unmountOnExit timeout={300} classNames='modal' >
+        <CSSTransition
+            in={props.show}
+            mountOnEnter
+            unmountOnExit
+            timeout={300}
+            classNames='modal'
+        >
 
             <div className={`modals ${props.className}`} >
 

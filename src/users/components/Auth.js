@@ -26,7 +26,7 @@ const Auth = props => {
     const [registering, setRegistering] = useState(false);
     const [clickedSignIn, setClickedSignIn] = useState(false);
     const [forgottenPass, setForgottenPass] = useState(false)
-    const [message, setMessage] = useState(true)
+    const [message, setMessage] = useState('')
     const [signedup, setSignedup] = useState(false);
     const [coordinates, setCoordinates] = useState();
 
@@ -95,7 +95,7 @@ const Auth = props => {
 
     const forgottenClose = () => {
         setForgottenPass(false)
-        setMessage(true)
+        setMessage('')
     }
 
     const signinModalHandler = () => {
@@ -175,8 +175,7 @@ const Auth = props => {
     const passwordLinkHandler = async e => {
         e.preventDefault();
         try {
-            setMessage(false)
-            await sendRequest(
+            const responseData = await sendRequest(
                 process.env.REACT_APP_RECOVERY,
                 'POST',
                 JSON.stringify({
@@ -184,10 +183,11 @@ const Auth = props => {
                 }),
                 { 'Content-Type': 'application/json' }
             );
-
+            setMessage(responseData.message)
         } catch (err) {
-
+            setForgottenPass(false)
         }
+
     }
 
     return (

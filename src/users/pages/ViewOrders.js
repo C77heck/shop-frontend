@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PlacedOrders from '../components/PlacedOrders';
 
 
 const ViewOrders = () => {
+
+
+
+
+
     return (
-        <PlacedOrders />
+
+        <React.Fragment>
+            <PlacedOrders />
+        </React.Fragment>
     )
 }
 
