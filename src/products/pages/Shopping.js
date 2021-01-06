@@ -6,11 +6,15 @@ import ErrorModal from '../../shared/UIElements/ErrorModal'
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner'
 import TopSection from '../components/TopSection'
 
-import './Shopping.css'
 import { AuthContext } from '../../shared/context/auth-context';
 import { PurchaseContext } from '../../shared/context/purchase-context';
 
 import { usePurchase } from '../../shared/hooks/purchase-hook';
+
+import './Shopping.css'
+
+
+
 
 const Shopping = () => {
 

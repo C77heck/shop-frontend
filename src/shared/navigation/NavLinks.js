@@ -54,10 +54,10 @@ const NavLinks = () => {
                 </li>
                 <li >
                     {isLoggedIn ?
-                        <DropDown name='My account' />
+                        <DropDown name='MY ACCOUNT' />
                         :
                         <Auth register={true} >
-                            <NavLink to='/' exact>Register</NavLink>
+                            <NavLink to='/' exact>REGISTER</NavLink>
                         </Auth>
                     }
                 </li>

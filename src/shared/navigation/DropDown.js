@@ -48,8 +48,8 @@ const DropDown = props => {
                     style={{ display: `${display}` }}
                     className="dropdown-content"
                 >
-                    <Link to={`/userdata/${userId}`} >Update details</Link>
-                    <Link to={`/orderhistory/${userId}`} >order history</Link>
+                    <Link to={`/userdata/${userId}`} >UPDATE DETAILS</Link>
+                    <Link to={`/orderhistory/${userId}`} >ORDER HISTORY</Link>
                 </div>
             </div>
         </React.Fragment>

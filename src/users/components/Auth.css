@@ -5,37 +5,38 @@
 }
 
 .auth-container button {
-    background-color: rgb(214, 161, 14);
+    background-color:rgb(191, 202, 32);
     position: relative;
     bottom: 8px;
+    left: 20px;
+    padding: 0;
     border: none;
-    width: 110px;
+    width: 126px;
     height: 45px;
-    font-size: 1.3rem;
+    font-size:1rem;
+    font-weight: 550;
     color: #faf6f6;
     border-radius: 4%;
     transition: all 0.3s;
 }
-.auth-container button span{
-    letter-spacing: 0;
-}
+
+
 .auth-container button:hover {
-    background-color: rgb(208, 211, 17);
+    background-color: rgb(211, 224, 18);
     color: rgb(255, 255, 255);
-    letter-spacing: none;
+    border: white solid 1px;
 }
 
 .auth-container img {
     height: 26px;
     position: relative;
     top: 2px;
-    padding-right: 10px;
+    padding-right: 5px;
 }
 
 .auth-container span {
     position: relative;
-    bottom: 3px;
-    font-family: 'Bebas Neue', cursive;
+    bottom: 5px;
 }
 
 @media (min-width: 900px) {

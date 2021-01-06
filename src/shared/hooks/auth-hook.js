@@ -50,8 +50,8 @@ export const useAuth = () => {
         setToken(null);
         setUserId(null)
         setExpiration(null)
-        try {
 
+        try {
             const userID = JSON.parse(localStorage.getItem('userData')).userId;
             localStorage.removeItem('userData')
             localStorage.removeItem('basketContent')

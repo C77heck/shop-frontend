@@ -24,7 +24,7 @@ main {
 
 @media (max-width: 1000px) {
   .main-header {
-    padding: 0 0.2rem 0 0.2rem;
+    padding: 0 1vw 0 1vw;
 
   }
 }

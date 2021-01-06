@@ -19,15 +19,11 @@ const CheckoutButton = () => {
     }
 
     return (
-        <div>
-
             <Auth>
                 <button className='checkout' onClick={checkoutHandler}>
                     Checkout
                     </button>
-
             </Auth>
-        </div>
     )
 }
 

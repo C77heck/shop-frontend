@@ -1,9 +1,7 @@
 .pay-button {
     width: 170px;
     height: 45px;
-    font-family: inherit;
     font-size: 1.3rem;
-    letter-spacing: 2px;
     background-color: rgb(12, 211, 62);
     color: rgb(250, 250, 250);
     border-radius: 2%;

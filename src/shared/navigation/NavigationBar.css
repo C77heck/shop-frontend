@@ -20,7 +20,7 @@
 .main-navigation__title {
   color: white;
   position: relative;
-  top: 3px;
+  top: -3px;
 }
 
 .main-navigation__title a {
@@ -36,6 +36,13 @@
   height: 100%;
 }
 
+
+/* @media screen and (max-width: 1180px) {
+  .main-navigation__title {
+    margin-left: 3vw;
+  }
+} */
+
 @media (min-width: 901px) {
   .main-navigation__menu-btn {
     display: none;
@@ -45,9 +52,9 @@
   }
 }
 
-@media screen and (max-width: 1040px) {
+/* @media screen and (max-width: 1040px) {
   .main-navigation__title {
-    margin-left: 3vw;
+    margin-left: 1.8vw;
   }
-}
+} */
 

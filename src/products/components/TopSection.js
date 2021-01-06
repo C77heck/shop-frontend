@@ -10,18 +10,23 @@ const TopSection = props => {
 
     return (
         <React.Fragment>
-
-            <img className='brand-logo' src='/images/brand-logo/furuma.jpg' alt='brand logo' />
             <div className='top-section__div'>
-
-                <div className='buying-upper_strip'>
-                    <CheckoutButton  />
+                <div  className='top-section__logo'>
+                    <img className='brand-logo' src='/images/brand-logo/furuma.jpg' alt='brand logo' />
                 </div>
-                <div className='buying-mid_strip'>
+
+
+                <div className='top-section__search-bar'>
                     <Search className='desktop-view' search={props.search} />
                 </div>
-                <div className='buying-lower_strip'>
-                    <Basket items={props.items} />
+                <div  className='top-section__buttons'>
+                    <div>
+                        <Basket items={props.items} />
+                    </div>
+                    <div>
+                        <CheckoutButton />
+                    </div>
+
                 </div>
             </div>
             <div className='top-section__hr'></div>
@@ -37,3 +42,20 @@ const TopSection = props => {
 export default TopSection;
 
 
+{/* <React.Fragment>
+
+<img className='brand-logo' src='/images/brand-logo/furuma.jpg' alt='brand logo' />
+<div className='top-section__div'>
+
+    <div className='buying-upper_strip'>
+        <CheckoutButton  />
+    </div>
+    <div className='buying-mid_strip'>
+        <Search className='desktop-view' search={props.search} />
+    </div>
+    <div className='buying-lower_strip'>
+        <Basket items={props.items} />
+    </div>
+</div>
+<div className='top-section__hr'></div>
+</React.Fragment> */}

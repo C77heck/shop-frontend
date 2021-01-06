@@ -89,9 +89,6 @@ const Basket = props => {
             <BasketModal show={showModal} onClear={closeModal} >
                 <CheckoutList items={props.items} />
             </BasketModal>
-
-
-            <div>
                 <Auth>
                     <button className="basketButton" name="checkout" type="button" onClick={basketHandler}>
                         <img className="basket-icon" src="/images/icons/basket.png" alt="basket" />
@@ -106,7 +103,6 @@ const Basket = props => {
                         </span>
                     </button>
                 </Auth>
-            </div>
         </React.Fragment>
     )
 

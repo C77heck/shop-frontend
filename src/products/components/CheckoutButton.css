@@ -4,16 +4,10 @@
     border-radius: 5%;
     color: rgb(0, 151, 13);
     font-weight: 500;
-    margin: 10px;
     font-size: 1.3rem;
-    border-color: rgb(63, 189, 74);
-    border-style: solid;
-    border-width: 4px;
-    margin-right: 40px;
+    border:  rgb(63, 189, 74) solid 4px;
     width: 135px;
     height: 47px;
-    position: relative;
-    right: 5px;
 }
 
 .checkout:hover {

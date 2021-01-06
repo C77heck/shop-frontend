@@ -1,12 +1,76 @@
 .border-container {
     border: rgb(107, 109, 106) solid 1px;
+    height: 35px;
+    width: 80%;
+    margin: auto;
 }
+
+.search_grid-container {
+    display: flex;
+    position: relative;
+}
+
+.search-bar {
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    top: 6px;
+    width: 45vh;
+    border-style: hidden;
+}
+
+.search-bar:focus {
+    outline: none;
+}
+
+.hidden-bar {
+    /* ? */
+    display: none;
+}
+
+.search-icon {
+    position: relative;
+    top: 3px;
+    height: 27px;
+    margin: 0 5px;
+}
+
+.search-button {
+    color: white;
+    background: #22a03e;
+    border: none;
+    width: 10vh;
+    height: 34px;
+    position: absolute;
+    right: -1px;
+}
+
+.search-button:hover {
+    background-color: rgb(18, 175, 18);
+}
+
+@media only screen and (max-width: 1150px) {
+    .search-bar {
+        width: 30vh;
+    }
+    .search-button {
+        width: 9vh
+    }
+}
+
+
+
+
+/* @media only screen and (max-width: 840px) {
+    .desktop-view .item1, .desktop-view .item2, .desktop-view .item3 {
+        display: none;
+    }
+} 
+
 
 .search_grid-container {
     display: grid;
     grid-template-columns: auto auto auto;
 }
-
 .search-bar {
     font-family: 'Poppins', sans-serif;
     position: relative;
@@ -50,21 +114,4 @@
     .search-button {
         width: 9vh
     }
-}
-
-/* @media only screen and (max-width: 840px) {
-    .desktop-view .item1, .desktop-view .item2, .desktop-view .item3 {
-        display: none;
-    }
 } */
-
-@media only screen and (max-width: 840px) {
-    .search-bar {
-        width: 15vh;
-    }
-    .search-button {
-        width: 5vh
-    }
-  
-}
-
