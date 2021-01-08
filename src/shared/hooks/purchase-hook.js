@@ -9,25 +9,39 @@ export const usePurchase = () => {
         amount: ''
     })
     const [basketContent, setBasketContent] = useState()
-    const saveToLocalStorage = (array) => {
+
+    const saveToLocalStorage = (products) => {
         localStorage.setItem(
             'basketContent',
             JSON.stringify({
-                products: array
+                products: products
             })
         );
     }
 
 
+    const favouriteHandler = (products, code, isFavourite) => {
+        saveToLocalStorage(products.map(i => {
+            if (i.id === code) {
+                console.log('we hit if')
+                i.isFavourite = isFavourite;
+            }
+            console.log('we did not hit if')
 
+            return i;
+        })
+        )
+        //updateBasket(products)
 
-    const updateBasket = (items) => {
-        saveToLocalStorage(items)
+    }
+
+    const updateBasket = (products) => {
+        saveToLocalStorage(products)
         setBasket({
-            price: items.reduce((a, i) => {
+            price: products.reduce((a, i) => {
                 return a + i.price * i.number
             }, 0),
-            amount: items.reduce((a, i) => {
+            amount: products.reduce((a, i) => {
                 return a + i.number
             }, 0)
         })
@@ -37,48 +51,48 @@ export const usePurchase = () => {
 
 
     const add = useCallback(
-        (items, code) => {
+        (products, code) => {
             setCode(code);
-            items.map(i => {
+            products.map(i => {
                 if (i.code === code) {
                     i.number += 1
                 }
             })
-            updateBasket(items)
+            updateBasket(products)
         },
         [],
     )
 
     const deleteItem = useCallback(
-        (items, code) => {
+        (products, code) => {
             setCode(code)
-            items.map(i => {
+            products.map(i => {
                 if (i.code === code) {
                     i.number -= i.number;
                 }
             })
-            updateBasket(items)
+            updateBasket(products)
             getProducts()
         }, [])
 
 
     const subtract = useCallback(
-        (items, code) => {
+        (products, code) => {
             setCode(code);
-            items.map(i => {
+            products.map(i => {
                 if (i.code === code) {
                     i.number -= 1
                 }
             })
-            updateBasket(items)
+            updateBasket(products)
         }, [])
 
     const clearBasket = useCallback(
-        (items) => {
-            items.map(i => {
+        (products) => {
+            products.map(i => {
                 i.number = 0;
             })
-            updateBasket(items)
+            updateBasket(products)
         }, [])
 
     const getProducts = () => {
@@ -99,7 +113,8 @@ export const usePurchase = () => {
         clearBasket,
         deleteItem,
         getProducts,
-        basketContent
+        basketContent,
+        favouriteHandler
     }
 }
 

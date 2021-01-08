@@ -1,6 +1,7 @@
 import React from 'react';
 
 import BuyButton from './BuyButton'
+import FavouriteIcon from './FavouriteIcon';
 
 
 import './Products.css'
@@ -13,6 +14,7 @@ const ProductCard = props => {
 
         <div className='grid-item'>
             <div className='inner-product-container'>
+                <FavouriteIcon id={props.id} favourite={props.favourite} products={props.products} />
                 <div className="image-container__products">
                     <img
                         className='product-image'
@@ -30,8 +32,9 @@ const ProductCard = props => {
                     <p className="unit">{props.unit}</p>
                     <p >£{props.price}</p>
                     <BuyButton
+                        className='product-list__buy-button'
                         id={props.id}
-                        items={props.items}
+                        items={props.products}
                         code={props.code}
                         price={props.price}
                         number={props.number}
@@ -58,12 +61,13 @@ const ProductList = props => {
                     <ProductCard
                         key={product.id}
                         id={product.id}
+                        favourite={product.isFavourite}
                         name={product.name}
                         unit={product.unit}
                         price={product.price}
                         image={product.image}
                         code={product.code}
-                        items={props.items}
+                        products={props.items}
                         number={product.number}
 
                     />

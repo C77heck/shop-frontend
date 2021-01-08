@@ -131,7 +131,8 @@ const Auth = props => {
                 }),
                 { 'Content-Type': 'application/json' }
             )
-            signin(responseData.userId, responseData.token)
+            signin(responseData.userId, responseData.token, responseData.favourites)
+            console.log(responseData.favourites)
             signInClose();
         } catch (err) {
 
@@ -239,10 +240,15 @@ const Auth = props => {
                 onClear={signedupSuccessToClose}
                 marker={coordinates}
             />
-
-            {props.register ? <div onClick={!isLoggedIn ? register : undefined} >
+            {props.register ? <div
+                className={props.className}
+                onClick={!isLoggedIn ? register : undefined}
+            >
                 {props.children}
-            </div> : <div onClick={!isLoggedIn ? signinModalHandler : undefined} >
+            </div> : <div
+                className={props.className}
+                onClick={!isLoggedIn ? signinModalHandler : undefined}
+            >
                     {props.children}
                 </div>}
         </React.Fragment>

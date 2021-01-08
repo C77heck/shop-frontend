@@ -2,7 +2,6 @@ import React from 'react';
 
 import { useHistory } from 'react-router-dom'
 
-import FormComponent from '../../shared/UIElements/FormComponent'
 import { useHttpClient } from '../../shared/hooks/http-hook'
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner'
 import ErrorModal from '../../shared/UIElements/ErrorModal'
@@ -12,6 +11,7 @@ import { useInput } from '../../shared/hooks/form-hook';
 import { VALIDATOR_REQUIRE } from '../../shared/utility/validators';
 
 import './Admin.css'
+import Button from '../../shared/UIElements/Button';
 
 
 const DeleteProduct = () => {
@@ -50,7 +50,7 @@ const DeleteProduct = () => {
             <div className='form-element_outer'>
                 <div className='form-element'>
                     <h2>delete product</h2>
-                    <FormComponent onSubmit={deleteProductHandler} buttonText='DELETE' >
+                    <form onSubmit={deleteProductHandler} >
                         <Input
                             id='code'
                             label='Product code'
@@ -60,7 +60,8 @@ const DeleteProduct = () => {
                             onInput={handler}
                             value={inputState.inputs.code.value}
                         />
-                    </FormComponent>
+                        <Button>DELETE</Button>
+                    </form>
                 </div>
             </div>
         </React.Fragment>

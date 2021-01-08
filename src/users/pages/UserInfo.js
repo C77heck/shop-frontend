@@ -80,7 +80,13 @@ const UserInfo = () => {
         (async () => {
             try {
                 const responseData = await sendRequest(
-                    process.env.REACT_APP_USERS + userId
+                    process.env.REACT_APP_USERS + userId,
+                    'GET',
+                    null,
+                    {
+                        Authorization: 'Bearer ' + token,
+                        'Content-Type': 'application/json'
+                    }
                 )
                 setFormData({
                     firstName: {

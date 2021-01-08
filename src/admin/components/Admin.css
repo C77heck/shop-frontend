@@ -1,33 +1,148 @@
+.admin-flex__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10vh auto 10vh;
+    text-align: center;
+}
+
+.admin-flex__container h2 {
+    color: rgb(82, 76, 76);
+    margin-bottom: 4vh;
+}
+
 .form-element_outer {
-    display: inline-block;
-    border: grey 2px solid;
-}
-
-.form-element {
-    padding: 20px;
-    width: auto;
-    margin: 40px 80px;
-}
-
-.form-element h2 {
-    margin-bottom: 20px;
-    font-weight: lighter;
+    background-color: rgb(149, 209, 149);
+    padding: 1vw 2vw;
+    margin: 2vw;
+    border: rgb(165, 145, 145) 1px solid;
+    width: 22vw;
+    min-width: 19rem;
+    max-width: 22rem;
 }
 
 .form-element label {
-    display: block;
-    font-weight: lighter;
     font-size: 1.2rem;
+    color: rgb(102, 99, 99);
 }
 
 .form-element button {
-    color: white;
-    background-color: rgb(14, 57, 198);
-    padding: 5px;
-    border-radius: 15%;
-    margin-top: 15px;
+    outline: none;
+    transition: all 310ms ease;
+    border: none;
+    margin: 15px auto;
 }
 
 .form-element button:hover {
-    background-color: tomato;
+    background-color: rgba(233, 107, 4, 0.562);
+    border: white 1px solid;
+}
+
+.admin-icon {
+    color: rgb(250, 250, 250);
+    width: 28px;
+    position: relative;
+    top: 1.5px;
+    right: 3px;
+    transition: all 300ms ease-out;
+}
+
+.admin-sigin__button {
+    width: 120px;
+    height: 45px;
+    padding: 0;
+    background-color: rgb(214, 146, 18);
+    border: none;
+    transition: all 300ms ease-in;
+}
+
+.admin-sigin__button:hover {
+    background-color: rgb(231, 105, 21);
+    border: white 1px solid;
+}
+
+.admin-sigin__button span {
+    font-size: 1.2rem;
+    position: relative;
+    bottom: 4px;
+}
+
+@media screen and (max-width: 1029px) {
+    .admin-flex__container {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .form-element_outer {
+        min-width: 86vw;
+    }
+}
+
+/* mobile admin login button */
+
+.admin-signin__mobile {
+    width: 120px;
+    height: 45px;
+    padding: 0;
+    background-color: rgb(214, 146, 18);
+    border: none;
+    transition: all 300ms ease-in;
+    position: absolute;
+    right: 3%;
+}
+
+.admin-signin__mobile:hover {
+    background-color: rgb(231, 105, 21);
+    border: white 1px solid;
+}
+
+.admin-signin__mobile span {
+    font-size: 1.2rem;
+    position: relative;
+    bottom: 4px;
+}
+
+@media screen and (max-width: 400px) {
+    .admin-signin__mobile {
+        width: 45px;
+        border-radius: 50%;
+        right: 3%;
+    }
+    .admin-signin__mobile span {
+        display: none;
+    }
+    .admin-icon {
+        top: -1px;
+        right: -1px;
+    }
+}
+
+/* admin login modal css */
+
+.admin-modal {
+    width: 50vh;
+    left: 37%;
+    top: 24vh;
+}
+
+@media only screen and (max-width: 1300px) {
+    .admin-modal {
+        left: 31%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .admin-modal {
+        width: 35vh;
+        left: 13%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .admin-modal {
+        width: 100%;
+        left: 0;
+    }
 }

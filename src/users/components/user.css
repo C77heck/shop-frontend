@@ -133,7 +133,7 @@
     font-size: 1.2rem;
 }
 
-@media only screen and (max-width: 1300px) {
+@media screen and (max-width: 1300px) {
     .signin {
         left: 31%;
     }
@@ -143,20 +143,17 @@
     }
 }
 
-@media only screen and (max-width: 900px) {
-    .signin {
-        left: 21%;
-    }
+@media screen and (max-width: 1050px) {
     .signup {
-        width: 58vh;
-        left: 13%;
+        width: 50vh;
+        left: 25%;
+        font-size: 0.7rem !important;
     }
 }
 
-@media only screen and (max-width: 700px) {
+@media screen and (max-width: 700px) {
     .signin {
-        width: 35vh;
-        left: 13%;
+        left: 21%;
     }
     .signup {
         width: 100%;
@@ -165,7 +162,9 @@
     }
 }
 
-@media only screen and (max-width: 500px) {
+
+
+@media screen and (max-width: 500px) {
     .signin {
         width: 100%;
         left: 0;

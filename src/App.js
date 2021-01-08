@@ -28,13 +28,16 @@ import ViewOrders from './users/pages/ViewOrders';
 import NotMe from './users/pages/NotMe';
 
 
+
 import './App.css';
+import FavouriteIcon from './products/components/FavouriteIcon';
 
 
 function App() {
 
   const {
     code,
+    favouriteHandler,
     saveToLocalStorage,
     add,
     subtract,
@@ -46,7 +49,7 @@ function App() {
 
   const { products, productCode, findProducts } = useSearch();
 
-  const { signin, signout, token, userId } = useAuth();
+  const { signin, signout, token, userId, favourites } = useAuth();
 
   let routes;
 
@@ -126,6 +129,7 @@ function App() {
             <NavigationBar />
           </div>
           <div>
+            <FavouriteIcon />
           </div>
         </Route>
         <Route path='/thankyou' exact>
@@ -198,6 +202,7 @@ function App() {
         token: token,
         isLoggedIn: !!token,
         userId: userId,
+        favourites: favourites,
         signin: signin,
         signout: signout
       }}
@@ -212,6 +217,7 @@ function App() {
         <PurchaseContext.Provider
           value={{
             code: code,
+            favouriteHandler: favouriteHandler,
             saveToLocalStorage: saveToLocalStorage,
             add: add,
             subtract: subtract,

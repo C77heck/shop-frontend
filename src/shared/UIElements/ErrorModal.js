@@ -11,7 +11,7 @@ const ErrorModal = props => {
       footer={<Button onClick={props.onClear}>Okay</Button>}
       style={props.style}
     >
-      <p>{props.errorMessage || props.error}</p>
+      <p style={{fontSize: "1.5rem"}}>{props.errorMessage || props.error}</p>
     </Modal>
   );
 };

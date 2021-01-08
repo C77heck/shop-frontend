@@ -5,6 +5,7 @@ import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 import TopSection from '../../products/components/TopSection';
 import ProductList from '../../products/components/ProductList';
 import { useHttpClient } from '../../shared/hooks/http-hook';
+import Footer from '../../shared/footer/Footer';
 
 const SearchResult = () => {
 
@@ -16,6 +17,7 @@ const SearchResult = () => {
             try {
                 const responseData = JSON.parse(localStorage.getItem('searchedItems'))
                 setProducts(responseData.searches)
+
             } catch (err) {
                 console.log(err)
             }

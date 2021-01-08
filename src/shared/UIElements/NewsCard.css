@@ -92,7 +92,7 @@
         position: unset;
     }
     .card-frame {
-        margin: 30px 30px;
+        margin: 10px 0;
         max-width: 100%;
     }
     .NewsCard-container p {

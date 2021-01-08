@@ -9,8 +9,13 @@ import AuthButton from '../../users/components/AuthButton';
 
 
 import './NavigationBar.css'
+import { useHistory } from 'react-router-dom';
+import AdminSignin from '../../admin/components/AdminSignin';
 
 const NavigationBar = () => {
+
+    const history = useHistory()
+    const { location } = history;
 
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
@@ -40,11 +45,13 @@ const NavigationBar = () => {
                 <h1 className="main-navigation__title">
                     <div>Furuma</div>
                 </h1>
-                <AuthButton
-                    className='auth-button_mobile'
-                />
+                {location.pathname === '/admin' ? <AdminSignin className='admin-signin__mobile' />
+                    :
+                    <AuthButton
+                        className='auth-button_mobile'
+                    />}
                 <nav className="main-navigation__header-nav">
-                    <NavLinks />
+                    <NavLinks pathname={location.pathname} />
                 </nav>
 
             </MainHeader>

@@ -124,7 +124,7 @@ const PlacedOrders = () => {
                 )
                 setOrders(responseData.orders)
                 if(responseData.orders.length<1){
-                    setSticky('stick-to_the_bottom');
+                 //   setSticky('stick-to_the_bottom');
                 }
             } catch (err) {
 

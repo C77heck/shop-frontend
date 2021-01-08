@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useHistory } from 'react-router-dom'
 
-import FormComponent from '../../shared/UIElements/FormComponent'
 import { useHttpClient } from '../../shared/hooks/http-hook'
 import ErrorModal from '../../shared/UIElements/ErrorModal'
 import Input from '../../shared/form-elements/Input';
@@ -11,8 +10,11 @@ import { VALIDATOR_REQUIRE } from '../../shared/utility/validators';
 import ImageUpload from '../../shared/form-elements/ImageUpload';
 
 import './Admin.css'
+import Button from '../../shared/UIElements/Button';
 
 const UpdateProduct = () => {
+
+
 
     const history = useHistory();
 
@@ -78,12 +80,12 @@ const UpdateProduct = () => {
             <div className='form-element_outer'>
                 <div className='form-element'>
                     <h2>Update existing product</h2>
-                    <FormComponent onSubmit={updateProductHandler} buttonText='UPDATE' >
+                    <form onSubmit={updateProductHandler} >
                         <Input
                             id='nameUpdate'
                             label='Product name'
                             onInput={handler}
-                            value={inputState.inputs.name.value}
+                            value={inputState.inputs.nameUpdate.value}
                             errorText='Please enter the product name'
                             validators={[VALIDATOR_REQUIRE()]}
                             type='text'
@@ -92,7 +94,7 @@ const UpdateProduct = () => {
                             id='unitUpdate'
                             label='Unit'
                             onInput={handler}
-                            value={inputState.inputs.unit.value}
+                            value={inputState.inputs.unitUpdate.value}
                             errorText='Please enter a value such as litre, kg, pack... etc'
                             validators={[VALIDATOR_REQUIRE()]}
                             type='text'
@@ -101,7 +103,7 @@ const UpdateProduct = () => {
                             id='priceUpdate'
                             label='Product price'
                             onInput={handler}
-                            value={inputState.inputs.price.value}
+                            value={inputState.inputs.priceUpdate.value}
                             errorText="Please enter the product's price"
                             validators={[VALIDATOR_REQUIRE()]}
                             type='text'
@@ -110,7 +112,7 @@ const UpdateProduct = () => {
                             id='codeUpdate'
                             label='Product code'
                             onInput={handler}
-                            value={inputState.inputs.code.value}
+                            value={inputState.inputs.codeUpdate.value}
                             errorText="Please enter a new product code"
                             validators={[VALIDATOR_REQUIRE()]}
                             type='text'
@@ -122,7 +124,8 @@ const UpdateProduct = () => {
                                 errorText='Please provide an image.'
                             />
                         </div>
-                    </FormComponent>
+                        <Button>UPDATE</Button>
+                    </form>
                 </div>
             </div>
 

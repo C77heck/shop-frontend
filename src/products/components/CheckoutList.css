@@ -40,6 +40,7 @@
 }
 
 .checkout-product__image-div {
+    display: flex;
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -52,12 +53,16 @@
     max-height: 95%;
     display: block;
     margin: 5% auto 0;
+    object-fit: contain;
 }
 
 .checkout-product__card p {
-    font-size: 0.8rem;
     padding: 0;
     margin: 5px 0;
+}
+
+.checkout-product__info {
+    font-size: 0.7rem;
 }
 
 .checkout-product__card p:nth-child(2) {
@@ -70,8 +75,9 @@
 
 .checkout-price {
     position: relative;
-    top: 23%;
-    font-size: 1.2rem !important;
+    top: 28%;
+    right: 6%;
+    font-size: 1.1rem;
 }
 
 .invisible {
@@ -97,7 +103,6 @@
 .cancel-item__button:active {
     transform: scale(1.05);
     background: linear-gradient(rgb(218, 153, 12), rgb(226, 230, 42), rgb(218, 153, 12));
-
 }
 
 .cancel-item__button img {

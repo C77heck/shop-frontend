@@ -14,6 +14,7 @@ import CheckoutList from './CheckoutList';
 import { priceDisplay } from '../../shared/utility/priceOutput';
 
 import './Basket.css'
+import BasketIcon from '../../products/components/BasketIcon';
 
 
 export const BasketModal = props => {
@@ -89,20 +90,20 @@ const Basket = props => {
             <BasketModal show={showModal} onClear={closeModal} >
                 <CheckoutList items={props.items} />
             </BasketModal>
-                <Auth>
-                    <button className="basketButton" name="checkout" type="button" onClick={basketHandler}>
-                        <img className="basket-icon" src="/images/icons/basket.png" alt="basket" />
-                        <span style={style.beforeDotStyle} className="cartValue">
-                            {beforeDot.length < 2 ? '0' + beforeDot : beforeDot}
-                        </span>
-                        <span style={style.afterDotStyle} className="cartValue2">
-                            {afterDot.length < 3 ? afterDot + '0' : afterDot}
-                        </span>
-                        <span style={style.amountStyle} className="cartCont">
-                            {display.amount || 0}
-                        </span>
-                    </button>
-                </Auth>
+            <Auth>
+                <button className="basketButton" name="checkout" type="button" onClick={basketHandler}>
+                    <BasketIcon />
+                    <span style={style.beforeDotStyle} className="cartValue">
+                        {beforeDot.length < 2 ? '0' + beforeDot : beforeDot}
+                    </span>
+                    <span style={style.afterDotStyle} className="cartValue2">
+                        {afterDot.length < 3 ? afterDot + '0' : afterDot}
+                    </span>
+                    <span style={style.amountStyle} className="cartCont">
+                        {display.amount || 0}
+                    </span>
+                </button>
+            </Auth>
         </React.Fragment>
     )
 

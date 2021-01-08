@@ -10,8 +10,10 @@ import Auth from '../../users/components/Auth';
 import DropDown from './DropDown';
 
 import './NavLinks.css';
+import AdminSignin from '../../admin/components/AdminSignin';
 
-const NavLinks = () => {
+const NavLinks = props => {
+
 
     const { isLoggedIn } = useContext(AuthContext);
 
@@ -24,7 +26,6 @@ const NavLinks = () => {
     const cancel = () => {
         setClicked(false)
     }
-
     return (
         <React.Fragment>
             <MapModal
@@ -61,9 +62,11 @@ const NavLinks = () => {
                         </Auth>
                     }
                 </li>
-                <AuthButton
-                    className='auth-button_desktop'
-                />
+                {props.pathname === '/admin' ? <AdminSignin className='admin-sigin__button' />
+                    :
+                    <AuthButton
+                        className='auth-button_desktop'
+                    />}
 
             </ul>
         </React.Fragment>

@@ -16,21 +16,29 @@ export const useAuth = () => {
     const [expiration, setExpiration] = useState()
     const [userId, setUserId] = useState(false)
     const [email, setEmail] = useState()
+    const [favourites, setFavourites] = useState([]);
 
-    const signin = useCallback((uid, token, expiration) => {
+    const signin = useCallback((uid, token, favourites, expiration) => {
         (async () => {
             try {
                 const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
                 saveToLocalStorage(responseData.products.map(i => {
+                    let isFavourite = false;
+                    if (favourites.includes(i.id)) {
+                        isFavourite = true;
+                    }
                     return {
                         ...i,
                         number: 0,
-                        totalPrice: 0
+                        totalPrice: 0,
+                        isFavourite: isFavourite
                     }
                 }))
             } catch (err) {
             }
         })()
+
+        setFavourites(favourites)
         setToken(token);
         setUserId(uid);
         setEmail(email)

@@ -7,7 +7,6 @@
     width: 135px;
     height: 44px;
     max-width: 135px;
-
 }
 
 .basketButton:hover {
@@ -21,13 +20,13 @@
     color: white;
 }
 
-.basket-icon {
-    position: relative;
-    max-width: 33px;
-    max-height: 33px;
-    right: 10px;
-    top: 0px;
-}
+ .basket-icon {
+width: 29px;
+color: white;
+position: relative;
+top: 2px;
+right: 5px;
+} 
 
 .cartValue {
     font-size: 1.6rem;
@@ -54,10 +53,10 @@
         height: 39px;
         font-size: 0.7rem;
     }
-    .basket-icon {
+   .basket-icon {
         max-width: 25px;
         max-height: 25px;
-    }
+    } 
     .cartValue {
         font-size: 1.1rem;
     }
@@ -69,6 +68,7 @@
         right: 1px;
     }
 }
+
 @media only screen and (max-width: 500px) {
     .basketButton {
         right: -14px;

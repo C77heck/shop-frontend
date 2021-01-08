@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 import Auth from './Auth';
 import { AuthContext } from '../../shared/context/auth-context';
+import UserIcon from './UserIcon';
 
 
 const AuthButton = props => {
@@ -14,8 +15,8 @@ const AuthButton = props => {
         const { pathname } = history.location;
         const isSignoutDone = signout()
         if (isSignoutDone) {
-            if (pathname === '/checkout' || pathname === '/myaccount' 
-            || pathname === `/userdata/${userId}`|| pathname === `/orderhistory/${userId}`) {
+            if (pathname === '/checkout' || pathname === '/myaccount'
+                || pathname === `/userdata/${userId}` || pathname === `/orderhistory/${userId}`) {
                 history.push('/')
             }
         }
@@ -23,14 +24,13 @@ const AuthButton = props => {
     }
 
     return (
-        <Auth>
+        <Auth className={props.className}>
             <div className='auth-container'>
-
                 <button
-                    className={props.className}
+                className='auth-button'
                     onClick={isLoggedIn ? signoutHandler : undefined}
                 >
-                    <img src="/images/icons/user-other.svg" alt="user icon" />
+                    <UserIcon />
                     <span>{isLoggedIn ? 'SIGN OUT' : 'SIGN IN'}</span>
                 </button>
             </div>

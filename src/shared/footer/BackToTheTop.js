@@ -14,8 +14,10 @@ const BackToTheTop = props => {
             setDisplay(true)
         }
     }
-    
-    window.addEventListener('scroll', displayButton)
+    useEffect(()=>{
+        window.addEventListener('scroll', displayButton)
+
+    },[displayButton])
 
     const clickHandler = () => {
         window.scrollTo(0, 0, "smooth");

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-import FormComponent from '../../shared/UIElements/FormComponent'
 import { useHttpClient } from '../../shared/hooks/http-hook'
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner'
 import ErrorModal from '../../shared/UIElements/ErrorModal'
@@ -11,6 +10,7 @@ import Input from '../../shared/form-elements/Input';
 
 import './Admin.css'
 import { VALIDATOR_REQUIRE } from '../../shared/utility/validators';
+import Button from '../../shared/UIElements/Button';
 
 
 const CreateProduct = () => {
@@ -71,7 +71,7 @@ const CreateProduct = () => {
             <div className='form-element_outer'>
                 <div className='form-element'>
                     <h2>Add new product</h2>
-                    <FormComponent onSubmit={addProductHandler} buttonText='ADD' >
+                    <form onSubmit={addProductHandler}  >
                         <Input
                             id='name'
                             label='Product name'
@@ -106,8 +106,8 @@ const CreateProduct = () => {
                                 errorText='Please provide an image.'
                             />
                         </div>
-
-                    </FormComponent>
+        <Button>ADD</Button>
+                    </form>
                 </div>
             </div>
 

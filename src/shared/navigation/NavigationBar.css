@@ -36,25 +36,19 @@
   height: 100%;
 }
 
+.admin-signin__button {
+  width: 110px;
+  height: 42px;
+  padding: 0;
+  position: absolute;
+  right: 3%;
+}
 
-/* @media screen and (max-width: 1180px) {
-  .main-navigation__title {
-    margin-left: 3vw;
-  }
-} */
-
-@media (min-width: 901px) {
-  .main-navigation__menu-btn {
+@media (min-width: 700px) {
+  .main-navigation__menu-btn, .admin-signin__button {
     display: none;
   }
   .main-navigation__header-nav {
     display: block;
   }
 }
-
-/* @media screen and (max-width: 1040px) {
-  .main-navigation__title {
-    margin-left: 1.8vw;
-  }
-} */
-

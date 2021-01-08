@@ -7,7 +7,7 @@ import DeleteProduct from '../components/DeleteProduct'
 const Admin = () => {
 
     return (
-        <div className='flex'>
+        <div className='admin-flex__container'>
             <CreateProduct />
             <UpdateProduct />
             <DeleteProduct />

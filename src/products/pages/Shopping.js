@@ -35,10 +35,11 @@ const Shopping = () => {
                     setLoadedProducts(responseData.products.map(i => ({
                         ...i,
                         number: 0,
-                        totalPrice: 0
+                        totalPrice: 0,
+                        isFavourite: false
                     })))
                 } else {
-                        setLoadedProducts(getProducts())
+                    setLoadedProducts(getProducts())
                 }
             } catch (err) {
             }

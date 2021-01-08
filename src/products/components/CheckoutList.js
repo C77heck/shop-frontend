@@ -56,7 +56,10 @@ const ProductItem = props => {
                     />
                 </div>
             </div>
-            <div style={{ flexBasis: "40%", margin: "0.2rem", textAlign: "center" }}>
+            <div 
+            className='checkout-product__info'
+            style={{ flexBasis: "40%", margin: "0.2rem", textAlign: "center" }}
+            >
 
                 <p>{props.name}</p>
                 <p>{props.code}</p>
@@ -81,10 +84,10 @@ const ProductItem = props => {
                     <img name='cancel-button' src="/images/icons/cancel.svg" alt="cancel icon" />
                 </button>
                 <p className='checkout-price'>
-                    <span className="cartValue">
+                    <span >
                         £{price.beforeDot.length < 2 ? '0' + price.beforeDot : price.beforeDot}
                     </span>
-                    <span className="cartValue2">
+                    <span>
                         {price.afterDot.length < 3 ? price.afterDot + '0' : price.afterDot}
                     </span>
                 </p>
