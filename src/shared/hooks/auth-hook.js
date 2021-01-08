@@ -13,22 +13,24 @@ export const useAuth = () => {
     const [expiration, setExpiration] = useState()
     const [userId, setUserId] = useState(false)
     const [email, setEmail] = useState()
+    const [favourites, setFavourites] = useState([]);
+    const signin = useCallback((userData, expiration) => {
 
-    const signin = useCallback((uid, token, expiration) => {
 
-
-        setToken(token);
-        setUserId(uid);
-        setEmail(email)
+        setToken(userData.token);
+        setUserId(userData.userId);
+        setEmail(userData.email)
+        setFavourites(userData.favourites)
         const tokenExpiration = expiration || new Date(new Date().getTime() + 1000 * 60 * 60)
         setExpiration(tokenExpiration)
 
 
         localStorage.setItem('userData',
             JSON.stringify({
-                userId: uid,
-                token: token,
-                expiration: tokenExpiration.toISOString()
+                userId: userData.userId,
+                token: userData.token,
+                expiration: tokenExpiration.toISOString(),
+                favourites: userData.favourites
             })
         )
     }, []);
@@ -72,5 +74,5 @@ export const useAuth = () => {
         }
     }, [token, signout, expiration, userId])
 
-    return { signin, signout, token, userId }
+    return { signin, signout, token, userId, favourites }
 }

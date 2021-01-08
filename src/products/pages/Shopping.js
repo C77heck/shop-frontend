@@ -30,20 +30,26 @@ const Shopping = () => {
             /* needs to condition it right so we hold onto the data.
             the key is when we change the localstorage data as we can easily reset it by default otherwise
             we hold onto all the data.. */
-            const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
-            const products = responseData.products.map(i => {
-                let isFavourite = false;
-                /* logic... */
-                return {
-                    ...i,
-                    number: 0,
-                    totalPrice: 0,
-                    isFavourite: isFavourite
-                }
-            })
+            if (isLoggedIn) {
 
-            setLoadedProducts(products)
-            saveToLocalStorage(products, true)
+                const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
+                const products = responseData.products.map(i => {
+
+                    return {
+                        ...i,
+                        number: 0,
+                        totalPrice: 0,
+                        isFavourite: false
+                    }
+                })
+                const favourites = JSON.parse(localStorage.getItem('userData'))
+                setLoadedProducts(products.map(i => {
+                    if (favourites.favourites.includes(i.id)) {
+                        i.isFavourite = true;
+                    }
+                    return i;
+                }))
+            }
 
 
 

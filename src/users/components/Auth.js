@@ -131,7 +131,7 @@ const Auth = props => {
                 }),
                 { 'Content-Type': 'application/json' }
             )
-            signin(responseData.userId, responseData.token)
+            signin(responseData)
             signInClose();
         } catch (err) {
 
