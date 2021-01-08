@@ -1,49 +1,28 @@
 import { useEffect, useState, useCallback } from 'react';
 
-import { useHistory } from 'react-router-dom';
 
 import { useHttpClient } from './http-hook';
-import { usePurchase } from './purchase-hook';
+
 
 let timer;
 
 export const useAuth = () => {
 
-
-    const { saveToLocalStorage } = usePurchase();
     const { sendRequest } = useHttpClient();
     const [token, setToken] = useState(false);
     const [expiration, setExpiration] = useState()
     const [userId, setUserId] = useState(false)
     const [email, setEmail] = useState()
-    const [favourites, setFavourites] = useState([]);
 
-    const signin = useCallback((uid, token, favourites, expiration) => {
-        (async () => {
-            try {
-                const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
-                saveToLocalStorage(responseData.products.map(i => {
-                    let isFavourite = false;
-                    if (favourites.includes(i.id)) {
-                        isFavourite = true;
-                    }
-                    return {
-                        ...i,
-                        number: 0,
-                        totalPrice: 0,
-                        isFavourite: isFavourite
-                    }
-                }))
-            } catch (err) {
-            }
-        })()
+    const signin = useCallback((uid, token, expiration) => {
 
-        setFavourites(favourites)
+
         setToken(token);
         setUserId(uid);
         setEmail(email)
         const tokenExpiration = expiration || new Date(new Date().getTime() + 1000 * 60 * 60)
         setExpiration(tokenExpiration)
+
 
         localStorage.setItem('userData',
             JSON.stringify({
@@ -63,6 +42,7 @@ export const useAuth = () => {
             const userID = JSON.parse(localStorage.getItem('userData')).userId;
             localStorage.removeItem('userData')
             localStorage.removeItem('basketContent')
+
             await sendRequest(process.env.REACT_APP_SIGNOUT + userID)
         } catch (err) {
             console.log(err)
@@ -71,7 +51,7 @@ export const useAuth = () => {
     }, []);
 
     useEffect(() => {
-        const storedData = JSON.parse(localStorage.getItem('userData'))
+        const storedData = localStorage.getItem('userData');
         if (
             storedData &&
             storedData.token &&

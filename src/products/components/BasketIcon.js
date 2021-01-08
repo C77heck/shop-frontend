@@ -7,9 +7,8 @@ const BasketIcon = () => {
         <svg
             aria-hidden="true"
             focusable="false"
-            data-prefix="fab"
             role="img"
-            enable-background="new 0 0 512 512"
+            enableBackground="new 0 0 512 512"
             className="basket-icon"
             id="Layer_1" version="1.1"
             viewBox="0 0 512 512"

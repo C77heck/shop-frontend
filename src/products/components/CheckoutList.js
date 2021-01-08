@@ -6,12 +6,10 @@ import { priceDisplay } from '../../shared/utility/priceOutput';
 
 import './CheckoutList.css';
 import { PurchaseContext } from '../../shared/context/purchase-context';
-import { usePurchase } from '../../shared/hooks/purchase-hook';
 
 const ProductItem = props => {
     const purchase = useContext(PurchaseContext)
     const [invisible, setInvisible] = useState(false);
-    const [show, setShow] = useState('unset')
     const [price, setPrice] = useState({
         beforeDot: '',
         afterDot: ''

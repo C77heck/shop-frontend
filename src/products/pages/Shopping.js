@@ -9,7 +9,6 @@ import TopSection from '../components/TopSection'
 import { AuthContext } from '../../shared/context/auth-context';
 import { PurchaseContext } from '../../shared/context/purchase-context';
 
-import { usePurchase } from '../../shared/hooks/purchase-hook';
 
 import './Shopping.css'
 
@@ -18,31 +17,36 @@ import './Shopping.css'
 
 const Shopping = () => {
 
-    const { isLoggedIn } = useContext(AuthContext);
-    const { code, basket, basketContent } = useContext(PurchaseContext);
+    const { isLoggedIn, favourites } = useContext(AuthContext);
+    const { saveToLocalStorage, basketContent } = useContext(PurchaseContext);
 
-    const { getProducts } = usePurchase()
 
     const [loadedProducts, setLoadedProducts] = useState([]);
     const { sendRequest, isLoading, error, clearError } = useHttpClient();
 
+
     useEffect(() => {
         (async () => {
-            try {
-
-                if (!isLoggedIn) {
-                    const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
-                    setLoadedProducts(responseData.products.map(i => ({
-                        ...i,
-                        number: 0,
-                        totalPrice: 0,
-                        isFavourite: false
-                    })))
-                } else {
-                    setLoadedProducts(getProducts())
+            /* needs to condition it right so we hold onto the data.
+            the key is when we change the localstorage data as we can easily reset it by default otherwise
+            we hold onto all the data.. */
+            const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
+            const products = responseData.products.map(i => {
+                let isFavourite = false;
+                /* logic... */
+                return {
+                    ...i,
+                    number: 0,
+                    totalPrice: 0,
+                    isFavourite: isFavourite
                 }
-            } catch (err) {
-            }
+            })
+
+            setLoadedProducts(products)
+            saveToLocalStorage(products, true)
+
+
+
         })();
     }, [isLoggedIn])
 
@@ -65,3 +69,8 @@ const Shopping = () => {
 
 
 export default Shopping;
+
+
+
+
+

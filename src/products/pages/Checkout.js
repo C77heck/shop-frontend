@@ -6,16 +6,18 @@ import BookDelivery from '../components/BookDelivery';
 import './Checkout.css'
 import 'react-calendar/dist/Calendar.css'
 import { usePurchase } from '../../shared/hooks/purchase-hook';
+import { PurchaseContext } from '../../shared/context/purchase-context';
 
 
 const Checkout = () => {
 
+    const {basketContent} = useContext(PurchaseContext)
 
-    const { getProducts } = usePurchase();
     const [products, setProducts] = useState([])
+    /* perhaps ommit the useState check for it... */
     useEffect(() => {
-        setProducts(getProducts())
-    }, [])
+        setProducts(basketContent.content)
+    }, [basketContent])
 
     return (
         <React.Fragment>

@@ -50,28 +50,31 @@ const Basket = props => {
     const [showModal, setShowModal] = useState(false)
 
     useEffect(() => {
+        if (basket) {
+            const { beforeDot, afterDot } = priceDisplay(price)
 
-        const { beforeDot, afterDot } = priceDisplay(price)
-        setDisplay({
-            beforeDot: beforeDot,
-            afterDot: afterDot,
-            amount: amount
-        })
 
-        if (price > 99) {
-            setStyle({
-                beforeDotStyle: { fontSize: '1.3rem' },
-                afterDotStyle: { fontSize: '0.8rem' },
-                amountStyle: { fontSize: '0.8rem' }
+            setDisplay({
+                beforeDot: beforeDot,
+                afterDot: afterDot,
+                amount: amount
             })
-        } else {
-            setStyle({
-                beforeDotStyle: {},
-                afterDotStyle: {},
-                amountStyle: {}
-            })
+
+            if (price > 99) {
+                setStyle({
+                    beforeDotStyle: { fontSize: '1.3rem' },
+                    afterDotStyle: { fontSize: '0.8rem' },
+                    amountStyle: { fontSize: '0.8rem' }
+                })
+            } else {
+                setStyle({
+                    beforeDotStyle: {},
+                    afterDotStyle: {},
+                    amountStyle: {}
+                })
+            }
         }
-    }, [price, amount])
+    }, [basket, price, amount])
 
     const basketHandler = (e) => {
         e.preventDefault();

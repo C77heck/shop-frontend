@@ -43,7 +43,7 @@ function App() {
     subtract,
     basket,
     basketContent,
-    updateBasket,
+    clearBasket,
     deleteItem
   } = usePurchase()
 
@@ -219,12 +219,13 @@ function App() {
             code: code,
             favouriteHandler: favouriteHandler,
             saveToLocalStorage: saveToLocalStorage,
+            clearBasket: clearBasket,
             add: add,
             subtract: subtract,
             deleteItem: deleteItem,
             basket: basket,
-            basketContent: basketContent,
-            updateBasket: updateBasket
+            basketContent: basketContent
+
           }}
         >
           <main><div className='center'>{routes}</div></main>

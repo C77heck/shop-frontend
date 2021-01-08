@@ -52,7 +52,7 @@ const ReOrder = props => {
     const products = JSON.parse(props.products)
 
     const onClickHandler = () => {
-        purchase.updateBasket(products)
+        purchase.saveToLocalStorage(products, true)
         history.push('/checkout')
     }
 
@@ -123,8 +123,8 @@ const PlacedOrders = () => {
                     process.env.REACT_APP_ORDERS + auth.userId
                 )
                 setOrders(responseData.orders)
-                if(responseData.orders.length<1){
-                 //   setSticky('stick-to_the_bottom');
+                if (responseData.orders.length < 1) {
+                    //   setSticky('stick-to_the_bottom');
                 }
             } catch (err) {
 

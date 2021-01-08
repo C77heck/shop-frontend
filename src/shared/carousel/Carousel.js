@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 
 import { useHttpClient } from '../hooks/http-hook'
 
@@ -8,6 +8,8 @@ import Mapping from './Mapping';
 import './Carousel.css';
 
 import './ProductCarousel.css'
+import { PurchaseContext } from '../context/purchase-context';
+import { AuthContext } from '../context/auth-context';
 
 
 const images = [
@@ -35,6 +37,11 @@ const images = [
 
 
 const Carousel = props => {
+
+    const { saveToLocalStorage, basketContent } = useContext(PurchaseContext)
+
+    const { isLoggedIn } = useContext(AuthContext)
+
     const { sendRequest } = useHttpClient()
     const [slideStyle, setSlideStyle] = useState();
     const [carousel, setCarousel] = useState({
@@ -61,23 +68,52 @@ const Carousel = props => {
         })
     }, [translate, activeSlide, animationType])
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
+         /*  useEffect(() => {
+
+
+  if (isLoggedIn) {
+            setPics({
+                pics1: basketContent.content.slice(1, 7),
+                pics2: basketContent.content.slice(8, 15),
+                pics3: basketContent.content.slice(16, 24),
+                pics4: basketContent.content.slice(23, 31)
+            })
+        } else {
+            if (basketContent.content.length < 1) {
+                (async () => {
+                    try {
+                        const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
+                        setPics({
+                            pics1: responseData.products.slice(1, 7),
+                            pics2: responseData.products.slice(8, 15),
+                            pics3: responseData.products.slice(16, 24),
+                            pics4: responseData.products.slice(23, 31)
+                        })
+                        saveToLocalStorage(responseData.products.map(i => ({
+                            ...i,
+                            number: 0,
+                            totalPrice: 0,
+                            isFavourite: false
+                        })), false)
+                    } catch (err) {
+                    }
+                })()
+            } else {
                 setPics({
-                    pics1: responseData.products.slice(1, 7),
-                    pics2: responseData.products.slice(8, 15),
-                    pics3: responseData.products.slice(16, 24),
-                    pics4: responseData.products.slice(23, 31)
+                    pics1: basketContent.content.slice(1, 7),
+                    pics2: basketContent.content.slice(8, 15),
+                    pics3: basketContent.content.slice(16, 24),
+                    pics4: basketContent.content.slice(23, 31)
                 })
-            } catch (err) {
             }
-        })()
-    }, [sendRequest])
+
+        }
 
 
+    }, [sendRequest, basketContent, isLoggedIn])
 
+
+ */
 
     const arrowLeftHandler = () => {
         if (activeSlide !== 0) {

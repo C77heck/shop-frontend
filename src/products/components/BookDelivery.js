@@ -63,13 +63,19 @@ const BookDelivery = () => {
     useEffect(() => {
         (async () => {
             const responseData = await sendRequest(
-                process.env.REACT_APP_USERS + auth.userId
+                process.env.REACT_APP_USERS + auth.userId,
+                'GET',
+                null,
+                {
+                    Authorization: 'Bearer ' + auth.token,
+                    'Content-Type': 'application/json'
+                }
             )
             setUserData({
-                address: `${responseData.userData.address.city} 
-                ${responseData.userData.address.postCode}
-                 ${responseData.userData.address.houseNumber} 
-                 ${responseData.userData.address.street}`
+                address: `${responseData.userData.city} 
+                ${responseData.userData.postCode}
+                 ${responseData.userData.houseNumber} 
+                 ${responseData.userData.street}`
             })
         })()
     }, [])

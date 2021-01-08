@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
+import { useHttpClient } from './http-hook';
 
 
 
@@ -8,35 +9,28 @@ export const usePurchase = () => {
         price: '',
         amount: ''
     })
-    const [basketContent, setBasketContent] = useState()
 
-    const saveToLocalStorage = (products) => {
+    const [basketContent, setBasketContent] = useState({
+        content: [],
+        isLoggedIn: false
+    })
+
+
+
+    const saveToLocalStorage = (products, isLoggedIn) => {
+        console.log('save to local storage', isLoggedIn)
+        setBasketContent({
+            content: products,
+            isLoggedIn: isLoggedIn
+        })
         localStorage.setItem(
             'basketContent',
             JSON.stringify({
-                products: products
+                products: products,
+                isLoggedIn: isLoggedIn
             })
         );
-    }
 
-
-    const favouriteHandler = (products, code, isFavourite) => {
-        saveToLocalStorage(products.map(i => {
-            if (i.id === code) {
-                console.log('we hit if')
-                i.isFavourite = isFavourite;
-            }
-            console.log('we did not hit if')
-
-            return i;
-        })
-        )
-        //updateBasket(products)
-
-    }
-
-    const updateBasket = (products) => {
-        saveToLocalStorage(products)
         setBasket({
             price: products.reduce((a, i) => {
                 return a + i.price * i.number
@@ -45,6 +39,17 @@ export const usePurchase = () => {
                 return a + i.number
             }, 0)
         })
+    }
+
+
+    const favouriteHandler = (products, code, isFavourite) => {
+        saveToLocalStorage(products.map(i => {
+            if (i.id === code) {
+                i.isFavourite = isFavourite;
+            }
+            return i;
+        })
+            , true)
     }
 
 
@@ -58,7 +63,7 @@ export const usePurchase = () => {
                     i.number += 1
                 }
             })
-            updateBasket(products)
+            saveToLocalStorage(products, true)
         },
         [],
     )
@@ -71,8 +76,7 @@ export const usePurchase = () => {
                     i.number -= i.number;
                 }
             })
-            updateBasket(products)
-            getProducts()
+            saveToLocalStorage(products, true)
         }, [])
 
 
@@ -84,7 +88,7 @@ export const usePurchase = () => {
                     i.number -= 1
                 }
             })
-            updateBasket(products)
+            saveToLocalStorage(products, true)
         }, [])
 
     const clearBasket = useCallback(
@@ -92,16 +96,10 @@ export const usePurchase = () => {
             products.map(i => {
                 i.number = 0;
             })
-            updateBasket(products)
+            saveToLocalStorage(products, true)
         }, [])
 
-    const getProducts = () => {
 
-        const products = (JSON.parse(localStorage.getItem('basketContent')).products)
-        setBasketContent(products)
-        updateBasket(products)
-        return products;
-    }
 
     return {
         code,
@@ -109,10 +107,8 @@ export const usePurchase = () => {
         add,
         subtract,
         basket,
-        updateBasket,
         clearBasket,
         deleteItem,
-        getProducts,
         basketContent,
         favouriteHandler
     }

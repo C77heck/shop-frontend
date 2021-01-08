@@ -5,10 +5,13 @@ export const PurchaseContext = createContext({
     code: '',
     favouriteHandler: () => { },
     saveToLocalStorage: () => { },
+    clearBasket: () => { },
     add: () => { },
     subtract: () => { },
-    updateBasket: () => { },
     deleteItem: () => { },
     basket: {},
-    basketContent: []
+    basketContent: {
+        content: [],
+        isLoggedIn: true
+    }
 });
