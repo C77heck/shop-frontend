@@ -31,6 +31,7 @@ import NotMe from './users/pages/NotMe';
 
 import './App.css';
 import FavouriteIcon from './products/components/FavouriteIcon';
+import Favourites from './users/pages/Favourites';
 
 
 function App() {
@@ -180,6 +181,16 @@ function App() {
           <div>
             <ViewOrders />
           </div>
+        </Route>
+        <Route path='/favourites/:userId' exact>
+          <div>
+            <NavigationBar />
+          </div>
+          <div>
+            <Favourites />
+          </div>
+     
+
         </Route>
         <Route path='/passwordrecovery/:requestId' exact>
           <div>

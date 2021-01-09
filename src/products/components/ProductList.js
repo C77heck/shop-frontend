@@ -14,7 +14,12 @@ const ProductCard = props => {
 
         <div className='grid-item'>
             <div className='inner-product-container'>
-                <FavouriteIcon id={props.id} favourite={props.favourite} products={props.products} />
+                <FavouriteIcon
+                    className='favourite-icon__product-card'
+                    id={props.id}
+                    favourite={props.favourite}
+                    products={props.products}
+                />
                 <div className="image-container__products">
                     <img
                         className='product-image'

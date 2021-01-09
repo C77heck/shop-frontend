@@ -2,10 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import BuyButton from './BuyButton';
 import { priceDisplay } from '../../shared/utility/priceOutput';
+import { PurchaseContext } from '../../shared/context/purchase-context';
 
 
 import './CheckoutList.css';
-import { PurchaseContext } from '../../shared/context/purchase-context';
+import FavouriteIcon from './FavouriteIcon';
 
 const ProductItem = props => {
     const purchase = useContext(PurchaseContext)
@@ -18,6 +19,7 @@ const ProductItem = props => {
 
 
     useEffect(() => {
+        //we remove the cancelled items from the checkout list and basket modal list
         if (number > 0) {
             setInvisible(true)
         } else {
@@ -54,15 +56,19 @@ const ProductItem = props => {
                     />
                 </div>
             </div>
-            <div 
-            className='checkout-product__info'
-            style={{ flexBasis: "40%", margin: "0.2rem", textAlign: "center" }}
+            <div
+                className='checkout-product__info'
+                style={{ flexBasis: "40%", margin: "0.2rem", textAlign: "center" }}
             >
-
                 <p>{props.name}</p>
                 <p>{props.code}</p>
                 <p>{props.unit}</p>
-                {/* price to sort.. */}
+                <FavouriteIcon
+                    className='favourite-icon__checkout-card'
+                    id={props.id}
+                    favourite={props.favourite}
+                    products={props.products}
+                />
             </div>
             <div style={{ flexBasis: "25%", margin: "0.2rem", textAlign: "center" }}>
                 <BuyButton
@@ -77,7 +83,7 @@ const ProductItem = props => {
                 <button
                     onClick={deleteHandler}
                     className='cancel-item__button'
-                    style={{display: `${props.noShow ? 'none' : 'unset'}`}}
+                    style={{ display: `${props.noShow ? 'none' : 'unset'}` }}
                 >
                     <img name='cancel-button' src="/images/icons/cancel.svg" alt="cancel icon" />
                 </button>
@@ -128,12 +134,13 @@ const CheckoutList = props => {
                                 id={product.id}
                                 number={product.number}
                                 name={product.name}
+                                favourite={product.isFavourite}
                                 unit={product.unit}
                                 price={product.price}
                                 totalPrice={product.price * product.number}
                                 image={product.image}
                                 code={product.code}
-                                items={items}
+                                products={items}
                                 noShow={props.noShow}
                             />)
                     })}

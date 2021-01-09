@@ -38,9 +38,10 @@ export const usePurchase = () => {
     }
 
 
-    const favouriteHandler = (products, code, isFavourite) => {
+    const favouriteHandler = (id, isFavourite) => {
+        const products = JSON.parse(localStorage.getItem('basketContent')).products;
         saveToLocalStorage(products.map(i => {
-            if (i.id === code) {
+            if (i.id === id) {
                 i.isFavourite = isFavourite;
             }
             return i;

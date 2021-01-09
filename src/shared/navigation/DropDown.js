@@ -50,6 +50,7 @@ const DropDown = props => {
                 >
                     <Link to={`/userdata/${userId}`} >UPDATE DETAILS</Link>
                     <Link to={`/orderhistory/${userId}`} >ORDER HISTORY</Link>
+                    <Link to={`/favourites/${userId}`}>FAVOURITES</Link>
                 </div>
             </div>
         </React.Fragment>

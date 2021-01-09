@@ -32,10 +32,10 @@ const FavouriteIcon = props => {
 
 
     const onClickHandler = async () => {
-        console.log('we got clicked')
         try {
+
             setColor(prev => {
-                favouriteHandler(props.products, props.id, !prev)
+                favouriteHandler(props.id, !prev)
                 return !prev
             })
             const responseData = await sendRequest(process.env.REACT_APP_FAVOURITE + userId,
@@ -58,7 +58,7 @@ const FavouriteIcon = props => {
             <svg
                 onClick={isLoggedIn ? onClickHandler : () => { }}
                 style={{ color: color ? '#e0ae24' : '#BEC9C7' }}
-                className="favourite-icon"
+                className={`${props.className}`}
                 height="511pt"
                 viewBox="0 -10 511.99143 511"
                 width="511pt"
