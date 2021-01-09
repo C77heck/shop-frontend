@@ -189,7 +189,9 @@ function App() {
           <div>
             <Favourites />
           </div>
-     
+          <div>
+            <Footer />
+          </div>
 
         </Route>
         <Route path='/passwordrecovery/:requestId' exact>

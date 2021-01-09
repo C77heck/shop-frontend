@@ -38,15 +38,15 @@ export const usePurchase = () => {
     }
 
 
-    const favouriteHandler = (id, isFavourite) => {
-        const products = JSON.parse(localStorage.getItem('basketContent')).products;
-        saveToLocalStorage(products.map(i => {
-            if (i.id === id) {
-                i.isFavourite = isFavourite;
-            }
-            return i;
-        }))
-    }
+    const favouriteHandler = (products, id, isFavourite) => {
+          //  const products = JSON.parse(localStorage.getItem('basketContent')).products;
+            saveToLocalStorage(products.map(i => {
+                if (i.id === id) {
+                    i.isFavourite = isFavourite;
+                }
+                return i;
+            }))
+        } 
 
 
 

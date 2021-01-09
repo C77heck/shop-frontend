@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import ProductList from '../../products/components/ProductList';
-import { AuthContext } from '../../shared/context/auth-context';
 import { PurchaseContext } from '../../shared/context/purchase-context';
-import { useHttpClient } from '../../shared/hooks/http-hook';
+
+import TopSection from '../../products/components/TopSection';
+
+import './Favourites.css'
 
 const Favourites = () => {
 
@@ -10,19 +12,33 @@ const Favourites = () => {
 
     const [products, setProducts] = useState([])
 
+    const [itemCounter, setItemCounter] = useState(0)
+
     useEffect(() => {
-        const favouriteProducts = [];
+        setProducts(basketContent)
         basketContent.map(i => {
             if (i.isFavourite) {
-                favouriteProducts.push(i)
+                setItemCounter(prev => prev += 1)
             }
-            setProducts(favouriteProducts)
-            return i;
         })
     }, [basketContent])
 
-    return (<div>
-        <ProductList items={products} />
+
+
+    return (<div
+        style={{ marginBottom: itemCounter > 0 ? '12vh' : 0 }}
+    >
+        <div
+            style={{ marginBottom: itemCounter > 0 ? '2vh' : 0 }}
+            className='top-section'>
+            <TopSection items={products} />
+        </div>
+        {itemCounter > 0 ? <ProductList items={products} display={true} />
+            :
+            <div><h1
+                className='no-favourites__yet'
+            >No favourites has been added yet.</h1></div>}
+
     </div>)
 }
 

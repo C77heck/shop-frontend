@@ -17,12 +17,12 @@ import './Shopping.css'
 
 const Shopping = () => {
 
-    const { isLoggedIn, favourites } = useContext(AuthContext);
+    const { isLoggedIn } = useContext(AuthContext);
     const { saveToLocalStorage, basketContent } = useContext(PurchaseContext);
 
 
     const [loadedProducts, setLoadedProducts] = useState([]);
-    const { sendRequest, isLoading, error, clearError } = useHttpClient();
+    const { isLoading, error, clearError } = useHttpClient();
 
 
 
@@ -30,21 +30,15 @@ const Shopping = () => {
     useEffect(() => {
         (async () => {
             try {
-
                 if (!isLoggedIn) {
-
                     const products = JSON.parse(localStorage.getItem('display')).products
                     saveToLocalStorage(products, 'display')
                     setLoadedProducts(products)
 
                 } else {
-                    console.log('we are in43434')
-
                     const products = JSON.parse(localStorage.getItem('basketContent')).products
-
                     setLoadedProducts(products)
                     saveToLocalStorage(products)
-
                 }
             } catch (err) {
             }

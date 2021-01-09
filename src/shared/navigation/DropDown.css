@@ -9,7 +9,8 @@
     display: none;
     position: absolute;
     padding: 0.1vh 0 1vh;
-    top: 2.8rem;
+    top: 2.4rem;
+    right: 12%;
     background-color: #22a03e;
     min-width: 8rem;
 }

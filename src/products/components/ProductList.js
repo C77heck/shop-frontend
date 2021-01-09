@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import BuyButton from './BuyButton'
 import FavouriteIcon from './FavouriteIcon';
@@ -9,15 +9,18 @@ import './Products.css'
 
 const ProductCard = props => {
 
+
     return (
 
-
-        <div className='grid-item'>
+        <div
+            style={{ display: props.display && (!props.isFavourite ? 'none' : 'block') }}
+            className='grid-item'
+        >
             <div className='inner-product-container'>
                 <FavouriteIcon
                     className='favourite-icon__product-card'
                     id={props.id}
-                    favourite={props.favourite}
+                    isFavourite={props.isFavourite}
                     products={props.products}
                 />
                 <div className="image-container__products">
@@ -65,7 +68,7 @@ const ProductList = props => {
                     <ProductCard
                         key={product.id}
                         id={product.id}
-                        favourite={product.isFavourite}
+                        isFavourite={product.isFavourite}
                         name={product.name}
                         unit={product.unit}
                         price={product.price}
@@ -73,7 +76,7 @@ const ProductList = props => {
                         code={product.code}
                         products={props.items}
                         number={product.number}
-
+                        display={props.display}
                     />
                 )
             })}

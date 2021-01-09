@@ -37,17 +37,17 @@
 .favourite-icon__checkout-card {
     width: 15px;
     height: 15px;
-/*     position: absolute;
+    /*     position: absolute;
     top: 2.5%;
     left: 1.8%; */
     z-index: 3;
     transition: all 280ms ease-out;
 }
 
-.favourite-icon__product-card:hover,
-.favourite-icon__checkout-card:hover {
+.favourite-icon__product-card:hover, .favourite-icon__checkout-card:hover {
     transform: scale(1.1);
 }
+
 
 .image-container__products {
     position: relative;
