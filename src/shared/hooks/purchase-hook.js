@@ -12,25 +12,14 @@ export const usePurchase = () => {
 
     const [basketContent, setBasketContent] = useState([])
 
-    useEffect(() => {
-        const basket = JSON.parse(localStorage.getItem('basketContent')).products
-        saveToLocalStorage(basket)
-    }, [])
-    /*     useEffect(() => {
-            console.log(basketContent)
-            if (basketContent.length > 0) {
-                console.log('we hit the useEffect')
-    
-                localStorage
-                    .setItem('basketContent', JSON.stringify({ products: basketContent }))
-            }
-        }, [basketContent]) */
 
 
-    const saveToLocalStorage = (products) => {
+
+    const saveToLocalStorage = (products, name) => {
+        name = name || 'basketContent';
         setBasketContent(products)
         localStorage.setItem(
-            'basketContent',
+            `${name}`,
             JSON.stringify({
                 products: products,
             })
@@ -44,6 +33,8 @@ export const usePurchase = () => {
                 return a + i.number
             }, 0)
         })
+
+
     }
 
 
@@ -67,7 +58,7 @@ export const usePurchase = () => {
                     i.number += 1
                 }
             })
-            saveToLocalStorage(products, true)
+            saveToLocalStorage(products)
         },
         [],
     )
@@ -80,7 +71,7 @@ export const usePurchase = () => {
                     i.number -= i.number;
                 }
             })
-            saveToLocalStorage(products, true)
+            saveToLocalStorage(products)
         }, [])
 
 
@@ -92,7 +83,7 @@ export const usePurchase = () => {
                     i.number -= 1
                 }
             })
-            saveToLocalStorage(products, true)
+            saveToLocalStorage(products)
         }, [])
 
     const clearBasket = useCallback(
@@ -100,7 +91,7 @@ export const usePurchase = () => {
             products.map(i => {
                 i.number = 0;
             })
-            saveToLocalStorage(products, true)
+            saveToLocalStorage(products)
         }, [])
 
 

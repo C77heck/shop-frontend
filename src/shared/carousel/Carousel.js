@@ -94,7 +94,7 @@ const Carousel = props => {
                             number: 0,
                             totalPrice: 0,
                             isFavourite: false
-                        })), false)
+                        })), 'display')
                     } catch (err) {
                     }
                 })()

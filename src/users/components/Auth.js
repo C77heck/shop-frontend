@@ -139,7 +139,6 @@ const Auth = props => {
                 saveToLocalStorage(productsData.products.map(i => {
                     let isFavourite = false;
                     if (responseData.userData.favourites.includes(i.id)) {
-                        console.log(responseData.userData.favourites.includes(i.id))
                         isFavourite = true;
                     }
                     return {

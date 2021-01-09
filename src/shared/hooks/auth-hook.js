@@ -41,12 +41,15 @@ export const useAuth = () => {
         setUserId(null)
         setExpiration(null)
 
+
+
         try {
             const userID = JSON.parse(localStorage.getItem('userData')).userId;
             localStorage.removeItem('userData')
             localStorage.removeItem('basketContent')
 
             await sendRequest(process.env.REACT_APP_SIGNOUT + userID)
+
         } catch (err) {
             console.log(err)
         }

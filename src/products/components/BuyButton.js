@@ -17,14 +17,12 @@ const BuyButton = props => {
 
     const purchase = useContext(PurchaseContext)
 
-    const { code, items } = props;
+    const { code, items, number } = props;
     const [isClicked, setIsClicked] = useState(false);
     const [message, setMessage] = useState()
     const nodeRef = useRef(null)
 
 
-
-    let number = props.number;
 
     useEffect(() => {
         if (isLoggedIn) {
@@ -33,6 +31,8 @@ const BuyButton = props => {
             } else {
                 setIsClicked(false)
             }
+        }else{
+            setIsClicked(false)
         }
     }, [number, isLoggedIn])
 

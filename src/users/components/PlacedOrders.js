@@ -52,7 +52,7 @@ const ReOrder = props => {
     const products = JSON.parse(props.products)
 
     const onClickHandler = () => {
-        purchase.saveToLocalStorage(products, true)
+        purchase.saveToLocalStorage(products)
         history.push('/checkout')
     }
 

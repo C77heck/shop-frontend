@@ -25,27 +25,26 @@ const Shopping = () => {
     const { sendRequest, isLoading, error, clearError } = useHttpClient();
 
 
+
+
     useEffect(() => {
         (async () => {
             try {
 
                 if (!isLoggedIn) {
-                    const products = JSON.parse(localStorage.getItem('basketContent')).products
-                    if (products < 1) {
-                        const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
-                        setLoadedProducts(responseData.products.map(i => ({
-                            ...i,
-                            number: 0,
-                            totalPrice: 0,
-                            isFavourite: false
-                        })))
-                    } else {
-                        setLoadedProducts(products)
-                    }
+
+                    const products = JSON.parse(localStorage.getItem('display')).products
+                    saveToLocalStorage(products, 'display')
+                    setLoadedProducts(products)
+
                 } else {
+                    console.log('we are in43434')
+
                     const products = JSON.parse(localStorage.getItem('basketContent')).products
 
                     setLoadedProducts(products)
+                    saveToLocalStorage(products)
+
                 }
             } catch (err) {
             }
