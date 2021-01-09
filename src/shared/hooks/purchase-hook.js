@@ -10,24 +10,29 @@ export const usePurchase = () => {
         amount: ''
     })
 
-    const [basketContent, setBasketContent] = useState({
-        content: [],
-        isLoggedIn: false
-    })
+    const [basketContent, setBasketContent] = useState([])
+
+    useEffect(() => {
+        const basket = JSON.parse(localStorage.getItem('basketContent')).products
+        saveToLocalStorage(basket)
+    }, [])
+    /*     useEffect(() => {
+            console.log(basketContent)
+            if (basketContent.length > 0) {
+                console.log('we hit the useEffect')
+    
+                localStorage
+                    .setItem('basketContent', JSON.stringify({ products: basketContent }))
+            }
+        }, [basketContent]) */
 
 
-
-    const saveToLocalStorage = (products, isLoggedIn) => {
-        console.log('save to local storage', isLoggedIn)
-        setBasketContent({
-            content: products,
-            isLoggedIn: isLoggedIn
-        })
+    const saveToLocalStorage = (products) => {
+        setBasketContent(products)
         localStorage.setItem(
             'basketContent',
             JSON.stringify({
                 products: products,
-                isLoggedIn: isLoggedIn
             })
         );
 
@@ -48,8 +53,7 @@ export const usePurchase = () => {
                 i.isFavourite = isFavourite;
             }
             return i;
-        })
-            , true)
+        }))
     }
 
 

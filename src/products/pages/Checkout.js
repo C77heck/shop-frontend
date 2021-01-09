@@ -16,7 +16,7 @@ const Checkout = () => {
     const [products, setProducts] = useState([])
     /* perhaps ommit the useState check for it... */
     useEffect(() => {
-        setProducts(basketContent.content)
+        setProducts(basketContent)
     }, [basketContent])
 
     return (

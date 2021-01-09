@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 
-
+import { PurchaseContext } from '../../shared/context/purchase-context';
 import { AuthContext } from '../../shared/context/auth-context';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { useInput } from '../../shared/hooks/form-hook';
@@ -20,6 +20,8 @@ import './Auth.css'
 const Auth = props => {
 
     const { isLoggedIn, signin } = useContext(AuthContext);
+    const { saveToLocalStorage } = useContext(PurchaseContext)
+
 
     const { error, clearError, isLoading, sendRequest } = useHttpClient();
 
@@ -131,11 +133,33 @@ const Auth = props => {
                 }),
                 { 'Content-Type': 'application/json' }
             )
-            signin(responseData)
-            signInClose();
-        } catch (err) {
 
+            try {
+                const productsData = await sendRequest(process.env.REACT_APP_BACKEND)
+                saveToLocalStorage(productsData.products.map(i => {
+                    let isFavourite = false;
+                    if (responseData.userData.favourites.includes(i.id)) {
+                        console.log(responseData.userData.favourites.includes(i.id))
+                        isFavourite = true;
+                    }
+                    return {
+                        ...i,
+                        number: 0,
+                        totalPrice: 0,
+                        isFavourite: isFavourite
+                    }
+                }))
+                signin(responseData.userData)
+                signInClose();
+            } catch (err) {
+                console.log(err)
+            }
+
+        } catch (err) {
+            console.log(err)
         }
+
+
     }
 
     const signupHandler = async e => {

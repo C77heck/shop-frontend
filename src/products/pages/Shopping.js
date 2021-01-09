@@ -27,34 +27,31 @@ const Shopping = () => {
 
     useEffect(() => {
         (async () => {
-            /* needs to condition it right so we hold onto the data.
-            the key is when we change the localstorage data as we can easily reset it by default otherwise
-            we hold onto all the data.. */
-            if (isLoggedIn) {
+            try {
 
-                const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
-                const products = responseData.products.map(i => {
+                if (!isLoggedIn) {
+                    const products = JSON.parse(localStorage.getItem('basketContent')).products
+                    if (products < 1) {
+                        const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
+                        setLoadedProducts(responseData.products.map(i => ({
+                            ...i,
+                            number: 0,
+                            totalPrice: 0,
+                            isFavourite: false
+                        })))
+                    } else {
+                        setLoadedProducts(products)
+                    }
+                } else {
+                    const products = JSON.parse(localStorage.getItem('basketContent')).products
 
-                    return {
-                        ...i,
-                        number: 0,
-                        totalPrice: 0,
-                        isFavourite: false
-                    }
-                })
-                const favourites = JSON.parse(localStorage.getItem('userData'))
-                setLoadedProducts(products.map(i => {
-                    if (favourites.favourites.includes(i.id)) {
-                        i.isFavourite = true;
-                    }
-                    return i;
-                }))
+                    setLoadedProducts(products)
+                }
+            } catch (err) {
             }
-
-
-
         })();
     }, [isLoggedIn])
+
 
     return (
         <React.Fragment>

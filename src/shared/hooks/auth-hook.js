@@ -1,4 +1,5 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useContext } from 'react';
+import { PurchaseContext } from '../context/purchase-context';
 
 
 import { useHttpClient } from './http-hook';
@@ -8,22 +9,22 @@ let timer;
 
 export const useAuth = () => {
 
+    const { saveToLocalStorage } = useContext(PurchaseContext)
     const { sendRequest } = useHttpClient();
     const [token, setToken] = useState(false);
     const [expiration, setExpiration] = useState()
     const [userId, setUserId] = useState(false)
-    const [email, setEmail] = useState()
     const [favourites, setFavourites] = useState([]);
+
+
     const signin = useCallback((userData, expiration) => {
 
 
         setToken(userData.token);
         setUserId(userData.userId);
-        setEmail(userData.email)
         setFavourites(userData.favourites)
         const tokenExpiration = expiration || new Date(new Date().getTime() + 1000 * 60 * 60)
         setExpiration(tokenExpiration)
-
 
         localStorage.setItem('userData',
             JSON.stringify({
@@ -53,13 +54,13 @@ export const useAuth = () => {
     }, []);
 
     useEffect(() => {
-        const storedData = localStorage.getItem('userData');
+        const storedData = JSON.parse(localStorage.getItem('userData'));
         if (
             storedData &&
             storedData.token &&
             new Date(storedData.expiration) > new Date()
         ) {
-            signin(storedData.userId, storedData.token, new Date(storedData.expiration))
+            signin(storedData, new Date(storedData.expiration))
         }
     }, [signin])
 

@@ -10,8 +10,5 @@ export const PurchaseContext = createContext({
     subtract: () => { },
     deleteItem: () => { },
     basket: {},
-    basketContent: {
-        content: [],
-        isLoggedIn: true
-    }
+    basketContent: []
 });

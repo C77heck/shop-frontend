@@ -51,7 +51,6 @@ const ProductCard = props => {
 
 const ProductList = props => {
 
-
     return (
         <div className='grid-container'>
             {props.items.map((product) => {

@@ -68,18 +68,18 @@ const Carousel = props => {
         })
     }, [translate, activeSlide, animationType])
 
-         /*  useEffect(() => {
+    useEffect(() => {
 
 
-  if (isLoggedIn) {
+        if (isLoggedIn && basketContent.length > 0) {
             setPics({
-                pics1: basketContent.content.slice(1, 7),
-                pics2: basketContent.content.slice(8, 15),
-                pics3: basketContent.content.slice(16, 24),
-                pics4: basketContent.content.slice(23, 31)
+                pics1: basketContent.slice(1, 7),
+                pics2: basketContent.slice(8, 15),
+                pics3: basketContent.slice(16, 24),
+                pics4: basketContent.slice(23, 31)
             })
         } else {
-            if (basketContent.content.length < 1) {
+            if (basketContent.length < 1) {
                 (async () => {
                     try {
                         const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
@@ -100,10 +100,10 @@ const Carousel = props => {
                 })()
             } else {
                 setPics({
-                    pics1: basketContent.content.slice(1, 7),
-                    pics2: basketContent.content.slice(8, 15),
-                    pics3: basketContent.content.slice(16, 24),
-                    pics4: basketContent.content.slice(23, 31)
+                    pics1: basketContent.slice(1, 7),
+                    pics2: basketContent.slice(8, 15),
+                    pics3: basketContent.slice(16, 24),
+                    pics4: basketContent.slice(23, 31)
                 })
             }
 
@@ -113,7 +113,7 @@ const Carousel = props => {
     }, [sendRequest, basketContent, isLoggedIn])
 
 
- */
+
 
     const arrowLeftHandler = () => {
         if (activeSlide !== 0) {
