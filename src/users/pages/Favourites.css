@@ -1,8 +1,8 @@
-
-
 .no-favourites__yet {
     margin-top: 14vh;
     min-height: 20vh;
     text-align: center;
     color: grey;
+    font-size: 3vh;
+    padding: 0 3vw;
 }

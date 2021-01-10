@@ -8,11 +8,14 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 import { BasketModal } from '../../products/components/Basket';
 import Button from '../../shared/UIElements/Button';
 
-import './PlacedOrders.css'
 import { useHistory } from 'react-router-dom';
 import { PurchaseContext } from '../../shared/context/purchase-context';
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 import Footer from '../../shared/footer/Footer';
+
+
+import './PlacedOrders.css'
+
 
 const ViewItems = props => {
 
@@ -136,7 +139,7 @@ const PlacedOrders = () => {
     return (
         <React.Fragment>
             {isLoading && <LoadingSpinner asOverlay />}
-            <div className='placed-orders__container'>
+            {orders.length > 0 ? <React.Fragment><div className='placed-orders__container'>
                 {
                     orders.map(i => {
                         return <OrderCards
@@ -148,7 +151,11 @@ const PlacedOrders = () => {
                 }
 
             </div>
-            <Footer className={sticky} />
+                <Footer className={sticky} /></React.Fragment> :
+                <div><h1
+                    className='no-orders__yet'
+                >No orders to show.</h1></div>
+            }
 
         </React.Fragment>
     )

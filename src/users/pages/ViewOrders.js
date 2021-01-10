@@ -6,8 +6,6 @@ const ViewOrders = () => {
 
 
 
-
-
     return (
 
         <React.Fragment>

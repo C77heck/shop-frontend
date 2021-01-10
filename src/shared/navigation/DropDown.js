@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 import Backdrop from '../../shared/UIElements/Backdrop';
 import { AuthContext } from '../context/auth-context';
 
@@ -13,46 +14,80 @@ const DropDown = props => {
 
     const { userId } = useContext(AuthContext)
 
-    const [display, setDisplay] = useState('none')
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState({
+        translate: '-100',
+        opacity: '0',
+        visibility: 'hidden',
+        links: false
+    })
 
-    const onClickHandler = () => {
-        setDisplay('block')
-        setShow(true)
+
+    // we listen to the click event to close the dropdown and then we remove the listener
+    const clickedOutside = () => {
+        setShow({
+            translate: '-100',
+            opacity: '0',
+            visibility: 'hidden',
+            links: false
+        })
+        window.onclick = () => { }
     }
 
-
     useEffect(() => {
-        if (show) {
-            window.onclick = () => {
-                if (display === 'block') {
-                    setDisplay('none')
-                    setShow(false)
-                }
-            }
+        if (show.links) {
+            window.onclick = clickedOutside;
         }
-    }, [show, display])
+    }, [show.links])
 
 
+
+    
+    const onClickHandler = () => {
+        if (show.translate === '-100') {
+            setShow({
+                translate: '0',
+                opacity: '1',
+                visibility: 'visible',
+                links: true
+            })
+        } else {
+            setShow({
+                translate: '-100',
+                opacity: '0',
+                visibility: 'hidden',
+                links: false
+            })
+        }
+
+    }
 
 
 
     return (
         <React.Fragment>
 
-            <div className="dropdown">
-                <a
-                    onClick={onClickHandler}
-                >{props.name}</a>
+            <a
+                onClick={onClickHandler}
+            >{props.name}</a>
+
+            <div
+                style={{
+                    transform: `translateY(${show.translate}%)`,
+                    opacity: `${show.opacity}`,
+                    transition: "all 300ms ease-in-out",
+                    visibility: `${show.visibility}`
+                }}
+                className="dropdown">
+
                 <div
-                    style={{ display: `${display}` }}
                     className="dropdown-content"
                 >
-                    <Link to={`/userdata/${userId}`} >UPDATE DETAILS</Link>
-                    <Link to={`/orderhistory/${userId}`} >ORDER HISTORY</Link>
-                    <Link to={`/favourites/${userId}`}>FAVOURITES</Link>
+                    {show.links && <React.Fragment><Link to={`/userdata/${userId}`} >UPDATE DETAILS</Link>
+                        <Link to={`/orderhistory/${userId}`} >ORDER HISTORY</Link>
+                        <Link to={`/favourites/${userId}`}>FAVOURITES</Link></React.Fragment>}
                 </div>
             </div>
+
         </React.Fragment>
 
     )

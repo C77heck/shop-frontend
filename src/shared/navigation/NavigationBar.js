@@ -20,11 +20,7 @@ const NavigationBar = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
     const closeDrawerHandler = e => {
-        const { id } = e.target
-        if (id === 'auth-button') {
-        } else {
             setIsDrawerOpen(false)
-        }
     }
     const openDrawerHandler = () => { setIsDrawerOpen(true) }
 

@@ -163,7 +163,6 @@ function App() {
           </div>
           <div>
           </div>
-
           <div>
             <Carousel
               className={'_product-slider'}
@@ -180,6 +179,9 @@ function App() {
           </div>
           <div>
             <ViewOrders />
+          </div>
+          <div>
+            <Footer />
           </div>
         </Route>
         <Route path='/favourites/:userId' exact>

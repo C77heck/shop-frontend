@@ -10,7 +10,7 @@
   background: rgb(255, 255, 255);
 }
 
-@media(min-width: 1040px) {
+@media(min-width: 700px) {
   .side-drawer {
     display: none;
   }

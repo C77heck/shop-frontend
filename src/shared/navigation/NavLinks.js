@@ -14,10 +14,15 @@ import AdminSignin from '../../admin/components/AdminSignin';
 
 const NavLinks = props => {
 
+    const { userId } = useContext(AuthContext)
 
     const { isLoggedIn } = useContext(AuthContext);
 
     const [clicked, setClicked] = useState(false);
+
+
+
+
 
     const openMapHandler = e => {
         e.preventDefault();
@@ -53,9 +58,19 @@ const NavLinks = props => {
                 <li>
                     <NavLink to='/contact' exact>CONTACT US</NavLink>
                 </li>
-                <li >
+                {isLoggedIn && <React.Fragment><li className='mobile-view__my__account'>
+                    <NavLink to={`/userdata/${userId}`} >UPDATE DETAILS</NavLink>
+                </li>
+                    <li className='mobile-view__my__account'>
+                        <NavLink to={`/orderhistory/${userId}`} >ORDER HISTORY</NavLink>
+                    </li>
+                    <li className='mobile-view__my__account'>
+                        <NavLink to={`/favourites/${userId}`}>FAVOURITES</NavLink>
+                    </li></React.Fragment>}
+                <li>
                     {isLoggedIn ?
-                        <DropDown name='MY ACCOUNT' />
+                        <div className='desktop-view__my__account'>
+                            <DropDown name='MY ACCOUNT' /></div>
                         :
                         <Auth register={true} >
                             <NavLink to='/' exact>REGISTER</NavLink>

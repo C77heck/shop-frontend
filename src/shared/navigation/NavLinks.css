@@ -27,9 +27,9 @@
   text-decoration: none !important;
 }
 
- .nav-links div a {
+.nav-links div a {
   margin: auto 19px;
-} 
+}
 
 .map-container {
   height: 25rem;
@@ -41,26 +41,25 @@
 }
 
 @media(max-width: 1140px) {
-  .nav-links  {
+  .nav-links {
     font-size: 1.5vw;
   }
   .nav-links div a {
     margin: 0;
-  } 
+  }
 }
 
 @media(max-width: 1000px) {
-  .nav-links  {
+  .nav-links {
     font-size: 1.3vw;
   }
 }
 
 @media(max-width: 780px) {
-  .nav-links  {
+  .nav-links {
     font-size: 1.32vw;
   }
 }
-
 
 @media (min-width: 700px) {
   .nav-links {
@@ -73,23 +72,28 @@
     color: white;
     text-decoration: none;
   }
+  .mobile-view__my__account {
+    display: none;
+  }
 }
 
 @media(max-width: 760px) {
-
-  .nav-links li{
+  .nav-links li {
     margin: 0;
   }
 }
 
 @media(max-width: 700px) {
-  .nav-links  {
+  .nav-links {
     font-size: 1.2rem;
     flex-direction: column;
     justify-content: flex-start;
     margin-top: 15vh;
   }
-  .nav-links li{
+  .nav-links li {
     margin: 3vh;
+  }
+  .desktop-view__my__account {
+    display: none;
   }
 }

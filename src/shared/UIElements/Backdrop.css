@@ -8,7 +8,7 @@
   z-index: 10;
 }
 
-@media(min-width: 840px) {
+@media(min-width: 700px) {
   .backdrop-invisible {
     display: none;
   }

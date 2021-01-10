@@ -1,3 +1,12 @@
+.no-orders__yet{
+    margin-top: 34vh;
+    min-height: 30vh;
+    text-align: center;
+    color: grey;
+    font-size: 4vh;
+    padding: 0 3vw;
+}
+
 .placed-orders__container {
     /* perhaps use grid layout.. */
     display: flex;
