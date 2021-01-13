@@ -28,9 +28,6 @@
     align-items: center;
 }
 
-.top-section__search-bar {
-    flex-basis: 50%;
-}
 
 .top-section__buttons {}
 
@@ -47,12 +44,6 @@
     /* search bar to fix on this res */
     .top-section__div {
         flex-direction: column;
-    }
-    .top-section__search-bar {
-        width: 130%;
-    }
-    .top-section__search-bar button {
-        width: 24%;
     }
     .top-section__buttons {
         flex-direction: row;

@@ -4,7 +4,7 @@ export const encrypt = s => {
         a = ((a << process.env.REACT_APP_NUMBER) - a) + b.charCodeAt(0);
         return a & a
     }, 0))
-    
+
     const rearrange = [];
     const secret = process.env.REACT_APP_SECRET;
     for (let i = 0; i < hashed.length; i++) {

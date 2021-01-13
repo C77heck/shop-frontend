@@ -7,11 +7,36 @@
 .carousel-wrapper {
     display: flex;
     width: 100%;
-    min-height: 400px;
+    margin: auto;
     max-height: 400px;
     object-fit: contain;
     overflow: hidden;
 }
+
+
+
+.carousel-images {
+    width: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 950px) {
+    .carousel-images {
+        bottom: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 550px) {
+    .carousel-images {
+        width: 150%;
+    }
+    .carousel-wrapper {
+        margin: 9vh auto 0;
+        max-height: 200px;
+    }
+}
+
 
 .right-side_controller {
     position: absolute;
@@ -41,28 +66,3 @@
 .left-side_controller img, .right-side_controller img {
     width: 40%;
 }
-
-.carousel-images {
-    width: 100%;
-    object-fit: cover;
-}
-
-@media (max-width: 950px) {
-    .carousel-images {
-        bottom: 0;
-        width: 100%;
-    }
-}
-
-@media (max-width: 550px) {
-    .carousel-images {
-        width: 150%;
-    }
-}
-
-@media (max-width: 400px) {
-    .carousel-images {
-        width: 210%;
-    }
-}
-

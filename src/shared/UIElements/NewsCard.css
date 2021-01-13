@@ -1,5 +1,5 @@
 .centering-container {
-    padding: 0 5%;
+    padding: 0 10%;
 }
 
 .NewsCard-container {
@@ -13,16 +13,16 @@
 
 .card-frame {
     min-width: 20%;
-    transition: all 0.7s;
+    transition: all 0.3s;
     background-color: rgb(187, 214, 190);
     padding: 5px;
     border: rgb(115, 180, 115) solid 1px;
     border-radius: 5%;
-    box-shadow: 10px 10px 5px 3px grey;
+    box-shadow: 5px 5px 5px 3px grey;
 }
 
 .card-frame:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     box-shadow: 10px 10px 10px 4px grey;
 }
 
@@ -57,7 +57,7 @@
     border-radius: 5%;
     border: solid rgb(87, 81, 81) 1px;
 }
-@media only screen and (max-width: 1450px) {
+@media screen and (max-width: 1450px) {
     .NewsCard-container {
         width: 100%;
         margin: 150px 0 250px;
@@ -88,11 +88,11 @@
 
 @media only screen and (max-width: 600px) {
     .NewsCard-container {
-        margin: auto;
+        margin: 1vh auto;
         position: unset;
     }
     .card-frame {
-        margin: 10px 0;
+        margin: 3vh 0;
         max-width: 100%;
     }
     .NewsCard-container p {

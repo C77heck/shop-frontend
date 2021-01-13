@@ -26,7 +26,6 @@ const Signup = props => {
             header={props.header}
             show={!!props.show}
             onSubmit={props.onSubmit}
-            footerStyle={{ padding: "4vh 0.5rem 1rem" }}
             footer={<React.Fragment>
                 <Button
                     disabled={props.disabled}

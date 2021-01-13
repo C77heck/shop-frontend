@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import {
   BrowserRouter as Router,
@@ -18,22 +18,34 @@ import { useSearch } from './shared/hooks/search-hook';
 import NavigationBar from './shared/navigation/NavigationBar';
 import Footer from './shared/footer/Footer'
 import Newscard from './shared/UIElements/NewsCard';
-import Admin from './admin/pages/Admin';
 import Shopping from './products/pages/Shopping';
+import Carousel from './shared/carousel/Carousel';
+import LoadingSpinner from './shared/UIElements/LoadingSpinner';
+import './App.css';
+import TopSection from './products/components/TopSection';
+
+/* import Admin from './admin/pages/Admin';
 import SearchResults from './products/pages/SearchResults';
 import Checkout from './products/pages/Checkout';
-import Carousel from './shared/carousel/Carousel';
 import ThankYou from './products/pages/ThankYou'
 import UserInfo from './users/pages/UserInfo';
 import PassRecovery from './users/pages/PassRecovery';
 import ViewOrders from './users/pages/ViewOrders';
 import NotMe from './users/pages/NotMe';
+import Favourites from './users/pages/Favourites'; */
 
 
+const Admin = React.lazy(() => import('./admin/pages/Admin'))
+const SearchResults = React.lazy(() => import('./products/pages/SearchResults'))
+const Checkout = React.lazy(() => import('./products/pages/Checkout'))
+const ThankYou = React.lazy(() => import('./products/pages/ThankYou'))
+const UserInfo = React.lazy(() => import('./users/pages/UserInfo'))
+const PassRecovery = React.lazy(() => import('./users/pages/PassRecovery'))
+const ViewOrders = React.lazy(() => import('./users/pages/ViewOrders'))
+const NotMe = React.lazy(() => import('./users/pages/NotMe'))
+const Favourites = React.lazy(() => import('./users/pages/Favourites'))
 
-import './App.css';
-import FavouriteIcon from './products/components/FavouriteIcon';
-import Favourites from './users/pages/Favourites';
+
 
 
 function App() {
@@ -52,7 +64,7 @@ function App() {
     deleteItem
   } = usePurchase()
 
-  const { products, productCode, findProducts } = useSearch();
+  const { products, searchCriteria, findProducts } = useSearch();
 
   const { signin, signout, token, userId, favourites } = useAuth();
 
@@ -62,153 +74,78 @@ function App() {
     <Router>
       <Switch>
         <Route path='/' exact>
-          <div>
-            <NavigationBar />
+          <NavigationBar />
+          <div className='top-section'>
+            <TopSection />
           </div>
-          <div>
-            <Carousel
-              className=''
-              element='img'
-            />
-          </div>
-          <div>
-            <Newscard />
-          </div>
-
-          <div>
-            <Carousel
-              className={'_product-slider'}
-              animation='special'
-            />
-          </div>
-          <div>
-            <Footer />
-          </div>
+          <Carousel
+            className=''
+            element='img'
+          />
+          <Newscard />
+          <Carousel
+            className={'_product-slider'}
+            animation='special'
+          />
+          <Footer />
         </Route>
         <Route path='/admin' exact>
-          <div>
-            <NavigationBar />
-          </div>
-          <div>
-            <Admin />
-          </div>
-          <div>
-            <Footer />
-          </div>
+          <NavigationBar />
+          <Admin />
+          <Footer />
         </Route>
         <Route path='/shopping' exact>
-          <div>
-            <NavigationBar />
-          </div>
-          <div>
-            <Shopping />
-          </div>
-          <div>
-            <Footer show={'scroll-button'} />
-          </div>
+          <NavigationBar />
+          <Shopping />
+          <Footer show={'scroll-button'} />
         </Route>
         <Route path='/searchresults' exact>
-          <div>
-            <NavigationBar />
-          </div>
-          <div>
-            <SearchResults />
-          </div>
-          <div>
-            <Footer />
-          </div>
+          <NavigationBar />
+          <SearchResults />
+          <Footer />
         </Route>
         <Route path='/checkout' exact>
-          <div>
-            <NavigationBar />
-          </div>
-          <div>
-            <Checkout />
-          </div>
-          <div>
-            <Footer />
-          </div>
+          <NavigationBar />
+          <Checkout />
+          <Footer />
         </Route>
         <Route path='/contact' exact>
-          <div>
-            <NavigationBar />
-          </div>
-          <div>
-            <FavouriteIcon />
-          </div>
+          <NavigationBar />
         </Route>
         <Route path='/thankyou' exact>
-          <div>
-            <NavigationBar />
-          </div>
-          <div>
-            <ThankYou />
-          </div>
-          <div>
-            <Newscard />
-          </div>
-
-          <div>
-            <Carousel
-              className={'_product-slider'}
-              animation='special'
-            />
-          </div>
-          <div>
-            <Footer />
-          </div>
+          <NavigationBar />
+          <ThankYou />
+          <Newscard />
+          <Carousel
+            className={'_product-slider'}
+            animation='special'
+          />
+          <Footer />
         </Route>
         <Route path='/userdata/:userId' exact>
-          <div>
-            <NavigationBar />
-          </div>
-          <div>
-            <UserInfo />
-          </div>
-          <div>
-          </div>
-          <div>
-            <Carousel
-              className={'_product-slider'}
-              animation='special'
-            />
-          </div>
-          <div>
-            <Footer />
-          </div>
+          <NavigationBar />
+          <UserInfo />
+          <Carousel
+            className={'_product-slider'}
+            animation='special'
+          />
+          <Footer />
         </Route>
         <Route path='/orderhistory/:userId' exact>
-          <div>
-            <NavigationBar />
-          </div>
-          <div>
-            <ViewOrders />
-          </div>
-          <div>
-            <Footer />
-          </div>
+          <NavigationBar />
+          <ViewOrders />
+          <Footer />
         </Route>
         <Route path='/favourites/:userId' exact>
-          <div>
-            <NavigationBar />
-          </div>
-          <div>
-            <Favourites />
-          </div>
-          <div>
-            <Footer />
-          </div>
-
+          <NavigationBar />
+          <Favourites />
+          <Footer />
         </Route>
         <Route path='/passwordrecovery/:requestId' exact>
-          <div>
-            <PassRecovery />
-          </div>
+          <PassRecovery />
         </Route>
         <Route path='/notme/:requestId' exact>
-          <div>
-            <NotMe />
-          </div>
+          <NotMe />
         </Route>
         <Redirect to='/' />
       </Switch>
@@ -236,9 +173,7 @@ function App() {
       >
         <SearchContext.Provider
           value={{
-            products: products,
-            productCode: productCode,
-            findProducts: findProducts
+            products: products
           }}
         >
           <PurchaseContext.Provider
@@ -255,7 +190,7 @@ function App() {
 
             }}
           >
-            <main><div className='center'>{routes}</div></main>
+            <main><Suspense fallback={<div className='center'><LoadingSpinner asOverlay /> </div>}>{routes}</Suspense></main>
           </PurchaseContext.Provider>
         </SearchContext.Provider>
       </AuthContext.Provider>

@@ -14,23 +14,23 @@ import { AuthContext } from '../context/auth-context';
 
 const images = [
     {
-        alt: "First slide",
-        src: "/images/carousel/vegies.jpg",
+        alt: "shop image",
+        src: "/images/carousel/shop1.jpg",
         id: 0
     },
     {
-        alt: "Second slide",
-        src: "/images/carousel/hams.jpg",
+        alt: "shop image",
+        src: "/images/carousel/shop2.jpg",
         id: 1
     },
     {
-        alt: "Third slide",
-        src: "/images/carousel/berries.jpg",
+        alt: "shop image",
+        src: "/images/carousel/shop3.jpg",
         id: 2
     },
     {
-        alt: "Fourth slide",
-        src: "/images/carousel/BBQ.jpg",
+        alt: "cake image",
+        src: "/images/carousel/cakes.jpg",
         id: 3
     }
 ]
@@ -154,18 +154,25 @@ const Carousel = props => {
         }
     }
 
-
     return (
-        <div className={`carouse-outer_div${props.className}`}>
-            <div className={`carousel-wrapper${props.className}`}>
+        <div
+            className={`carouse-outer_div${props.className}`}
+        >
+            <div
+
+                className={`carousel-wrapper${props.className}`}
+            >
                 {props.element === 'img' ? images.map((i) => {
-                    return (<img
-                        key={i.id}
-                        className={`carousel-images`}
-                        style={slideStyle}
-                        src={i.src}
-                        alt={i.name}
-                    />)
+                    return (
+                        <img
+                            onTouchMove={e => { arrowRightHandler() }}
+                            key={i.id}
+                            className={`carousel-images`}
+                            style={slideStyle}
+                            src={i.src}
+                            alt={i.name}
+                        />
+                    )
                 })
                     :
                     <React.Fragment>

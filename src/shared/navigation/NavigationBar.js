@@ -11,6 +11,7 @@ import AuthButton from '../../users/components/AuthButton';
 
 
 import './NavigationBar.css'
+import MenuIcon from './MenuIcon';
 
 
 const NavigationBar = () => {
@@ -20,7 +21,7 @@ const NavigationBar = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
     const closeDrawerHandler = e => {
-            setIsDrawerOpen(false)
+        setIsDrawerOpen(false)
     }
     const openDrawerHandler = () => { setIsDrawerOpen(true) }
 
@@ -34,9 +35,7 @@ const NavigationBar = () => {
             </SideDrawer>
             <MainHeader>
                 <button className="main-navigation__menu-btn" onClick={openDrawerHandler}>
-                    <span />
-                    <span />
-                    <span />
+                    <MenuIcon />
                 </button>
                 <h1 className="main-navigation__title">
                     <div>Furuma</div>

@@ -13,8 +13,9 @@ import Modal from '../../shared/UIElements/Modal';
 import CheckoutList from './CheckoutList';
 import { priceDisplay } from '../../shared/utility/priceOutput';
 
-import './Basket.css'
 import BasketIcon from '../../products/components/BasketIcon';
+
+import './Basket.css'
 
 
 export const BasketModal = props => {

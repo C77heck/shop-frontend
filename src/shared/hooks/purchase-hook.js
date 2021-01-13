@@ -37,15 +37,7 @@ export const usePurchase = () => {
 
     }
 
-    /*     const cancelItem= (products, id,)=>{
-            saveToLocalStorage(products.map(i => {
-                if (i.id === id) {
-                    
-                }
-                return i;
-            }))
-        }
-     */
+
     const favouriteHandler = (products, id, isFavourite) => {
         saveToLocalStorage(products.map(i => {
             if (i.id === id) {
@@ -64,7 +56,6 @@ export const usePurchase = () => {
                 }
                 return i;
             }))
-
 }, [])
 
 

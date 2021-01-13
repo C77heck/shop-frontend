@@ -12,6 +12,6 @@
 
 @media only screen and (max-width: 500px) {
     .shopping {
-        padding: 1rem 0 5rem;
+        padding: 1rem 1vw 5rem
     }
 }

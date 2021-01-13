@@ -8,12 +8,14 @@ import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
 
 import './Search.css';
+import { PurchaseContext } from '../../shared/context/purchase-context';
 
 const Search = props => {
 
-    const search = useContext(SearchContext)
     const history = useHistory();
-    const { sendRequest, isLoading } = useHttpClient();
+    const search = useContext(SearchContext);
+    const { basketContent } = useContext(PurchaseContext);
+    const { isLoading } = useHttpClient();
     const [content, setContent] = useState('');
     const [searchResults, setSearchResults] = useState()
 
@@ -23,46 +25,23 @@ const Search = props => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        if (!isNaN(content)) {
-            try {
-                const responseData = await sendRequest(process.env.REACT_APP_SEARCH_ROUTE + content)//need to change the url we send the req to
-                search.products = responseData.products
-                if (search.products.length > 0) {
-                    localStorage.setItem(
-                        'searchedItems',
-                        JSON.stringify({
-                            searches: search.products
-                        })
-                    );
-                    history.push('/')
-                    history.push('/searchresults')
-                } else {
-                    setSearchResults('Sorry, no items matching your search criteria.')
-                }
-            } catch (err) {
-                console.log(err)
-            }
-        } else {
-            try {
-                const responseData = await sendRequest(process.env.REACT_APP_SEARCH_ROUTE2 + content)
-                search.products = responseData.products
-                if (search.products.length > 0) {
-                    localStorage.setItem(
-                        'searchedItems',
-                        JSON.stringify({
-                            searches: search.products
-                        }))
-                    history.push('/')
-                    history.push('/searchresults')
-                } else {
-                    setSearchResults('Sorry, no items matching your search criteria.')
-                }
-            } catch (err) {
-                console.log(err)
-            }
-        }
 
+        const results = [];
+        let regexp = new RegExp(`${content}`, "i")
+        console.log(regexp)
+        basketContent.map(i => {
+            if (i.code === Number(content) || i.name.match(regexp)) {
+                results.push(i);
+            }
+            return i;
+        })
 
+          if (results.length > 0) {
+                  search.products = results;
+                  history.push('/searchresults')
+              } else {
+                  setSearchResults('Sorry, no items matching your search criteria.')
+              } 
     }
 
     const inputHandler = (e) => {
@@ -81,10 +60,22 @@ const Search = props => {
                         <div className='search_grid-container'>
 
                             <div className='item1'>
-                                <img className="search-icon" name='search-button' src="/images/icons/magnifying-glass.svg" alt="basket" />
+                                <img
+                                    className="search-icon"
+                                    name='search-button'
+                                    src="/images/icons/magnifying-glass.svg"
+                                    alt="search icon"
+                                />
                             </div>
                             <div className='item2'>
-                                <input type='text' className='search-bar' placeholder='find a product' name='search' value={content} onChange={inputHandler} />
+                                <input
+                                    type='text'
+                                    className='search-bar'
+                                    placeholder='find a product'
+                                    name='search'
+                                    value={content}
+                                    onChange={inputHandler}
+                                />
                             </div>
                             <div className='item3'>
                                 <button className='search-button'>Go</button>

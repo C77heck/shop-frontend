@@ -28,13 +28,13 @@
 
 .auth-container span {
     position: relative;
-    bottom: 7px;
+    bottom: 8px;
 }
 
 .user-icon__svg {
     width: 32px;
     position: relative;
-    top: 4px;
+    top: 3px;
     right: 3px;
 }
 
@@ -52,6 +52,12 @@
 @media (min-width: 700px) {
     .auth-button_mobile, .admin-signin__mobile {
         display: none;
+    }
+}
+
+@media (max-width: 500px) {
+    .auth-container .auth-button {
+        border-radius: 500px;
     }
 }
 

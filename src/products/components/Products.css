@@ -230,33 +230,6 @@
     .unit, .product-code {
         margin: 0.2rem;
     }
-    .shopping-button {
-        height: 24px;
-        width: 24px;
-    }
-    .minus-sign {
-        bottom: 4px;
-        font-size: 1.3rem;
-        font-weight: 500;
-    }
-    .plus-sign {
-        bottom: 2px;
-        font-size: 1.3rem;
-        font-weight: 500;
-    }
-    .add-button {
-        height: 25px;
-        width: 76px;
-    }
-    .amount-div {
-        height: 25px;
-    }
-    .amount-input {
-        height: 22px;
-        width: 28px;
-        font-size: 1rem;
-        bottom: 3px;
-    }
     .product-image {
         max-width: 100%;
         max-height: 100%;
@@ -288,6 +261,39 @@
     }
     .favourite-icon__product-card {
         transform: scale(0.8);
+    }
+    .checkout-list__buyButton {
+        height: 19px;
+    }
+    .checkout-list__buyButton .shopping-button {
+        height: 17px;
+        width: 17px;
+    }
+    .checkout-list__buyButton .minus-sign {
+        bottom: 4px;
+        font-size: 1.1rem;
+        font-weight: 400;
+        right: 1px;
+    }
+    .checkout-list__buyButton .plus-sign {
+        bottom: 2px;
+        font-size: 1.1rem;
+        font-weight: 400;
+        right: 2.5px;
+    }
+    .checkout-list__buyButton .add-button {
+        height: 20px;
+        width: 55px;
+        font-size: 0.7rem;
+    }
+    .checkout-list__buyButton .amount-div {
+        height: 17px;
+    }
+    .checkout-list__buyButton .amount-input {
+        height: 16px;
+        width: 19px;
+        font-size: 0.9rem;
+        bottom: 3px;
     }
 }
 
@@ -351,41 +357,3 @@
     font-size: 1rem;
     bottom: 3px;
 }
-
-@media only screen and (max-width: 525px) {
-    .checkout-list__buyButton {
-        height: 19px;
-    }
-    .checkout-list__buyButton .shopping-button {
-        height: 17px;
-        width: 17px;
-    }
-    .checkout-list__buyButton .minus-sign {
-        bottom: 4px;
-        font-size: 1.1rem;
-        font-weight: 400;
-        right: 1px;
-    }
-    .checkout-list__buyButton .plus-sign {
-        bottom: 2px;
-        font-size: 1.1rem;
-        font-weight: 400;
-        right: 2.5px;
-    }
-    .checkout-list__buyButton .add-button {
-        height: 20px;
-        width: 55px;
-        font-size: 0.7rem;
-    }
-    .checkout-list__buyButton .amount-div {
-        height: 17px;
-    }
-    .checkout-list__buyButton .amount-input {
-        height: 16px;
-        width: 19px;
-        font-size: 0.9rem;
-        bottom: 3px;
-    }
-}
-
-/* checkoutList special css end */
