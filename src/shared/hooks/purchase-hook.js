@@ -37,84 +37,85 @@ export const usePurchase = () => {
 
     }
 
-/*     const cancelItem= (products, id,)=>{
+    /*     const cancelItem= (products, id,)=>{
+            saveToLocalStorage(products.map(i => {
+                if (i.id === id) {
+                    
+                }
+                return i;
+            }))
+        }
+     */
+    const favouriteHandler = (products, id, isFavourite) => {
         saveToLocalStorage(products.map(i => {
             if (i.id === id) {
-                
+                i.isFavourite = isFavourite;
             }
             return i;
         }))
     }
- */
-    const favouriteHandler = (products, id, isFavourite) => {
+
+    const deleteItem = useCallback(
+        (products, code) => {
+            setCode(code)
             saveToLocalStorage(products.map(i => {
-                if (i.id === id) {
-                    i.isFavourite = isFavourite;
+                if (i.code === code) {
+                    i.number = 0;
                 }
                 return i;
             }))
-        } 
 
-        const deleteItem = useCallback(
-            (products, code) => {
-                setCode(code)
-                products.map(i => {
-                    if (i.code === code) {
-                        i.number = i.number;
-                    }
-                })
-                saveToLocalStorage(products)
-            }, [])
+}, [])
 
 
-    const add = useCallback(
-        (products, code) => {
-            setCode(code);
-            products.map(i => {
-                if (i.code === code) {
-                    i.number += 1
-                }
-            })
-            saveToLocalStorage(products)
-        },
-        [],
-    )
+const add = useCallback(
+    (products, code) => {
+        setCode(code);
+        products.map(i => {
+            if (i.code === code) {
+                i.number += 1
+            }
+        })
+        saveToLocalStorage(products)
+    },
+    [],
+)
 
 
 
 
-    const subtract = useCallback(
-        (products, code) => {
-            setCode(code);
-            products.map(i => {
-                if (i.code === code) {
-                    i.number -= 1
-                }
-            })
-            saveToLocalStorage(products)
-        }, [])
+const subtract = useCallback(
+    (products, code) => {
+        setCode(code);
+        products.map(i => {
+            if (i.code === code) {
+                i.number -= 1
+            }
+        })
+        saveToLocalStorage(products)
+    }, [])
 
-    const clearBasket = useCallback(
-        (products) => {
-            products.map(i => {
-                i.number = 0;
-            })
-            saveToLocalStorage(products)
-        }, [])
+const clearBasket = useCallback(
+    (products) => {
+        products.map(i => {
+            i.number = 0;
+        })
+        saveToLocalStorage(products)
+    }, [])
 
 
 
-    return {
-        code,
-        saveToLocalStorage,
-        add,
-        subtract,
-        basket,
-        clearBasket,
-        deleteItem,
-        basketContent,
-        favouriteHandler
-    }
+return {
+    code,
+    saveToLocalStorage,
+    add,
+    subtract,
+    basket,
+    clearBasket,
+    deleteItem,
+    basketContent,
+    favouriteHandler
+}
 }
 
 

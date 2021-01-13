@@ -18,7 +18,7 @@ import './Shopping.css'
 const Shopping = () => {
 
     const { isLoggedIn } = useContext(AuthContext);
-    const { saveToLocalStorage, basketContent } = useContext(PurchaseContext);
+    const { saveToLocalStorage } = useContext(PurchaseContext);
 
 
     const [loadedProducts, setLoadedProducts] = useState([]);

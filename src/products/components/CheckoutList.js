@@ -9,8 +9,7 @@ import './CheckoutList.css';
 import FavouriteIcon from './FavouriteIcon';
 
 const ProductItem = props => {
-    const purchase = useContext(PurchaseContext)
-    const [invisible, setInvisible] = useState(false);
+    const { deleteItem } = useContext(PurchaseContext)
     const [price, setPrice] = useState({
         beforeDot: '',
         afterDot: ''
@@ -18,19 +17,11 @@ const ProductItem = props => {
     const { products, code, number, totalPrice } = props;
 
 
-    useEffect(() => {
-        //we remove the cancelled items from the checkout list and basket modal list
-        if (number > 0) {
-            setInvisible(true)
-        } else {
-            setInvisible(false)
-        }
-    }, [number])
+
 
     const deleteHandler = e => {
         e.preventDefault();
-        purchase.deleteItem(products, code)
-        setInvisible(false)
+        deleteItem(products, code)
     }
 
 
@@ -45,7 +36,7 @@ const ProductItem = props => {
 
     return (
 
-        <div className={`${!invisible && 'invisible'} checkout-product__card`}>
+        <div className={`checkout-product__card`}>
             <div style={{ flexBasis: "20%" }}
                 className='checkout_image-container'
             >
@@ -128,21 +119,23 @@ const CheckoutList = props => {
 
                 {basket.amount === 0 ? <p style={{ textAlign: "center" }}>Your basket is empty</p> :
                     items.map(product => {
-                        return (
-                            <ProductItem
-                                key={product.id}
-                                id={product.id}
-                                number={product.number}
-                                name={product.name}
-                                favourite={product.isFavourite}
-                                unit={product.unit}
-                                price={product.price}
-                                totalPrice={product.price * product.number}
-                                image={product.image}
-                                code={product.code}
-                                products={items}
-                                noShow={props.noShow}
-                            />)
+                        if (product.number !== 0) {
+                            return (
+                                <ProductItem
+                                    key={product.id}
+                                    id={product.id}
+                                    number={product.number}
+                                    name={product.name}
+                                    favourite={product.isFavourite}
+                                    unit={product.unit}
+                                    price={product.price}
+                                    totalPrice={product.price * product.number}
+                                    image={product.image}
+                                    code={product.code}
+                                    products={items}
+                                    noShow={props.noShow}
+                                />)
+                        }
                     })}
             </div>
         </React.Fragment>
@@ -152,10 +145,3 @@ const CheckoutList = props => {
 
 export default CheckoutList;
 
-{/* <button
-onClick={deleteHandler}
-className='cancel-item__button'
-style={{ display: `${props.noShow ? 'none' : 'unset'}` }}
->
-<img name='cancel-button' src="/images/icons/cancel.svg" alt="cancel icon" />
-</button> */}
