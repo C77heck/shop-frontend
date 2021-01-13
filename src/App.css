@@ -1,12 +1,17 @@
-body {
- font-family: 'Lato', sans-serif;
-
+html, body {
+  min-height: 100%;
 }
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
 /* @media screen and (max-width: 500px){
   body {
     overflow: hidden;
   }
 } */
+
 .App {
   text-align: center;
 }
