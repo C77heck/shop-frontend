@@ -1,6 +1,4 @@
-import React from 'react';
-
-import { useHistory } from 'react-router-dom'
+import React, { useState } from 'react';
 
 import { useHttpClient } from '../../shared/hooks/http-hook'
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner'
@@ -12,10 +10,12 @@ import { VALIDATOR_REQUIRE } from '../../shared/utility/validators';
 
 import './Admin.css'
 import Button from '../../shared/UIElements/Button';
+import MessageModal from '../../shared/UIElements/MessageModal';
 
 
 const DeleteProduct = () => {
-    const history = useHistory();
+
+    const { sendRequest, isLoading, error, clearError } = useHttpClient();
 
     const [inputState, handler, isFormValid] = useInput({
         code: {
@@ -23,20 +23,21 @@ const DeleteProduct = () => {
             valid: true
         }
     })
-    const { sendRequest, isLoading, error, clearError } = useHttpClient();
-
+    const [message, setMessage] = useState('')
+    const onClearHandler = () => {
+        setMessage('')
+    }
 
     const deleteProductHandler = async (e) => {
         e.preventDefault();
         try {
-            await sendRequest(
+            const responseData = await sendRequest(
                 process.env.REACT_APP_BACKEND
                 + '/' +
                 inputState.inputs.code.value,
                 'DELETE'
             )
-            history.push('/')
-            history.push('/admin')
+            setMessage(responseData.message)
         } catch (err) {
 
         }
@@ -46,6 +47,11 @@ const DeleteProduct = () => {
     return (
         <React.Fragment>
             <ErrorModal error={error} onClear={clearError} />
+            <MessageModal
+                header='Success'
+                onClear={onClearHandler}
+                message={message}
+            />
             {isLoading && <LoadingSpinner asOverlay />}
             <div className='form-element_outer'>
                 <div className='form-element'>

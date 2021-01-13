@@ -12,6 +12,7 @@
     padding: 0.7vh 17vh 0.9vh 0;
     background-color: #22a03e;
     border: #5db148 solid 2px;
+    color: rgb(250, 102, 3);
 }
 
 .dropdown-content a {

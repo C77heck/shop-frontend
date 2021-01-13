@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { useInput } from '../../shared/hooks/form-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
@@ -9,11 +9,13 @@ import Modal from '../../shared/UIElements/Modal';
 import Input from '../../shared/form-elements/Input';
 import { VALIDATOR_REQUIRE } from '../../shared/utility/validators';
 import AdminIcon from './AdminIcon';
+import { AdminContext } from '../../shared/context/admin-context';
 
 
 const AdminModal = props => {
     return (
         <Modal
+            header={props.header}
             className={props.className}
             show={props.show}
             onCancel={props.onClear}
@@ -26,45 +28,66 @@ const AdminModal = props => {
 
 const AdminSignin = props => {
 
-
+    const { isAdminLoggedIn, adminSignin, adminSignout } = useContext(AdminContext)
     const { sendRequest, isLoading, error, clearError } = useHttpClient()
 
     const [show, setShow] = useState(false)
 
     const [inputState, handler, isFormValid] = useInput({
-        id: {
+        accountID: {
             value: '',
             valid: false
         },
         password: {
             value: '',
-            valid: ''
+            valid: false
         }
     })
 
-    const onSubmitHandler = e => {
+    const onSubmitHandler = async e => {
         e.preventDefault();
-        console.log('it works')
+        try {
+            console.log(inputState.inputs.accountID.value, inputState.inputs.password.value)
+            const responseData = await sendRequest(
+                process.env.REACT_APP_ADMIN_SIGNIN,
+                'POST',
+                JSON.stringify({
+                    accountID: inputState.inputs.accountID.value,
+                    password: inputState.inputs.password.value
+                }),
+                {
+                    'Content-Type': 'application/json'
+                }
+            )
+            adminSignin(responseData.userId, true)
+            setShow(false)
+        } catch (err) {
+            console.log(err)
+
+        }
     }
     const onClearHandler = () => {
         setShow(false)
     }
 
+    console.log(isAdminLoggedIn)
 
     return (
         <React.Fragment>
             {isLoading && <LoadingSpinner asOverlay />}
             <ErrorModal error={error} onClear={clearError} />
             <AdminModal
+                header='Admin signin'
                 className='admin-modal'
                 show={show}
                 onClear={onClearHandler}
+                onSubmit={onSubmitHandler}
             >
                 <Input
-                    id='id'
+                    id='accountID'
                     label='Account ID'
                     onInput={handler}
-                    value={inputState.inputs.id.value}
+                    value={inputState.inputs.accountID.value}
                     errorText='Please enter your account ID.'
                     validators={[VALIDATOR_REQUIRE()]}
                     type='text'
@@ -84,11 +107,18 @@ const AdminSignin = props => {
                     Signin
                 </Button>
             </AdminModal>
-            <Button
+            {!isAdminLoggedIn ? <Button
                 className={props.className}
                 onClick={() => setShow(true)}
-            ><AdminIcon /><span> Signin</span>
+            ><AdminIcon /><span>Signin</span>
             </Button>
+                :
+                <Button
+                    className={props.className}
+                    onClick={() => adminSignout()}
+                ><AdminIcon /><span>Signout</span>
+                </Button>
+            }
         </React.Fragment>
     )
 }

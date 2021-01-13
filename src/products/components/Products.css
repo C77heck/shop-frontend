@@ -37,9 +37,6 @@
 .favourite-icon__checkout-card {
     width: 15px;
     height: 15px;
-    /*     position: absolute;
-    top: 2.5%;
-    left: 1.8%; */
     z-index: 3;
     transition: all 280ms ease-out;
 }
@@ -47,7 +44,6 @@
 .favourite-icon__product-card:hover, .favourite-icon__checkout-card:hover {
     transform: scale(1.1);
 }
-
 
 .image-container__products {
     position: relative;
@@ -179,6 +175,14 @@
 
 .add-button:hover {
     background-color: rgb(108, 214, 98);
+}
+
+.are-you-sure__question button {
+    margin: 1vh 2vw 0;
+}
+
+.are-you-sure__question .modal__footer {
+    padding: 1vh 0 0;
 }
 
 @media only screen and (min-width: 1510px) {

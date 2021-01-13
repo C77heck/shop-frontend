@@ -27,24 +27,50 @@
     background-color: rgb(24, 86, 148);
     transition: background-color 300ms;
 }
+
 .change-password__button:hover {
     background-color: rgb(8, 43, 78);
 }
-.submit-changes__button{
+
+.submit-changes__button {
     background-color: #22a03e;
     transition: background-color 300ms;
 }
-.submit-changes__button:hover{
+
+.submit-changes__button:hover {
     background-color: #35d357;
     transition: background-color 300ms;
     border: rgb(165, 80, 80) solid 1px;
 }
+
+.hint-modal {
+    width: 30vw;
+    top: 24vh;
+    left: 35vw;
+}
+
+.hint-modal input {
+    width: 72%;
+    margin: auto;
+}
+
+@media only screen and (max-width: 1100px) {
+    .hint-modal {
+        width: 50vw;
+        left: 25vw;
+    }
+}
+
 @media screen and (max-width:746px) {
     .my__account_flex {
         flex-direction: column;
     }
     .my__account_right, .my__account_left {
         width: 100%;
+    }
+    .hint-modal {
+        width: 70vw;
+        left: 15vw;
     }
 }
 
@@ -59,5 +85,12 @@
         margin: 2vh auto;
         width: 10rem;
         font-size: 0.8rem;
+    }
+    .hint-modal {
+        width: 100%;
+        left: 0;
+    }
+    .hint-modal input {
+        width: 90%;
     }
 }

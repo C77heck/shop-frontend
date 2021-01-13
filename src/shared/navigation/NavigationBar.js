@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
+import { useHistory } from 'react-router-dom';
 
+import AdminSignin from '../../admin/components/AdminSignin';
 import NavLinks from './NavLinks'
 import MainHeader from './MainHeader'
 import SideDrawer from './SideDrawer'
@@ -9,13 +11,11 @@ import AuthButton from '../../users/components/AuthButton';
 
 
 import './NavigationBar.css'
-import { useHistory } from 'react-router-dom';
-import AdminSignin from '../../admin/components/AdminSignin';
+
 
 const NavigationBar = () => {
 
-    const history = useHistory()
-    const { location } = history;
+    const { location } = useHistory();
 
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 

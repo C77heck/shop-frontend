@@ -32,6 +32,7 @@
     transition: all 310ms ease;
     border: none;
     margin: 15px auto;
+    border: rgb(57, 196, 15) 1px solid;
 }
 
 .form-element button:hover {
@@ -122,27 +123,58 @@
 /* admin login modal css */
 
 .admin-modal {
-    width: 50vh;
-    left: 37%;
+    width: 30vw;
+    margin: 0 35vw;
+    left: 0;
     top: 24vh;
 }
 
-@media only screen and (max-width: 1300px) {
+.admin-modal input {
+    width: 80%;
+    margin: auto;
+}
+
+.admin-modal button {
+    margin: 3% auto 0;
+}
+
+.admin-modal .modal__footer {
+    padding: 0 0 5%;
+}
+
+.update-product__cancel {
+    display: block;
+    color: rgb(25, 28, 209);
+    cursor: pointer;
+    transition: color 180ms;
+}
+
+.update-product__cancel:hover {
+    display: block;
+    color: rgb(235, 42, 8);
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 1140px) {
     .admin-modal {
-        left: 31%;
+        width: 44vw;
+        margin: 0 28vw;
     }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
     .admin-modal {
-        width: 35vh;
-        left: 13%;
+        width: 58vw;
+        margin: 0 22vw;
     }
 }
 
 @media screen and (max-width: 500px) {
     .admin-modal {
-        width: 100%;
-        left: 0;
+        width: 100vw;
+        margin: 0;
+    }
+    .admin-modal input {
+        width: 90%;
     }
 }

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 import { AuthContext } from '../context/auth-context';
 import MapModal from '../UIElements/MapModal';
@@ -11,8 +11,14 @@ import DropDown from './DropDown';
 
 import './NavLinks.css';
 import AdminSignin from '../../admin/components/AdminSignin';
+import { AdminContext } from '../context/admin-context';
 
 const NavLinks = props => {
+
+    const { isAdminLoggedIn } = useContext(AdminContext)
+
+
+    const { location } = useHistory()
 
     const { userId } = useContext(AuthContext)
 
@@ -68,20 +74,26 @@ const NavLinks = props => {
                         <NavLink to={`/favourites/${userId}`}>FAVOURITES</NavLink>
                     </li></React.Fragment>}
                 <li>
-                    {isLoggedIn ?
-                        <div className='desktop-view__my__account'>
-                            <DropDown name='MY ACCOUNT' /></div>
+                    {isAdminLoggedIn ? <NavLink to='/admin' exact>ADMIN</NavLink>
                         :
-                        <Auth register={true} >
-                            <NavLink to='/' exact>REGISTER</NavLink>
-                        </Auth>
+                        isLoggedIn ?
+                            <div className='desktop-view__my__account'>
+                                <DropDown name='MY ACCOUNT' /></div>
+                            :
+                            location.pathname === '/admin' ? <div></div>
+                                :
+                                <Auth register={true} >
+                                    <NavLink to='/' exact>REGISTER</NavLink>
+                                </Auth>
                     }
                 </li>
-                {props.pathname === '/admin' ? <AdminSignin className='admin-sigin__button' />
+                {isAdminLoggedIn ? <AdminSignin className='admin-sigin__button' />
                     :
-                    <AuthButton
-                        className='auth-button_desktop'
-                    />}
+                    props.pathname === '/admin' ? <AdminSignin className='admin-sigin__button' />
+                        :
+                        <AuthButton
+                            className='auth-button_desktop'
+                        />}
 
             </ul>
         </React.Fragment>

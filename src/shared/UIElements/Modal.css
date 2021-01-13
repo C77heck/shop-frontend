@@ -2,9 +2,8 @@
   z-index: 100;
   position: fixed;
   top: 22vh;
-  /* it means 22% from top */
-  left: 23%;
-  width: 55%;
+  left: 23vw;
+  width: 54vw;
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   text-align: center;
@@ -12,6 +11,8 @@
 
 .basket-modal {
   top: 10vh;
+  width: 46vw;
+  left: 27vw;
 }
 
 .basket-modal .modal__content {
@@ -19,8 +20,8 @@
 }
 
 .map-modal {
-  width: 55% !important;
-  left: 21% !important;
+  width: 55vw;
+  left: 22.5vw;
 }
 
 .instructions-modal .modal__content {
@@ -31,43 +32,11 @@
   padding: 0 0.5rem 1rem;
 }
 
-
-
-@media only screen and (max-width: 859px) {
-  .modals {
-    width: 60%;
-  }
-  .map-modal {
-    width: 70% !important;
-    left: 14% !important;
-  }
-  .basket-modal {
-    width: 75%;
-    left: 13%;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .modals {
-    left: 7%;
-    width: 85%;
-  }
-  .map-modal {
-    width: 90% !important;
-    left: 4% !important;
-  }
-  .basket-modal {
-    width: 100%;
-    left: 0;
-  }
-}
-
 .modal__header {
   width: 100%;
   padding: 1rem 0.5rem;
   background: #3b9221;
   color: white;
-  
 }
 
 .modal__header h2 {
@@ -78,20 +47,12 @@
   padding: 1rem 0.5rem;
 }
 
-
 .modal__footer {
   padding: 1rem 0.5rem;
 }
 
 .modal__footer-colored {
   background-color: #3b9221;
-}
-
-@media (min-width: 768px) {
-  .modals {
-    left: calc(50% - 20rem);
-    width: 40rem;
-  }
 }
 
 .modal-enter {
@@ -139,9 +100,37 @@
   padding: 0.7rem;
 }
 
-@media only screen and (max-width: 1120px) {
+.password-change__modal {
+  width: 22vw;
+  min-width: 22rem;
+  left: 39vw;
+}
+
+@media screen and (max-width: 1120px) {
   .date-picker__modal {
     left: 35%;
+  }
+  .basket-modal {
+    width: 58vw;
+    left: 22vw;
+  }
+  .password-change__modal {
+    left: 30vw;
+  }
+}
+
+@media screen and (max-width: 859px) {
+  .modals {
+    width: 60vw;
+    left: 20vw;
+  }
+  .map-modal {
+    width: 70vw;
+    left: 15vw;
+  }
+  .basket-modal {
+    width: 75vw;
+    left: 12.5vw;
   }
 }
 
@@ -149,11 +138,44 @@
   .date-picker__modal {
     left: 25%;
   }
+  .basket-modal {
+    width: 70vw;
+    left: 15vw;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .password-change__modal {
+    left: 19vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .modals {
+    width: 84vw;
+    left: 8vw;
+  }
+  .map-modal {
+    width: 100vw;
+    left: 0;
+  }
 }
 
 @media only screen and (max-width: 575px) {
   .date-picker__modal {
     left: 18%;
+  }
+  .basket-modal {
+    width: 100vw;
+    left: 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .password-change__modal {
+    width: 100%;
+    left: 0;
+    min-width: 0;
   }
 }
 
@@ -161,33 +183,5 @@
   .date-picker__modal {
     left: 0;
     width: 100%;
-  }
-}
-
-
-.password-change__modal{
-  width: 22vw ;
-  min-width: 22rem;
-  left: 40vw ;
-}
-
-@media screen and (max-width: 1100px){
-  .password-change__modal{
-    left: 30vw ;
-  }
-}
-
-@media screen and (max-width: 700px){
-  .password-change__modal{
-    left: 19vw ;
-  }
-}
-
-@media screen and (max-width: 500px){
-  .password-change__modal{
-    width: 100% ;
-    left: 0 ;
-    min-width: 0;
-
   }
 }

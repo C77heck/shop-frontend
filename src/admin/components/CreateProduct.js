@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { useHttpClient } from '../../shared/hooks/http-hook'
@@ -11,13 +11,14 @@ import Input from '../../shared/form-elements/Input';
 import './Admin.css'
 import { VALIDATOR_REQUIRE } from '../../shared/utility/validators';
 import Button from '../../shared/UIElements/Button';
+import MessageModal from '../../shared/UIElements/MessageModal';
 
 
 const CreateProduct = () => {
 
-    const history = useHistory();
+    const { sendRequest, isLoading, error, clearError } = useHttpClient();
 
-    const [inputState, handler, isFormValid] = useInput({
+    const [inputState, handler, isFormValid, setFormData] = useInput({
         image: {
             value: null,
             valid: false
@@ -35,7 +36,12 @@ const CreateProduct = () => {
             valid: false
         }
     });
-    const { sendRequest, isLoading, error, clearError } = useHttpClient();
+
+    const [message, setMessage] = useState('')
+    const onClearHandler = () => {
+        setMessage('')
+    }
+
 
     const addProductHandler = async e => {
         e.preventDefault();
@@ -48,16 +54,32 @@ const CreateProduct = () => {
             formData.append('price', inputState.inputs.price.value);
             formData.append('image', inputState.inputs.image.value);
 
-            await sendRequest(
+            const responseData = await sendRequest(
                 process.env.REACT_APP_BACKEND,
                 'POST',
                 formData
             );
 
-            history.push('/');
-            history.push('/admin');
+            setMessage(responseData.message)
 
-
+            setFormData({
+                image: {
+                    value: null,
+                    valid: false
+                },
+                name: {
+                    value: '',
+                    valid: false
+                },
+                unit: {
+                    value: '',
+                    valid: false
+                },
+                price: {
+                    value: '',
+                    valid: false
+                }
+            })
         } catch (err) {
 
         }
@@ -67,6 +89,11 @@ const CreateProduct = () => {
     return (
         <React.Fragment>
             <ErrorModal error={error} onClear={clearError} />
+            <MessageModal
+                header='Success'
+                onClear={onClearHandler}
+                message={message}
+            />
             {isLoading && <LoadingSpinner asOverlay />}
             <div className='form-element_outer'>
                 <div className='form-element'>
@@ -106,7 +133,9 @@ const CreateProduct = () => {
                                 errorText='Please provide an image.'
                             />
                         </div>
-        <Button>ADD</Button>
+                        <Button
+                            disabled={isFormValid}
+                        >ADD</Button>
                     </form>
                 </div>
             </div>

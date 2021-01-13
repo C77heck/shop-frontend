@@ -19,12 +19,14 @@
   align-items: center;
   text-align: center;
   margin: 1rem auto;
+
 }
 
 .image-upload__preview img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  margin: auto;
+  object-fit: contain;
 }
 
 .form-control {

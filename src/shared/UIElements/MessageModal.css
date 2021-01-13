@@ -1,0 +1,35 @@
+.message-modal {
+    width: 35vw;
+    left: 32.5vw;
+    color: rgb(97, 93, 93);
+}
+
+@media screen and (max-width: 1300px) {
+    .message-modal {
+        width: 46vw;
+        left: 27vw;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .message-modal {
+        width: 62vw;
+        left: 14vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .message-modal {
+        width: 100vw;
+        left: 0;
+    }
+}
+
+.message-modal .modal__header {
+    margin: 0;
+    padding: 0.7rem 0.5rem;
+}
+
+.message-modal .modal__footer {
+    padding: 0;
+}

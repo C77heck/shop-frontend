@@ -22,7 +22,7 @@ export const useAuth = () => {
 
         setToken(userData.token);
         setUserId(userData.userId);
-        setFavourites(userData.favourites)
+        setFavourites(userData.favourites || [])
         const tokenExpiration = expiration || new Date(new Date().getTime() + 1000 * 60 * 60)
         setExpiration(tokenExpiration)
 

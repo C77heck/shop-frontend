@@ -6,9 +6,10 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 import { useInput } from '../../shared/hooks/form-hook';
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
-import Modal from '../../shared/UIElements/Modal';
 
 import UserForms from '../components/UserForms';
+import HintModal from '../components/HintModal';
+
 
 import './UserInfo.css'
 
@@ -62,10 +63,19 @@ const UserInfo = () => {
             value: '',
             valid: true
 
+        },
+        hint: {
+            value: '',
+            valid: true
+        },
+        answer: {
+            value: '',
+            valid: true
         }
     })
     const [email, setEmail] = useState() // email for the password recovery request
     const [show, setShow] = useState(false)
+    const [message, setMessage] = useState(false)
     const [hint, setHint] = useState('')
 
 
@@ -74,6 +84,7 @@ const UserInfo = () => {
 
     const onClearHandler = () => {
         setShow(false)
+        setMessage(false)
     }
 
     useEffect(() => {
@@ -88,6 +99,7 @@ const UserInfo = () => {
                         'Content-Type': 'application/json'
                     }
                 )
+                console.log(responseData)
                 setFormData({
                     firstName: {
                         value: responseData.userData.fullName.firstName,
@@ -125,6 +137,14 @@ const UserInfo = () => {
                         value: responseData.userData.instructions,
                         valid: true
                     },
+                    hint: {
+                        value: responseData.userData.hint,
+                        valid: true
+                    },
+                    answer: {
+                        value: '',
+                        valid: true
+                    }
 
                 })
                 setEmail(responseData.userData.email)
@@ -173,29 +193,29 @@ const UserInfo = () => {
                     'Content-Type': 'application/json'
                 }
             )
-            setShow(true)
+            setMessage(responseData.message)
         } catch (err) {
 
         }
 
     }
-
     return (
         <React.Fragment>
             <div className='my__account-container'>
                 <ErrorModal error={error} onClear={clearError} />
-                <Modal
-                    className=''
-                    onCancel={onClearHandler}
+                <HintModal
+                    onClear={onClearHandler}
                     show={show}
-                >
-                    <h2>User info has been updated!</h2>
-                </Modal>
+                    onSubmit={submitHandler}
+                    onInput={handler}
+                    value={inputState.inputs}
+                    message={message}
+                />
                 <UserForms
                     onInput={handler}
                     value={inputState.inputs}
                     email={email}
-                    onClick={submitHandler}
+                    onClick={() => setShow(true)}
                     disabled={isFormValid}
                     hint={hint}
                 />

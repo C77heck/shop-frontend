@@ -1,17 +1,19 @@
 import React from 'react';
 
 import Modal from './Modal';
-import Button from './Button';
+
+import './MessageModal.css'
 
 const MessageModal = props => {
     return (
         <Modal
+            className={`message-modal ${props.className}`}
             onCancel={props.onClear}
             header={props.header}
             show={!!props.message}
-            footer={<React.Fragment><Button onClick={props.yes}>Yes</Button> <Button onClick={props.no}>No</Button></React.Fragment>}
         >
-            <p>{props.message}</p>
+            <h2>{props.message}</h2>
+            {props.children}
         </Modal>
     );
 };

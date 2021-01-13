@@ -19,11 +19,10 @@ const UserForms = props => {
     const onClickHandler = () => {
         setShow(true)
     }
+
     const onCancelHandler = () => {
         setShow(false)
-
     }
-
 
 
     return (

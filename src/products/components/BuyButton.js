@@ -4,6 +4,7 @@ import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 import { AuthContext } from '../../shared/context/auth-context';
 import { PurchaseContext } from '../../shared/context/purchase-context';
+import Button from '../../shared/UIElements/Button';
 import MessageModal from '../../shared/UIElements/MessageModal';
 import Auth from '../../users/components/Auth';
 
@@ -31,7 +32,7 @@ const BuyButton = props => {
             } else {
                 setIsClicked(false)
             }
-        }else{
+        } else {
             setIsClicked(false)
         }
     }, [number, isLoggedIn])
@@ -68,7 +69,14 @@ const BuyButton = props => {
     };
 
     return (<React.Fragment>
-        <MessageModal message={message} onClear={no} no={no} yes={yes} />
+        <MessageModal
+            className='are-you-sure__question'
+            message={message}
+            onClear={no}
+        >
+            <Button onClick={yes}>Yes</Button>
+            <Button onClick={no}>No</Button>
+        </MessageModal>
 
         <SwitchTransition>
             <CSSTransition

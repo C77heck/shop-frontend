@@ -1,0 +1,13 @@
+.error-modal .modal__header {
+    background-color: rgb(250, 102, 3);
+}
+
+.error-modal button {
+    background-color: rgb(250, 102, 3);
+    border: none;
+    transition: all 200ms;
+}
+
+.error-modal button:hover {
+    background-color: rgb(184, 107, 36) !important;
+}

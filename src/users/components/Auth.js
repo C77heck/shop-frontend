@@ -186,8 +186,9 @@ const Auth = props => {
                 }),
                 { 'Content-Type': 'application/json' }
             )
-            setCoordinates(responseData.userLocation)
-            signin(responseData.userId, responseData.token);
+            console.log(responseData)
+            setCoordinates(responseData.userData.userLocation)
+            signin(responseData.userData);
             signInClose();
             setSignedup(true)
         } catch (err) {

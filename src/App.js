@@ -7,6 +7,8 @@ import {
   Switch
 } from 'react-router-dom';
 
+import { AdminContext } from './shared/context/admin-context';
+import { useAdmin } from './shared/hooks/admin-hook';
 import { useAuth } from './shared/hooks/auth-hook';
 import { AuthContext } from './shared/context/auth-context';
 import { PurchaseContext } from './shared/context/purchase-context';
@@ -35,6 +37,8 @@ import Favourites from './users/pages/Favourites';
 
 
 function App() {
+
+  const { adminId, isAdminLoggedIn, adminSignin, adminSignout } = useAdmin()
 
   const {
     code,
@@ -212,42 +216,50 @@ function App() {
   )
 
   return (
-    <AuthContext.Provider
+    <AdminContext.Provider
       value={{
-        token: token,
-        isLoggedIn: !!token,
-        userId: userId,
-        favourites: favourites,
-        signin: signin,
-        signout: signout
+        adminId: adminId,
+        isAdminLoggedIn: isAdminLoggedIn,
+        adminSignin: adminSignin,
+        adminSignout: adminSignout
       }}
     >
-      <SearchContext.Provider
+      <AuthContext.Provider
         value={{
-          products: products,
-          productCode: productCode,
-          findProducts: findProducts
+          token: token,
+          isLoggedIn: !!token,
+          userId: userId,
+          favourites: favourites,
+          signin: signin,
+          signout: signout
         }}
       >
-        <PurchaseContext.Provider
+        <SearchContext.Provider
           value={{
-            code: code,
-            favouriteHandler: favouriteHandler,
-            saveToLocalStorage: saveToLocalStorage,
-            clearBasket: clearBasket,
-            add: add,
-            subtract: subtract,
-            deleteItem: deleteItem,
-            basket: basket,
-            basketContent: basketContent
-
+            products: products,
+            productCode: productCode,
+            findProducts: findProducts
           }}
         >
-          <main><div className='center'>{routes}</div></main>
-        </PurchaseContext.Provider>
-      </SearchContext.Provider>
-    </AuthContext.Provider>
+          <PurchaseContext.Provider
+            value={{
+              code: code,
+              favouriteHandler: favouriteHandler,
+              saveToLocalStorage: saveToLocalStorage,
+              clearBasket: clearBasket,
+              add: add,
+              subtract: subtract,
+              deleteItem: deleteItem,
+              basket: basket,
+              basketContent: basketContent
 
+            }}
+          >
+            <main><div className='center'>{routes}</div></main>
+          </PurchaseContext.Provider>
+        </SearchContext.Provider>
+      </AuthContext.Provider>
+    </AdminContext.Provider>
   );
 }
 

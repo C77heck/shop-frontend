@@ -20,6 +20,7 @@ const ModalOverlay = props => {
 
                 <header
                     className={`modal__header ${props.headerClass}`}
+                    style={props.headerStyle}
                 >
                     <h2>{props.header}</h2>
                 </header>

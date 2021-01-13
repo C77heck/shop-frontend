@@ -37,9 +37,16 @@ export const usePurchase = () => {
 
     }
 
-
+/*     const cancelItem= (products, id,)=>{
+        saveToLocalStorage(products.map(i => {
+            if (i.id === id) {
+                
+            }
+            return i;
+        }))
+    }
+ */
     const favouriteHandler = (products, id, isFavourite) => {
-          //  const products = JSON.parse(localStorage.getItem('basketContent')).products;
             saveToLocalStorage(products.map(i => {
                 if (i.id === id) {
                     i.isFavourite = isFavourite;
@@ -48,7 +55,16 @@ export const usePurchase = () => {
             }))
         } 
 
-
+        const deleteItem = useCallback(
+            (products, code) => {
+                setCode(code)
+                products.map(i => {
+                    if (i.code === code) {
+                        i.number = i.number;
+                    }
+                })
+                saveToLocalStorage(products)
+            }, [])
 
 
     const add = useCallback(
@@ -64,16 +80,7 @@ export const usePurchase = () => {
         [],
     )
 
-    const deleteItem = useCallback(
-        (products, code) => {
-            setCode(code)
-            products.map(i => {
-                if (i.code === code) {
-                    i.number -= i.number;
-                }
-            })
-            saveToLocalStorage(products)
-        }, [])
+
 
 
     const subtract = useCallback(

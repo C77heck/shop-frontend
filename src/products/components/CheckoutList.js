@@ -15,7 +15,7 @@ const ProductItem = props => {
         beforeDot: '',
         afterDot: ''
     });
-    const { items, code, number, totalPrice } = props;
+    const { products, code, number, totalPrice } = props;
 
 
     useEffect(() => {
@@ -29,7 +29,7 @@ const ProductItem = props => {
 
     const deleteHandler = e => {
         e.preventDefault();
-        purchase.deleteItem(items, code)
+        purchase.deleteItem(products, code)
         setInvisible(false)
     }
 
@@ -152,3 +152,10 @@ const CheckoutList = props => {
 
 export default CheckoutList;
 
+{/* <button
+onClick={deleteHandler}
+className='cancel-item__button'
+style={{ display: `${props.noShow ? 'none' : 'unset'}` }}
+>
+<img name='cancel-button' src="/images/icons/cancel.svg" alt="cancel icon" />
+</button> */}
