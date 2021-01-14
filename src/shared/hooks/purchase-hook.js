@@ -56,57 +56,58 @@ export const usePurchase = () => {
                 }
                 return i;
             }))
-}, [])
+        }, [])
 
 
-const add = useCallback(
-    (products, code) => {
-        setCode(code);
-        products.map(i => {
-            if (i.code === code) {
-                i.number += 1
-            }
-        })
-        saveToLocalStorage(products)
-    },
-    [],
-)
-
-
-
-
-const subtract = useCallback(
-    (products, code) => {
-        setCode(code);
-        products.map(i => {
-            if (i.code === code) {
-                i.number -= 1
-            }
-        })
-        saveToLocalStorage(products)
-    }, [])
-
-const clearBasket = useCallback(
-    (products) => {
-        products.map(i => {
-            i.number = 0;
-        })
-        saveToLocalStorage(products)
-    }, [])
+    const add = useCallback(
+        (products, code) => {
+            console.log(products, typeof products)
+            setCode(code);
+            products.map(i => {
+                if (i.code === code) {
+                    i.number += 1
+                }
+            })
+            saveToLocalStorage(products)
+        },
+        [],
+    )
 
 
 
-return {
-    code,
-    saveToLocalStorage,
-    add,
-    subtract,
-    basket,
-    clearBasket,
-    deleteItem,
-    basketContent,
-    favouriteHandler
-}
+
+    const subtract = useCallback(
+        (products, code) => {
+            setCode(code);
+            products.map(i => {
+                if (i.code === code) {
+                    i.number -= 1
+                }
+            })
+            saveToLocalStorage(products)
+        }, [])
+
+    const clearBasket = useCallback(
+        (products) => {
+            products.map(i => {
+                i.number = 0;
+            })
+            saveToLocalStorage(products)
+        }, [])
+
+
+
+    return {
+        code,
+        saveToLocalStorage,
+        add,
+        subtract,
+        basket,
+        clearBasket,
+        deleteItem,
+        basketContent,
+        favouriteHandler
+    }
 }
 
 

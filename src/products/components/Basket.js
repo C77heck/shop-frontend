@@ -63,9 +63,9 @@ const Basket = props => {
 
             if (price > 99) {
                 setStyle({
-                    beforeDotStyle: { fontSize: '1.3rem' },
-                    afterDotStyle: { fontSize: '0.8rem' },
-                    amountStyle: { fontSize: '0.8rem' }
+                    beforeDotStyle: { fontSize: '1rem' },
+                    afterDotStyle: { fontSize: '0.6rem' },
+                    amountStyle: { fontSize: '0.6rem' }
                 })
             } else {
                 setStyle({
@@ -95,15 +95,15 @@ const Basket = props => {
                 <CheckoutList items={props.items} />
             </BasketModal>
             <Auth>
-                <button className="basketButton" name="checkout" type="button" onClick={basketHandler}>
+                <button className="basket-btn" name="checkout" type="button" onClick={basketHandler}>
                     <BasketIcon />
-                    <span style={style.beforeDotStyle} className="cartValue">
+                    <span style={style.beforeDotStyle} className="cart-value-large">
                         {beforeDot.length < 2 ? '0' + beforeDot : beforeDot}
                     </span>
-                    <span style={style.afterDotStyle} className="cartValue2">
+                    <span style={style.afterDotStyle} className="cart-value-small">
                         {afterDot.length < 3 ? afterDot + '0' : afterDot}
                     </span>
-                    <span style={style.amountStyle} className="cartCont">
+                    <span style={style.amountStyle} className="cart-amount">
                         {display.amount || 0}
                     </span>
                 </button>

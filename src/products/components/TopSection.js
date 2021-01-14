@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { PurchaseContext } from '../../shared/context/purchase-context';
 
 import Basket from './Basket';
 import CheckoutButton from './CheckoutButton'
@@ -8,10 +9,12 @@ import './TopSection.css'
 
 const TopSection = props => {
 
+    const { basketContent } = useContext(PurchaseContext)
+
     return (
         <React.Fragment>
             <div className='top-section__div'>
-                <div  className='top-section__logo'>
+                <div className='top-section__logo'>
                     <img className='brand-logo' src='/images/brand-logo/furuma.jpg' alt='brand logo' />
                 </div>
 
@@ -19,7 +22,7 @@ const TopSection = props => {
                 <div className='top-section__search-bar'>
                     <Search className='desktop-view' search={props.search} />
                 </div>
-                <div  className='top-section__buttons'>
+                <div className='top-section__buttons'>
                     <div>
                         <Basket items={props.items} />
                     </div>

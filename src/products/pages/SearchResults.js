@@ -1,22 +1,24 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 
-import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 import TopSection from '../../products/components/TopSection';
 import ProductList from '../../products/components/ProductList';
-import { useHttpClient } from '../../shared/hooks/http-hook';
-import { SearchContext } from '../../shared/context/search-context';
+import { PurchaseContext } from '../../shared/context/purchase-context';
+
 
 const SearchResult = () => {
 
-    const { products } = useContext(SearchContext)
-    const { isLoading } = useHttpClient();
+    const { basketContent } = useContext(PurchaseContext)
+
+
 
     return (
         <React.Fragment>
-            {isLoading && <LoadingSpinner asOverlay />}
-            <TopSection />
-            <div className='shopping'><ProductList items={products} /></div>
+            <TopSection items={basketContent}  />
+            <div className='shopping'>
+                <ProductList items={basketContent} display='search' />
+            </div>
+
         </React.Fragment>
     )
 

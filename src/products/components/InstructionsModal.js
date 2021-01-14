@@ -6,12 +6,13 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 import { useInput } from '../../shared/hooks/form-hook';
 import Button from '../../shared/UIElements/Button';
 import Input from '../../shared/form-elements/Input';
+import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 
 
 const InstructionsModal = () => {
 
     const auth = useContext(AuthContext)
-    const { sendRequest } = useHttpClient();
+    const { sendRequest, isLoading } = useHttpClient();
     const [show, setShow] = useState(false)
     const [inputState, handler] = useInput({
         instructions: {
@@ -63,6 +64,8 @@ const InstructionsModal = () => {
                 onSubmit={formHandler}
                 footer={<Button>Done</Button>}
             >
+                {isLoading && <LoadingSpinner asOverlay />}
+
                 <Input
                     element='textarea'
                     id='instructions'

@@ -22,8 +22,8 @@ const Shopping = () => {
 
 
     const [loadedProducts, setLoadedProducts] = useState([]);
-    const { isLoading, error, clearError } = useHttpClient();
 
+    const [isLoading, setIsLoading] = useState(true)
 
 
 
@@ -31,14 +31,26 @@ const Shopping = () => {
         (async () => {
             try {
                 if (!isLoggedIn) {
-                    const products = JSON.parse(localStorage.getItem('display')).products
-                    saveToLocalStorage(products, 'display')
-                    setLoadedProducts(products)
+                    try {
+                        const products = JSON.parse(localStorage.getItem('display')).products
+                        saveToLocalStorage(products, 'display')
+                        setLoadedProducts(products)
+                        setIsLoading(false)
+                    } catch (err) {
+                        console.log(err)
+                    }
+
 
                 } else {
-                    const products = JSON.parse(localStorage.getItem('basketContent')).products
-                    setLoadedProducts(products)
-                    saveToLocalStorage(products)
+                    try {
+                        const products = JSON.parse(localStorage.getItem('basketContent')).products
+                        setLoadedProducts(products)
+                        saveToLocalStorage(products)
+                        setIsLoading(false)
+                    } catch (err) {
+                        console.log(err)
+                    }
+
                 }
             } catch (err) {
             }
@@ -48,11 +60,12 @@ const Shopping = () => {
 
     return (
         <React.Fragment>
-            <ErrorModal error={error} onClear={clearError} />
             {isLoading && <LoadingSpinner asOverlay />}
+
             <div className='top-section'>
                 <TopSection items={loadedProducts} />
             </div>
+
             {!isLoading && loadedProducts && <div className='shopping'>
                 <ProductList items={loadedProducts} />
             </div>}

@@ -10,6 +10,7 @@ import './Carousel.css';
 import './ProductCarousel.css'
 import { PurchaseContext } from '../context/purchase-context';
 import { AuthContext } from '../context/auth-context';
+import LoadingSpinner from '../UIElements/LoadingSpinner';
 
 
 const images = [
@@ -42,7 +43,7 @@ const Carousel = props => {
 
     const { isLoggedIn } = useContext(AuthContext)
 
-    const { sendRequest } = useHttpClient()
+    const { sendRequest, isLoading } = useHttpClient()
     const [slideStyle, setSlideStyle] = useState();
     const [carousel, setCarousel] = useState({
         activeSlide: 0,
@@ -93,7 +94,8 @@ const Carousel = props => {
                             ...i,
                             number: 0,
                             totalPrice: 0,
-                            isFavourite: false
+                            isFavourite: false,
+                            isSearched: false
                         })), 'display')
                     } catch (err) {
                     }
@@ -158,6 +160,7 @@ const Carousel = props => {
         <div
             className={`carouse-outer_div${props.className}`}
         >
+            {isLoading && <LoadingSpinner asOverlay />}
             <div
 
                 className={`carousel-wrapper${props.className}`}

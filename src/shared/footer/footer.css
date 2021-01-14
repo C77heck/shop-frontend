@@ -1,7 +1,7 @@
 .footer {
     height: 20rem;
     text-align: center;
-    background-color: #2d8f43;
+    background-color: rgb(207, 161, 130);
     padding: 85px 0 35px 0;
     position: relative;
     bottom: 0;
@@ -25,7 +25,7 @@
 }
 
 .footera:hover {
-    color: rgb(35, 22, 109);
+    color: rgb(214, 96, 27);
 }
 
 .footer p {
@@ -76,25 +76,7 @@
     }
 }
 
-/* css transition  */
 
-/* .appear-enter {
-    opacity: 0;
-}
-
-.appear-enter-active {
-    transition: opacity 500ms;
-    opacity: 1;
-}
-
-.appear-exit {
-    opacity: 1;
-}
-
-.appear-exit-active {
-    transition: opacity 500ms;
-    opacity: 0;
-} */
 
 .social-media {
     height: 18%;

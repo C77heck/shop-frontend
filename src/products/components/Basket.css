@@ -1,6 +1,6 @@
-.basketButton {
+.basket-btn {
     transition: background-color 0.3s;
-    background-color: rgb(20, 185, 158);
+    background-color: rgb(168, 207, 61);
     border-radius: 5%;
     border: none;
     font-weight: 450;
@@ -9,68 +9,71 @@
     max-width: 135px;
 }
 
-.basketButton:hover {
+.basket-btn:hover {
     text-decoration: none;
-    background-color: rgb(5, 121, 121);
+    background-color: rgb(114, 209, 50);
 }
 
-.basketButton span {
+.basket-btn span {
     position: relative;
     top: -3px;
     color: white;
 }
 
- .basket-icon {
-width: 29px;
-color: white;
-position: relative;
-top: 2px;
-right: 5px;
-} 
+.basket-icon {
+    width: 29px;
+    color: white;
+    position: relative;
+    top: 2px;
+    right: 5px;
+}
 
-.cartValue {
+.cart-value-large {
     font-size: 1.6rem;
 }
 
-.cartValue2 {
+.cart-value-small {
     font-size: 1rem;
 }
 
-.cartCont {
+.cart-amount {
     position: relative;
     padding: 5px;
     font-size: 1rem;
     float: right;
 }
 
-@media only screen and (max-width: 840px) {
-    .cartCont {
+@media screen and (max-width: 840px) {
+    .cart-amount {
         top: 1px;
         right: 20px;
     }
-    .basketButton {
+    .basket-btn {
         width: 100px;
         height: 39px;
         font-size: 0.7rem;
     }
-   .basket-icon {
+    .basket-icon {
         max-width: 25px;
         max-height: 25px;
-    } 
-    .cartValue {
+    }
+    .cart-value-large {
         font-size: 1.1rem;
     }
-    .cartValue2 {
+    .cart-value-small {
         font-size: 0.7rem;
     }
-    .cartCont {
+    .cart-amount {
         font-size: 0.7rem;
         right: 1px;
     }
 }
 
-@media only screen and (max-width: 500px) {
-    .basketButton {
+@media screen and (max-width: 500px) {
+    .basket-btn {
         right: -14px;
+    }
+    .cart-amount {
+        right: 1px;
     }
 }

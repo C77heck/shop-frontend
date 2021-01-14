@@ -14,9 +14,9 @@
 .card-frame {
     min-width: 20%;
     transition: all 0.3s;
-    background-color: rgb(187, 214, 190);
-    padding: 5px;
-    border: rgb(115, 180, 115) solid 1px;
+    background-color: rgb(211, 199, 166);
+    padding: 3px;
+    border: rgb(228, 225, 217) solid 1px;
     border-radius: 5%;
     box-shadow: 5px 5px 5px 3px grey;
 }
@@ -29,7 +29,8 @@
 .card-item {
     padding: 10px;
     border-radius: 5%;
-    background-color: rgb(222, 233, 225);
+    background-color: rgb(221, 219, 196);
+    min-height: 100%;
 }
 
 .NewsCard-container p {

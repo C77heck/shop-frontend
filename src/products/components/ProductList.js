@@ -10,10 +10,20 @@ import './Products.css'
 const ProductCard = props => {
 
 
+    const display = () => {
+        if (props.display === 'favourites') {
+            return !props.isFavourite ? 'none' : 'block';
+        } else if (props.display === 'search') {
+            return !props.isSearched ? 'none' : 'block';
+        } else {
+            return 'block'
+        }
+    }
+
     return (
 
         <div
-            style={{ display: props.display && (!props.isFavourite ? 'none' : 'block') }}
+            style={{ display: display() }}
             className='grid-item'
         >
             <div className='inner-product-container'>
@@ -69,6 +79,7 @@ const ProductList = props => {
                         key={product.id}
                         id={product.id}
                         isFavourite={product.isFavourite}
+                        isSearched={product.isSearched}
                         name={product.name}
                         unit={product.unit}
                         price={product.price}
@@ -77,6 +88,7 @@ const ProductList = props => {
                         products={props.items}
                         number={product.number}
                         display={props.display}
+
                     />
                 )
             })}

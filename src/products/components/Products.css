@@ -30,7 +30,7 @@
     position: absolute;
     top: 2.5%;
     left: 1.8%;
-    z-index: 3;
+    z-index: 1;
     transition: all 280ms ease-out;
 }
 
@@ -113,7 +113,7 @@
 
 .amount-div {
     height: 33px;
-    border: solid 1px rgb(19, 190, 48);
+    border: solid 1px  rgb(209, 152, 30);
     display: inline-block;
     border-radius: 5%;
 }
@@ -134,7 +134,7 @@
 
 .shopping-button {
     transition: background-color 0.5s;
-    background-color: rgb(66, 199, 66);
+    background-color:  rgb(209, 152, 30);
     color: white;
     border-radius: 5%;
     border: none;
@@ -158,12 +158,12 @@
 }
 
 .shopping-button:hover {
-    background-color: rgb(66, 143, 82);
+    background-color: rgb(194, 119, 34);
 }
 
 .add-button {
     transition: background-color 0.5s;
-    background-color: rgb(66, 199, 66);
+    background-color: rgb(209, 152, 30);
     color: white;
     height: 32px;
     width: 100px;
@@ -174,7 +174,7 @@
 }
 
 .add-button:hover {
-    background-color: rgb(108, 214, 98);
+    background-color: rgb(230, 130, 38);
 }
 
 .are-you-sure__question button {
@@ -249,7 +249,7 @@
 
 @media only screen and (max-width: 525px) {
     .grid-container {
-        padding-left: 0;
+        padding: 0 3vw 0;
     }
     .image-container__products {
         height: 4rem;

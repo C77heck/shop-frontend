@@ -13,6 +13,7 @@ import MessageModal from '../../shared/UIElements/MessageModal';
 
 
 import './Admin.css'
+import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 
 const UpdateProduct = () => {
 
@@ -43,7 +44,7 @@ const UpdateProduct = () => {
         }
     })
 
-    const { sendRequest, error, clearError } = useHttpClient();
+    const { sendRequest, isLoading, error, clearError } = useHttpClient();
 
     const [isProductLoad, setIsProductLoad] = useState(false)
     const [message, setMessage] = useState('')
@@ -136,10 +137,8 @@ const UpdateProduct = () => {
 
     return (
         <React.Fragment>
-
-
             <ErrorModal error={error} onClear={clearError} />
-
+            {isLoading && <LoadingSpinner asOverlay />}
             <MessageModal
                 header='Success'
                 onClear={onClearHandler}

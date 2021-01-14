@@ -2,16 +2,16 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import CheckoutList from '../components/CheckoutList';
 import BookDelivery from '../components/BookDelivery';
-
-import './Checkout.css'
-import 'react-calendar/dist/Calendar.css'
-import { usePurchase } from '../../shared/hooks/purchase-hook';
 import { PurchaseContext } from '../../shared/context/purchase-context';
+
+
+import 'react-calendar/dist/Calendar.css'
+import './Checkout.css'
 
 
 const Checkout = () => {
 
-    const {basketContent} = useContext(PurchaseContext)
+    const { basketContent } = useContext(PurchaseContext)
 
     const [products, setProducts] = useState([])
     /* perhaps ommit the useState check for it... */

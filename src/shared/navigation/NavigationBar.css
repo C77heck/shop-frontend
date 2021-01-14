@@ -18,15 +18,12 @@
 }
 
 .main-navigation__title {
-  color: white;
+  color: rgb(202, 113, 12);
   position: relative;
   top: -3px;
 }
 
-.main-navigation__title a {
-  text-decoration: none;
-  color: white;
-}
+
 
 .main-navigation__header-nav {
   display: none;

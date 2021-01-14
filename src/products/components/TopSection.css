@@ -1,11 +1,11 @@
 .top-section {
-    border-bottom: #22a03e 4px solid;
+    border-bottom: rgb(194, 182, 169) 4px solid;
 }
 
 .top-section__div {
     width: 90%;
     margin: auto;
-    margin-top: 7vh;
+    margin-top: 10vh;
     display: flex;
     flex-direction: row;
     justify-content: center;

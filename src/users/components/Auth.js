@@ -145,7 +145,8 @@ const Auth = props => {
                         ...i,
                         number: 0,
                         totalPrice: 0,
-                        isFavourite: isFavourite
+                        isFavourite: isFavourite,
+                        isSearched: false
                     }
                 }))
                 signin(responseData.userData)
@@ -164,6 +165,7 @@ const Auth = props => {
     const signupHandler = async e => {
         e.preventDefault();
         try {
+            console.log(inputState.inputs)
             const responseData = await sendRequest(
                 process.env.REACT_APP_SIGNUP,
                 'POST',
@@ -217,7 +219,6 @@ const Auth = props => {
     return (
         <React.Fragment>
 
-            {isLoading && <LoadingSpinner asOverlay />}
             <ErrorModal error={error} onClear={clearError} />
 
             <Signin
@@ -229,6 +230,7 @@ const Auth = props => {
                 onInput={handler}
                 value={inputState.inputs}
                 disabled={isFormValid}
+                isLoading={isLoading}
             >
                 <button
                     type='button'
@@ -244,6 +246,7 @@ const Auth = props => {
                 onSubmit={passwordLinkHandler}
                 message={message}
                 disabled={inputState.inputs.email.valid}
+                isLoading={isLoading}
             />
             <Signup
                 header='Registering is quick and easy'
@@ -256,6 +259,7 @@ const Auth = props => {
                 password={inputState.inputs.password.value}
                 disabled={isFormValid}
                 cancelSignup={signinModalHandler}
+                isLoading={isLoading}
             />
 
             <SuccesfulSignup

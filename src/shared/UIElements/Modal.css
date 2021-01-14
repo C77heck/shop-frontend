@@ -35,7 +35,7 @@
 .modal__header {
   width: 100%;
   padding: 1rem 0.5rem;
-  background: #3b9221;
+  background:rgb(221, 115, 54);
   color: white;
 }
 
@@ -51,9 +51,6 @@
   padding: 1rem 0.5rem;
 }
 
-.modal__footer-colored {
-  background-color: #3b9221;
-}
 
 .modal-enter {
   transform: translateY(-10rem);
@@ -169,13 +166,30 @@
     width: 100vw;
     left: 0;
   }
+  .basket-modal .modal__header {
+    margin: 0 0 1vh;
+    font-size: 0.8rem;
+    padding: 1vh;
+  }
+  .basket-modal .modal__content {
+  
+    font-size: 0.8rem;
+    padding: 1vh 1vh 0;
+  }
 }
 
 @media screen and (max-width: 500px) {
   .password-change__modal {
-    width: 100%;
-    left: 0;
+    width: 80vw;
+    left: 10vw;
     min-width: 0;
+    font-size: 0.8rem;
+    top: 7vh;
+  }
+  .password-change__modal .modal__header {
+    margin: 0;
+    font-size: 0.8rem;
+    padding: 1vh;
   }
 }
 

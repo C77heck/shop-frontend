@@ -13,11 +13,13 @@ import { PurchaseContext } from '../../shared/context/purchase-context';
 const Search = props => {
 
     const history = useHistory();
-    const search = useContext(SearchContext);
     const { basketContent } = useContext(PurchaseContext);
-    const { isLoading } = useHttpClient();
-    const [content, setContent] = useState('');
+    const [searchCriteria, setSearchCriteria] = useState('');
     const [searchResults, setSearchResults] = useState()
+
+    const { search } = useContext(SearchContext)
+
+    const [isLoading, setIsLoading] = useState(false)
 
     const okay = () => {
         setSearchResults(null)
@@ -25,27 +27,21 @@ const Search = props => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        setIsLoading(true)
+        const count = search(basketContent, searchCriteria)
 
-        const results = [];
-        let regexp = new RegExp(`${content}`, "i")
-        console.log(regexp)
-        basketContent.map(i => {
-            if (i.code === Number(content) || i.name.match(regexp)) {
-                results.push(i);
-            }
-            return i;
-        })
-
-          if (results.length > 0) {
-                  search.products = results;
-                  history.push('/searchresults')
-              } else {
-                  setSearchResults('Sorry, no items matching your search criteria.')
-              } 
+        if (count > 0) {
+            setIsLoading(false)
+            history.push('/searchresults')
+        } else {
+            setIsLoading(false)
+            setSearchResults('Sorry, no items matching your search criteria.')
+        }
     }
 
+
     const inputHandler = (e) => {
-        setContent(e.target.value)
+        setSearchCriteria(e.target.value)
     }
 
 
@@ -73,7 +69,7 @@ const Search = props => {
                                     className='search-bar'
                                     placeholder='find a product'
                                     name='search'
-                                    value={content}
+                                    value={searchCriteria}
                                     onChange={inputHandler}
                                 />
                             </div>
@@ -90,3 +86,27 @@ const Search = props => {
 }
 
 export default Search;
+
+/* const submitHandler = async (e) => {
+    e.preventDefault();
+    setIsLoading(true)
+    const results = [];
+    let regexp = new RegExp(`${content}`, "i")
+    console.log(regexp)
+    basketContent.map(i => {
+        if (i.code === Number(content) || i.name.match(regexp)) {
+            results.push(i.id);
+        }
+        return i;
+    })
+    if (results.length > 0) {
+        search.products = results;
+        setIsLoading(false)
+
+        history.push('/searchresults')
+
+    } else {
+        setIsLoading(false)
+        setSearchResults('Sorry, no items matching your search criteria.')
+    }
+} */

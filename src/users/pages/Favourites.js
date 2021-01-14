@@ -33,7 +33,7 @@ const Favourites = () => {
             className='top-section'>
             <TopSection items={products} />
         </div>
-        {itemCounter > 0 ? <ProductList items={products} display={true} />
+        {itemCounter > 0 ? <ProductList items={products} display={'favourites'} />
             :
             <div><h1
                 className='no-favourites__yet'

@@ -4,13 +4,8 @@ import PlacedOrders from '../components/PlacedOrders';
 
 const ViewOrders = () => {
 
-
-
     return (
-
-        <React.Fragment>
             <PlacedOrders />
-        </React.Fragment>
     )
 }
 

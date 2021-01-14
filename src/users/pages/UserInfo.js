@@ -203,6 +203,7 @@ const UserInfo = () => {
         <React.Fragment>
             <div className='my__account-container'>
                 <ErrorModal error={error} onClear={clearError} />
+                {isLoading && <LoadingSpinner asOverlay />}
                 <HintModal
                     onClear={onClearHandler}
                     show={show}

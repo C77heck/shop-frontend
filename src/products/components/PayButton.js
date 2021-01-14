@@ -7,6 +7,7 @@ import { PurchaseContext } from '../../shared/context/purchase-context';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { usePurchase } from '../../shared/hooks/purchase-hook';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
+import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 
 import './PayButton.css'
 
@@ -14,7 +15,7 @@ const PayButton = props => {
 
     const auth = useContext(AuthContext)
     const { basket } = useContext(PurchaseContext)
-    const { sendRequest, error, clearError } = useHttpClient();
+    const { sendRequest, isLoading, error, clearError } = useHttpClient();
     const { clearBasket } = usePurchase();
     const [products, setProducts] = useState([]);
     const history = useHistory();
@@ -66,6 +67,7 @@ const PayButton = props => {
 
     return (
         <React.Fragment>
+            {isLoading && <LoadingSpinner asOverlay />}
             <ErrorModal
                 errorMessage={errorMessage}
                 error={error}

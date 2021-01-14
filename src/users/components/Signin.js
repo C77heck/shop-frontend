@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Modal from '../../shared/UIElements/Modal';
 import Button from '../../shared/UIElements/Button';
 import Input from '../../shared/form-elements/Input';
-
+import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 import {
     VALIDATOR_EMAIL,
     VALIDATOR_REQUIRE
@@ -23,7 +23,6 @@ const Signin = props => {
         }
     }, [email, password])
 
-
     return (
         <Modal
             className='signin'
@@ -38,6 +37,7 @@ const Signin = props => {
                 REGISTER
              </Button>}
         >
+            {props.isLoading && <LoadingSpinner asOverlay />}
             <Input
                 id='email'
                 label='Email'

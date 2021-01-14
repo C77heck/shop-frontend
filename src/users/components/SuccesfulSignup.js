@@ -17,10 +17,6 @@ const SuccesfulSignup = props => {
             show={!!props.show}
         >
             <h1>Succesful registration!</h1>
-            <div className='profile-link' >
-            <p>got to see <Link to='/profile'>my profile</Link></p>
-                
-            </div>
             <div className="map-container">
                 <Map marker={props.marker} />
             </div>

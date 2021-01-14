@@ -9,7 +9,7 @@ import './NotMe.css';
 const NotMe = () => {
 
     const { requestId } = useParams()
-    const { sendRequest, isLoading } = useHttpClient()
+    const { sendRequest } = useHttpClient()
 
 
     useEffect(() => {
@@ -32,7 +32,7 @@ const NotMe = () => {
             Furuma account as safety precautions.
             
             You may change your password in the "my account", "update details"</p>
-<p>Sincerely</p>
+            <p>Sincerely</p>
             <p>Furuma team</p>
         </div>
     )

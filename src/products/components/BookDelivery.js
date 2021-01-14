@@ -14,6 +14,7 @@ import PayButton from './PayButton';
 
 import './BookDelivery.css';
 import { useHttpClient } from '../../shared/hooks/http-hook';
+import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 
 
 
@@ -22,7 +23,7 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 const BookDelivery = () => {
 
     const auth = useContext(AuthContext)
-    const { sendRequest } = useHttpClient();
+    const { sendRequest, isLoading } = useHttpClient();
     const [value, setValue] = useState({
         display: ''
     })
@@ -99,6 +100,7 @@ const BookDelivery = () => {
 
     return (
         <React.Fragment>
+            {isLoading && <LoadingSpinner asOverlay />}
 
             <DeliverPicker
                 onClear={cancelHandler}

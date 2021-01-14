@@ -1,17 +1,22 @@
+li{
+    cursor: pointer;
+}
+
 .dropdown {
     display: inline-block;
     cursor: pointer;
     position: absolute;
-    top: 3.65rem;
+    top: 4.8rem;
     width: 100%;
     left: 0;
+    
 }
 
 .dropdown-content {
     text-align: right;
     padding: 0.7vh 17vh 0.9vh 0;
-    background-color: #22a03e;
-    border: #5db148 solid 2px;
+    background-color: rgb(218, 217, 208);
+    border: rgb(216, 131, 21) solid 2px;
     color: rgb(250, 102, 3);
 }
 

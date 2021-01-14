@@ -23,6 +23,7 @@ import Carousel from './shared/carousel/Carousel';
 import LoadingSpinner from './shared/UIElements/LoadingSpinner';
 import './App.css';
 import TopSection from './products/components/TopSection';
+import Welcome from './users/components/Welcome';
 
 /* import Admin from './admin/pages/Admin';
 import SearchResults from './products/pages/SearchResults';
@@ -64,7 +65,7 @@ function App() {
     deleteItem
   } = usePurchase()
 
-  const { products, searchCriteria, findProducts } = useSearch();
+  const { search } = useSearch();
 
   const { signin, signout, token, userId, favourites } = useAuth();
 
@@ -75,8 +76,8 @@ function App() {
       <Switch>
         <Route path='/' exact>
           <NavigationBar />
-          <div className='top-section'>
-            <TopSection />
+          <div >
+            <Welcome />
           </div>
           <Carousel
             className=''
@@ -102,7 +103,6 @@ function App() {
         <Route path='/searchresults' exact>
           <NavigationBar />
           <SearchResults />
-          <Footer />
         </Route>
         <Route path='/checkout' exact>
           <NavigationBar />
@@ -134,7 +134,6 @@ function App() {
         <Route path='/orderhistory/:userId' exact>
           <NavigationBar />
           <ViewOrders />
-          <Footer />
         </Route>
         <Route path='/favourites/:userId' exact>
           <NavigationBar />
@@ -173,7 +172,7 @@ function App() {
       >
         <SearchContext.Provider
           value={{
-            products: products
+            search: search
           }}
         >
           <PurchaseContext.Provider

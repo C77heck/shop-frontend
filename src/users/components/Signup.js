@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Modal from '../../shared/UIElements/Modal';
 import Button from '../../shared/UIElements/Button';
 import Input from '../../shared/form-elements/Input';
+import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 import SecQuestions from './SecQuestions';
-
-
+import BackIcon from './BackIcon';
 import {
     VALIDATOR_REQUIRE,
     VALIDATOR_MINLENGTH,
@@ -16,31 +16,12 @@ import {
 
 import './user.css'
 
-const Signup = props => {
 
-
+const FirstPage = props => {
     return (
-        <Modal
-            className='signup'
-            onCancel={props.onClear}
-            header={props.header}
-            show={!!props.show}
-            onSubmit={props.onSubmit}
-            footer={<React.Fragment>
-                <Button
-                    disabled={props.disabled}
-                    className='register-button'
-                    onSubmit={props.signup}>
-                    SIGN UP
-                </Button>
-                <p>Already have an account? <span className='signin-here' onClick={props.cancelSignup}>sign in here</span></p>
-                <p>For further information on how we use your data please read our
-                <Link to='/shopping'>privacy policy</Link>.
-                By submitting this form you agree to the
-                 <Link to='/shopping'>terms and conditions</Link>.</p>
-            </React.Fragment>}>
+        <React.Fragment>
             <div className='signup_form-container' >
-                <div className='signup_form-left'>
+                <div className='signup-page__right'>
                     <Input
                         id='fName'
                         label='First name'
@@ -68,6 +49,8 @@ const Signup = props => {
                         validators={[VALIDATOR_EMAIL()]}
                         type='text'
                     />
+                </div>
+                <div className='signup-page__left'>
                     <Input
                         id='password'
                         label='Password'
@@ -87,9 +70,6 @@ const Signup = props => {
                         validators={[]}
                         password={props.password}
                     />
-
-                </div>
-                <div className='signup_form-right'>
                     <Input
                         id='phone'
                         label='Phone number'
@@ -100,6 +80,18 @@ const Signup = props => {
                         errorText='Please enter a valid phone number'
                         type='text'
                     />
+                </div>
+            </div>
+
+        </React.Fragment>
+    )
+}
+const SecondPage = props => {
+    return (
+        <React.Fragment>
+            <div className='signup_form-container' >
+
+                <div className='signup-page__right'>
                     <Input
                         id='city'
                         label='City'
@@ -116,41 +108,112 @@ const Signup = props => {
                         validators={[VALIDATOR_REQUIRE()]}
                         type='text'
                     />
+                </div>
 
-                    <div className='smaller-inputs' >
-                        <Input
-                            id='postCode'
-                            label='Post code'
-                            onInput={props.onInput}
-                            value={props.value.postCode.value}
-                            validators={[VALIDATOR_REQUIRE()]}
-                            type='text'
-                        />
-                        <Input
-                            id='houseNumber'
-                            label='House number'
-                            onInput={props.onInput}
-                            value={props.value.houseNumber.value}
-                            validators={[VALIDATOR_REQUIRE()]}
-                            type='text'
-                        />
-                    </div>
+                <div className='signup-page__left'>
+                    <Input
+                        id='postCode'
+                        label='Post code'
+                        onInput={props.onInput}
+                        value={props.value.postCode.value}
+                        validators={[VALIDATOR_REQUIRE()]}
+                        type='text'
+                    />
+
+
+                    <Input
+                        id='houseNumber'
+                        label='House number'
+                        onInput={props.onInput}
+                        value={props.value.houseNumber.value}
+                        validators={[VALIDATOR_REQUIRE()]}
+                        type='text'
+                    />
                 </div>
             </div>
-            <SecQuestions
-                onChange={props.onChange}
-            />
-            <Input
-                id='answer'
-                label='Your answer'
+            <div className='security-question'>
+                <SecQuestions
+                    onChange={props.onChange}
+                />
+                <Input
+                    id='answer'
+                    label='Your answer'
+                    onInput={props.onInput}
+                    value={props.value.answer.value}
+                    validators={[VALIDATOR_MINLENGTH(4)]}
+                    type='text'
+                    className='answer__input'
+                    contClass='answer__div'
+                    errorText='Your answer must be at least 4 character'
+                />
+            </div>
+        </React.Fragment>
+    )
+}
+
+
+const Signup = props => {
+    const [isFirstPage, setIsFirstPage] = useState(true)
+
+
+    const onClickHandler = e => {
+        e.preventDefault();
+
+        setIsFirstPage(prev => !prev);
+
+    }
+
+    return (
+        <Modal
+            className='signup'
+            onCancel={props.onClear}
+            header={props.header}
+            show={!!props.show}
+            onSubmit={props.onSubmit}
+            footer={<React.Fragment>
+                {isFirstPage ?
+                    <Button
+                        className='register-button'
+                        onClick={onClickHandler}
+                    >
+                        NEXT
+                </Button>
+                    :
+                    <React.Fragment>
+                        <Button
+                            className='back-btn'
+                            onClick={onClickHandler}
+                        ><BackIcon /></Button>
+                        <Button
+                            disabled={props.disabled}
+                            className='register-button'
+                            onSubmit={props.onSubmit}
+                        >
+                            SIGN UP
+                </Button>
+                    </React.Fragment>
+                }
+                <p>Already have an account? <span className='signin-here' onClick={props.cancelSignup}>sign in here</span></p>
+                <p>For further information on how we use your data please read our
+                <Link to='/shopping'>privacy policy</Link>.
+                By submitting this form you agree to the
+                 <Link to='/shopping'>terms and conditions</Link>.</p>
+            </React.Fragment>}>
+            {props.isLoading && <LoadingSpinner asOverlay />}
+            {isFirstPage ? <FirstPage
                 onInput={props.onInput}
-                value={props.value.answer.value}
-                validators={[VALIDATOR_MINLENGTH(4)]}
-                type='text'
-                className='answer__input'
-                contClass='answer__div'
-                errorText='Your answer must be at least 4 character'
+                value={props.value}
+                onChange={props.onChange}
+                password={props.password}
             />
+                :
+                <SecondPage
+                    onInput={props.onInput}
+                    value={props.value}
+                    onChange={props.onChange}
+                />}
+
+
         </Modal>
     )
 }

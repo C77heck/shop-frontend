@@ -4,12 +4,14 @@ import { useHistory } from 'react-router-dom';
 
 import { SearchContext } from '../../shared/context/search-context';
 import { useHttpClient } from '../../shared/hooks/http-hook';
+import { PurchaseContext } from '../context/purchase-context';
 
 
 const Image = props => {
+
+    const { basketContent } = useContext(PurchaseContext);
     const { id, image, name } = props.file;
-    const search = useContext(SearchContext);
-    const { sendRequest } = useHttpClient();
+    const { search } = useContext(SearchContext);
 
 
     const history = useHistory();
@@ -17,23 +19,8 @@ const Image = props => {
 
         const { alt } = e.target;
         try {
-
-            const responseData = await sendRequest(
-                process.env.REACT_APP_SEARCH_ROUTE2 + alt
-            )
-            search.products = responseData.products
-            if (search.products.length > 0) {
-                localStorage.setItem(
-                    'searchedItems',
-                    JSON.stringify({
-                        searches: search.products
-                    })
-                );
-                history.push('/')
-                history.push('/searchresults')
-
-            }
-
+            search(basketContent, name)
+            history.push('/searchresults')
         } catch (err) {
             console.log(err)
         }

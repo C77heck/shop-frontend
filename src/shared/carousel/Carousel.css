@@ -23,16 +23,13 @@
 @media (max-width: 950px) {
     .carousel-images {
         bottom: 0;
-        width: 100%;
     }
 }
 
 @media (max-width: 550px) {
-    .carousel-images {
-        width: 150%;
-    }
+
     .carousel-wrapper {
-        margin: 9vh auto 0;
+        margin: 0;
         max-height: 200px;
     }
 }

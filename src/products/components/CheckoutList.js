@@ -64,7 +64,7 @@ const ProductItem = props => {
             <div style={{ flexBasis: "25%", margin: "0.2rem", textAlign: "center" }}>
                 <BuyButton
                     className='checkout-list__buyButton'
-                    items={props.items}
+                    items={props.products}
                     code={props.code}
                     price={props.price}
                     number={props.number}
@@ -104,7 +104,7 @@ const CheckoutList = props => {
 
     }, [basket, props.items])
 
-
+    console.log(basket, items, props.items)
 
 
     return (

@@ -13,6 +13,7 @@ import ErrorModal from '../../shared/UIElements/ErrorModal';
 import { encrypt } from '../../shared/utility/encrypt';
 
 import './UserPasswordReset.css';
+import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 
 const UserPasswordReset = props => {
 
@@ -73,8 +74,9 @@ const UserPasswordReset = props => {
             header={props.header}
             show={props.show}
             onSubmit={submitHandler}
-            
+
         >
+            {isLoading && <LoadingSpinner asOverlay />}
             <div className='password-change__container' >
                 {!message ? <React.Fragment><h2>{props.hint}</h2>
                     <Input
@@ -116,9 +118,9 @@ const UserPasswordReset = props => {
                         validators={[VALIDATOR_MINLENGTH(6)]}
                         password={inputState.inputs.password.value}
                     />
-                     <Button>Submit</Button>
-                    </React.Fragment> : <h2>{message}</h2>}
-           
+                    <Button>Submit</Button>
+                </React.Fragment> : <h2>{message}</h2>}
+
             </div>
         </Modal>
     </React.Fragment>

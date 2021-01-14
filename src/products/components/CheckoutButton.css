@@ -2,23 +2,23 @@
     transition: background-color 0.5s;
     background-color: white;
     border-radius: 5%;
-    color: rgb(0, 151, 13);
+    color: rgb(219, 136, 42);
     font-weight: 500;
     font-size: 1.3rem;
-    border:  rgb(63, 189, 74) solid 4px;
+    border:  rgb(219, 136, 42) solid 4px;
     width: 135px;
     height: 47px;
 }
 
 .checkout:hover {
-    background-color: rgb(63, 189, 74);
+    background-color: rgb(219, 136, 42);
     color: white;
 }
 
 @media only screen and (max-width: 840px) {
     .checkout{
         width: 100px;
-        height: 39px;
+        height: 40px;
         font-size: 1.1rem;
     }
 }
