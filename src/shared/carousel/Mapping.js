@@ -3,7 +3,6 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { SearchContext } from '../../shared/context/search-context';
-import { useHttpClient } from '../../shared/hooks/http-hook';
 import { PurchaseContext } from '../context/purchase-context';
 
 
@@ -17,7 +16,6 @@ const Image = props => {
     const history = useHistory();
     const clickHandle = async (e) => {
 
-        const { alt } = e.target;
         try {
             search(basketContent, name)
             history.push('/searchresults')

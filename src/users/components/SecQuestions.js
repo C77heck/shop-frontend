@@ -24,6 +24,7 @@ const SecQuestions = props => {
                     if (props.value !== i.hint) {
                         return <option key={i.id} value={i.hint}>{i.hint}</option>
                     }
+                    return null;
                 })}
             </select>
 

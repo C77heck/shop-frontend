@@ -14,7 +14,7 @@ const ProductItem = props => {
         beforeDot: '',
         afterDot: ''
     });
-    const { products, code, number, totalPrice } = props;
+    const { products, code, totalPrice } = props;
 
 
 
@@ -104,7 +104,6 @@ const CheckoutList = props => {
 
     }, [basket, props.items])
 
-    console.log(basket, items, props.items)
 
 
     return (
@@ -136,6 +135,7 @@ const CheckoutList = props => {
                                     noShow={props.noShow}
                                 />)
                         }
+                        return null;
                     })}
             </div>
         </React.Fragment>

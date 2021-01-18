@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 
 
 import TopSection from '../../products/components/TopSection';
@@ -14,7 +14,7 @@ const SearchResult = () => {
 
     return (
         <React.Fragment>
-            <TopSection items={basketContent}  />
+            <TopSection items={basketContent} />
             <div className='shopping'>
                 <ProductList items={basketContent} display='search' />
             </div>

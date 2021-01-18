@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
-import { CSSTransition } from 'react-transition-group';
-import Backdrop from '../../shared/UIElements/Backdrop';
+
 import { AuthContext } from '../context/auth-context';
 
 
@@ -41,7 +40,7 @@ const DropDown = props => {
 
 
 
-    
+
     const onClickHandler = () => {
         if (show.translate === '-100') {
             setShow({

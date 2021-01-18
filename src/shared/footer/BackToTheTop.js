@@ -7,17 +7,18 @@ const BackToTheTop = props => {
     const [display, setDisplay] = useState(false)
 
 
-    const displayButton = () => {
-        if (window.scrollY < 800) {
-            setDisplay(false)
-        } else {
-            setDisplay(true)
-        }
-    }
+
     useEffect(()=>{
+        const displayButton = () => {
+            if (window.scrollY < 800) {
+                setDisplay(false)
+            } else {
+                setDisplay(true)
+            }
+        }
         window.addEventListener('scroll', displayButton)
 
-    },[displayButton])
+    },[])
 
     const clickHandler = () => {
         window.scrollTo(0, 0, "smooth");

@@ -99,7 +99,6 @@ const UserInfo = () => {
                         'Content-Type': 'application/json'
                     }
                 )
-                console.log(responseData)
                 setFormData({
                     firstName: {
                         value: responseData.userData.fullName.firstName,
@@ -152,7 +151,7 @@ const UserInfo = () => {
 
             }
         })()
-    }, [])
+    }, [sendRequest, setFormData, token, userId])
 
     useEffect(() => {
         (async () => {
@@ -165,7 +164,7 @@ const UserInfo = () => {
             } catch (err) {
             }
         })()
-    }, [])
+    }, [sendRequest,userId])
 
     const submitHandler = async e => {
         e.preventDefault();

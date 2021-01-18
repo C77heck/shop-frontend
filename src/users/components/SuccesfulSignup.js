@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
-
 import Modal from '../../shared/UIElements/Modal';
 import Map from '../../shared/UIElements/Map';
 

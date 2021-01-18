@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../shared/utility/validators';
 
@@ -118,7 +118,9 @@ const UserPasswordReset = props => {
                         validators={[VALIDATOR_MINLENGTH(6)]}
                         password={inputState.inputs.password.value}
                     />
-                    <Button>Submit</Button>
+                    <Button
+                        disabled={isFormValid}
+                    >Submit</Button>
                 </React.Fragment> : <h2>{message}</h2>}
 
             </div>

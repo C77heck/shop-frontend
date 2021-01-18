@@ -3,7 +3,6 @@ import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { SearchContext } from '../../shared/context/search-context';
-import { useHttpClient } from '../../shared/hooks/http-hook';
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
 
@@ -86,27 +85,3 @@ const Search = props => {
 }
 
 export default Search;
-
-/* const submitHandler = async (e) => {
-    e.preventDefault();
-    setIsLoading(true)
-    const results = [];
-    let regexp = new RegExp(`${content}`, "i")
-    console.log(regexp)
-    basketContent.map(i => {
-        if (i.code === Number(content) || i.name.match(regexp)) {
-            results.push(i.id);
-        }
-        return i;
-    })
-    if (results.length > 0) {
-        search.products = results;
-        setIsLoading(false)
-
-        history.push('/searchresults')
-
-    } else {
-        setIsLoading(false)
-        setSearchResults('Sorry, no items matching your search criteria.')
-    }
-} */

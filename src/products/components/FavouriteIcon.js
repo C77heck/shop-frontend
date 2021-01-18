@@ -38,7 +38,7 @@ const FavouriteIcon = props => {
                 favouriteHandler(props.products, props.id, !prev)
                 return !prev
             })
-            const responseData = await sendRequest(process.env.REACT_APP_FAVOURITE + userId,
+            await sendRequest(process.env.REACT_APP_FAVOURITE + userId,
                 'POST',
                 JSON.stringify({
                     productId: props.id

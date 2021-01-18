@@ -76,11 +76,6 @@ const OrderCards = props => {
         numberOfItems,
         products
     } = props.order;
-    const [items, setItems] = useState([])
-
-
-
-
 
     return (
         <div className='order-cards__container'>
@@ -133,7 +128,7 @@ const PlacedOrders = () => {
 
             }
         })()
-    }, [])
+    }, [sendRequest, auth.userId])
 
 
     return (

@@ -21,7 +21,7 @@ const NotMe = () => {
                 console.log(err)
             }
         })()
-    }, [])
+    }, [requestId, sendRequest])
 
 
     return (

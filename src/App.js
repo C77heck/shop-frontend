@@ -22,8 +22,8 @@ import Shopping from './products/pages/Shopping';
 import Carousel from './shared/carousel/Carousel';
 import LoadingSpinner from './shared/UIElements/LoadingSpinner';
 import './App.css';
-import TopSection from './products/components/TopSection';
 import Welcome from './users/components/Welcome';
+import Contact from './users/pages/Contact';
 
 /* import Admin from './admin/pages/Admin';
 import SearchResults from './products/pages/SearchResults';
@@ -111,6 +111,8 @@ function App() {
         </Route>
         <Route path='/contact' exact>
           <NavigationBar />
+          <Contact />
+          <Footer />
         </Route>
         <Route path='/thankyou' exact>
           <NavigationBar />

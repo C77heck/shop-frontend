@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import ProductList from '../components/ProductList';
-import { useHttpClient } from '../../shared/hooks/http-hook'
-import ErrorModal from '../../shared/UIElements/ErrorModal'
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner'
 import TopSection from '../components/TopSection'
 

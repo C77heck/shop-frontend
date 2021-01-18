@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-
-import { useHistory } from 'react-router-dom'
+import React, { useState } from 'react';
 
 import { useHttpClient } from '../../shared/hooks/http-hook'
 import ErrorModal from '../../shared/UIElements/ErrorModal'
@@ -18,8 +16,6 @@ import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 const UpdateProduct = () => {
 
 
-
-    const history = useHistory();
 
     const [inputState, handler, isFormValid, setFormData] = useInput({
         nameUpdate: {
@@ -106,7 +102,6 @@ const UpdateProduct = () => {
             const responseData = await sendRequest(
                 process.env.REACT_APP_PRODUCT + inputState.inputs.codeUpdate.value
             )
-            console.log(responseData)
             setFormData({
                 nameUpdate: {
                     value: responseData.product.name,
@@ -202,6 +197,7 @@ const UpdateProduct = () => {
                             </div>
                             <Button>UPDATE</Button>
                             <a
+                                href=''
                                 className='update-product__cancel'
                                 onClick={() => { setIsProductLoad(false) }}>Cancel</a>
                         </form>}

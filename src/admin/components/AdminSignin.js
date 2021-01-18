@@ -47,7 +47,6 @@ const AdminSignin = props => {
     const onSubmitHandler = async e => {
         e.preventDefault();
         try {
-            console.log(inputState.inputs.accountID.value, inputState.inputs.password.value)
             const responseData = await sendRequest(
                 process.env.REACT_APP_ADMIN_SIGNIN,
                 'POST',
@@ -70,7 +69,6 @@ const AdminSignin = props => {
         setShow(false)
     }
 
-    console.log(isAdminLoggedIn)
 
     return (
         <React.Fragment>

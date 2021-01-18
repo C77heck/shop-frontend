@@ -1,7 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
-import { useHttpClient } from './http-hook';
-
-
+import { useState, useCallback } from 'react';
 
 export const usePurchase = () => {
     const [code, setCode] = useState();
@@ -11,9 +8,6 @@ export const usePurchase = () => {
     })
 
     const [basketContent, setBasketContent] = useState([])
-
-
-
 
     const saveToLocalStorage = (products, name) => {
         name = name || 'basketContent';
@@ -61,12 +55,12 @@ export const usePurchase = () => {
 
     const add = useCallback(
         (products, code) => {
-            console.log(products, typeof products)
             setCode(code);
             products.map(i => {
                 if (i.code === code) {
                     i.number += 1
                 }
+                return null;
             })
             saveToLocalStorage(products)
         },
@@ -83,6 +77,7 @@ export const usePurchase = () => {
                 if (i.code === code) {
                     i.number -= 1
                 }
+                return null;
             })
             saveToLocalStorage(products)
         }, [])
@@ -91,6 +86,7 @@ export const usePurchase = () => {
         (products) => {
             products.map(i => {
                 i.number = 0;
+                return i;
             })
             saveToLocalStorage(products)
         }, [])

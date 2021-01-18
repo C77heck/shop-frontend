@@ -41,7 +41,7 @@ const PayButton = props => {
                 setErrorMessage('Please pick a delivery date for your order.')
             }
             const todaysDate = String(new Date()).slice(0, 15);
-            const responseData = await sendRequest(
+            await sendRequest(
                 process.env.REACT_APP_ORDERS,
                 'POST',
                 JSON.stringify({
@@ -57,7 +57,6 @@ const PayButton = props => {
                     'Content-Type': 'application/json'
                 }
             )
-            console.log(responseData.order)
             history.push('/thankyou')
             clearBasket(products);
         } catch (err) {

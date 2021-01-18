@@ -1,0 +1,88 @@
+.contact-us__form {
+    width: 40rem;
+    margin: 20vh auto 0;
+    color: rgb(202, 113, 12);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.contact-us__form button {
+    width: 10rem;
+    height: 2.6rem;
+    background-color: rgb(202, 113, 12);
+    transition: all 230ms ease;
+}
+
+.contact-us__form button:hover {
+    background-color: rgb(219, 164, 100);
+}
+
+.contact-us__form button:active {
+    transform: scale(1.05);
+}
+
+@media screen and (max-width: 720px) {
+    .contact-us__form {
+        width: 90vw;
+    }
+}
+
+.contact-us__horizontal-line {
+    width: 30vw;
+    border-top: 2px solid orange;
+    border-right: hidden;
+    border-left: hidden;
+    margin: 8vh auto 0;
+}
+
+.contact-us__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10vh 0;
+}
+
+.contact-us__info div {
+    margin: 3vw;
+    text-align: center;
+    color: rgb(202, 113, 12);
+}
+@media screen and (max-width: 720px){
+    .contact-us__info {
+        flex-direction: column;
+
+    }
+}
+.contact-us__social-title {
+    color: rgb(202, 113, 12);
+    text-align: center;
+    font-size: 2.6rem;
+    font-weight: bold;
+}
+
+.contact-us__social-media__wrapper {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    height: 30vh;
+}
+
+.contact-us__social-media__wrapper .social-media {
+    width: 50px;
+    color: rgb(0, 127, 231);
+    transition: color 340ms ease-out;
+}
+
+.contact-us__social-media__wrapper .social-media:hover {
+    color: rgb(49, 4, 172);
+}
+
+@media screen and (max-width: 720px){
+    .contact-us__social-title {
+        font-size: 7vw;
+;
+    }
+}

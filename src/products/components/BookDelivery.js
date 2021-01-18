@@ -84,7 +84,7 @@ const BookDelivery = () => {
             }
 
         })()
-    }, [])
+    })
 
     const datePickerHandler = () => {
         setShow(true)

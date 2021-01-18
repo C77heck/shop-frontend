@@ -1,5 +1,4 @@
-import { useEffect, useState, useCallback, useContext } from 'react';
-import { PurchaseContext } from '../context/purchase-context';
+import { useEffect, useState, useCallback } from 'react';
 
 
 import { useHttpClient } from './http-hook';
@@ -9,7 +8,6 @@ let timer;
 
 export const useAuth = () => {
 
-    const { saveToLocalStorage } = useContext(PurchaseContext)
     const { sendRequest } = useHttpClient();
     const [token, setToken] = useState(false);
     const [expiration, setExpiration] = useState()
@@ -54,7 +52,7 @@ export const useAuth = () => {
             console.log(err)
         }
         return true;
-    }, []);
+    }, [sendRequest]);
 
     useEffect(() => {
         const storedData = JSON.parse(localStorage.getItem('userData'));

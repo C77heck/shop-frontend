@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useCallback, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import { useHttpClient } from '../hooks/http-hook'
 
@@ -112,7 +112,7 @@ const Carousel = props => {
         }
 
 
-    }, [sendRequest, basketContent, isLoggedIn])
+    }, [sendRequest, basketContent, isLoggedIn, saveToLocalStorage])
 
 
 

@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 
 export const Facebook = props => {
   return (
-    <a href={`https://www.facebook.com/${props.link}`} target='_blank'>
+    <a href={`https://www.facebook.com/${props.link}`} target='_blank' rel="noopener noreferrer">
       <svg
         aria-hidden="true"
         focusable="false"
@@ -20,13 +19,13 @@ export const Facebook = props => {
         </path></svg>
 
     </a>
-
   )
 }
 
 export const Instagram = props => {
   return (
-    <a href={`https://www.instagram.com/${props.link}`} target='_blank'>
+
+    <a href={`https://www.instagram.com/${props.link}`} target='_blank' rel="noopener noreferrer">
       <svg
         aria-hidden="true"
         focusable="false"
@@ -46,7 +45,7 @@ export const Instagram = props => {
 
 export const Linkedin = props => {
   return (
-    <a href={`https://www.linkedin.com/${props.link}`} target='_blank'>
+    <a href={`https://www.linkedin.com/${props.link}`} target='_blank' rel="noopener noreferrer">
       <svg
         height="512pt"
         viewBox="0 0 512 512"
@@ -64,7 +63,7 @@ export const Linkedin = props => {
 
 export const Twitter = props => {
   return (
-    <a href={`https://twitter.com/home${props.link}`} target='_blank'>
+    <a href={`https://twitter.com/home${props.link}`} target='_blank' rel="noopener noreferrer">
       <svg
         aria-hidden="true"
         focusable="false"

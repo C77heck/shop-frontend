@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { PurchaseContext } from '../../shared/context/purchase-context';
 import { AuthContext } from '../../shared/context/auth-context';
@@ -9,7 +9,6 @@ import Signin from './Signin';
 import Signup from './Signup';
 import SuccesfulSignup from './SuccesfulSignup';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
-import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 import { encrypt } from '../../shared/utility/encrypt';
 import PasswordResetter from '../../users/components/PasswordResetter';
 
@@ -165,7 +164,6 @@ const Auth = props => {
     const signupHandler = async e => {
         e.preventDefault();
         try {
-            console.log(inputState.inputs)
             const responseData = await sendRequest(
                 process.env.REACT_APP_SIGNUP,
                 'POST',
@@ -188,7 +186,6 @@ const Auth = props => {
                 }),
                 { 'Content-Type': 'application/json' }
             )
-            console.log(responseData)
             setCoordinates(responseData.userData.userLocation)
             signin(responseData.userData);
             signInClose();

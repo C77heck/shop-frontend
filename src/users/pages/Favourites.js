@@ -20,6 +20,7 @@ const Favourites = () => {
             if (i.isFavourite) {
                 setItemCounter(prev => prev += 1)
             }
+            return null;
         })
     }, [basketContent])
 
