@@ -16,9 +16,7 @@ import './Shopping.css'
 const Shopping = () => {
 
     const { isLoggedIn } = useContext(AuthContext);
-    const { saveToLocalStorage } = useContext(PurchaseContext);
-
-
+    const { saveToLocalStorage, basketContent } = useContext(PurchaseContext);
     const [loadedProducts, setLoadedProducts] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true)
@@ -26,33 +24,17 @@ const Shopping = () => {
 
 
     useEffect(() => {
-        (async () => {
+        if (isLoggedIn || !isLoggedIn) {
             try {
-                if (!isLoggedIn) {
-                    try {
-                        const products = JSON.parse(localStorage.getItem('display')).products
-                        saveToLocalStorage(products, 'display')
-                        setLoadedProducts(products)
-                        setIsLoading(false)
-                    } catch (err) {
-                        console.log(err)
-                    }
-
-
-                } else {
-                    try {
-                        const products = JSON.parse(localStorage.getItem('basketContent')).products
-                        setLoadedProducts(products)
-                        saveToLocalStorage(products)
-                        setIsLoading(false)
-                    } catch (err) {
-                        console.log(err)
-                    }
-
-                }
+                const products = JSON.parse(localStorage.getItem('basketContent'))
+                saveToLocalStorage(products.products, products.userId)
+                setLoadedProducts(products.products)
+                setIsLoading(false)
             } catch (err) {
+                console.log(err)
             }
-        })();
+        }
+
     }, [isLoggedIn])
 
 

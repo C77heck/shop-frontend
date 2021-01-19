@@ -8,9 +8,10 @@ import ErrorModal from '../../shared/UIElements/ErrorModal';
 
 import './Search.css';
 import { PurchaseContext } from '../../shared/context/purchase-context';
+import { AuthContext } from '../../shared/context/auth-context';
 
 const Search = props => {
-
+    const { userId } = useContext(AuthContext);
     const history = useHistory();
     const { basketContent } = useContext(PurchaseContext);
     const [searchCriteria, setSearchCriteria] = useState('');
@@ -27,7 +28,7 @@ const Search = props => {
     const submitHandler = async (e) => {
         e.preventDefault();
         setIsLoading(true)
-        const count = search(basketContent, searchCriteria)
+        const count = search(basketContent.products, searchCriteria, userId)
 
         if (count > 0) {
             setIsLoading(false)

@@ -15,8 +15,8 @@ const Favourites = () => {
     const [itemCounter, setItemCounter] = useState(0)
 
     useEffect(() => {
-        setProducts(basketContent)
-        basketContent.map(i => {// if there isn't any favourite item we set the height so footer stays in place.
+        setProducts(basketContent.products)
+        basketContent.products.map(i => {// if there isn't any favourite item we set the height so footer stays in place.
             if (i.isFavourite) {
                 setItemCounter(prev => prev += 1)
             }

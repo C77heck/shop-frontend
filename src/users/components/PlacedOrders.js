@@ -21,7 +21,6 @@ const ViewItems = props => {
 
     const [show, setShow] = useState(false);
 
-
     const products = JSON.parse(props.products)
 
     const onClickHandler = () => {
@@ -50,12 +49,14 @@ const ViewItems = props => {
 }
 
 const ReOrder = props => {
+    
+    const auth = useContext(AuthContext)
     const history = useHistory()
     const purchase = useContext(PurchaseContext)
     const products = JSON.parse(props.products)
 
     const onClickHandler = () => {
-        purchase.saveToLocalStorage(products)
+        purchase.saveToLocalStorage(products, auth.userId)
         history.push('/checkout')
     }
 

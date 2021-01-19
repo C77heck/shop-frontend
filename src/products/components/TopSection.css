@@ -41,7 +41,6 @@
 }
 
 @media only screen and (max-width: 480px) {
-    /* search bar to fix on this res */
     .top-section__div {
         flex-direction: column;
     }

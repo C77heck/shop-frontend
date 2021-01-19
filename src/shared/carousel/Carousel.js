@@ -72,44 +72,34 @@ const Carousel = props => {
     useEffect(() => {
 
 
-        if (isLoggedIn && basketContent.length > 0) {
+        if (basketContent.products.length > 0) {
             setPics({
-                pics1: basketContent.slice(1, 7),
-                pics2: basketContent.slice(8, 15),
-                pics3: basketContent.slice(16, 24),
-                pics4: basketContent.slice(23, 31)
+                pics1: basketContent.products.slice(1, 7),
+                pics2: basketContent.products.slice(8, 15),
+                pics3: basketContent.products.slice(16, 24),
+                pics4: basketContent.products.slice(23, 31)
             })
         } else {
-            if (basketContent.length < 1) {
-                (async () => {
-                    try {
-                        const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
-                        setPics({
-                            pics1: responseData.products.slice(1, 7),
-                            pics2: responseData.products.slice(8, 15),
-                            pics3: responseData.products.slice(16, 24),
-                            pics4: responseData.products.slice(23, 31)
-                        })
-                        saveToLocalStorage(responseData.products.map(i => ({
-                            ...i,
-                            number: 0,
-                            totalPrice: 0,
-                            userId: '',
-                            dateFetched: new Date(),
-                            isFavourite: false,
-                            isSearched: false
-                        })), 'display')
-                    } catch (err) {
-                    }
-                })()
-            } else {
-                setPics({
-                    pics1: basketContent.slice(1, 7),
-                    pics2: basketContent.slice(8, 15),
-                    pics3: basketContent.slice(16, 24),
-                    pics4: basketContent.slice(23, 31)
-                })
-            }
+            (async () => {
+                try {
+                    const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
+                    setPics({
+                        pics1: responseData.products.slice(1, 7),
+                        pics2: responseData.products.slice(8, 15),
+                        pics3: responseData.products.slice(16, 24),
+                        pics4: responseData.products.slice(23, 31)
+                    })
+                    saveToLocalStorage(responseData.products.map(i => ({
+                        ...i,
+                        number: 0,
+                        totalPrice: 0,
+                        dateFetched: new Date(),
+                        isFavourite: false,
+                        isSearched: false
+                    })))
+                } catch (err) {
+                }
+            })();
 
         }
 

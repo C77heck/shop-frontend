@@ -14,7 +14,7 @@ import './Products.css'
 
 const BuyButton = props => {
 
-    const { isLoggedIn } = useContext(AuthContext);
+    const { isLoggedIn, userId } = useContext(AuthContext);
 
     const purchase = useContext(PurchaseContext)
 
@@ -43,7 +43,7 @@ const BuyButton = props => {
     }
 
     const yes = () => {
-        purchase.subtract(items, code)
+        purchase.subtract(items, code, userId)
         setIsClicked(false)
         setMessage(null)
     }
@@ -51,20 +51,20 @@ const BuyButton = props => {
     const addButtonHandler = () => {
         if (!isLoggedIn) {
         } else {
-            purchase.add(items, code)
+            purchase.add(items, code, userId)
             setIsClicked(true)
         }
 
     }
     const plus = () => {
-        purchase.add(items, code)
+        purchase.add(items, code, userId)
     }
     const minus = () => {
 
         if (number === 1) {
             setMessage('Are you sure you want to delete this item from your basket?')
         } else {
-            purchase.subtract(items, code)
+            purchase.subtract(items, code, userId)
         }
     };
 

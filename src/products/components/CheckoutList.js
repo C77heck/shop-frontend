@@ -7,9 +7,11 @@ import { PurchaseContext } from '../../shared/context/purchase-context';
 
 import './CheckoutList.css';
 import FavouriteIcon from './FavouriteIcon';
+import { AuthContext } from '../../shared/context/auth-context';
 
 const ProductItem = props => {
     const { deleteItem } = useContext(PurchaseContext)
+    const { userId } = useContext(AuthContext);
     const [price, setPrice] = useState({
         beforeDot: '',
         afterDot: ''
@@ -21,7 +23,7 @@ const ProductItem = props => {
 
     const deleteHandler = e => {
         e.preventDefault();
-        deleteItem(products, code)
+        deleteItem(products, code, userId)
     }
 
 

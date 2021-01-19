@@ -19,7 +19,7 @@ import './Auth.css'
 const Auth = props => {
 
     const { isLoggedIn, signin } = useContext(AuthContext);
-    const { saveToLocalStorage } = useContext(PurchaseContext)
+    const { saveToLocalStorage, basketContent } = useContext(PurchaseContext)
 
 
     const { error, clearError, isLoading, sendRequest } = useHttpClient();
@@ -132,33 +132,38 @@ const Auth = props => {
                 }),
                 { 'Content-Type': 'application/json' }
             )
+            if (basketContent.products.length > 0
+                &&
+                basketContent.userId === responseData.userData.userId) {
+                saveToLocalStorage(basketContent.products, basketContent.userId)
+            } else {
 
-            try {
-                const productsData = await sendRequest(process.env.REACT_APP_BACKEND)
-                saveToLocalStorage(productsData.products.map(i => {
-                    let isFavourite = false;
-                    if (responseData.userData.favourites.includes(i.id)) {
-                        isFavourite = true;
-                    }
-                    return {
-                        ...i,
-                        number: 0,
-                        totalPrice: 0,
-                        userId: responseData.userData.userId,
-                        dateFetched: new Date(),
-                        isFavourite: isFavourite,
-                        isSearched: false
-                    }
-                }))
-                signin(responseData.userData)
-                signInClose();
-            } catch (err) {
-                console.log(err)
+                try {
+                    const productsData = await sendRequest(process.env.REACT_APP_BACKEND)
+                    saveToLocalStorage(productsData.products.map(i => {
+                        let isFavourite = false;
+                        if (responseData.userData.favourites.includes(i.id)) {
+                            isFavourite = true;
+                        }
+                        return {
+                            ...i,
+                            number: 0,
+                            totalPrice: 0,
+                            dateFetched: new Date(),
+                            isFavourite: isFavourite,
+                            isSearched: false
+                        }
+                    }), responseData.userData.userId)
+                    signin(responseData.userData)
+                    signInClose();
+                } catch (err) {
+                    console.log(err)
+                }
             }
-
         } catch (err) {
             console.log(err)
         }
+
 
 
     }

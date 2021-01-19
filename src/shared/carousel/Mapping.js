@@ -3,11 +3,13 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { SearchContext } from '../../shared/context/search-context';
+import { AuthContext } from '../context/auth-context';
 import { PurchaseContext } from '../context/purchase-context';
 
 
 const Image = props => {
 
+    const { userId } = useContext(AuthContext);
     const { basketContent } = useContext(PurchaseContext);
     const { id, image, name } = props.file;
     const { search } = useContext(SearchContext);
@@ -17,7 +19,7 @@ const Image = props => {
     const clickHandle = async (e) => {
 
         try {
-            search(basketContent, name)
+            search(basketContent.products, name, userId)
             history.push('/searchresults')
         } catch (err) {
             console.log(err)

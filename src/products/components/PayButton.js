@@ -58,7 +58,7 @@ const PayButton = props => {
                 }
             )
             history.push('/thankyou')
-            clearBasket(products);
+            clearBasket(products, auth.userId);
         } catch (err) {
         }
 

@@ -1,7 +1,8 @@
 .footer {
     height: 20rem;
     text-align: center;
-    background-color: rgb(207, 161, 130);
+    background-image: linear-gradient(to top, rgba(223 213 116), white);
+    box-shadow: 10px 10px 10px 10px;
     padding: 85px 0 35px 0;
     position: relative;
     bottom: 0;
@@ -21,15 +22,16 @@
 .footera {
     transition: color 0.4s;
     text-decoration: none;
-    color: rgb(66, 42, 42);
+    color: rgb(214, 96, 27);
 }
 
 .footera:hover {
-    color: rgb(214, 96, 27);
+    color: rgb(247, 93, 4);
 }
 
 .footer p {
     font-size: 90%;
+    color: rgb(226, 126, 68);
 }
 
 .footer-admin {
@@ -76,23 +78,21 @@
     }
 }
 
-
-
 .social-media {
     height: 18%;
-    color: white;
+    color: #ca5e3e;
     margin: 0 1.5vw;
     transition: color 300ms ease-in-out;
     position: relative;
     top: -4vh;
 }
 
+.social-media:hover {
+    color: rgb(175, 34, 34);
+}
+
 @media screen and (max-width: 500px) {
     .social-media {
         margin: 0 3vw;
     }
-}
-
-.social-media:hover {
-    color: rgb(207, 73, 73);
 }

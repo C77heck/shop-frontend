@@ -14,9 +14,9 @@ const SearchResult = () => {
 
     return (
         <React.Fragment>
-            <TopSection items={basketContent} />
+            <TopSection items={basketContent.products} />
             <div className='shopping'>
-                <ProductList items={basketContent} display='search' />
+                <ProductList items={basketContent.products} display='search' />
             </div>
 
         </React.Fragment>

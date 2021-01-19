@@ -22,20 +22,20 @@ const FavouriteIcon = props => {
 
     useEffect(() => {
         if (basketContent) {
-            if (props.isFavourite) {
+            if (props.isFavourite && isLoggedIn) {
                 setColor(true)
             } else {
                 setColor(false)
             }
         }
-    }, [props.isFavourite, basketContent])
+    }, [props.isFavourite, basketContent, isLoggedIn])
 
 
     const onClickHandler = async () => {
         try {
 
             setColor(prev => {
-                favouriteHandler(props.products, props.id, !prev)
+                favouriteHandler(props.products, props.id, !prev, userId)
                 return !prev
             })
             await sendRequest(process.env.REACT_APP_FAVOURITE + userId,

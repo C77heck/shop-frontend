@@ -9,7 +9,7 @@ export const useSearch = () => {
     const { saveToLocalStorage } = useContext(PurchaseContext);
 
     const search = useCallback(
-        (products, searchCriteria) => {
+        (products, searchCriteria, userId) => {
             setSearchCriteria(searchCriteria)
             const regexp = new RegExp(`${searchCriteria}`, "i")
             let count = 0;
@@ -21,7 +21,7 @@ export const useSearch = () => {
                     i.isSearched = false;
                 }
                 return i;
-            }))
+            }), userId)
             return count;
         }, [saveToLocalStorage])
 

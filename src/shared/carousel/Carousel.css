@@ -13,8 +13,6 @@
     overflow: hidden;
 }
 
-
-
 .carousel-images {
     width: 100%;
     object-fit: cover;
@@ -27,13 +25,11 @@
 }
 
 @media (max-width: 550px) {
-
     .carousel-wrapper {
         margin: 0;
         max-height: 200px;
     }
 }
-
 
 .right-side_controller {
     position: absolute;

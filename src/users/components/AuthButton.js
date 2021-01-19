@@ -11,11 +11,10 @@ import { PurchaseContext } from '../../shared/context/purchase-context';
 const AuthButton = props => {
     const history = useHistory();
     const { isLoggedIn, signout, userId } = useContext(AuthContext);
-    const { basketContent } = useContext(PurchaseContext);
 
     const signoutHandler = async () => {
         const { pathname } = history.location;
-        const isSignoutDone = signout(basketContent)
+        const isSignoutDone = signout()
         if (isSignoutDone) {
             if (pathname === '/checkout' || pathname === '/myaccount'
                 || pathname === `/userdata/${userId}` || pathname === `/orderhistory/${userId}`) {

@@ -7,15 +7,20 @@ export const usePurchase = () => {
         amount: ''
     })
 
-    const [basketContent, setBasketContent] = useState([])
+    const [basketContent, setBasketContent] = useState({
+        products: [],
+        userId: ''
+    })
 
-    const saveToLocalStorage = (products, name) => {
-        name = name || 'basketContent';
-        setBasketContent(products)
+    const saveToLocalStorage = (products, userId) => {
+        userId = userId || '';
+        console.log(userId)
+        setBasketContent({ products: products, userId: userId })
         localStorage.setItem(
-            `${name}`,
+            `basketContent`,
             JSON.stringify({
                 products: products,
+                userId: userId
             })
         );
 
@@ -32,29 +37,29 @@ export const usePurchase = () => {
     }
 
 
-    const favouriteHandler = (products, id, isFavourite) => {
+    const favouriteHandler = (products, id, isFavourite, userId) => {
         saveToLocalStorage(products.map(i => {
             if (i.id === id) {
                 i.isFavourite = isFavourite;
             }
             return i;
-        }))
+        }), userId)
     }
 
     const deleteItem = useCallback(
-        (products, code) => {
+        (products, code, userId) => {
             setCode(code)
             saveToLocalStorage(products.map(i => {
                 if (i.code === code) {
                     i.number = 0;
                 }
                 return i;
-            }))
+            }), userId)
         }, [])
 
 
     const add = useCallback(
-        (products, code) => {
+        (products, code, userId) => {
             setCode(code);
             products.map(i => {
                 if (i.code === code) {
@@ -62,7 +67,7 @@ export const usePurchase = () => {
                 }
                 return null;
             })
-            saveToLocalStorage(products)
+            saveToLocalStorage(products, userId)
         },
         [],
     )
@@ -71,7 +76,7 @@ export const usePurchase = () => {
 
 
     const subtract = useCallback(
-        (products, code) => {
+        (products, code, userId) => {
             setCode(code);
             products.map(i => {
                 if (i.code === code) {
@@ -79,16 +84,16 @@ export const usePurchase = () => {
                 }
                 return null;
             })
-            saveToLocalStorage(products)
+            saveToLocalStorage(products, userId)
         }, [])
 
     const clearBasket = useCallback(
-        (products) => {
+        (products, userId) => {
             products.map(i => {
                 i.number = 0;
                 return i;
             })
-            saveToLocalStorage(products)
+            saveToLocalStorage(products, userId)
         }, [])
 
 
