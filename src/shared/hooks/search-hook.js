@@ -23,8 +23,8 @@ export const useSearch = () => {
                 return i;
             }))
             return count;
-        }, [])
+        }, [saveToLocalStorage])
 
 
-    return {  search }
+    return { search, searchCriteria }
 }

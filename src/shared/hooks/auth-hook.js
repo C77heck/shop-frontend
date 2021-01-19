@@ -1,4 +1,5 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useContext } from 'react';
+import { PurchaseContext } from '../context/purchase-context';
 
 
 import { useHttpClient } from './http-hook';
@@ -8,6 +9,7 @@ let timer;
 
 export const useAuth = () => {
 
+    const { saveToLocalStorage } = useContext(PurchaseContext);
     const { sendRequest } = useHttpClient();
     const [token, setToken] = useState(false);
     const [expiration, setExpiration] = useState()
@@ -34,7 +36,7 @@ export const useAuth = () => {
         )
     }, []);
 
-    const signout = useCallback(async () => {
+    const signout = useCallback(async (basketContent) => {
         setToken(null);
         setUserId(null)
         setExpiration(null)
@@ -44,7 +46,7 @@ export const useAuth = () => {
         try {
             const userID = JSON.parse(localStorage.getItem('userData')).userId;
             localStorage.removeItem('userData')
-            localStorage.removeItem('basketContent')
+            // localStorage.removeItem('basketContent')
 
             await sendRequest(process.env.REACT_APP_SIGNOUT + userID)
 
@@ -52,7 +54,7 @@ export const useAuth = () => {
             console.log(err)
         }
         return true;
-    }, [sendRequest]);
+    }, [sendRequest, saveToLocalStorage]);
 
     useEffect(() => {
         const storedData = JSON.parse(localStorage.getItem('userData'));

@@ -9,10 +9,9 @@
   justify-content: center;
   align-items: center;
   font-size: 1.1rem;
- 
 }
 
-.nav-links a {
+.nav-links a, .nav-links p {
   transition: all 0.5s;
   border: 1px solid transparent;
   text-decoration: none;
@@ -21,7 +20,7 @@
   color: rgb(202, 113, 12);
 }
 
-.nav-links a:hover {
+.nav-links a:hover, .nav-links p:hover {
   border-color: rgb(197, 146, 50);
   border-radius: 50%;
   text-decoration: none !important;
@@ -68,7 +67,7 @@
   .nav-links li {
     margin: 0 1vw;
   }
-  .nav-links a {
+  .nav-links a, .nav-links p {
     font-weight: 900;
     text-decoration: none;
   }

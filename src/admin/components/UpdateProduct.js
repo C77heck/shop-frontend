@@ -195,11 +195,13 @@ const UpdateProduct = () => {
                                     img={inputState.inputs.imageUpdate.value}
                                 />
                             </div>
-                            <Button>UPDATE</Button>
-                            <a
+                            <Button
+                                disabled={isFormValid}
+                            >UPDATE</Button>
+                            <p
                                 href=''
                                 className='update-product__cancel'
-                                onClick={() => { setIsProductLoad(false) }}>Cancel</a>
+                                onClick={() => { setIsProductLoad(false) }}>Cancel</p>
                         </form>}
                 </div>
             </div>

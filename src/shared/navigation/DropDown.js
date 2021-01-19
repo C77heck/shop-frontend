@@ -65,9 +65,9 @@ const DropDown = props => {
     return (
         <React.Fragment>
 
-            <a
+            <p
                 onClick={onClickHandler}
-            >{props.name}</a>
+            >{props.name}</p>
 
             <div
                 style={{
@@ -76,7 +76,8 @@ const DropDown = props => {
                     transition: "all 300ms ease-in-out",
                     visibility: `${show.visibility}`
                 }}
-                className="dropdown">
+                className="dropdown"
+            >
 
                 <div
                     className="dropdown-content"

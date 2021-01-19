@@ -65,7 +65,7 @@ function App() {
     deleteItem
   } = usePurchase()
 
-  const { search } = useSearch();
+  const { searchCriteria, search } = useSearch();
 
   const { signin, signout, token, userId, favourites } = useAuth();
 
@@ -174,6 +174,7 @@ function App() {
       >
         <SearchContext.Provider
           value={{
+            searchCriteria: searchCriteria,
             search: search
           }}
         >

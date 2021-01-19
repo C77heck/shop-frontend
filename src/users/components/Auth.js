@@ -144,6 +144,8 @@ const Auth = props => {
                         ...i,
                         number: 0,
                         totalPrice: 0,
+                        userId: responseData.userData.userId,
+                        dateFetched: new Date(),
                         isFavourite: isFavourite,
                         isSearched: false
                     }

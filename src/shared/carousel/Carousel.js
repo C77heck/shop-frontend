@@ -94,6 +94,8 @@ const Carousel = props => {
                             ...i,
                             number: 0,
                             totalPrice: 0,
+                            userId: '',
+                            dateFetched: new Date(),
                             isFavourite: false,
                             isSearched: false
                         })), 'display')

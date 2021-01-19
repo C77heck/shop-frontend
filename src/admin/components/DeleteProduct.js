@@ -20,7 +20,7 @@ const DeleteProduct = () => {
     const [inputState, handler, isFormValid] = useInput({
         code: {
             value: '',
-            valid: true
+            valid: false
         }
     })
     const [message, setMessage] = useState('')
@@ -66,7 +66,9 @@ const DeleteProduct = () => {
                             onInput={handler}
                             value={inputState.inputs.code.value}
                         />
-                        <Button>DELETE</Button>
+                        <Button
+                            disabled={isFormValid}
+                        >DELETE</Button>
                     </form>
                 </div>
             </div>
