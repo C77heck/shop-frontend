@@ -6,11 +6,12 @@ import TopSection from '../../products/components/TopSection';
 
 import './Welcome.css';
 import { Link } from 'react-router-dom';
+import { PurchaseContext } from '../../shared/context/purchase-context';
 
 const Welcome = props => {
 
     const { isLoggedIn } = useContext(AuthContext);
-
+    const { basketContent } = useContext(PurchaseContext);
 
 
     return (
@@ -30,7 +31,7 @@ const Welcome = props => {
             </div>
                 :
                 <div className='top-section'>
-                    <TopSection />
+                    <TopSection items={basketContent.products} />
                 </div>
             }
 

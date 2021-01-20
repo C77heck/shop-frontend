@@ -12,28 +12,7 @@ import { PurchaseContext } from '../context/purchase-context';
 import { AuthContext } from '../context/auth-context';
 import LoadingSpinner from '../UIElements/LoadingSpinner';
 
-const images = [
-    {
-        alt: "shop image",
-        src: "/images/carousel/shop1.jpg",
-        id: 0
-    },
-    {
-        alt: "shop image",
-        src: "/images/carousel/shop2.jpg",
-        id: 1
-    },
-    {
-        alt: "shop image",
-        src: "/images/carousel/shop3.jpg",
-        id: 2
-    },
-    {
-        alt: "cake image",
-        src: "/images/carousel/cakes.jpg",
-        id: 3
-    }
-]
+
 
 
 const Carousel = props => {
@@ -45,7 +24,7 @@ const Carousel = props => {
     const { sendRequest, isLoading } = useHttpClient()
     const [slideStyle, setSlideStyle] = useState();
     const [carousel, setCarousel] = useState({
-        activeSlide: 0,
+        activeSlide: 1,
         translate: 0,
         transition: 8
     })
@@ -54,7 +33,8 @@ const Carousel = props => {
         pics1: [],
         pics2: [],
         pics3: [],
-        pics4: []
+        pics4: [],
+        pics5: []
     })
 
     const [dragStart, setDragStart] = useState();
@@ -71,9 +51,25 @@ const Carousel = props => {
             transition: `transform 1s ${animationType}`
         })
     }, [translate, activeSlide, animationType])
+
+
+    const [images, setImages] = useState([]);
+
     useEffect(() => {
+        (async () => {
+            try {
+                const responseData = await sendRequest(
+                    process.env.REACT_APP_RESOURCE_ROUTE + 'carousel');
+                setImages(responseData.images)
+            } catch (err) {
+            }
+        })()
+    }, [])
 
 
+    console.log(images)
+
+    useEffect(() => {
         if (basketContent.products.length > 0
             &&
             basketContent.products[0].dateFetched - new Date().getTime() > 0) {
@@ -92,7 +88,8 @@ const Carousel = props => {
                         pics1: responseData.products.slice(1, 7),
                         pics2: responseData.products.slice(8, 15),
                         pics3: responseData.products.slice(16, 24),
-                        pics4: responseData.products.slice(23, 31)
+                        pics4: responseData.products.slice(23, 31),
+                        pics5: responseData.products.slice(1, 7)
                     })
                     saveToLocalStorage(responseData.products.map(i => ({
                         ...i,
@@ -113,7 +110,7 @@ const Carousel = props => {
 
 
     const arrowLeftHandler = () => {
-        if (activeSlide !== 0) {
+        if (activeSlide !== 1) {
             setCarousel({
                 ...carousel,
                 translate: translate - 100,
@@ -123,7 +120,7 @@ const Carousel = props => {
     }
 
     const arrowRightHandler = () => {
-        if (activeSlide !== 3) {
+        if (activeSlide !== images.length) {
             setCarousel({
                 ...carousel,
                 translate: translate + 100,
@@ -168,7 +165,7 @@ const Carousel = props => {
                             key={i.id}
                             className={`carousel-images`}
                             style={slideStyle}
-                            src={i.src}
+                            src={process.env.REACT_APP_IMAGE_ROUTE + i.image}
                             alt={i.name}
                         />
                     )

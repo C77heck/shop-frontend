@@ -18,22 +18,18 @@ const Checkout = () => {
 
             <div className='checkout-layout'>
                 <div
-                    style={{ flexBasis: "40%", width: "40%" }}
+                    style={{ flexBasis: "50%" }}
                     className='flex-containers'
                 >
                     <CheckoutList items={basketContent.products} />
                 </div>
-                <div style={{ position: "relative", flexBasis: "40%", width: "40%", overflow: "hidden" }}
+                <div style={{ position: "relative", flexBasis: "50%", overflow: "hidden" }}
                     className='flex-containers'
                 >
                     <BookDelivery />
 
                 </div>
-                <div style={{ flexBasis: "20%", width: "20%" }}
-                    className='flex-containers'
-                >
 
-                </div>
             </div>
 
         </React.Fragment>

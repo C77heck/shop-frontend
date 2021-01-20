@@ -1,7 +1,7 @@
 .shopping {
     min-height: 100%;
     width: 100%;
-    background-image: url('/images/background-img/shopping-background_pic.png');
+    background-image: url('/images/background-img/shopping-background_pic.jpg');
 }
 
 @media (min-width: 1800px) {

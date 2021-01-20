@@ -2,11 +2,11 @@
     position: relative;
     width: 100%;
     max-height: 400px;
-}
+    background: radial-gradient( #e0d679, #e0d679, #ffffff);}
 
 .carousel-wrapper {
     display: flex;
-    width: 100%;
+    width: 70%;
     margin: auto;
     max-height: 400px;
     object-fit: contain;

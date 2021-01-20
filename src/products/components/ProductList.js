@@ -19,7 +19,6 @@ const ProductCard = props => {
             return 'block'
         }
     }
-
     return (
 
         <div

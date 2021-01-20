@@ -8,7 +8,7 @@
     margin-top: 5rem;
 }
 
-@media (max-width: 525px) {
+@media (max-width: 625px) {
     .welcome-card__container {
         margin-top: 6rem;
         margin-bottom: 2rem;

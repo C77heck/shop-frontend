@@ -1,0 +1,11 @@
+.resources-upload__container {
+    margin: 20vh auto 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: solid 3px grey;
+    width: 18rem;
+    padding: 3vh;
+}

@@ -21,9 +21,12 @@ import Newscard from './shared/UIElements/NewsCard';
 import Shopping from './products/pages/Shopping';
 import Carousel from './shared/carousel/Carousel';
 import LoadingSpinner from './shared/UIElements/LoadingSpinner';
-import './App.css';
 import Welcome from './users/components/Welcome';
 import Contact from './users/pages/Contact';
+
+import './App.css';
+import Upload from './admin/pages/Upload';
+
 
 /* import Admin from './admin/pages/Admin';
 import SearchResults from './products/pages/SearchResults';
@@ -112,6 +115,11 @@ function App() {
         <Route path='/contact' exact>
           <NavigationBar />
           <Contact />
+          <Footer />
+        </Route>
+        <Route path='/resources' exact>
+          <NavigationBar />
+          <Upload />
           <Footer />
         </Route>
         <Route path='/thankyou' exact>
