@@ -46,14 +46,14 @@
     font-size: 1.2rem;
     color: rgb(58, 57, 57);
     font-weight: bold;
-   font-size: 1.5rem;
+    font-size: 1.5rem;
 }
 
-@media only screen and (max-width: 450px) {
+@media (max-width: 450px) {
     .password-recovery__container {
         width: 100%;
     }
     .password-recovery__container h1 {
         font-size: 2rem;
-   }
+    }
 }

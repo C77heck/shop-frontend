@@ -39,7 +39,7 @@
   display: none;
 }
 
-@media(max-width: 1140px) {
+@media (max-width: 1140px) {
   .nav-links {
     font-size: 1.5vw;
   }
@@ -48,13 +48,13 @@
   }
 }
 
-@media(max-width: 1000px) {
+@media (max-width: 1000px) {
   .nav-links {
     font-size: 1.3vw;
   }
 }
 
-@media(max-width: 780px) {
+@media (max-width: 780px) {
   .nav-links {
     font-size: 1.32vw;
   }
@@ -76,13 +76,13 @@
   }
 }
 
-@media(max-width: 760px) {
+@media (max-width: 760px) {
   .nav-links li {
     margin: 0;
   }
 }
 
-@media(max-width: 700px) {
+@media (max-width: 700px) {
   .nav-links {
     font-size: 1.2rem;
     flex-direction: column;

@@ -65,11 +65,11 @@
     font-size: 0.7rem;
 }
 
-@media screen and (max-width: 520px) {
+@media (max-width: 520px) {
     .checkout-product__info p {
         margin: 0.3rem;
     }
-    .checkout-list{
+    .checkout-list {
         max-height: 45vh;
     }
 }

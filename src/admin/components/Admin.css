@@ -69,13 +69,13 @@
     bottom: 4px;
 }
 
-@media screen and (max-width: 1029px) {
+@media (max-width: 1029px) {
     .admin-flex__container {
         flex-direction: column;
     }
 }
 
-@media screen and (max-width: 500px) {
+@media (max-width: 500px) {
     .form-element_outer {
         min-width: 86vw;
     }
@@ -105,7 +105,7 @@
     bottom: 4px;
 }
 
-@media screen and (max-width: 400px) {
+@media (max-width: 400px) {
     .admin-signin__mobile {
         width: 45px;
         border-radius: 50%;
@@ -155,21 +155,21 @@
     cursor: pointer;
 }
 
-@media only screen and (max-width: 1140px) {
+@media (max-width: 1140px) {
     .admin-modal {
         width: 44vw;
         margin: 0 28vw;
     }
 }
 
-@media screen and (max-width: 750px) {
+@media (max-width: 750px) {
     .admin-modal {
         width: 58vw;
         margin: 0 22vw;
     }
 }
 
-@media screen and (max-width: 500px) {
+@media (max-width: 500px) {
     .admin-modal {
         width: 100vw;
         margin: 0;

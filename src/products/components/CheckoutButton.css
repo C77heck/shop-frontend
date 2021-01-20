@@ -5,7 +5,7 @@
     color: rgb(219, 136, 42);
     font-weight: 500;
     font-size: 1.3rem;
-    border:  rgb(219, 136, 42) solid 4px;
+    border: rgb(219, 136, 42) solid 4px;
     width: 135px;
     height: 47px;
 }
@@ -15,8 +15,8 @@
     color: white;
 }
 
-@media only screen and (max-width: 840px) {
-    .checkout{
+@media (max-width: 840px) {
+    .checkout {
         width: 100px;
         height: 40px;
         font-size: 1.1rem;

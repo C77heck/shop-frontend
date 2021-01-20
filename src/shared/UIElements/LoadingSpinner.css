@@ -108,7 +108,7 @@
     }
 }
 
-@media screen and (max-width: 400px) {
+@media (max-width: 400px) {
     .loader_center {
         width: 10px;
         height: 10px;

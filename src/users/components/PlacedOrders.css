@@ -70,7 +70,7 @@
     color: rgb(252, 252, 252);
 }
 
-@media screen and (max-width: 300px) {
+@media (max-width: 300px) {
     .order-cards__container {
         min-width: 0;
     }

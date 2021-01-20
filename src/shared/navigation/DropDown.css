@@ -1,5 +1,4 @@
-
-li{
+li {
     cursor: pointer;
 }
 
@@ -10,7 +9,6 @@ li{
     top: 4.8rem;
     width: 100%;
     left: 0;
-    
 }
 
 .dropdown-content {
@@ -28,7 +26,7 @@ li{
     font-size: 0.8rem;
 }
 
-@media(max-width: 1140px) {
+@media (max-width: 1140px) {
     .dropdown-content a {
         font-size: 0.8rem;
     }
@@ -37,7 +35,7 @@ li{
     }
 }
 
-@media(max-width: 1000px) {
+@media (max-width: 1000px) {
     .dropdown-content a {
         font-size: 0.7rem;
     }
@@ -46,13 +44,13 @@ li{
     }
 }
 
-@media(max-width: 930px) {
+@media (max-width: 930px) {
     .dropdown-content a {
         font-size: 0.6rem;
     }
 }
 
-@media(max-width: 700px) {
+@media (max-width: 700px) {
     .dropdown {
         display: 'none';
     }
@@ -61,33 +59,3 @@ li{
     }
 }
 
-/* .scale-enter {
-    transform: translateY(-100%);
-    opacity: 0;
-    z-index: -300;
-}
-
-.scale-enter-active {
-    transform: translateY(0);
-    opacity: 1;
-    transition: transform 300ms;
-    z-index: -300;
-}
-
-.scale-exit {
-    transform: translateY(-100%);
-    opacity: 1;
-    z-index: -300;
-}
-
-.scale-exit-active {
-    transform: translateY(0);
-    opacity: 0;
-    transition: transform 300ms;
-    z-index: -300;
-}
-
-.scale-exit-done {
-    transform: translateY(0);
-    opacity: 0;
-} */

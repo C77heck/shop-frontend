@@ -21,7 +21,7 @@
     transform: scale(1.05);
 }
 
-@media screen and (max-width: 720px) {
+@media (max-width: 720px) {
     .contact-us__form {
         width: 90vw;
     }
@@ -47,12 +47,13 @@
     text-align: center;
     color: rgb(202, 113, 12);
 }
-@media screen and (max-width: 720px){
+
+@media (max-width: 720px) {
     .contact-us__info {
         flex-direction: column;
-
     }
 }
+
 .contact-us__social-title {
     color: rgb(202, 113, 12);
     text-align: center;
@@ -80,9 +81,9 @@
     color: rgb(49, 4, 172);
 }
 
-@media screen and (max-width: 720px){
+@media (max-width: 720px) {
     .contact-us__social-title {
         font-size: 7vw;
-;
+        ;
     }
 }

@@ -102,7 +102,7 @@
   left: 39vw;
 }
 
-@media screen and (max-width: 1120px) {
+@media (max-width: 1120px) {
   .date-picker__modal {
     left: 35%;
   }
@@ -115,7 +115,7 @@
   }
 }
 
-@media screen and (max-width: 859px) {
+@media (max-width: 859px) {
   .modals {
     width: 60vw;
     left: 20vw;
@@ -130,7 +130,7 @@
   }
 }
 
-@media only screen and (max-width: 775px) {
+@media (max-width: 775px) {
   .date-picker__modal {
     left: 25%;
   }
@@ -140,7 +140,7 @@
   }
 }
 
-@media screen and (max-width: 700px) {
+@media (max-width: 700px) {
   .password-change__modal {
     left: 19vw;
   }
@@ -152,14 +152,14 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media (max-width: 600px) {
   .modals {
     width: 84vw;
     left: 8vw;
   }
 }
 
-@media only screen and (max-width: 575px) {
+@media (max-width: 575px) {
   .date-picker__modal {
     left: 18%;
   }
@@ -178,7 +178,7 @@
   }
 }
 
-@media screen and (max-width: 500px) {
+@media (max-width: 500px) {
   .password-change__modal {
     width: 80vw;
     left: 10vw;
@@ -193,7 +193,7 @@
   }
 }
 
-@media only screen and (max-width: 475px) {
+@media (max-width: 475px) {
   .date-picker__modal {
     left: 0;
     width: 100%;

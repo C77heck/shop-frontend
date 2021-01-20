@@ -1,8 +1,34 @@
+.error-modal {
+    width: 30vw;
+    left: 35vw;
+}
 
-.error-modal{
-    width: 40vw;
-    left: 30vw;
+@media (max-width:1600px) {
+    .error-modal {
+        width: 40vw;
+        left: 30vw;
+    }
+}
 
+@media (max-width:1300px) {
+    .error-modal {
+        width: 50vw;
+        left: 25vw;
+    }
+}
+
+@media (max-width:900px) {
+    .error-modal {
+        width: 70vw;
+        left: 15vw;
+    }
+}
+
+@media (max-width:600px) {
+    .error-modal {
+        width: 90vw;
+        left: 5vw;
+    }
 }
 
 .error-modal .modal__header {

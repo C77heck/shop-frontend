@@ -43,7 +43,7 @@
     float: right;
 }
 
-@media screen and (max-width: 840px) {
+@media (max-width: 840px) {
     .cart-amount {
         top: 1px;
         right: 20px;
@@ -69,7 +69,7 @@
     }
 }
 
-@media screen and (max-width: 500px) {
+@media (max-width: 500px) {
     .basket-btn {
         right: -14px;
     }

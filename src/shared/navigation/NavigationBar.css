@@ -23,8 +23,6 @@
   top: -3px;
 }
 
-
-
 .main-navigation__header-nav {
   display: none;
 }
@@ -50,7 +48,7 @@
   }
 }
 
-@media screen and (max-width: 500px) {
+@media (max-width: 500px) {
   .main-navigation__menu-btn {
     margin: 0 1rem;
   }

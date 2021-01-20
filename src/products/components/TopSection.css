@@ -28,10 +28,9 @@
     align-items: center;
 }
 
-
 .top-section__buttons {}
 
-@media only screen and (max-width: 740px) {
+@media (max-width: 740px) {
     .top-section__logo {
         display: none;
     }
@@ -40,7 +39,7 @@
     }
 }
 
-@media only screen and (max-width: 480px) {
+@media (max-width: 480px) {
     .top-section__div {
         flex-direction: column;
     }

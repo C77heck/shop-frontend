@@ -198,6 +198,23 @@ const Auth = props => {
             signin(responseData.userData);
             signInClose();
             setSignedup(true)
+            try {
+                const productsData = await sendRequest(process.env.REACT_APP_BACKEND)
+                saveToLocalStorage(productsData.products.map(i => {
+                    return {
+                        ...i,
+                        number: 0,
+                        totalPrice: 0,
+                        dateFetched: new Date().getTime() + 1000 * 60 * 60 * 24,
+                        isFavourite: false,
+                        isSearched: false
+                    }
+                }), responseData.userData.userId)
+                signin(responseData.userData)
+                signInClose();
+            } catch (err) {
+                console.log(err)
+            }
         } catch (err) {
 
         }
