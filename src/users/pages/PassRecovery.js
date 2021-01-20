@@ -9,7 +9,7 @@ import {
 
 import Input from '../../shared/form-elements/Input';
 import { useHttpClient } from '../../shared/hooks/http-hook';
-import { useInput } from '../../shared/hooks/form-hook';
+import { useForm } from '../../shared/hooks/form-hook';
 import Button from '../../shared/UIElements/Button';
 import Modal from '../../shared/UIElements/Modal';
 import { encrypt } from '../../shared/utility/encrypt';
@@ -35,7 +35,7 @@ const PassRecovery = () => {
 
     const { requestId } = useParams()
     const { sendRequest, error, clearError, isLoading } = useHttpClient()
-    const [inputState, handler, isFormValid] = useInput({
+    const [inputState, inputHandler, isFormValid] = useForm({
         password: {
             value: '',
             valid: false
@@ -115,7 +115,7 @@ const PassRecovery = () => {
                             errorText='Please enter your answer'
                             validators={[VALIDATOR_REQUIRE()]}
                             type='text'
-                            onInput={handler} />
+                            onInput={inputHandler} />
                         <Input
                             id='password'
                             label='New password'
@@ -123,12 +123,12 @@ const PassRecovery = () => {
                             errorText='Your password must be at least 6 character long'
                             validators={[VALIDATOR_MINLENGTH(6)]}
                             type='password'
-                            onInput={handler}
+                            onInput={inputHandler}
                         />
                         <Input
                             id='passwordAgain'
                             label='Password again'
-                            onInput={handler}
+                            onInput={inputHandler}
                             value={inputState.inputs.passwordAgain.value}
                             errorText='Passwords do not match!'
                             type='password'

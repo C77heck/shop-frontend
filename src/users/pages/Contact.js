@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Input from '../../shared/form-elements/Input';
-import { useInput } from '../../shared/hooks/form-hook';
+import { useForm } from '../../shared/hooks/form-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import Button from '../../shared/UIElements/Button';
 import {
@@ -25,7 +25,7 @@ const Contact = () => {
 
     const { sendRequest, error, clearError, isLoading } = useHttpClient();
 
-    const [inputState, handler, isFormValid, setFormData] = useInput({
+    const [inputState, inputHandler, isFormValid, setFormData] = useForm({
         name: {
             value: '',
             valid: false
@@ -95,7 +95,7 @@ const Contact = () => {
             <Input
                 id='name'
                 label='Your name:'
-                onInput={handler}
+                onInput={inputHandler}
                 value={inputState.inputs.name.value}
                 errorText='Please enter your name.'
                 validators={[VALIDATOR_REQUIRE()]}
@@ -104,7 +104,7 @@ const Contact = () => {
             <Input
                 id='email'
                 label='Your email:'
-                onInput={handler}
+                onInput={inputHandler}
                 value={inputState.inputs.email.value}
                 errorText='Please enter a valid email address.'
                 validators={[VALIDATOR_EMAIL()]}
@@ -115,7 +115,7 @@ const Contact = () => {
                 element='textarea'
                 id='message'
                 label='Your message:'
-                onInput={handler}
+                onInput={inputHandler}
                 value={inputState.inputs.message.value}
                 validators={[]}
                 type='text'

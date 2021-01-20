@@ -12,7 +12,6 @@ import { PurchaseContext } from '../context/purchase-context';
 import { AuthContext } from '../context/auth-context';
 import LoadingSpinner from '../UIElements/LoadingSpinner';
 
-
 const images = [
     {
         alt: "shop image",
@@ -57,6 +56,10 @@ const Carousel = props => {
         pics3: [],
         pics4: []
     })
+
+    const [dragStart, setDragStart] = useState();
+
+
     const { translate, activeSlide } = carousel;
     const animationType = (props.animation === 'special'
         ? 'cubic-bezier(0.36, 0, 0.66, -0.56)'
@@ -68,11 +71,13 @@ const Carousel = props => {
             transition: `transform 1s ${animationType}`
         })
     }, [translate, activeSlide, animationType])
-
     useEffect(() => {
 
 
-        if (basketContent.products.length > 0) {
+        if (basketContent.products.length > 0
+            &&
+            basketContent.products[0].dateFetched - new Date().getTime() > 0) {
+
             setPics({
                 pics1: basketContent.products.slice(1, 7),
                 pics2: basketContent.products.slice(8, 15),
@@ -93,7 +98,7 @@ const Carousel = props => {
                         ...i,
                         number: 0,
                         totalPrice: 0,
-                        dateFetched: new Date(),
+                        dateFetched: new Date().getTime() + 1000 * 60 * 60 * 24,
                         isFavourite: false,
                         isSearched: false
                     })))
@@ -104,9 +109,7 @@ const Carousel = props => {
         }
 
 
-    }, [sendRequest, basketContent, isLoggedIn, saveToLocalStorage])
-
-
+    }, [sendRequest, isLoggedIn, saveToLocalStorage, basketContent.products])
 
 
     const arrowLeftHandler = () => {
@@ -116,17 +119,7 @@ const Carousel = props => {
                 translate: translate - 100,
                 activeSlide: activeSlide - 1,
             })
-
-        } else {
-            //last slider option will jump over the the other end
-            setCarousel({
-                ...carousel,
-                translate: translate + (100 * 3),
-                activeSlide: 3,
-            })
         }
-
-
     }
 
     const arrowRightHandler = () => {
@@ -135,16 +128,24 @@ const Carousel = props => {
                 ...carousel,
                 translate: translate + 100,
                 activeSlide: activeSlide + 1,
-
             })
+        }
+    }
+
+
+    const onTouchHandler = e => { //swipe controller
+        if (dragStart > e.changedTouches[0].screenX) {
+            arrowRightHandler()
         } else {
-            //last slider option will jump over the the other end
-            setCarousel({
-                ...carousel,
-                translate: 0,
-                activeSlide: 0,
+            arrowLeftHandler()
+        }
+    }
 
-            })
+    const onDragHandler = e => { //mouse drag controller
+        if (dragStart > e.clientX) {
+            arrowRightHandler()
+        } else {
+            arrowLeftHandler()
         }
     }
 
@@ -160,7 +161,10 @@ const Carousel = props => {
                 {props.element === 'img' ? images.map((i) => {
                     return (
                         <img
-                            onTouchMove={e => { arrowRightHandler() }}
+                            onTouchStart={e => { setDragStart(e.changedTouches[0].screenX) }}
+                            onTouchEnd={onTouchHandler}
+                            onDragStart={e => { setDragStart(e.clientX) }}
+                            onDragEnd={onDragHandler}
                             key={i.id}
                             className={`carousel-images`}
                             style={slideStyle}

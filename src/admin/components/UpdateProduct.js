@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { useHttpClient } from '../../shared/hooks/http-hook'
 import ErrorModal from '../../shared/UIElements/ErrorModal'
 import Input from '../../shared/form-elements/Input';
-import { useInput } from '../../shared/hooks/form-hook';
+import { useForm } from '../../shared/hooks/form-hook';
 import { VALIDATOR_REQUIRE } from '../../shared/utility/validators';
 import ImageUpload from '../../shared/form-elements/ImageUpload';
 import Button from '../../shared/UIElements/Button';
@@ -12,12 +12,13 @@ import MessageModal from '../../shared/UIElements/MessageModal';
 
 import './Admin.css'
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
+import { AdminContext } from '../../shared/context/admin-context';
 
 const UpdateProduct = () => {
 
+    const { adminId, isAdminLoggedIn } = useContext(AdminContext)
 
-
-    const [inputState, handler, isFormValid, setFormData] = useInput({
+    const [inputState, inputHandler, isFormValid, setFormData] = useForm({
         nameUpdate: {
             value: '',
             valid: false
@@ -40,7 +41,7 @@ const UpdateProduct = () => {
         }
     })
 
-    const { sendRequest, isLoading, error, clearError } = useHttpClient();
+    const { sendRequest, isLoading, error, clearError, applicationError } = useHttpClient();
 
     const [isProductLoad, setIsProductLoad] = useState(false)
     const [message, setMessage] = useState('')
@@ -52,13 +53,17 @@ const UpdateProduct = () => {
     const updateProductHandler = async e => {
         e.preventDefault();
         try {
+            if (!isAdminLoggedIn) {
+                throw new Error('You need to login first!')
+            }
             const formData = new FormData();
             formData.append('name', inputState.inputs.nameUpdate.value);
             formData.append('unit', inputState.inputs.unitUpdate.value);
             formData.append('price', inputState.inputs.priceUpdate.value);
             formData.append('image', inputState.inputs.imageUpdate.value);
+            formData.append('code', inputState.inputs.codeUpdate.value)
             const responseData = await sendRequest(
-                process.env.REACT_APP_BACKEND + inputState.inputs.codeUpdate.value,
+                process.env.REACT_APP_BACKEND + adminId,
                 'PATCH',
                 formData
             )
@@ -89,7 +94,7 @@ const UpdateProduct = () => {
 
         } catch (err) {
 
-            console.log(err)
+            applicationError(err.message)
 
         }
 
@@ -99,6 +104,9 @@ const UpdateProduct = () => {
         e.preventDefault()
 
         try {
+            if (!isAdminLoggedIn) {
+                throw new Error('You need to login first!')
+            }
             const responseData = await sendRequest(
                 process.env.REACT_APP_PRODUCT + inputState.inputs.codeUpdate.value
             )
@@ -126,6 +134,7 @@ const UpdateProduct = () => {
             })
             setIsProductLoad(true)
         } catch (err) {
+            applicationError(err.message)
 
         }
     }
@@ -147,7 +156,7 @@ const UpdateProduct = () => {
                             <Input
                                 id='codeUpdate'
                                 label='Search by product code'
-                                onInput={handler}
+                                onInput={inputHandler}
                                 value={inputState.inputs.codeUpdate.value}
                                 errorText="Please enter a new product code"
                                 validators={[VALIDATOR_REQUIRE()]}
@@ -162,7 +171,7 @@ const UpdateProduct = () => {
                             <Input
                                 id='nameUpdate'
                                 label='Product name'
-                                onInput={handler}
+                                onInput={inputHandler}
                                 value={inputState.inputs.nameUpdate.value}
                                 errorText='Please enter the product name'
                                 validators={[VALIDATOR_REQUIRE()]}
@@ -171,7 +180,7 @@ const UpdateProduct = () => {
                             <Input
                                 id='unitUpdate'
                                 label='Unit'
-                                onInput={handler}
+                                onInput={inputHandler}
                                 value={inputState.inputs.unitUpdate.value}
                                 errorText='Please enter a value such as litre, kg, pack... etc'
                                 validators={[VALIDATOR_REQUIRE()]}
@@ -180,7 +189,7 @@ const UpdateProduct = () => {
                             <Input
                                 id='priceUpdate'
                                 label='Product price'
-                                onInput={handler}
+                                onInput={inputHandler}
                                 value={inputState.inputs.priceUpdate.value}
                                 errorText="Please enter the product's price"
                                 validators={[VALIDATOR_REQUIRE()]}
@@ -190,7 +199,7 @@ const UpdateProduct = () => {
                             <div>
                                 <ImageUpload
                                     id='imageUpdate'
-                                    onInput={handler}
+                                    onInput={inputHandler}
                                     errorText='Please provide an image.'
                                     img={inputState.inputs.imageUpdate.value}
                                 />

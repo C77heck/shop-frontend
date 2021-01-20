@@ -13,12 +13,6 @@ const Checkout = () => {
 
     const { basketContent } = useContext(PurchaseContext)
 
-    const [products, setProducts] = useState([])
-    /* perhaps ommit the useState check for it... */
-    useEffect(() => {
-        setProducts(basketContent.products)
-    }, [basketContent])
-
     return (
         <React.Fragment>
 
@@ -27,7 +21,7 @@ const Checkout = () => {
                     style={{ flexBasis: "40%", width: "40%" }}
                     className='flex-containers'
                 >
-                    <CheckoutList items={products} />
+                    <CheckoutList items={basketContent.products} />
                 </div>
                 <div style={{ position: "relative", flexBasis: "40%", width: "40%", overflow: "hidden" }}
                     className='flex-containers'

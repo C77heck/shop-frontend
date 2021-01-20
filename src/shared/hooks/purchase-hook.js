@@ -14,7 +14,6 @@ export const usePurchase = () => {
 
     const saveToLocalStorage = (products, userId) => {
         userId = userId || '';
-        console.log(userId)
         setBasketContent({ products: products, userId: userId })
         localStorage.setItem(
             `basketContent`,

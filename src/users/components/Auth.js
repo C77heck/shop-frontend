@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import { PurchaseContext } from '../../shared/context/purchase-context';
 import { AuthContext } from '../../shared/context/auth-context';
 import { useHttpClient } from '../../shared/hooks/http-hook';
-import { useInput } from '../../shared/hooks/form-hook';
+import { useForm } from '../../shared/hooks/form-hook';
 
 import Signin from './Signin';
 import Signup from './Signup';
@@ -33,7 +33,7 @@ const Auth = props => {
 
 
 
-    const [inputState, handler, isFormValid] = useInput({
+    const [inputState, inputHandler, isFormValid] = useForm({
         fName: {
             value: '',
             valid: false
@@ -119,7 +119,6 @@ const Auth = props => {
     const signedupSuccessToClose = () => {
         setSignedup(false)
     }
-
     const signinHandler = async e => {
         e.preventDefault();
         try {
@@ -134,7 +133,9 @@ const Auth = props => {
             )
             if (basketContent.products.length > 0
                 &&
-                basketContent.userId === responseData.userData.userId) {
+                basketContent.userId === responseData.userData.userId
+                &&
+                basketContent.products[0].dateFetched - new Date().getTime() > 0) {
                 saveToLocalStorage(basketContent.products, basketContent.userId)
             } else {
 
@@ -149,7 +150,7 @@ const Auth = props => {
                             ...i,
                             number: 0,
                             totalPrice: 0,
-                            dateFetched: new Date(),
+                            dateFetched: new Date().getTime() + 1000 * 60 * 60 * 24,
                             isFavourite: isFavourite,
                             isSearched: false
                         }
@@ -231,7 +232,7 @@ const Auth = props => {
                 onClear={signInClose}
                 register={register}
                 onSubmit={signinHandler}
-                onInput={handler}
+                onInput={inputHandler}
                 value={inputState.inputs}
                 disabled={isFormValid}
                 isLoading={isLoading}
@@ -246,7 +247,7 @@ const Auth = props => {
                 onClear={forgottenClose}
                 show={forgottenPass}
                 value={inputState.inputs.email.value}
-                onInput={handler}
+                onInput={inputHandler}
                 onSubmit={passwordLinkHandler}
                 message={message}
                 disabled={inputState.inputs.email.valid}
@@ -258,7 +259,7 @@ const Auth = props => {
                 onClear={signInClose}
                 onSubmit={signupHandler}
                 onChange={onChangeHandler}
-                onInput={handler}
+                onInput={inputHandler}
                 value={inputState.inputs}
                 password={inputState.inputs.password.value}
                 disabled={isFormValid}

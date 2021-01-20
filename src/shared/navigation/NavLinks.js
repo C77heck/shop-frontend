@@ -59,7 +59,7 @@ const NavLinks = props => {
                     <NavLink to='/shopping' exact>GROCERIES</NavLink>
                 </li>
                 <li>
-                    <a href='/' onClick={openMapHandler}>STORE FINDER</a>
+                    <a href='/' id='store-finder' onClick={openMapHandler}>STORE FINDER</a>
                 </li>
                 <li>
                     <NavLink to='/contact' exact>CONTACT US</NavLink>

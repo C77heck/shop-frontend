@@ -1,3 +1,10 @@
+
+.error-modal{
+    width: 40vw;
+    left: 30vw;
+
+}
+
 .error-modal .modal__header {
     background-color: rgb(250, 102, 3);
 }

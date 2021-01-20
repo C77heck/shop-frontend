@@ -1,5 +1,4 @@
-import { useEffect, useState, useCallback, useContext } from 'react';
-import { PurchaseContext } from '../context/purchase-context';
+import { useEffect, useState, useCallback } from 'react';
 
 
 import { useHttpClient } from './http-hook';
@@ -35,19 +34,15 @@ export const useAuth = () => {
         )
     }, []);
 
-    const signout = useCallback(async (basketContent) => {
+    const signout = useCallback(async () => {
         setToken(null);
         setUserId(null)
         setExpiration(null)
 
-
-
         try {
             const userID = JSON.parse(localStorage.getItem('userData')).userId;
             localStorage.removeItem('userData')
-
             await sendRequest(process.env.REACT_APP_SIGNOUT + userID)
-
         } catch (err) {
             console.log(err)
         }

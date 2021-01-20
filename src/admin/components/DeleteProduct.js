@@ -1,23 +1,26 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { useHttpClient } from '../../shared/hooks/http-hook'
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner'
 import ErrorModal from '../../shared/UIElements/ErrorModal'
 
 import Input from '../../shared/form-elements/Input';
-import { useInput } from '../../shared/hooks/form-hook';
+import { useForm } from '../../shared/hooks/form-hook';
 import { VALIDATOR_REQUIRE } from '../../shared/utility/validators';
 
 import './Admin.css'
 import Button from '../../shared/UIElements/Button';
 import MessageModal from '../../shared/UIElements/MessageModal';
+import { AdminContext } from '../../shared/context/admin-context';
 
 
 const DeleteProduct = () => {
 
-    const { sendRequest, isLoading, error, clearError } = useHttpClient();
+    const { adminId, isAdminLoggedIn } = useContext(AdminContext)
 
-    const [inputState, handler, isFormValid] = useInput({
+    const { sendRequest, isLoading, error, clearError, applicationError } = useHttpClient();
+
+    const [inputState, inputHandler, isFormValid] = useForm({
         code: {
             value: '',
             valid: false
@@ -30,16 +33,24 @@ const DeleteProduct = () => {
 
     const deleteProductHandler = async (e) => {
         e.preventDefault();
+
         try {
+            if (!isAdminLoggedIn) {
+                throw new Error('you need to login first!')
+            }
             const responseData = await sendRequest(
-                process.env.REACT_APP_BACKEND
-                + '/' +
-                inputState.inputs.code.value,
-                'DELETE'
+                process.env.REACT_APP_BACKEND + adminId,
+                'DELETE',
+                JSON.stringify({
+                    code: inputState.inputs.code.value
+                }),
+                {
+                    'Content-Type': 'application/json'
+                }
             )
             setMessage(responseData.message)
         } catch (err) {
-
+            applicationError(err.message)
         }
 
     }
@@ -63,7 +74,7 @@ const DeleteProduct = () => {
                             errorText='Please enter a product code'
                             validators={[VALIDATOR_REQUIRE()]}
                             type='text'
-                            onInput={handler}
+                            onInput={inputHandler}
                             value={inputState.inputs.code.value}
                         />
                         <Button

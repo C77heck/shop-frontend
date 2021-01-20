@@ -8,10 +8,10 @@ import MainHeader from './MainHeader'
 import SideDrawer from './SideDrawer'
 import Backdrop from '../UIElements/Backdrop'
 import AuthButton from '../../users/components/AuthButton';
+import MenuIcon from './MenuIcon';
 
 
 import './NavigationBar.css'
-import MenuIcon from './MenuIcon';
 
 
 const NavigationBar = () => {
@@ -21,7 +21,12 @@ const NavigationBar = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
     const closeDrawerHandler = e => {
-        setIsDrawerOpen(false)
+        console.log(e.target.id)
+        if(e.target.id==='store-finder'){
+
+        }else{
+            setIsDrawerOpen(false)
+        }
     }
     const openDrawerHandler = () => { setIsDrawerOpen(true) }
 

@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../shared/utility/validators';
 
 import { AuthContext } from '../../shared/context/auth-context';
-import { useInput } from '../../shared/hooks/form-hook';
+import { useForm } from '../../shared/hooks/form-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 
 import Button from '../../shared/UIElements/Button';
@@ -23,7 +23,7 @@ const UserPasswordReset = props => {
     const { sendRequest, clearError, error, isLoading } = useHttpClient();
     const [message, setMessage] = useState()
 
-    const [inputState, handler, isFormValid] = useInput({
+    const [inputState, inputHandler, isFormValid] = useForm({
         oldPassword: {
             value: '',
             valid: false
@@ -82,7 +82,7 @@ const UserPasswordReset = props => {
                     <Input
                         id='answer'
                         label='Your answer'
-                        onInput={handler}
+                        onInput={inputHandler}
                         value={inputState.inputs.answer.value}
                         validators={[VALIDATOR_MINLENGTH(4)]}
                         type='text'
@@ -93,7 +93,7 @@ const UserPasswordReset = props => {
                     <Input
                         id='oldPassword'
                         label='Old password'
-                        onInput={handler}
+                        onInput={inputHandler}
                         value={inputState.inputs.oldPassword.value}
                         errorText='Please enter your old password.'
                         validators={[VALIDATOR_REQUIRE()]}
@@ -102,7 +102,7 @@ const UserPasswordReset = props => {
                     <Input
                         id='password'
                         label='New password'
-                        onInput={handler}
+                        onInput={inputHandler}
                         value={inputState.inputs.password.value}
                         errorText='Your password must be at least 6 character long'
                         type='password'
@@ -111,7 +111,7 @@ const UserPasswordReset = props => {
                     <Input
                         id='passwordAgain'
                         label='New password again'
-                        onInput={handler}
+                        onInput={inputHandler}
                         value={inputState.inputs.passwordAgain.value}
                         errorText='Passwords do not match!'
                         type='password'

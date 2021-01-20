@@ -35,6 +35,10 @@ export const useHttpClient = () => {
         }
     }, [])
 
+    const applicationError = (err) => {
+        setError(err);
+    }
+
     const clearError = () => {
         setError(null)
     }
@@ -44,5 +48,5 @@ export const useHttpClient = () => {
             activeHttpRequests.current.forEach(abortCtrl => abortCtrl.abort())
         }
     }, [])
-    return { sendRequest, isLoading, error, clearError }
+    return { sendRequest, isLoading, error, clearError, applicationError }
 }

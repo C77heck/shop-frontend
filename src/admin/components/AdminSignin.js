@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 
-import { useInput } from '../../shared/hooks/form-hook';
+import { useForm } from '../../shared/hooks/form-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import Button from '../../shared/UIElements/Button';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
@@ -33,7 +33,7 @@ const AdminSignin = props => {
 
     const [show, setShow] = useState(false)
 
-    const [inputState, handler, isFormValid] = useInput({
+    const [inputState, inputHandler, isFormValid] = useForm({
         accountID: {
             value: '',
             valid: false
@@ -84,7 +84,7 @@ const AdminSignin = props => {
                 <Input
                     id='accountID'
                     label='Account ID'
-                    onInput={handler}
+                    onInput={inputHandler}
                     value={inputState.inputs.accountID.value}
                     errorText='Please enter your account ID.'
                     validators={[VALIDATOR_REQUIRE()]}
@@ -93,7 +93,7 @@ const AdminSignin = props => {
                 <Input
                     id='password'
                     label='Password'
-                    onInput={handler}
+                    onInput={inputHandler}
                     value={inputState.inputs.password.value}
                     errorText='Please enter your password'
                     validators={[VALIDATOR_REQUIRE()]}

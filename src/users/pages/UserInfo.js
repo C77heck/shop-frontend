@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../shared/context/auth-context';
 
 import { useHttpClient } from '../../shared/hooks/http-hook';
-import { useInput } from '../../shared/hooks/form-hook';
+import { useForm } from '../../shared/hooks/form-hook';
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
 
@@ -20,7 +20,7 @@ const UserInfo = () => {
 
     const { sendRequest, isLoading, error, clearError } = useHttpClient();
 
-    const [inputState, handler, isFormValid, setFormData] = useInput({
+    const [inputState, inputHandler, isFormValid, setFormData] = useForm({
         firstName: {
             value: '',
             valid: false
@@ -207,12 +207,12 @@ const UserInfo = () => {
                     onClear={onClearHandler}
                     show={show}
                     onSubmit={submitHandler}
-                    onInput={handler}
+                    onInput={inputHandler}
                     value={inputState.inputs}
                     message={message}
                 />
                 <UserForms
-                    onInput={handler}
+                    onInput={inputHandler}
                     value={inputState.inputs}
                     email={email}
                     onClick={() => setShow(true)}

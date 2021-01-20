@@ -7,11 +7,7 @@ import TopSection from '../components/TopSection'
 import { AuthContext } from '../../shared/context/auth-context';
 import { PurchaseContext } from '../../shared/context/purchase-context';
 
-
 import './Shopping.css'
-
-
-
 
 const Shopping = () => {
 
@@ -26,9 +22,10 @@ const Shopping = () => {
     useEffect(() => {
         if (isLoggedIn || !isLoggedIn) {
             try {
-                const products = JSON.parse(localStorage.getItem('basketContent'))
-                saveToLocalStorage(products.products, products.userId)
-                setLoadedProducts(products.products)
+                /*                 const products = JSON.parse(localStorage.getItem('basketContent'))
+                                saveToLocalStorage(products.products, products.userId) */
+
+                setLoadedProducts(basketContent.products)
                 setIsLoading(false)
             } catch (err) {
                 console.log(err)

@@ -35,7 +35,7 @@
 .modal__header {
   width: 100%;
   padding: 1rem 0.5rem;
-  background:rgb(221, 115, 54);
+  background: rgb(221, 115, 54);
   color: white;
 }
 
@@ -50,7 +50,6 @@
 .modal__footer {
   padding: 1rem 0.5rem;
 }
-
 
 .modal-enter {
   transform: translateY(-10rem);
@@ -145,16 +144,18 @@
   .password-change__modal {
     left: 19vw;
   }
+  .map-modal {
+    top: 3vh;
+    width: 100vw;
+    left: 0;
+    z-index: 500;
+  }
 }
 
 @media screen and (max-width: 600px) {
   .modals {
     width: 84vw;
     left: 8vw;
-  }
-  .map-modal {
-    width: 100vw;
-    left: 0;
   }
 }
 
@@ -172,7 +173,6 @@
     padding: 1vh;
   }
   .basket-modal .modal__content {
-  
     font-size: 0.8rem;
     padding: 1vh 1vh 0;
   }

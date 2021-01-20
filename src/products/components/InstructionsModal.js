@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../shared/context/auth-context';
 import Modal from '../../shared/UIElements/Modal';
 import { useHttpClient } from '../../shared/hooks/http-hook';
-import { useInput } from '../../shared/hooks/form-hook';
+import { useForm } from '../../shared/hooks/form-hook';
 import Button from '../../shared/UIElements/Button';
 import Input from '../../shared/form-elements/Input';
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
@@ -14,7 +14,7 @@ const InstructionsModal = () => {
     const auth = useContext(AuthContext)
     const { sendRequest, isLoading } = useHttpClient();
     const [show, setShow] = useState(false)
-    const [inputState, handler] = useInput({
+    const [inputState, inputHandler] = useForm({
         instructions: {
             value: '',
             valid: true
@@ -72,7 +72,7 @@ const InstructionsModal = () => {
                     label='delivery instructions'
                     labelStyle={{ fontSize: "1.2rem", letterSpacing: "1.5px" }}
                     style={{ resize: "none" }}
-                    onInput={handler}
+                    onInput={inputHandler}
                     value={inputState.inputs.instructions.value}
                     validators={[]}
                 />

@@ -26,7 +26,7 @@ const reducer = (state, action) => {
 }
 
 
-export const useInput = (inputs) => {
+export const useForm = (inputs) => {
     const [inputState, dispatch] = useReducer(reducer, {
         inputs: inputs,
     })
@@ -53,7 +53,7 @@ export const useInput = (inputs) => {
 
 
 
-    const handler = useCallback((id, value, valid) => {
+    const inputHandler = useCallback((id, value, valid) => {
         dispatch({
             type: 'CHANGE',
             value: value,
@@ -69,6 +69,6 @@ export const useInput = (inputs) => {
         });
     }, []);
 
-    return [inputState, handler, isFormValid, setFormData]
+    return [inputState, inputHandler, isFormValid, setFormData]
 }
 
