@@ -12,9 +12,9 @@ import ErrorModal from '../../shared/UIElements/ErrorModal';
 import { encrypt } from '../../shared/utility/encrypt';
 import PasswordResetter from '../../users/components/PasswordResetter';
 
-
-
 import './Auth.css'
+
+
 
 const Auth = props => {
 
@@ -122,6 +122,7 @@ const Auth = props => {
     const signinHandler = async e => {
         e.preventDefault();
         try {
+
             const responseData = await sendRequest(
                 process.env.REACT_APP_SIGNIN,
                 'POST',
@@ -136,7 +137,14 @@ const Auth = props => {
                 basketContent.userId === responseData.userData.userId
                 &&
                 basketContent.products[0].dateFetched - new Date().getTime() > 0) {
-                saveToLocalStorage(basketContent.products, basketContent.userId)
+                    try{
+                        saveToLocalStorage(basketContent.products, basketContent.userId)
+                        signin(responseData.userData)
+                        signInClose();
+                    }catch(err){
+                        console.log(err)
+                    }
+
             } else {
 
                 try {

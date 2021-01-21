@@ -10,9 +10,11 @@ import Input from '../../shared/form-elements/Input';
 import { VALIDATOR_REQUIRE } from '../../shared/utility/validators';
 import AdminIcon from './AdminIcon';
 import { AdminContext } from '../../shared/context/admin-context';
+import { AuthContext } from '../../shared/context/auth-context';
 
 
 const AdminModal = props => {
+
     return (
         <Modal
             header={props.header}
@@ -27,6 +29,8 @@ const AdminModal = props => {
 }
 
 const AdminSignin = props => {
+
+    const { signout } = useContext(AuthContext);
 
     const { isAdminLoggedIn, adminSignin, adminSignout } = useContext(AdminContext)
     const { sendRequest, isLoading, error, clearError } = useHttpClient()
@@ -59,6 +63,7 @@ const AdminSignin = props => {
                 }
             )
             adminSignin(responseData.userId, true)
+            signout();
             setShow(false)
         } catch (err) {
             console.log(err)

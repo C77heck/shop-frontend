@@ -117,7 +117,7 @@ function App() {
           <Contact />
           <Footer />
         </Route>
-        <Route path='/resources' exact>
+        <Route path='/admin/resources' exact>
           <NavigationBar />
           <Upload />
           <Footer />

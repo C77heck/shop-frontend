@@ -22,6 +22,10 @@
     .carousel-images {
         bottom: 0;
     }
+    .carousel-wrapper {
+        width: 100%;
+
+    }
 }
 
 @media (max-width: 550px) {

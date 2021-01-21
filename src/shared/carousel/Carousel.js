@@ -56,18 +56,32 @@ const Carousel = props => {
     const [images, setImages] = useState([]);
 
     useEffect(() => {
-        (async () => {
-            try {
-                const responseData = await sendRequest(
-                    process.env.REACT_APP_RESOURCE_ROUTE + 'carousel');
-                setImages(responseData.images)
-            } catch (err) {
-            }
-        })()
+        let carouselImages = [];
+        let expiry = 0;
+        if (localStorage.getItem('carouselImages')) {
+            carouselImages = JSON.parse(localStorage.getItem('carouselImages')).images || [];
+            expiry = JSON.parse(localStorage.getItem('carouselImages')).expiry;
+        }
+        if (carouselImages.length > 0
+            &&
+            expiry - new Date().getTime() > 0) {
+            setImages(carouselImages);
+        } else {
+            (async () => {
+                try {
+                    const responseData = await sendRequest(
+                        process.env.REACT_APP_RESOURCE_ROUTE + 'carousel');
+                    setImages(responseData.images);
+                    localStorage.setItem('carouselImages', JSON.stringify({
+                        images: responseData.images,
+                        expiry: new Date().getTime() + 1000 * 60 * 60 * 24 * 30 //1 month expiry
+                    }));
+                } catch (err) {
+                }
+            })()
+        }
+
     }, [])
-
-
-    console.log(images)
 
     useEffect(() => {
         if (basketContent.products.length > 0
@@ -81,32 +95,42 @@ const Carousel = props => {
                 pics4: basketContent.products.slice(23, 31)
             })
         } else {
-            (async () => {
-                try {
-                    const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
-                    setPics({
-                        pics1: responseData.products.slice(1, 7),
-                        pics2: responseData.products.slice(8, 15),
-                        pics3: responseData.products.slice(16, 24),
-                        pics4: responseData.products.slice(23, 31),
-                        pics5: responseData.products.slice(1, 7)
-                    })
-                    saveToLocalStorage(responseData.products.map(i => ({
-                        ...i,
-                        number: 0,
-                        totalPrice: 0,
-                        dateFetched: new Date().getTime() + 1000 * 60 * 60 * 24,
-                        isFavourite: false,
-                        isSearched: false
-                    })))
-                } catch (err) {
-                }
-            })();
+            const products = JSON.parse(localStorage.getItem('basketContent')).products;
+            if (products.length > 0) {
+                setPics({
+                    pics1: products.slice(1, 7),
+                    pics2: products.slice(8, 15),
+                    pics3: products.slice(16, 24),
+                    pics4: products.slice(23, 31)
+                })
+            } else {
+                (async () => {
+                    try {
+                        const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
+                        setPics({
+                            pics1: responseData.products.slice(1, 7),
+                            pics2: responseData.products.slice(8, 15),
+                            pics3: responseData.products.slice(16, 24),
+                            pics4: responseData.products.slice(23, 31),
+                            pics5: responseData.products.slice(1, 7)
+                        })
+                        saveToLocalStorage(responseData.products.map(i => ({
+                            ...i,
+                            number: 0,
+                            totalPrice: 0,
+                            dateFetched: new Date().getTime() + 1000 * 60 * 60 * 24,
+                            isFavourite: false,
+                            isSearched: false
+                        })))
+                    } catch (err) {
+                    }
+                })();
+            }
 
         }
 
 
-    }, [sendRequest, isLoggedIn, saveToLocalStorage, basketContent.products])
+    }, [isLoggedIn])
 
 
     const arrowLeftHandler = () => {

@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 export const usePurchase = () => {
     const [code, setCode] = useState();
@@ -11,6 +11,8 @@ export const usePurchase = () => {
         products: [],
         userId: ''
     })
+
+
 
     const saveToLocalStorage = (products, userId) => {
         userId = userId || '';

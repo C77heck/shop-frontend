@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 import Auth from './Auth';
 import { AuthContext } from '../../shared/context/auth-context';
 import UserIcon from './UserIcon';
-import { PurchaseContext } from '../../shared/context/purchase-context';
 
 
 const AuthButton = props => {

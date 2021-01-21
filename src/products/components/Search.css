@@ -59,7 +59,7 @@
 
 @media (max-width: 500px) {
     .border-container {
-        width: 100%;
+        width: 80vw;
         margin: 2vh auto 0;
     }
     .search-button {

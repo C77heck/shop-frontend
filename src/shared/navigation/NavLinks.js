@@ -27,9 +27,6 @@ const NavLinks = props => {
     const [clicked, setClicked] = useState(false);
 
 
-
-
-
     const openMapHandler = e => {
         e.preventDefault();
         setClicked(true)
@@ -61,10 +58,10 @@ const NavLinks = props => {
                 <li>
                     <a href='/' id='store-finder' onClick={openMapHandler}>STORE FINDER</a>
                 </li>
-                <li>
-                    <NavLink to='/contact' exact>CONTACT US</NavLink>
-                </li>
-                {isLoggedIn && <React.Fragment><li className='mobile-view__my__account'>
+                    {!isAdminLoggedIn && location.pathname.search('admin') === -1 ?
+                    <li><NavLink to='/contact' exact>CONTACT US</NavLink></li> :
+                    null}
+                {isLoggedIn && !isAdminLoggedIn && <React.Fragment><li className='mobile-view__my__account'>
                     <NavLink to={`/userdata/${userId}`} >UPDATE DETAILS</NavLink>
                 </li>
                     <li className='mobile-view__my__account'>
@@ -73,23 +70,28 @@ const NavLinks = props => {
                     <li className='mobile-view__my__account'>
                         <NavLink to={`/favourites/${userId}`}>FAVOURITES</NavLink>
                     </li></React.Fragment>}
+                {location.pathname.search('admin') === 1 ?
+                    <li><NavLink to='/admin/resources' exact>RESOURCES</NavLink></li> :
+                    null
+                }
                 <li>
-                    {isAdminLoggedIn ? <NavLink to='/admin' exact>ADMIN</NavLink>
+                    {location.pathname.search('admin') === 1 ?
+                        <NavLink to='/admin' exact>ADMIN</NavLink>
                         :
                         isLoggedIn ?
                             <div className='desktop-view__my__account'>
-                                <DropDown name='MY ACCOUNT' /></div>
+                                <DropDown name='MY ACCOUNT' />
+                            </div>
                             :
-                            location.pathname === '/admin' ? <div></div>
-                                :
-                                <Auth register={true} >
-                                    <NavLink to='/' exact>REGISTER</NavLink>
-                                </Auth>
+                            <Auth register={true} >
+                                <NavLink to='/' exact>REGISTER</NavLink>
+                            </Auth>
                     }
                 </li>
-                {isAdminLoggedIn ? <AdminSignin className='admin-sigin__button' />
+                {isAdminLoggedIn ? <AdminSignin className='admin-auth__button' />
                     :
-                    props.pathname === '/admin' ? <AdminSignin className='admin-sigin__button' />
+                    location.pathname.search('admin') === 1 ?
+                        <AdminSignin className='admin-auth__button' />
                         :
                         <AuthButton
                             className='auth-button_desktop'

@@ -21,7 +21,6 @@ const NavigationBar = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
     const closeDrawerHandler = e => {
-        console.log(e.target.id)
         if(e.target.id==='store-finder'){
 
         }else{
@@ -45,7 +44,7 @@ const NavigationBar = () => {
                 <h1 className="main-navigation__title">
                     <div>Furuma</div>
                 </h1>
-                {location.pathname === '/admin' ? <AdminSignin className='admin-signin__mobile' />
+                {location.pathname === '/admin' ? <AdminSignin className='admin-auth__mobile' />
                     :
                     <AuthButton
                         className='auth-button_mobile'

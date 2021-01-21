@@ -6,21 +6,19 @@ import { useForm } from '../../shared/hooks/form-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import Button from '../../shared/UIElements/Button';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
+import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 import Modal from '../../shared/UIElements/Modal';
 import { VALIDATOR_REQUIRE } from '../../shared/utility/validators';
+import CustomSelect from '../../users/components/CustomSelect';
 
 import './Upload.css';
 
 const Upload = () => {
 
     const { adminId } = useContext(AdminContext);//fix it..
-    const { sendRequest, error, clearError } = useHttpClient()
+    const { sendRequest, error, clearError, isLoading } = useHttpClient()
     const [inputState, inputHandler, isFormValid, setFormData] = useForm({
         name: {
-            value: '',
-            valid: false
-        },
-        resourcePlace: {
             value: '',
             valid: false
         },
@@ -30,13 +28,26 @@ const Upload = () => {
         }
     })
     const [message, setMessage] = useState('')
+
+    const [resourcePlace, setResourcePlace] = useState('')
+
+    const onChangeHandler = e => {
+        const value = e.target.value;
+        if (value !== '0') {
+            setResourcePlace(value)
+        }
+    }
+
+
+
+
     const onSubmitHandler = async e => {
         e.preventDefault();
         try {
 
             const formData = new FormData();
             formData.append('name', inputState.inputs.name.value)
-            formData.append('resourcePlace', inputState.inputs.resourcePlace.value)
+            formData.append('resourcePlace', resourcePlace)
             formData.append('image', inputState.inputs.image.value)
 
             const responseData = await sendRequest(
@@ -72,6 +83,7 @@ const Upload = () => {
 
     return (
         <React.Fragment>
+            {isLoading && <LoadingSpinner asOverlay />}
             <ErrorModal error={error} onClear={clearError} />
             <Modal
                 show={!!message}
@@ -80,36 +92,38 @@ const Upload = () => {
                 <h3>{message}</h3>
             </Modal>
             <div className='resources-upload__container'>
-                <form onSubmit={onSubmitHandler}>
-                    <Input
-                        id='name'
-                        label='Image name'
-                        errorText='Please provide a name.'
-                        onInput={inputHandler}
-                        value={inputState.inputs.name.value}
-                        validators={[VALIDATOR_REQUIRE()]}
-                        type='text'
-                    />
-                    <Input
-                        id='resourcePlace'
-                        label='Resource placement'
-                        onInput={inputHandler}
-                        value={inputState.inputs.resourcePlace.value}
-                        errorText='Please provide which resource does it belong to'
-                        validators={[VALIDATOR_REQUIRE()]}
-                        type='text'
-                    />
-                    <ImageUpload
-                        id='image'
-                        onInput={inputHandler}
-                        errorText='Please provide an image.'
-                    />
-                    <Button
-                        disabled={isFormValid}
-                    >
-                        SUBMIT
+                <div className='form-element_outer'>
+                    <div className='form-element'>
+                        <h2>Add resource</h2>
+                        <form onSubmit={onSubmitHandler}>
+                            <Input
+                                id='name'
+                                label='Image name'
+                                errorText='Please provide a name.'
+                                onInput={inputHandler}
+                                value={inputState.inputs.name.value}
+                                validators={[VALIDATOR_REQUIRE()]}
+                                type='text'
+                            />
+                            <CustomSelect
+                                onChange={onChangeHandler}
+                                type='resourcePlace'
+                                instruction='Choose a resource place:'
+
+                            />
+                            <ImageUpload
+                                id='image'
+                                onInput={inputHandler}
+                                errorText='Please provide an image.'
+                            />
+                            <Button
+                                disabled={isFormValid}
+                            >
+                                SUBMIT
             </Button>
-                </form>
+                        </form>
+                    </div>
+                </div>
             </div>
         </React.Fragment>
     )

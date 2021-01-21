@@ -5,7 +5,7 @@ import Modal from '../../shared/UIElements/Modal';
 import Button from '../../shared/UIElements/Button';
 import Input from '../../shared/form-elements/Input';
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
-import SecQuestions from './SecQuestions';
+import CustomSelect from './CustomSelect';
 import BackIcon from './BackIcon';
 import {
     VALIDATOR_REQUIRE,
@@ -132,8 +132,10 @@ const SecondPage = props => {
                 </div>
             </div>
             <div className='security-question'>
-                <SecQuestions
+                <CustomSelect
                     onChange={props.onChange}
+                    type='hints'
+                    instruction='Choose a security question:'
                 />
                 <Input
                     id='answer'

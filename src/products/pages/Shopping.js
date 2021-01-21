@@ -20,10 +20,18 @@ const Shopping = () => {
 
 
     useEffect(() => {
-        if (isLoggedIn || !isLoggedIn) {
+        if (basketContent.products.length > 0) {
             try {
 
                 setLoadedProducts(basketContent.products)
+                setIsLoading(false)
+            } catch (err) {
+                console.log(err)
+            }
+        } else {
+            try {
+                const products = JSON.parse(localStorage.getItem('basketContent'))
+                setLoadedProducts(products.products)
                 setIsLoading(false)
             } catch (err) {
                 console.log(err)
