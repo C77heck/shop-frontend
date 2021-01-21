@@ -186,7 +186,7 @@ const Carousel = props => {
                             onTouchEnd={onTouchHandler}
                             onDragStart={e => { setDragStart(e.clientX) }}
                             onDragEnd={onDragHandler}
-                            key={i.id}
+                            key={i._id}
                             className={`carousel-images`}
                             style={slideStyle}
                             src={process.env.REACT_APP_IMAGE_ROUTE + i.image}
@@ -196,22 +196,46 @@ const Carousel = props => {
                 })
                     :
                     <React.Fragment>
-                        <div className='slider-divs' style={slideStyle}>
+                        <div
+                            onTouchStart={e => { setDragStart(e.changedTouches[0].screenX) }}
+                            onTouchEnd={onTouchHandler}
+                            onDragStart={e => { setDragStart(e.clientX) }}
+                            onDragEnd={onDragHandler}
+                            className='slider-divs'
+                            style={slideStyle}>
                             <Mapping
                                 images={pics.pics1}
                             />
                         </div>
-                        <div className='slider-divs' style={slideStyle}>
+                        <div
+                            onTouchStart={e => { setDragStart(e.changedTouches[0].screenX) }}
+                            onTouchEnd={onTouchHandler}
+                            onDragStart={e => { setDragStart(e.clientX) }}
+                            onDragEnd={onDragHandler}
+                            className='slider-divs'
+                            style={slideStyle}>
                             <Mapping
                                 images={pics.pics2}
                             />
                         </div>
-                        <div className='slider-divs' style={slideStyle}>
+                        <div
+                            onTouchStart={e => { setDragStart(e.changedTouches[0].screenX) }}
+                            onTouchEnd={onTouchHandler}
+                            onDragStart={e => { setDragStart(e.clientX) }}
+                            onDragEnd={onDragHandler}
+                            className='slider-divs'
+                            style={slideStyle}>
                             <Mapping
                                 images={pics.pics3}
                             />
                         </div>
-                        <div className='slider-divs' style={slideStyle}>
+                        <div
+                            onTouchStart={e => { setDragStart(e.changedTouches[0].screenX) }}
+                            onTouchEnd={onTouchHandler}
+                            onDragStart={e => { setDragStart(e.clientX) }}
+                            onDragEnd={onDragHandler}
+                            className='slider-divs'
+                            style={slideStyle}>
                             <Mapping
                                 images={pics.pics4}
                             />

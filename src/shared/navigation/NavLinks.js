@@ -58,10 +58,11 @@ const NavLinks = props => {
                 <li>
                     <a href='/' id='store-finder' onClick={openMapHandler}>STORE FINDER</a>
                 </li>
-                    {!isAdminLoggedIn && location.pathname.search('admin') === -1 ?
+                {!isAdminLoggedIn && location.pathname.search('admin') === -1 ?
                     <li><NavLink to='/contact' exact>CONTACT US</NavLink></li> :
                     null}
-                {isLoggedIn && !isAdminLoggedIn && <React.Fragment><li className='mobile-view__my__account'>
+                {isLoggedIn && !isAdminLoggedIn && location.pathname.search('admin') !== 1 && 
+                <React.Fragment><li className='mobile-view__my__account'>
                     <NavLink to={`/userdata/${userId}`} >UPDATE DETAILS</NavLink>
                 </li>
                     <li className='mobile-view__my__account'>

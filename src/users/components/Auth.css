@@ -63,6 +63,7 @@
 @media (max-width: 500px) {
     .auth-container .auth-button {
         border-radius: 500px;
+        left: 3vw;
     }
 }
 

@@ -15,8 +15,8 @@ import './Upload.css';
 
 const Upload = () => {
 
-    const { adminId } = useContext(AdminContext);//fix it..
-    const { sendRequest, error, clearError, isLoading } = useHttpClient()
+    const { adminId, isAdminLoggedIn } = useContext(AdminContext);//fix it..
+    const { sendRequest, error, clearError, isLoading, applicationError } = useHttpClient()
     const [inputState, inputHandler, isFormValid, setFormData] = useForm({
         name: {
             value: '',
@@ -44,6 +44,9 @@ const Upload = () => {
     const onSubmitHandler = async e => {
         e.preventDefault();
         try {
+            if (!isAdminLoggedIn) {
+                throw new Error('You need to login first!')
+            }
 
             const formData = new FormData();
             formData.append('name', inputState.inputs.name.value)
@@ -51,7 +54,7 @@ const Upload = () => {
             formData.append('image', inputState.inputs.image.value)
 
             const responseData = await sendRequest(
-                process.env.REACT_APP_RESOURCE_UPLOADS + '5ffd711652164771c3ac5346',
+                process.env.REACT_APP_RESOURCE_UPLOADS + adminId,
                 'POST',
                 formData
             )
@@ -73,7 +76,7 @@ const Upload = () => {
 
             })
         } catch (err) {
-
+            applicationError(err.message)
         }
     }
 

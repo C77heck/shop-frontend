@@ -59,11 +59,11 @@
 
 @media (max-width: 500px) {
     .border-container {
-        width: 80vw;
+        width: 74vw;
         margin: 2vh auto 0;
     }
     .search-button {
-        width: 5vh;
+        width: 12vw;
         right: -1px;
     }
 }
