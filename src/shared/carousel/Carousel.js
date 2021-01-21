@@ -144,7 +144,7 @@ const Carousel = props => {
     }
 
     const arrowRightHandler = () => {
-        if (activeSlide !== images.length) {
+        if (activeSlide !== images.length+1) {
             setCarousel({
                 ...carousel,
                 translate: translate + 100,
@@ -179,21 +179,34 @@ const Carousel = props => {
 
                 className={`carousel-wrapper${props.className}`}
             >
-                {props.element === 'img' ? images.map((i) => {
-                    return (
-                        <img
-                            onTouchStart={e => { setDragStart(e.changedTouches[0].screenX) }}
-                            onTouchEnd={onTouchHandler}
-                            onDragStart={e => { setDragStart(e.clientX) }}
-                            onDragEnd={onDragHandler}
-                            key={i._id}
-                            className={`carousel-images`}
-                            style={slideStyle}
-                            src={process.env.REACT_APP_IMAGE_ROUTE + i.image}
-                            alt={i.name}
-                        />
-                    )
-                })
+
+                {props.element === 'img' ? <React.Fragment>
+                    <img
+                        onTouchStart={e => { setDragStart(e.changedTouches[0].screenX) }}
+                        onTouchEnd={onTouchHandler}
+                        onDragStart={e => { setDragStart(e.clientX) }}
+                        onDragEnd={onDragHandler}
+                        key={1}
+                        className={`carousel-images`}
+                        style={slideStyle}
+                        src='/images/carousel/startingImage.jpeg'
+                        alt='cereal shelf'
+                    />
+                    {images.map((i) => {
+                        return (
+                            <img
+                                onTouchStart={e => { setDragStart(e.changedTouches[0].screenX) }}
+                                onTouchEnd={onTouchHandler}
+                                onDragStart={e => { setDragStart(e.clientX) }}
+                                onDragEnd={onDragHandler}
+                                key={i._id}
+                                className={`carousel-images`}
+                                style={slideStyle}
+                                src={process.env.REACT_APP_IMAGE_ROUTE + i.image}
+                                alt={i.name}
+                            />
+                        )
+                    })}</React.Fragment>
                     :
                     <React.Fragment>
                         <div

@@ -13,7 +13,7 @@ const NewsCard = props => {
                 <div className='card-frame'>
                     <div className='card-item'>
                         <div className='image-container'>
-                            <img src="/images/NewsCard/hams.jpg" alt='serrano ham' />
+                            <img defer src="/images/NewsCard/hams.jpg" alt='serrano ham' />
                         </div>
                         <div>
                             <h2>Market report</h2>
@@ -30,7 +30,7 @@ const NewsCard = props => {
                 <div className='card-frame'>
                     <div className='card-item'>
                         <div className='image-container'>
-                            <img src="/images/NewsCard/Market-report.jpg" alt='market report' />
+                            <img defer src="/images/NewsCard/Market-report.jpg" alt='market report' />
                         </div>
                         <div>
                             <h2>Market report</h2>
@@ -47,7 +47,7 @@ const NewsCard = props => {
                 <div className='card-frame'>
                     <div className='card-item'>
                         <div className='image-container'>
-                            <img src="/images/NewsCard/online-ordering.jpg" alt='online ordering' />
+                            <img defer src="/images/NewsCard/online-ordering.jpg" alt='online ordering' />
                         </div>
                         <div>
                             <h2>New online ordering </h2>
@@ -64,7 +64,7 @@ const NewsCard = props => {
                 <div className='card-frame'>
                     <div className='card-item'>
                         <div className='image-container'>
-                            <img src="/images/NewsCard/spices.jpg" alt='BBQ' />
+                            <img defer src="/images/NewsCard/spices.jpg" alt='BBQ' />
                         </div>
                         <div>
                             <h2>Fresh spices from India</h2>

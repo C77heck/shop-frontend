@@ -31,6 +31,7 @@ const Image = props => {
     return (
         <div onClick={clickHandle}>
             <img
+                defer
                 key={id}
                 src={process.env.REACT_APP_IMAGE_ROUTE + image}
                 alt={name}

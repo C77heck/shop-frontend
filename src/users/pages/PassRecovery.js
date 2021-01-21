@@ -81,7 +81,7 @@ const PassRecovery = () => {
     const onSubmitHandler = async e => {
         e.preventDefault();
         try {
-             await sendRequest(
+            await sendRequest(
                 process.env.REACT_APP_UPDATE_PASSWORD + requestId,
                 'PATCH',
                 JSON.stringify({
@@ -92,7 +92,7 @@ const PassRecovery = () => {
             setShow(true)
 
         } catch (err) {
-
+            console.log(err)
         }
     }
 
