@@ -114,43 +114,88 @@ const BookDelivery = () => {
             </div>
             <div className='book-delivery_block'>
 
-                <div style={{ flexBasis: "40%" }}>
-                    <p>Delivery time:</p>
-                    <p>Delivery address:</p>
-                    <p>Delivery instructions:</p>
+
+                <div className='book-delivery-rows'>
+                    <div style={{ flexBasis: "40%" }}>
+                        <p>Delivery time:</p>
+                    </div>
+                    <div style={{ flexBasis: "60%" }}>
+                        <button
+                            className='book-delivery_buttons'
+                            onClick={datePickerHandler}
+                        ><span>{value.display}</span>
+                            <span className='book-delivery__span'>{value.display === '' ?
+                                ' Book a delivery date' : ' Change delivery date'}
+                            </span>
+                        </button>
+                    </div>
                 </div>
-                <div style={{ flexBasis: "60%" }}>
-                    <button
-                        className='book-delivery_buttons'
-                        onClick={datePickerHandler}
-                    >{value !== undefined ? value.display + ' change delivery date' : 'book a delivery date'}
-                    </button>
-                    <p>{userData.address}</p>
-                    <InstructionsModal />
+
+                <div className='book-delivery-rows'>
+                    <div style={{ flexBasis: "40%" }}>
+                        <p>Delivery address:</p>
+                    </div>
+                    <div style={{ flexBasis: "60%" }}>
+                        <p>{userData.address}</p>
+                    </div>
                 </div>
+
+                <div className='book-delivery-rows'>
+                    <div style={{ flexBasis: "40%" }}>
+                        <p>Delivery instructions:</p>
+                    </div>
+                    <div style={{ flexBasis: "60%" }}>
+                        <InstructionsModal />
+                    </div>
+                </div>
+
             </div>
             <div className='order-summary'>
                 <div className='book-delivery_header'>
                     <p>Order summary</p>
                 </div>
+
                 <div className='book-delivery_block'>
 
-                    <div style={{ flexBasis: "40%" }}>
-                        <p>Basket total:</p>
-                        <p>Includes savings of:</p>
-                        <p>Total coupon savings:</p>
-                        <h3>Total to pay</h3>
+                    <div className='book-delivery-rows'>
+                        <div style={{ flexBasis: "40%" }}>
+                            <p>Basket total:</p>
+                        </div>
+                        <div style={{ flexBasis: "60%" }}>
+                            <p>£{pay.basket.beforeDot + pay.basket.afterDot}</p>
+                        </div>
                     </div>
-                    <div style={{ flexBasis: "60%" }}>
-                        <p>£{pay.basket.beforeDot + pay.basket.afterDot}</p>
-                        <p>£{pay.savings}</p>
-                        <p>£{pay.coupons}</p>
-                        <h3>£{pay.total.beforeDot + pay.total.afterDot}</h3>
-                    </div>
-                </div>
-                <PayButton datePicked={value.display} />
 
+                    <div className='book-delivery-rows'>
+                        <div style={{ flexBasis: "40%" }}>
+                            <p>Includes savings of:</p>
+                        </div>
+                        <div style={{ flexBasis: "60%" }}>
+                            <p>£{pay.savings}</p>
+                        </div>
+                    </div>
+
+                    <div className='book-delivery-rows'>
+                        <div style={{ flexBasis: "40%" }}>
+                            <p>Total coupon savings:</p>
+                        </div>
+                        <div style={{ flexBasis: "60%" }}>
+                            <p>£{pay.coupons}</p>
+                        </div>
+                    </div>
+
+                    <div className='book-delivery-rows'>
+                        <div style={{ flexBasis: "40%" }}>
+                            <h3>Total to pay</h3>
+                        </div>
+                        <div style={{ flexBasis: "60%" }}>
+                            <h3>£{pay.total.beforeDot + pay.total.afterDot}</h3>
+                        </div>
+                    </div>
+
+                </div>
             </div>
+            <PayButton datePicked={value.display} />
 
         </React.Fragment>
     )
@@ -160,3 +205,4 @@ const BookDelivery = () => {
 
 
 export default BookDelivery;
+

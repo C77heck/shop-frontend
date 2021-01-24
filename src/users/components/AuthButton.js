@@ -31,7 +31,7 @@ const AuthButton = props => {
                     onClick={isLoggedIn ? signoutHandler : undefined}
                 >
                     <UserIcon />
-                    <span>{isLoggedIn ? 'SIGN OUT' : 'SIGN IN'}</span>
+                    <span>{isLoggedIn ? 'LOG OUT' : 'SIGN IN'}</span>
                 </button>
             </div>
         </Auth>

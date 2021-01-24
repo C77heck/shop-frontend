@@ -5,8 +5,18 @@
   left: 23vw;
   width: 54vw;
   background: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .26);
   text-align: center;
+}
+
+.password-recovery__modal {
+  width: 30vw;
+  left: 35vw;
+}
+
+.password-recovery__modal .modal__content {
+  width: 80%;
+  margin: auto;
 }
 
 .basket-modal {
@@ -25,30 +35,30 @@
 }
 
 .instructions-modal .modal__content {
-  padding: 0 0.5rem;
+  padding: 0 .5rem;
 }
 
 .instructions-modal .modal__footer {
-  padding: 0 0.5rem 1rem;
+  padding: 0 .5rem 1rem;
 }
 
 .modal__header {
   width: 100%;
-  padding: 1rem 0.5rem;
+  padding: 1rem .5rem;
   background: rgb(221, 115, 54);
   color: white;
 }
 
 .modal__header h2 {
-  margin: 0.5rem;
+  margin: .5rem;
 }
 
 .modal__content {
-  padding: 1rem 0.5rem;
+  padding: 1rem .5rem;
 }
 
 .modal__footer {
-  padding: 1rem 0.5rem;
+  padding: 1rem .5rem;
 }
 
 .modal-enter {
@@ -93,7 +103,7 @@
 }
 
 .date-picker__modal .modal__footer {
-  padding: 0.7rem;
+  padding: .7rem;
 }
 
 .password-change__modal {
@@ -102,7 +112,7 @@
   left: 39vw;
 }
 
-@media (max-width: 1120px) {
+@media (max-width: 1150px) {
   .date-picker__modal {
     left: 35%;
   }
@@ -112,6 +122,10 @@
   }
   .password-change__modal {
     left: 30vw;
+  }
+  .password-recovery__modal {
+    width: 46vw;
+    left: 27vw;
   }
 }
 
@@ -169,11 +183,11 @@
   }
   .basket-modal .modal__header {
     margin: 0 0 1vh;
-    font-size: 0.8rem;
+    font-size: .8rem;
     padding: 1vh;
   }
   .basket-modal .modal__content {
-    font-size: 0.8rem;
+    font-size: .8rem;
     padding: 1vh 1vh 0;
   }
 }
@@ -183,12 +197,12 @@
     width: 80vw;
     left: 10vw;
     min-width: 0;
-    font-size: 0.8rem;
+    font-size: .8rem;
     top: 7vh;
   }
   .password-change__modal .modal__header {
     margin: 0;
-    font-size: 0.8rem;
+    font-size: .8rem;
     padding: 1vh;
   }
 }

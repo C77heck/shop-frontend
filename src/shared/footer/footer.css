@@ -20,7 +20,7 @@
 }
 
 .footera {
-    transition: color 0.4s;
+    transition: color .4s;
     text-decoration: none;
     color: rgb(214, 96, 27);
 }
@@ -57,7 +57,7 @@
 }
 
 .scroll-to__the-top:hover {
-    opacity: 0.85;
+    opacity: .85;
 }
 
 .scroll-button {

@@ -23,7 +23,7 @@
 }
 
 .products-header div p {
-    margin: 0.2rem;
+    margin: .2rem;
     font-size: 1.1rem;
 }
 
@@ -36,7 +36,7 @@
     flex-direction: row;
     border: solid 1px rgb(150, 144, 144);
     height: 85px;
-    padding-left: 0.7rem;
+    padding-left: .7rem;
 }
 
 .checkout-product__image-div {
@@ -62,15 +62,28 @@
 }
 
 .checkout-product__info {
-    font-size: 0.7rem;
+    font-size: .7rem;
+}
+
+.checkout-price {
+    position: relative;
+    top: 28%;
+    right: 6%;
+    font-size: 1.1rem;
 }
 
 @media (max-width: 520px) {
+    .checkout-product__info {
+        margin: 0;
+    }
     .checkout-product__info p {
-        margin: 0.3rem;
+        margin: .15rem;
     }
     .checkout-list {
         max-height: 45vh;
+    }
+    .checkout-price {
+        font-size: .95rem;
     }
 }
 
@@ -80,13 +93,6 @@
 
 .checkout-product__card p:nth-child(3) {
     color: rgb(46, 60, 190);
-}
-
-.checkout-price {
-    position: relative;
-    top: 28%;
-    right: 6%;
-    font-size: 1.1rem;
 }
 
 .invisible {

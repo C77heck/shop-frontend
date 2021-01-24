@@ -2,12 +2,26 @@
 
 .book-delivery_block {
     display: flex;
-    flex-direction: row;
-    padding-left: 0.7rem;
+    flex-direction: column;
+    padding-left: .7rem;
     border: solid 1px grey;
     background-color: rgb(255, 246, 246);
-
 }
+
+.book-delivery-rows{
+    display: flex;
+    flex-direction: row;
+}
+
+.book-delivery-rows div:nth-child(2){
+justify-content: center;
+margin-left: 2rem;
+}
+
+.book-delivery_block p:nth-child(2){
+    min-height: 2.4rem;
+}
+
 .book-delivery_header{
     text-align: center;
     background-color: rgb(189, 216, 189);
@@ -15,10 +29,11 @@
     border: solid 1px grey;
 }
 .book-delivery_header p {
-    margin: 0.2rem;
+    margin: .2rem;
 }
 
 .book-delivery_buttons{
+
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
@@ -26,13 +41,18 @@
     margin-inline-end: 0px;
     border: none;
     background-color: inherit;
-    cursor: pointer;
     padding: 0;
     text-align: left;
     font: inherit;
-    transition: all 200ms;
+
 }
-.book-delivery_buttons:hover{
+.book-delivery__span{
+    color: rgb(231, 28, 28);
+    transition: all 200ms;
+    cursor: pointer;
+
+}
+.book-delivery_buttons .book-delivery__span:hover{
     color: rgb(17, 209, 17);
     text-decoration: underline;
 }

@@ -31,9 +31,10 @@ export const useForm = (inputs) => {
         inputs: inputs,
     })
 
-    const [isFormValid, setIsFormValid] = useState(false)
 
 
+//FORM VALIDITY LOGIC
+const [isFormValid, setIsFormValid] = useState(false)
 
     useEffect(() => {
         let falsy = 0;

@@ -95,8 +95,9 @@ const Carousel = props => {
                 pics4: basketContent.products.slice(23, 31)
             })
         } else {
-            const products = JSON.parse(localStorage.getItem('basketContent')).products;
-            if (products.length > 0) {
+
+            if (localStorage.getItem('basketContent')) {
+                const products = JSON.parse(localStorage.getItem('basketContent')).products;
                 setPics({
                     pics1: products.slice(1, 7),
                     pics2: products.slice(8, 15),
@@ -104,33 +105,34 @@ const Carousel = props => {
                     pics4: products.slice(23, 31)
                 })
             } else {
-                (async () => {
-                    try {
-                        const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
-                        setPics({
-                            pics1: responseData.products.slice(1, 7),
-                            pics2: responseData.products.slice(8, 15),
-                            pics3: responseData.products.slice(16, 24),
-                            pics4: responseData.products.slice(23, 31),
-                            pics5: responseData.products.slice(1, 7)
-                        })
-                        saveToLocalStorage(responseData.products.map(i => ({
-                            ...i,
-                            number: 0,
-                            totalPrice: 0,
-                            dateFetched: new Date().getTime() + 1000 * 60 * 60 * 24,
-                            isFavourite: false,
-                            isSearched: false
-                        })))
-                    } catch (err) {
-                    }
-                })();
+                    (async () => {
+                        try {
+
+                            const responseData = await sendRequest(process.env.REACT_APP_BACKEND)
+                            setPics({
+                                pics1: responseData.products.slice(1, 7),
+                                pics2: responseData.products.slice(8, 15),
+                                pics3: responseData.products.slice(16, 24),
+                                pics4: responseData.products.slice(23, 31),
+                                pics5: responseData.products.slice(1, 7)
+                            })
+                            saveToLocalStorage(responseData.products.map(i => ({
+                                ...i,
+                                number: 0,
+                                totalPrice: 0,
+                                dateFetched: new Date().getTime() + 1000 * 60 * 60 * 24,
+                                isFavourite: false,
+                                isSearched: false
+                            })))
+                        } catch (err) {
+                        }
+                    })();
             }
 
         }
 
 
-    }, [isLoggedIn])
+    }, [])
 
 
     const arrowLeftHandler = () => {
@@ -144,7 +146,7 @@ const Carousel = props => {
     }
 
     const arrowRightHandler = () => {
-        if (activeSlide !== images.length+1) {
+        if (activeSlide !== images.length + 1) {
             setCarousel({
                 ...carousel,
                 translate: translate + 100,

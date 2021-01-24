@@ -5,6 +5,9 @@ import { useHistory } from 'react-router-dom';
 import { SearchContext } from '../../shared/context/search-context';
 import { AuthContext } from '../context/auth-context';
 import { PurchaseContext } from '../context/purchase-context';
+import Img from 'react-lazy-img';
+
+
 
 
 const Image = props => {
@@ -30,7 +33,7 @@ const Image = props => {
 
     return (
         <div onClick={clickHandle}>
-            <img
+            <Img
                 defer
                 key={id}
                 src={process.env.REACT_APP_IMAGE_ROUTE + image}

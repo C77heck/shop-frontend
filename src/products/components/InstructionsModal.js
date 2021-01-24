@@ -9,18 +9,26 @@ import Input from '../../shared/form-elements/Input';
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 
 
+
+const trimString = (string) => {
+    if (string === '') {
+        return '';
+    }
+    return string.slice(0, 15) + '...'
+}
+
+
 const InstructionsModal = () => {
 
     const auth = useContext(AuthContext)
     const { sendRequest, isLoading } = useHttpClient();
     const [show, setShow] = useState(false)
-    const [inputState, inputHandler] = useForm({
+    const [inputState, inputHandler, isFormValid, setFormData] = useForm({
         instructions: {
             value: '',
             valid: true
         }
     })
-    const [display, setDisplay] = useState();
     const instructionsHandler = () => {
         setShow(true)
     }
@@ -45,7 +53,10 @@ const InstructionsModal = () => {
                     'Content-Type': 'application/json'
                 }
             )
-            setDisplay(responseData.instructions)
+            setFormData({
+                value: responseData.instructions,
+                valid: true
+            })
 
 
         } catch (err) {
@@ -54,6 +65,9 @@ const InstructionsModal = () => {
         }
 
     }
+
+
+
 
     return (
         <React.Fragment>
@@ -80,7 +94,12 @@ const InstructionsModal = () => {
             <button
                 className='book-delivery_buttons'
                 onClick={instructionsHandler}
-            >{display} Edit delivery instructions</button>
+            ><span>{trimString(inputState.inputs.instructions.value)}</span>
+                <span className='book-delivery__span'>
+                    {inputState.inputs.instructions.value === '' ?
+                        ' Add delivery instructions' : ' Edit delivery instructions'}
+                </span>
+            </button>
         </React.Fragment>
     )
 }

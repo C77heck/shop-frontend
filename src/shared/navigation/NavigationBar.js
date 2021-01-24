@@ -21,9 +21,9 @@ const NavigationBar = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
     const closeDrawerHandler = e => {
-        if(e.target.id==='store-finder'){
+        if (e.target.id === 'store-finder' || e.target.id === 'register') {
 
-        }else{
+        } else {
             setIsDrawerOpen(false)
         }
     }

@@ -61,16 +61,16 @@ const NavLinks = props => {
                 {!isAdminLoggedIn && location.pathname.search('admin') === -1 ?
                     <li><NavLink to='/contact' exact>CONTACT US</NavLink></li> :
                     null}
-                {isLoggedIn && !isAdminLoggedIn && location.pathname.search('admin') !== 1 && 
-                <React.Fragment><li className='mobile-view__my__account'>
-                    <NavLink to={`/userdata/${userId}`} >UPDATE DETAILS</NavLink>
-                </li>
-                    <li className='mobile-view__my__account'>
-                        <NavLink to={`/orderhistory/${userId}`} >ORDER HISTORY</NavLink>
+                {isLoggedIn && !isAdminLoggedIn && location.pathname.search('admin') !== 1 &&
+                    <React.Fragment><li className='mobile-view__my__account'>
+                        <NavLink to={`/userdata/${userId}`} >UPDATE DETAILS</NavLink>
                     </li>
-                    <li className='mobile-view__my__account'>
-                        <NavLink to={`/favourites/${userId}`}>FAVOURITES</NavLink>
-                    </li></React.Fragment>}
+                        <li className='mobile-view__my__account'>
+                            <NavLink to={`/orderhistory/${userId}`} >ORDER HISTORY</NavLink>
+                        </li>
+                        <li className='mobile-view__my__account'>
+                            <NavLink to={`/favourites/${userId}`}>FAVOURITES</NavLink>
+                        </li></React.Fragment>}
                 {location.pathname.search('admin') === 1 ?
                     <li><NavLink to='/admin/resources' exact>RESOURCES</NavLink></li> :
                     null
@@ -85,7 +85,7 @@ const NavLinks = props => {
                             </div>
                             :
                             <Auth register={true} >
-                                <NavLink to='/' exact>REGISTER</NavLink>
+                                <NavLink id='register' to='/' exact>REGISTER</NavLink>
                             </Auth>
                     }
                 </li>

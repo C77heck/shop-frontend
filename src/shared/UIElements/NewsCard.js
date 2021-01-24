@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
+import Img from 'react-lazy-img'
+
 import './NewsCard.css';
 
 
@@ -13,7 +15,7 @@ const NewsCard = props => {
                 <div className='card-frame'>
                     <div className='card-item'>
                         <div className='image-container'>
-                            <img defer src="/images/NewsCard/hams.jpg" alt='serrano ham' />
+                            <Img src="/images/NewsCard/hams.jpg" alt='serrano ham' />
                         </div>
                         <div>
                             <h2>Market report</h2>

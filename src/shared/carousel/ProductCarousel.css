@@ -24,12 +24,12 @@
 .carousel-wrapper_product-slider .slider-divs div {
     object-fit: contain;
     margin: 2rem;
-    transition: transform 0.5s;
+    transition: transform .5s;
     height: 7vw;
 }
 
 .carousel-wrapper_product-slider .slider-divs div img {
-    transition: transform 0.5s;
+    transition: transform .5s;
     height: 100%;
 }
 
@@ -43,11 +43,11 @@
     top: 35%;
     height: 3vw;
     width: 3vw;
-    transition: all 0.5s;
+    transition: all .5s;
     border-radius: 50%;
     border-color: rgb(173, 168, 168);
     right: 3%;
-    opacity: 0.5;
+    opacity: .5;
 }
 
 .left-side_controller_product-slider {
@@ -57,10 +57,10 @@
     height: 3vw;
     width: 3vw;
     background: transparent;
-    transition: all 0.5s;
+    transition: all .5s;
     border-radius: 50%;
     border-color: rgb(155, 150, 150);
-    opacity: 0.5;
+    opacity: .5;
 }
 
 .left-side_controller_product-slider:hover, .right-side_controller_product-slider:hover {
@@ -75,7 +75,7 @@
 
 @media (max-width: 1150px) {
     .carousel-wrapper_product-slider .slider-divs div {
-        margin: 0.5rem;
+        margin: .5rem;
         height: 9vw;
     }
 }

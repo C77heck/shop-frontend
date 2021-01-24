@@ -27,6 +27,7 @@ const CustomSelect = props => {
         }
     }, [])
 
+
     return (
         <div className="custom-select">
             <select onChange={props.onChange}>
@@ -37,7 +38,6 @@ const CustomSelect = props => {
                     return <option key={i.id} value={i.value}>{i.value}</option>
                 })}
             </select>
-
         </div>
     )
 }

@@ -13,7 +13,7 @@
 
 .card-frame {
     min-width: 20%;
-    transition: all 0.3s;
+    transition: all .3s;
     background-color: rgb(240, 229, 199);
     padding: 3px;
     border: rgb(228, 225, 217) solid 1px;
@@ -98,6 +98,6 @@
         max-width: 100%;
     }
     .NewsCard-container p {
-        font-size: 0.7rem;
+        font-size: .7rem;
     }
 }

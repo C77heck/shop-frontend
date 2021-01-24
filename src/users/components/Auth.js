@@ -22,7 +22,7 @@ const Auth = props => {
     const { saveToLocalStorage, basketContent } = useContext(PurchaseContext)
 
 
-    const { error, clearError, isLoading, sendRequest } = useHttpClient();
+    const { error, clearError, isLoading, sendRequest, applicationError } = useHttpClient();
 
     const [registering, setRegistering] = useState(false);
     const [clickedSignIn, setClickedSignIn] = useState(false);
@@ -79,12 +79,18 @@ const Auth = props => {
             valid: false
         }
     })
-    const [question, setQuestion] = useState('')
+    const [question, setQuestion] = useState({
+        value: '',
+        valid: false
+    })
 
     const onChangeHandler = e => {
         const value = e.target.value;
         if (value !== '0') {
-            setQuestion(value)
+            setQuestion({
+                value: value,
+                valid: true
+            })
         }
     }
 
@@ -137,13 +143,13 @@ const Auth = props => {
                 basketContent.userId === responseData.userData.userId
                 &&
                 basketContent.products[0].dateFetched - new Date().getTime() > 0) {
-                    try{
-                        saveToLocalStorage(basketContent.products, basketContent.userId)
-                        signin(responseData.userData)
-                        signInClose();
-                    }catch(err){
-                        console.log(err)
-                    }
+                try {
+                    saveToLocalStorage(basketContent.products, basketContent.userId)
+                    signin(responseData.userData)
+                    signInClose();
+                } catch (err) {
+                    console.log(err)
+                }
 
             } else {
 
@@ -170,7 +176,6 @@ const Auth = props => {
                 }
             }
         } catch (err) {
-            console.log(err)
         }
 
 
@@ -180,24 +185,23 @@ const Auth = props => {
     const signupHandler = async e => {
         e.preventDefault();
         try {
+            if (!question.valid) {
+                throw new Error('Please pick a security question!')
+            }
             const responseData = await sendRequest(
                 process.env.REACT_APP_SIGNUP,
                 'POST',
                 JSON.stringify({
-                    fullName: {
-                        firstName: inputState.inputs.fName.value,
-                        lastName: inputState.inputs.surname.value
-                    },
+                    firstName: inputState.inputs.fName.value,
+                    lastName: inputState.inputs.surname.value,
                     email: inputState.inputs.email.value,
                     password: encrypt(inputState.inputs.password.value),
                     phone: inputState.inputs.phone.value,
-                    address: {
-                        city: inputState.inputs.city.value,
-                        street: inputState.inputs.street.value,
-                        postCode: inputState.inputs.postCode.value,
-                        houseNumber: inputState.inputs.houseNumber.value
-                    },
-                    hint: question,
+                    city: inputState.inputs.city.value,
+                    street: inputState.inputs.street.value,
+                    postCode: inputState.inputs.postCode.value,
+                    houseNumber: inputState.inputs.houseNumber.value,
+                    hint: question.value,
                     answer: inputState.inputs.answer.value
                 }),
                 { 'Content-Type': 'application/json' }
@@ -224,6 +228,7 @@ const Auth = props => {
                 console.log(err)
             }
         } catch (err) {
+            applicationError(err.message)
 
         }
     }

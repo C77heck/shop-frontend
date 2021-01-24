@@ -1,8 +1,16 @@
-.thank-you__div{
+.thank-you__div {
     margin-top: 20vh;
     text-align: center;
 }
-.thank-you__div h1{
+
+.thank-you__div h1 {
     color: grey;
     font-size: 5vw;
+}
+
+@media (max-width: 800px) {
+    .thank-you__div h1 {
+        color: #c56a03;
+        font-size: 7vw;
+    }
 }

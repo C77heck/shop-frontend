@@ -35,7 +35,7 @@
 }
 
 .form-element button:hover {
-    background-color: rgba(233, 107, 4, 0.562);
+    background-color: rgba(233, 107, 4, .562);
     border: white 1px solid;
 }
 

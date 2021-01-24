@@ -56,7 +56,7 @@ const FirstPage = props => {
                         label='Password'
                         onInput={props.onInput}
                         value={props.value.password.value}
-                        errorText='Your password must be at least 6 character long'
+                        errorText='min. password length 6 characters'
                         validators={[VALIDATOR_MINLENGTH(6)]}
                         type='password'
                     />
@@ -75,7 +75,7 @@ const FirstPage = props => {
                         label='Phone number'
                         onInput={props.onInput}
                         value={props.value.phone.value}
-                        validators={[VALIDATOR_PHONE()]}
+                        validators={[VALIDATOR_PHONE(), VALIDATOR_REQUIRE()]}
                         placeholder='(e.g. 020 5555 555)'
                         errorText='Please enter a valid phone number'
                         type='text'
@@ -98,6 +98,7 @@ const SecondPage = props => {
                         onInput={props.onInput}
                         value={props.value.city.value}
                         validators={[VALIDATOR_REQUIRE()]}
+                        errorText='Please provide your City'
                         type='text'
                     />
                     <Input
@@ -106,6 +107,7 @@ const SecondPage = props => {
                         onInput={props.onInput}
                         value={props.value.street.value}
                         validators={[VALIDATOR_REQUIRE()]}
+                        errorText='Please provide your address'
                         type='text'
                     />
                 </div>
@@ -117,6 +119,7 @@ const SecondPage = props => {
                         onInput={props.onInput}
                         value={props.value.postCode.value}
                         validators={[VALIDATOR_REQUIRE()]}
+                        errorText='Please provide your post code'
                         type='text'
                     />
 
@@ -127,6 +130,7 @@ const SecondPage = props => {
                         onInput={props.onInput}
                         value={props.value.houseNumber.value}
                         validators={[VALIDATOR_REQUIRE()]}
+                        errorText='Please provide your house number'
                         type='text'
                     />
                 </div>
@@ -197,9 +201,9 @@ const Signup = props => {
                 }
                 <p>Already have an account? <span className='signin-here' onClick={props.cancelSignup}>sign in here</span></p>
                 <p>For further information on how we use your data please read our
-                <Link to='/shopping'>privacy policy</Link>.
+                <Link to='/'>privacy policy</Link>.
                 By submitting this form you agree to the
-                 <Link to='/shopping'>terms and conditions</Link>.</p>
+                 <Link to='/'>terms and conditions</Link>.</p>
             </React.Fragment>}>
             {props.isLoading && <LoadingSpinner asOverlay />}
             {isFirstPage ? <FirstPage

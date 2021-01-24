@@ -51,7 +51,7 @@
 .order-cards__buttons button {
     min-width: 110px;
     max-height: 2.2rem;
-    font-size: 0.9rem;
+    font-size: .9rem;
     background-color: #22a03e;
     transition: background-color 300ms;
 }
@@ -66,7 +66,7 @@
 }
 
 .order-cards__id p {
-    margin: 0.7vh;
+    margin: .7vh;
     color: rgb(252, 252, 252);
 }
 

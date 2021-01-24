@@ -10,13 +10,13 @@
 
 @media (max-width: 625px) {
     .welcome-card__container {
-        margin-top: 6rem;
+        margin-top: 4rem;
         margin-bottom: 2rem;
     }
 }
 
 .welcome-card__container h1, .welcome-card__container h2, .welcome-card__container h4 {
-    margin: 0.6vh;
+    margin: .6vh;
     color: rgb(223, 94, 8);
 }
 
@@ -26,7 +26,7 @@
     height: 50px;
     width: 14rem;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: .9rem;
     background-color: rgb(252, 252, 252);
     border: 5px solid rgb(197, 106, 3);
     border-left: hidden;
@@ -78,7 +78,7 @@
     height: 50px;
     width: 14rem;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: .9rem;
     background-color: rgb(252, 252, 252);
     border: 5px solid rgb(197, 106, 3);
     border-left: hidden;

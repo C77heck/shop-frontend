@@ -16,19 +16,22 @@ import { SearchContext } from './shared/context/search-context'
 import { usePurchase } from './shared/hooks/purchase-hook';
 import { useSearch } from './shared/hooks/search-hook';
 import NavigationBar from './shared/navigation/NavigationBar';
-import Footer from './shared/footer/Footer'
-import Newscard from './shared/UIElements/NewsCard';
-import Shopping from './products/pages/Shopping';
+
 import Carousel from './shared/carousel/Carousel';
 import LoadingSpinner from './shared/UIElements/LoadingSpinner';
 import Welcome from './users/components/Welcome';
-import Contact from './users/pages/Contact';
+import Footer from './shared/footer/Footer'
+import Newscard from './shared/UIElements/NewsCard';
+
 
 import './App.css';
+
+
+/*  
+import Shopping from './products/pages/Shopping';
+import Contact from './users/pages/Contact';
 import Upload from './admin/pages/Upload';
-
-
-/* import Admin from './admin/pages/Admin';
+import Admin from './admin/pages/Admin';
 import SearchResults from './products/pages/SearchResults';
 import Checkout from './products/pages/Checkout';
 import ThankYou from './products/pages/ThankYou'
@@ -36,9 +39,13 @@ import UserInfo from './users/pages/UserInfo';
 import PassRecovery from './users/pages/PassRecovery';
 import ViewOrders from './users/pages/ViewOrders';
 import NotMe from './users/pages/NotMe';
-import Favourites from './users/pages/Favourites'; */
+import Favourites from './users/pages/Favourites';  */
 
 
+
+const Shopping = React.lazy(() => import('./products/pages/Shopping'))
+const Contact = React.lazy(() => import('./users/pages/Contact'))
+const Upload = React.lazy(() => import('./admin/pages/Upload'))
 const Admin = React.lazy(() => import('./admin/pages/Admin'))
 const SearchResults = React.lazy(() => import('./products/pages/SearchResults'))
 const Checkout = React.lazy(() => import('./products/pages/Checkout'))

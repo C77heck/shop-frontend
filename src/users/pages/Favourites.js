@@ -12,18 +12,31 @@ const Favourites = () => {
 
     const [products, setProducts] = useState([])
 
-    const [itemCounter, setItemCounter] = useState(0)
+    const [itemCounter, setItemCounter] = useState(0)// if there isn't any favourite item we set the height so footer stays in place.
+
 
     useEffect(() => {
-        setProducts(basketContent.products)
-        basketContent.products.map(i => {// if there isn't any favourite item we set the height so footer stays in place.
-            if (i.isFavourite) {
-                setItemCounter(prev => prev += 1)
-            }
-            return null;
-        })
-    }, [basketContent])
+        if (basketContent.products.length < 1) {
+            const products = JSON.parse(localStorage.getItem('basketContent')).products;
+            products.map(i => {
+                if (i.isFavourite) {
 
+                    setItemCounter(prev => prev += 1)
+                }
+                return null;
+            })
+            setProducts(products)
+        } else {
+            basketContent.products.map(i => {
+                if (i.isFavourite) {
+
+                    setItemCounter(prev => prev += 1)
+                }
+                return null;
+            })
+            setProducts(basketContent.products)
+        }
+    }, [basketContent.products, setItemCounter])
 
 
     return (<div

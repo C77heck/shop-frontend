@@ -17,7 +17,7 @@
     font-weight: 550;
     color: #faf6f6;
     border-radius: 400px;
-    transition: all 0.3s;
+    transition: all .3s;
 }
 
 .auth-container .auth-button:hover {
@@ -27,7 +27,7 @@
 }
 
 .auth-container .auth-button:active {
-    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.26);
+    box-shadow: 0 3px 2px rgba(0, 0, 0, .26);
     transform: scale(1.05);
 }
 

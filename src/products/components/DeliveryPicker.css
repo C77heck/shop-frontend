@@ -7,5 +7,5 @@
 }
 
 .react-calendar__tile:hover {
-    background-color: rgba(30, 179, 117, 0.596) !important;
+    background-color: rgba(30, 179, 117, .596) !important;
 }

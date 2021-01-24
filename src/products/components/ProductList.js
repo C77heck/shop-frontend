@@ -2,7 +2,7 @@ import React from 'react';
 
 import BuyButton from './BuyButton'
 import FavouriteIcon from './FavouriteIcon';
-
+import Img from 'react-lazy-img';
 
 import './Products.css'
 
@@ -33,7 +33,8 @@ const ProductCard = props => {
                     products={props.products}
                 />
                 <div className="image-container__products">
-                    <img
+                    <Img
+                        defer
                         className='product-image'
                         src={process.env.REACT_APP_IMAGE_ROUTE + props.image}
                         alt={props.name}

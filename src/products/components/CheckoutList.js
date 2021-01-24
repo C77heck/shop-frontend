@@ -51,7 +51,7 @@ const ProductItem = props => {
             </div>
             <div
                 className='checkout-product__info'
-                style={{ flexBasis: "40%", margin: "0.2rem", textAlign: "center" }}
+                style={{ flexBasis: "40%", textAlign: "center" }}
             >
                 <p>{props.name}</p>
                 <p>{props.code}</p>

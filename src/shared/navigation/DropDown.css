@@ -13,40 +13,40 @@ li {
 
 .dropdown-content {
     text-align: right;
-    padding: 0.7vh 17vh 0.9vh 0;
+    padding: .7vh 17vh .9vh 0;
     background-color: rgb(218, 217, 208);
     border: rgb(216, 131, 21) solid 2px;
     color: rgb(250, 102, 3);
 }
 
 .dropdown-content a {
-    margin: 0.5rem 0 !important;
+    margin: .5rem 0 !important;
     text-decoration: none;
     display: inline;
-    font-size: 0.8rem;
+    font-size: .8rem;
 }
 
 @media (max-width: 1140px) {
     .dropdown-content a {
-        font-size: 0.8rem;
+        font-size: .8rem;
     }
     .dropdown-content {
-        padding: 0.7vh 14.8vh 0.9vh 0;
+        padding: .7vh 14.8vh .9vh 0;
     }
 }
 
 @media (max-width: 1000px) {
     .dropdown-content a {
-        font-size: 0.7rem;
+        font-size: .7rem;
     }
     .dropdown-content {
-        padding: 0.7vh 10.7vh 0.9vh 0;
+        padding: .7vh 1.7vh .9vh 0;
     }
 }
 
 @media (max-width: 930px) {
     .dropdown-content a {
-        font-size: 0.6rem;
+        font-size: .6rem;
     }
 }
 

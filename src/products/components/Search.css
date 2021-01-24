@@ -57,7 +57,7 @@
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 480px) {
     .border-container {
         width: 74vw;
         margin: 2vh auto 0;

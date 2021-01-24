@@ -19,3 +19,8 @@
 .pay-button:active {
     transform: scale(1.05);
 }
+ @media (max-width: 800px){
+    .pay-button {
+        position: unset;
+    }
+ }

@@ -12,10 +12,10 @@
 }
 
 .nav-links a, .nav-links p {
-  transition: all 0.5s;
+  transition: all .5s;
   border: 1px solid transparent;
   text-decoration: none;
-  padding: 0.5rem;
+  padding: .5rem;
   transition: all 300ms;
   color: rgb(202, 113, 12);
 }

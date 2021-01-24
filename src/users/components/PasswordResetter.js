@@ -29,7 +29,7 @@ const PasswordModal = props => {
 
     return (
         <Modal
-            className=''
+            className='password-recovery__modal'
             header='Password assistance'
             onCancel={props.onClear}
             show={props.show}
