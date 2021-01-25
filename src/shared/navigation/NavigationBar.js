@@ -32,6 +32,9 @@ const NavigationBar = () => {
     return (
         <React.Fragment>
             {isDrawerOpen && <Backdrop className={'backdrop-invisible'} onClick={closeDrawerHandler} />}
+        
+        <div className='nav-bar__wrapper'>
+
             <SideDrawer show={isDrawerOpen} onClick={closeDrawerHandler}>
                 <nav className="main-navigation__drawer-nav">
                     <NavLinks />
@@ -54,7 +57,7 @@ const NavigationBar = () => {
                 </nav>
 
             </MainHeader>
-
+</div>
         </React.Fragment>
     )
 
