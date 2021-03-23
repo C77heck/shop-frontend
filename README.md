@@ -1,4 +1,4 @@
-#this app is a PWA ecommerce website front end built with react 
+#this app is a PWA ecommerce website(frontend) built with react 
 
 it communicates with a restful api built with nodejs, express and mongodb
 
