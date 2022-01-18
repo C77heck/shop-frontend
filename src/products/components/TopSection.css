@@ -5,7 +5,7 @@
 .top-section__div {
     width: 90%;
     margin: auto;
-    margin-top: 3vh;
+    margin-top: 11vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -28,7 +28,8 @@
     align-items: center;
 }
 
-.top-section__buttons {}
+.top-section__buttons {
+}
 
 @media (max-width: 740px) {
     .top-section__logo {

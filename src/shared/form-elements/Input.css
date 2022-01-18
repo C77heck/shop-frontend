@@ -1,40 +1,46 @@
 /* INPUT VALIDATION */
 
 .input-control {
-    margin: 1rem 0;
 }
 
-.input-control label, .input-control input, .input-control textarea {
+.input-control label,
+.input-control input,
+.input-control textarea {
     display: block;
 }
 
 .input-control label {
     font-weight: bold;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
 }
 
-.input-control input, .input-control textarea {
+.input-control input,
+.input-control textarea {
     width: 100%;
     font: inherit;
     border: 1px solid rgb(160, 157, 157);
     background: #f8f8f8;
-    padding: .15rem .25rem;
+    padding: 0.15rem 0.25rem;
 }
 
-.input-control input:focus, .input-control textarea:focus {
+.input-control input:focus,
+.input-control textarea:focus {
     background: #ebebeb;
     border-color: #065228;
 }
 
-.input-control--invalid label:focus, .input-control--invalid p:focus {
+.input-control--invalid label:focus,
+.input-control--invalid p:focus {
     color: rgb(22, 22, 22);
 }
 
-.input-control--invalid label, .input-control--invalid p {
+.input-control--invalid label,
+.input-control--invalid p {
     color: rgb(180, 42, 42);
 }
 
-.input-control--invalid input, .input-control--invalid textarea {
+.input-control--invalid input,
+.input-control--invalid textarea {
     border-color: rgb(173, 33, 33);
     background: #ffd1d1;
 }
@@ -44,13 +50,12 @@
     min-height: 1rem;
     display: flex;
     justify-content: center;
-/*     min-width: 80%;
+    /*     min-width: 80%;
     max-width: 100%; */
-
 }
 
 .error-text p {
-    font-size: .8rem;
+    font-size: 0.8rem;
     margin: 0;
     position: absolute;
     padding-top: 1px;
@@ -58,7 +63,7 @@
 
 @media (max-width: 700px) {
     .error-text p {
-        font-size: .64rem;
+        font-size: 0.64rem;
         position: static;
     }
 }

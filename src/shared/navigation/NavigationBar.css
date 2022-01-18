@@ -1,6 +1,5 @@
-
-.nav-bar__wrapper{
-  font-family: 'Roboto Condensed', sans-serif;
+.nav-bar__wrapper {
+  font-family: "Roboto Condensed", sans-serif;
   letter-spacing: 1.5px;
 }
 
@@ -27,6 +26,8 @@
   color: #c56a03;
   position: relative;
   top: -3px;
+  cursor: pointer;
+  user-select: none;
 }
 
 .main-navigation__header-nav {
@@ -46,7 +47,8 @@
 }
 
 @media (min-width: 700px) {
-  .main-navigation__menu-btn, .admin-signin__button {
+  .main-navigation__menu-btn,
+  .admin-signin__button {
     display: none;
   }
   .main-navigation__header-nav {

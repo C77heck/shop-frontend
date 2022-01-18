@@ -4,8 +4,7 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    padding: 2vw;
-
+    padding: 6vw 2vw;
 }
 
 @media (max-width: 625px) {
@@ -15,8 +14,10 @@
     }
 }
 
-.welcome-card__container h1, .welcome-card__container h2, .welcome-card__container h4 {
-    margin: .6vh;
+.welcome-card__container h1,
+.welcome-card__container h2,
+.welcome-card__container h4 {
+    margin: 0.6vh;
     color: rgb(223, 94, 8);
 }
 
@@ -26,7 +27,7 @@
     height: 50px;
     width: 14rem;
     font-weight: 600;
-    font-size: .9rem;
+    font-size: 0.9rem;
     background-color: rgb(252, 252, 252);
     border: 5px solid rgb(197, 106, 3);
     border-left: hidden;
@@ -42,7 +43,7 @@
 }
 
 .btn-to-shop:hover {
-    color: rgb(197, 106, 3)
+    color: rgb(197, 106, 3);
 }
 
 .btn-to-shop::after {
@@ -63,7 +64,7 @@
 
 .btn-to-shop:hover::after {
     transform: scale(0);
-    color: rgb(197, 106, 3)
+    color: rgb(197, 106, 3);
 }
 
 .btn-to-shop:active {
@@ -78,7 +79,7 @@
     height: 50px;
     width: 14rem;
     font-weight: 600;
-    font-size: .9rem;
+    font-size: 0.9rem;
     background-color: rgb(252, 252, 252);
     border: 5px solid rgb(197, 106, 3);
     border-left: hidden;

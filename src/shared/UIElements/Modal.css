@@ -5,8 +5,10 @@
   left: 23vw;
   width: 54vw;
   background: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .26);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   text-align: center;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 .password-recovery__modal {
@@ -35,30 +37,26 @@
 }
 
 .instructions-modal .modal__content {
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
 }
 
 .instructions-modal .modal__footer {
-  padding: 0 .5rem 1rem;
+  padding: 0 0.5rem 1rem;
 }
 
 .modal__header {
   width: 100%;
-  padding: 1rem .5rem;
+  padding: 1rem 0.5rem;
   background: rgb(221, 115, 54);
   color: white;
 }
 
 .modal__header h2 {
-  margin: .5rem;
-}
-
-.modal__content {
-  padding: 1rem .5rem;
+  margin: 0.5rem;
 }
 
 .modal__footer {
-  padding: 1rem .5rem;
+  padding: 1rem 0.5rem;
 }
 
 .modal-enter {
@@ -94,7 +92,8 @@
   background-color: rgb(171, 202, 171);
 }
 
-.date-picker__modal .modal__header, .date-picker__modal .modal__footer {
+.date-picker__modal .modal__header,
+.date-picker__modal .modal__footer {
   background-color: rgb(49, 130, 133);
 }
 
@@ -103,7 +102,7 @@
 }
 
 .date-picker__modal .modal__footer {
-  padding: .7rem;
+  padding: 0.7rem;
 }
 
 .password-change__modal {
@@ -183,11 +182,11 @@
   }
   .basket-modal .modal__header {
     margin: 0 0 1vh;
-    font-size: .8rem;
+    font-size: 0.8rem;
     padding: 1vh;
   }
   .basket-modal .modal__content {
-    font-size: .8rem;
+    font-size: 0.8rem;
     padding: 1vh 1vh 0;
   }
 }
@@ -197,12 +196,12 @@
     width: 80vw;
     left: 10vw;
     min-width: 0;
-    font-size: .8rem;
+    font-size: 0.8rem;
     top: 7vh;
   }
   .password-change__modal .modal__header {
     margin: 0;
-    font-size: .8rem;
+    font-size: 0.8rem;
     padding: 1vh;
   }
 }

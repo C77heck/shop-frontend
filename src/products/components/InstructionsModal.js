@@ -81,20 +81,20 @@ const InstructionsModal = () => {
                 {isLoading && <LoadingSpinner asOverlay />}
 
                 <Input
-                    element='textarea'
+                    element='textarea-nope'
                     id='instructions'
                     label='delivery instructions'
                     labelStyle={{ fontSize: "1.2rem", letterSpacing: "1.5px" }}
                     style={{ resize: "none" }}
                     onInput={inputHandler}
-                    value={inputState.inputs.instructions.value}
+                    value={inputState?.inputs?.instructions?.value || ''}
                     validators={[]}
                 />
             </Modal>
             <button
                 className='book-delivery_buttons'
                 onClick={instructionsHandler}
-            ><span>{trimString(inputState.inputs.instructions.value)}</span>
+            ><span>{trimString(inputState?.inputs?.instructions?.value || '')}</span>
                 <span className='book-delivery__span'>
                     {inputState.inputs.instructions.value === '' ?
                         ' Add delivery instructions' : ' Edit delivery instructions'}
