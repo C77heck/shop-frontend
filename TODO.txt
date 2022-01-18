@@ -1,0 +1,4 @@
+1. it logs us out for some fucking reason
+2. we lose the context sometimes and the fucking ordering. 
+probably check the lifecycle methods.
+3. some css fix ups to make more pleasant to the eye.
